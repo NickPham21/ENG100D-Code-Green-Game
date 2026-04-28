@@ -1,0 +1,27 @@
+{
+	"name": "main_menu_events",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "start_button",
+					"sid": 791098472742157
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 725503905337680,
+					"parameters": {
+						"layout": "cutscene_1"
+					}
+				}
+			],
+			"sid": 727312182147798
+		}
+	],
+	"sid": 638497315036889
+}
