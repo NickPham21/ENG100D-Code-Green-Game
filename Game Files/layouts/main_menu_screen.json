@@ -9,7 +9,7 @@
 				{
 					"type": "game_text_title",
 					"properties": {
-						"text": "GAME TITLE",
+						"text": "GAME TITLE TEST",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 60,
@@ -45,7 +45,7 @@
 					"world": {
 						"x": 702,
 						"y": 284,
-						"width": 495,
+						"width": 864,
 						"height": 142,
 						"originX": 0,
 						"originY": 0,
@@ -99,7 +99,7 @@
 				{
 					"type": "start_bttn_text",
 					"properties": {
-						"text": "START",
+						"text": "START TEST",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 50,
