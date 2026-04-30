@@ -1,0 +1,10 @@
+{
+	"name": "paused_text",
+	"plugin-id": "Text",
+	"sid": 466042123999633,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

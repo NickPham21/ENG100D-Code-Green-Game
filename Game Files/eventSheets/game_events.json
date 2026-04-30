@@ -13,8 +13,24 @@
 		},
 		{
 			"eventType": "block",
-			"conditions": [],
-			"actions": [],
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 486196201802787
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 456014561943251,
+					"parameters": {
+						"layer": "\"pause_menu\"",
+						"visibility": "invisible"
+					}
+				}
+			],
 			"sid": 510712239267514
 		},
 		{
