@@ -59,13 +59,60 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-object-clicked",
+					"id": "mouse-button-is-down",
 					"objectClass": "Mouse",
-					"sid": 741049107701284,
+					"sid": 440271418134399,
 					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "start_bttn"
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 558850126438400,
+					"parameters": {
+						"object": "start_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation-frame",
+					"objectClass": "start_bttn",
+					"sid": 494060305691730,
+					"parameters": {
+						"frame-number": "1"
+					}
+				}
+			],
+			"sid": 279398149838238
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 495043165907099,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 901624603488605,
+					"parameters": {
+						"object": "start_bttn"
+					}
+				},
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "start_bttn",
+					"sid": 460371473062316,
+					"parameters": {
+						"comparison": 0,
+						"number": "1"
 					}
 				}
 			],
@@ -93,13 +140,60 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-object-clicked",
+					"id": "mouse-button-is-down",
 					"objectClass": "Mouse",
-					"sid": 482654997835266,
+					"sid": 586461520942378,
 					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "lvl_select_btn"
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 523397318242511,
+					"parameters": {
+						"object": "lvl_select_btn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation-frame",
+					"objectClass": "lvl_select_btn",
+					"sid": 724362294788081,
+					"parameters": {
+						"frame-number": "1"
+					}
+				}
+			],
+			"sid": 389482704796195
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-button-released",
+					"objectClass": "Mouse",
+					"sid": 992994445994317,
+					"parameters": {
+						"mouse-button": "left"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 294281628740084,
+					"parameters": {
+						"object": "lvl_select_btn"
+					}
+				},
+				{
+					"id": "compare-animation-frame",
+					"objectClass": "lvl_select_btn",
+					"sid": 486176739114064,
+					"parameters": {
+						"comparison": 0,
+						"number": "1"
 					}
 				}
 			],
@@ -107,7 +201,7 @@
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 387222574894811,
+					"sid": 506476895037712,
 					"parameters": {
 						"layout": "level_select_screen"
 					}
@@ -115,13 +209,13 @@
 				{
 					"id": "set-cursor-style2",
 					"objectClass": "Mouse",
-					"sid": 287257370766846,
+					"sid": 208996932251001,
 					"parameters": {
 						"cursor-style": "normal"
 					}
 				}
 			],
-			"sid": 827758674434680
+			"sid": 601799905185258
 		}
 	],
 	"sid": 638497315036889
