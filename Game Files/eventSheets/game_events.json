@@ -12,22 +12,64 @@
 			"sid": 545410248490997
 		},
 		{
+			"eventType": "variable",
+			"name": "timer",
+			"type": "number",
+			"initialValue": "60",
+			"comment": "Timer for level defaults to 60s",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 649702458696368
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
-					"sid": 486196201802787
+					"sid": 199485944155138
 				}
 			],
 			"actions": [
 				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 456014561943251,
+					"id": "set-text",
+					"objectClass": "Timer",
+					"sid": 339797116640677,
 					"parameters": {
-						"layer": "\"pause_menu\"",
-						"visibility": "invisible"
+						"text": "timer"
+					}
+				}
+			],
+			"sid": 733765456280333
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 177254807167755,
+					"parameters": {
+						"interval-seconds": "1.0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "Timer",
+					"sid": 218163348618709,
+					"parameters": {
+						"text": "timer"
+					}
+				},
+				{
+					"id": "subtract-from-eventvar",
+					"objectClass": "System",
+					"sid": 398231435651814,
+					"parameters": {
+						"variable": "timer",
+						"value": "1"
 					}
 				}
 			],

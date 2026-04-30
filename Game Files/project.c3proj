@@ -47,22 +47,40 @@
 			"name": "Drag & Drop",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
 		}
 	],
 	"uniqueId": "rqsbz9j3fdc",
 	"objectTypes": {
 		"items": [
-			"Mouse"
+			"trash_bin",
+			"recycle_bin",
+			"trash_object",
+			"recycle_object",
+			"score_display",
+			"game_text_title",
+			"cutscene_1_dialogue",
+			"c1_dialogue_text_display",
+			"Mouse",
+			"Spawner",
+			"Sprite",
+			"start_bttn",
+			"start_bttn_text",
+			"lvl_select_btn",
+			"c1_dialogue_sprite_display",
+			"lvl_select_text",
+			"Text",
+			"Timer"
 		],
 		"subfolders": [
 			{
-				"items": [
-					"game_text_title",
-					"lvl_select_btn",
-					"lvl_select_text",
-					"start_bttn",
-					"start_bttn_text"
-				],
+				"items": [],
 				"subfolders": [],
 				"name": "Main Menu"
 			},
@@ -73,24 +91,13 @@
 			},
 			{
 				"items": [
-					"Destroyer",
-					"recycle_bin",
-					"recycle_object",
-					"score_display",
-					"Spawner",
-					"trash_bin",
-					"trash_object",
-					"paused_text"
+					"Destroyer"
 				],
 				"subfolders": [],
 				"name": "Gameplay"
 			},
 			{
-				"items": [
-					"c1_dialogue_sprite_display",
-					"c1_dialogue_text_display",
-					"cutscene_1_dialogue"
-				],
+				"items": [],
 				"subfolders": [],
 				"name": "Cutscene"
 			}
