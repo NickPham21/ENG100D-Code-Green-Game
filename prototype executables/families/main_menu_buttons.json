@@ -1,0 +1,12 @@
+{
+	"name": "main_menu_buttons",
+	"plugin-id": "Sprite",
+	"sid": 545263990679482,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"lvl_select_btn",
+		"start_bttn"
+	]
+}
