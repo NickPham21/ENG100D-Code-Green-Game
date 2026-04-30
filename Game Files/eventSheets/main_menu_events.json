@@ -59,29 +59,31 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "cursor-is-over-object",
+					"id": "on-object-clicked",
 					"objectClass": "Mouse",
-					"sid": 578073736167345,
+					"sid": 741049107701284,
 					"parameters": {
-						"object": "start_bttn"
-					}
-				},
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "Mouse",
-					"sid": 595537819871640,
-					"parameters": {
-						"mouse-button": "left"
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "start_bttn"
 					}
 				}
 			],
 			"actions": [
 				{
-					"id": "set-animation-frame",
-					"objectClass": "start_bttn",
-					"sid": 824226927451228,
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 820197067675092,
 					"parameters": {
-						"frame-number": "1"
+						"layout": "cutscene_1"
+					}
+				},
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 922291390811506,
+					"parameters": {
+						"cursor-style": "normal"
 					}
 				}
 			],
@@ -91,133 +93,21 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-button-released",
+					"id": "on-object-clicked",
 					"objectClass": "Mouse",
-					"sid": 751614188276662,
+					"sid": 482654997835266,
 					"parameters": {
-						"mouse-button": "left"
-					}
-				},
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "Mouse",
-					"sid": 450891506597079,
-					"parameters": {
-						"object": "start_bttn"
-					}
-				},
-				{
-					"id": "compare-animation-frame",
-					"objectClass": "start_bttn",
-					"sid": 615510755072552,
-					"parameters": {
-						"comparison": 0,
-						"number": "1"
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_select_btn"
 					}
 				}
 			],
 			"actions": [
-				{
-					"id": "set-animation-frame",
-					"objectClass": "start_bttn",
-					"sid": 709951945722714,
-					"parameters": {
-						"frame-number": "0"
-					}
-				},
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 274846858962454,
-					"parameters": {
-						"layout": "cutscene_1"
-					}
-				},
-				{
-					"id": "set-cursor-style2",
-					"objectClass": "Mouse",
-					"sid": 424059603607586,
-					"parameters": {
-						"cursor-style": "normal"
-					}
-				}
-			],
-			"sid": 231762098735239
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "Mouse",
-					"sid": 361096365496977,
-					"parameters": {
-						"object": "lvl_select_btn"
-					}
-				},
-				{
-					"id": "mouse-button-is-down",
-					"objectClass": "Mouse",
-					"sid": 273446841596612,
-					"parameters": {
-						"mouse-button": "left"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-animation-frame",
-					"objectClass": "lvl_select_btn",
-					"sid": 918968532992141,
-					"parameters": {
-						"frame-number": "1"
-					}
-				}
-			],
-			"sid": 125068726509178
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-button-released",
-					"objectClass": "Mouse",
-					"sid": 971506279573614,
-					"parameters": {
-						"mouse-button": "left"
-					}
-				},
-				{
-					"id": "cursor-is-over-object",
-					"objectClass": "Mouse",
-					"sid": 541567950005645,
-					"parameters": {
-						"object": "lvl_select_btn"
-					}
-				},
-				{
-					"id": "compare-animation-frame",
-					"objectClass": "lvl_select_btn",
-					"sid": 413829977165532,
-					"parameters": {
-						"comparison": 0,
-						"number": "1"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-animation-frame",
-					"objectClass": "lvl_select_btn",
-					"sid": 896777476531922,
-					"parameters": {
-						"frame-number": "0"
-					}
-				},
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 911536034352769,
+					"sid": 387222574894811,
 					"parameters": {
 						"layout": "level_select_screen"
 					}
@@ -225,13 +115,13 @@
 				{
 					"id": "set-cursor-style2",
 					"objectClass": "Mouse",
-					"sid": 864677907203852,
+					"sid": 287257370766846,
 					"parameters": {
 						"cursor-style": "normal"
 					}
 				}
 			],
-			"sid": 946015031098228
+			"sid": 827758674434680
 		}
 	],
 	"sid": 638497315036889
