@@ -5,22 +5,123 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-clicked",
-					"objectClass": "start_button",
-					"sid": 791098472742157
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 782938238915167,
+					"parameters": {
+						"object": "start_bttn"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 837548931799959,
+					"parameters": {
+						"object": "lvl_select_btn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 639665214151092,
+					"parameters": {
+						"cursor-style": "pointer"
+					}
+				}
+			],
+			"sid": 727312182147798,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 170244615575048
+				}
+			],
+			"actions": [
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 823489077270114,
+					"parameters": {
+						"cursor-style": "normal"
+					}
+				}
+			],
+			"sid": 611532911269546
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 741049107701284,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "start_bttn"
+					}
 				}
 			],
 			"actions": [
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 725503905337680,
+					"sid": 820197067675092,
 					"parameters": {
 						"layout": "cutscene_1"
 					}
+				},
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 922291390811506,
+					"parameters": {
+						"cursor-style": "normal"
+					}
 				}
 			],
-			"sid": 727312182147798
+			"sid": 243006780543530
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 482654997835266,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_select_btn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 387222574894811,
+					"parameters": {
+						"layout": "level_select_screen"
+					}
+				},
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 287257370766846,
+					"parameters": {
+						"cursor-style": "normal"
+					}
+				}
+			],
+			"sid": 827758674434680
 		}
 	],
 	"sid": 638497315036889

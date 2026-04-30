@@ -15,13 +15,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Button",
-			"name": "Button",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -54,6 +47,13 @@
 			"name": "Drag & Drop",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
 		}
 	],
 	"uniqueId": "rqsbz9j3fdc",
@@ -65,28 +65,73 @@
 			"recycle_object",
 			"score_display",
 			"game_text_title",
-			"start_button",
 			"cutscene_1_dialogue",
 			"c1_dialogue_text_display",
 			"Mouse",
-			"c1_dialogue_sprite_display",
 			"Spawner",
-			"Destroyer"
+			"Sprite",
+			"start_bttn",
+			"start_bttn_text",
+			"lvl_select_btn",
+			"c1_dialogue_sprite_display",
+			"lvl_select_text",
+			"Text",
+			"Timer"
 		],
-		"subfolders": []
+		"subfolders": [
+			{
+				"items": [],
+				"subfolders": [],
+				"name": "Main Menu"
+			},
+			{
+				"items": [],
+				"subfolders": [],
+				"name": "Level Select"
+			},
+			{
+				"items": [
+					"Destroyer"
+				],
+				"subfolders": [],
+				"name": "Gameplay"
+			},
+			{
+				"items": [],
+				"subfolders": [],
+				"name": "Cutscene"
+			}
+		]
 	},
 	"functionsName": "Functions",
 	"autosaveData": null,
-	"containers": [],
+	"containers": [
+		{
+			"members": [
+				"start_bttn",
+				"start_bttn_text"
+			]
+		},
+		{
+			"members": [
+				"lvl_select_btn",
+				"lvl_select_text"
+			]
+		}
+	],
 	"families": {
-		"items": [],
+		"items": [
+			"main_menu_buttons",
+			"main_menu_texts"
+		],
 		"subfolders": []
 	},
 	"layouts": {
 		"items": [
 			"main_menu_screen",
 			"game_screen_1",
-			"cutscene_1"
+			"cutscene_1",
+			"level_select_screen"
 		],
 		"subfolders": []
 	},
@@ -94,7 +139,8 @@
 		"items": [
 			"game_events",
 			"main_menu_events",
-			"cutscene_1_events"
+			"cutscene_1_events",
+			"level_select_events"
 		],
 		"subfolders": []
 	},
