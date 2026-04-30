@@ -261,7 +261,7 @@
 		"exportFileStructure": "folders",
 		"scriptsType": "module"
 	},
-	"viewportWidth": 480,
-	"viewportHeight": 854,
+	"viewportWidth": 1920,
+	"viewportHeight": 1080,
 	"firstLayout": null
 }
