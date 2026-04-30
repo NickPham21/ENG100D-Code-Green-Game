@@ -33,7 +33,7 @@
 			"actions": [
 				{
 					"id": "set-text",
-					"objectClass": "Timer",
+					"objectClass": "timer",
 					"sid": 339797116640677,
 					"parameters": {
 						"text": "timer"
@@ -57,7 +57,7 @@
 			"actions": [
 				{
 					"id": "set-text",
-					"objectClass": "Timer",
+					"objectClass": "timer",
 					"sid": 218163348618709,
 					"parameters": {
 						"text": "timer"
@@ -286,6 +286,111 @@
 				}
 			],
 			"sid": 817212617918197
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-drag-start",
+					"objectClass": "recycle_object",
+					"sid": 862514810275227,
+					"behaviorType": "DragDrop"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-speed",
+					"objectClass": "recycle_object",
+					"sid": 137176385888527,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "0"
+					}
+				}
+			],
+			"sid": 931780497007600
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-drop",
+					"objectClass": "recycle_object",
+					"sid": 217401502062155,
+					"behaviorType": "DragDrop"
+				},
+				{
+					"id": "is-between-angles",
+					"objectClass": "recycle_object",
+					"sid": 530593275118907,
+					"parameters": {
+						"first-angle": "29",
+						"second-angle": "30"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-angle-of-motion",
+					"objectClass": "recycle_object",
+					"sid": 976764417180817,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"angle": "30"
+					}
+				},
+				{
+					"id": "set-speed",
+					"objectClass": "recycle_object",
+					"sid": 937500406493808,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "400"
+					}
+				}
+			],
+			"sid": 146684550263018
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-drop",
+					"objectClass": "recycle_object",
+					"sid": 234737783667779,
+					"behaviorType": "DragDrop"
+				},
+				{
+					"id": "is-between-angles",
+					"objectClass": "recycle_object",
+					"sid": 437980435393705,
+					"parameters": {
+						"first-angle": "-89",
+						"second-angle": "-90"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-speed",
+					"objectClass": "recycle_object",
+					"sid": 273011960489862,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "400"
+					}
+				},
+				{
+					"id": "set-angle-of-motion",
+					"objectClass": "recycle_object",
+					"sid": 111974054880217,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"angle": "-90"
+					}
+				}
+			],
+			"sid": 698706202563647
 		}
 	],
 	"sid": 522712200103368

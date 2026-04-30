@@ -450,7 +450,7 @@
 					}
 				},
 				{
-					"type": "Text",
+					"type": "timer_text",
 					"properties": {
 						"text": "Time Remaining:",
 						"enable-bbcode": true,
@@ -488,7 +488,7 @@
 					"world": {
 						"x": 1117,
 						"y": 13,
-						"width": 691,
+						"width": 607,
 						"height": 102,
 						"originX": 0,
 						"originY": 0,
@@ -503,7 +503,7 @@
 					}
 				},
 				{
-					"type": "Timer",
+					"type": "timer",
 					"properties": {
 						"text": "60",
 						"enable-bbcode": true,

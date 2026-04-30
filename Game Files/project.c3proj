@@ -75,8 +75,8 @@
 			"lvl_select_btn",
 			"c1_dialogue_sprite_display",
 			"lvl_select_text",
-			"Text",
-			"Timer"
+			"timer_text",
+			"timer"
 		],
 		"subfolders": [
 			{
