@@ -174,9 +174,8 @@
 						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "top-left",
-						"read-aloud": false
-						"origin": "top-left",
-						"read-aloud": false
+						"read-aloud": false,
+						"origin": "top-left"
 					},
 					"uid": 11,
 					"sid": 570573642066433,
