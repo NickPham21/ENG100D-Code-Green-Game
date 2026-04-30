@@ -43,8 +43,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 63,
-						"y": 189,
+						"x": 807,
+						"y": 393,
 						"width": 333,
 						"height": 102,
 						"originX": 0,
@@ -84,8 +84,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 85,
-						"y": 398,
+						"x": 829,
+						"y": 602,
 						"width": 249,
 						"height": 64,
 						"originX": 0,
@@ -150,8 +150,8 @@
 		}
 	],
 	"effectTypes": [],
-	"width": 2000,
-	"height": 1200,
+	"width": 1920,
+	"height": 1080,
 	"unboundedScrolling": false,
 	"sampling": "auto",
 	"vpX": 0.5,
