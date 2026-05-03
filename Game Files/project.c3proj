@@ -164,7 +164,24 @@
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "frog.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 390269830589636,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "meow.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 810054949410377,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"video": {
