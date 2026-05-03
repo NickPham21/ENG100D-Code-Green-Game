@@ -7,6 +7,43 @@
 			"subLayers": [],
 			"instances": [
 				{
+					"type": "dialogue_textbox",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 33,
+					"sid": 645379108969869,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 645379108969869,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 938,
+						"y": 668,
+						"width": 1515.3750000000002,
+						"height": 346.1111111111111,
+						"originX": 0.5006666666666667,
+						"originY": -0.1323529411764706,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
 					"type": "c1_dialogue_text_display",
 					"properties": {
 						"text": "Dialogue Text Goes Here",
@@ -43,9 +80,9 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 42,
-						"y": 837,
-						"width": 1834,
+						"x": 202,
+						"y": 827,
+						"width": 1491,
 						"height": 215,
 						"originX": 0,
 						"originY": 0,
@@ -80,8 +117,8 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1748,
-						"y": 702,
+						"x": 1755,
+						"y": 580,
 						"width": 318,
 						"height": 272,
 						"originX": 0.5,

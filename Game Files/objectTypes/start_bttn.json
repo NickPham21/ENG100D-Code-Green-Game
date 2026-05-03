@@ -35,7 +35,33 @@
 						},
 						"useCollisionPoly": true,
 						"duration": 1,
-						"tag": ""
+						"tag": "bttn_idle"
+					},
+					{
+						"width": 1000,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4341093,
+						"collisionPoly": {
+							"points": [
+								0.965,
+								0.13,
+								0.937,
+								0.92,
+								0.027,
+								0.8633333333333333,
+								0.033,
+								0.3433333333333333
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_hover"
 					},
 					{
 						"width": 1000,
@@ -61,7 +87,7 @@
 						},
 						"useCollisionPoly": true,
 						"duration": 1,
-						"tag": ""
+						"tag": "bttn_pressed"
 					}
 				],
 				"sid": 698416459905187,

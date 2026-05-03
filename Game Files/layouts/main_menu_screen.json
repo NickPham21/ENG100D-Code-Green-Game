@@ -9,7 +9,7 @@
 				{
 					"type": "game_text_title",
 					"properties": {
-						"text": "GAME TITLE TEST",
+						"text": "GAME TITLE",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 60,
@@ -45,7 +45,7 @@
 					"world": {
 						"x": 702,
 						"y": 284,
-						"width": 864,
+						"width": 495,
 						"height": 142,
 						"originX": 0,
 						"originY": 0,
@@ -99,7 +99,7 @@
 				{
 					"type": "start_bttn_text",
 					"properties": {
-						"text": "START TEST",
+						"text": "START",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 50,
@@ -189,7 +189,7 @@
 				{
 					"type": "lvl_select_text",
 					"properties": {
-						"text": "SELECT LEVEL",
+						"text": "SELECT",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 50,
@@ -229,6 +229,43 @@
 						"height": 105,
 						"originX": 0,
 						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "volume_bttn",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 32,
+					"sid": 397382829827587,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 397382829827587,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 238,
+						"y": 874,
+						"width": 200,
+						"height": 200,
+						"originX": 0.5,
+						"originY": 0.5,
 						"color": [
 							1,
 							1,

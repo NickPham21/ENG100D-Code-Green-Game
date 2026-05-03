@@ -15,6 +15,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -76,7 +83,10 @@
 			"c1_dialogue_sprite_display",
 			"lvl_select_text",
 			"timer_text",
-			"timer"
+			"timer",
+			"Audio",
+			"volume_bttn",
+			"dialogue_textbox"
 		],
 		"subfolders": [
 			{
