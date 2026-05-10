@@ -13,7 +13,7 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "timer",
+			"name": "Timer",
 			"type": "number",
 			"initialValue": "60",
 			"comment": "Timer for level defaults to 60s",
@@ -22,25 +22,131 @@
 			"sid": 649702458696368
 		},
 		{
+			"eventType": "variable",
+			"name": "LevelTimeScale",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "Time scale for the level (how fast everything happens, 1.0 is normal: 1s in game is 1s irl)",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 701359979824188
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
-					"sid": 199485944155138
+					"sid": 183783281184413
 				}
 			],
 			"actions": [
 				{
-					"id": "set-text",
-					"objectClass": "timer",
-					"sid": 339797116640677,
+					"type": "comment",
+					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 283513024486699,
 					"parameters": {
-						"text": "timer"
+						"tag": "\"main_menu_theme\"",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 369103980226781,
+					"parameters": {
+						"audio-file": {
+							"path": "frog"
+						},
+						"loop": "looping",
+						"volume": "-100",
+						"stereo-pan": "0",
+						"tag-optional": "\"forest_level_music\""
+					}
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 428605497307823,
+					"parameters": {
+						"tag": "\"forest_level_music\"",
+						"db": "GlobalVolume",
+						"duration": "1",
+						"ending": "keep-playing"
 					}
 				}
 			],
-			"sid": 733765456280333
+			"sid": 915032230055955
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 237255338284514
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "On start of the level:\n- Set time scale (the larger the value, the faster items will be thrown around)\n- Set GameManager time scale to 1.0 (so spawn timers will be relative to real time scale, not game time scale)\n- Call SpawnItem for waste items to start spawning\n- Call SpawnDistraction for distraction items to start spawning\n- Set and start timer for SpawnItem (interval in seconds in which a new waste item spawns)\n- Set and start timer for SpawnDistraction (interval in seconds in which a new distraction item spawns)"
+				},
+				{
+					"id": "set-time-scale",
+					"objectClass": "System",
+					"sid": 403462098803520,
+					"parameters": {
+						"time-scale": "LevelTimeScale"
+					}
+				},
+				{
+					"id": "set-object-time-scale",
+					"objectClass": "System",
+					"sid": 221174182930751,
+					"parameters": {
+						"object": "GameManager",
+						"time-scale": "1.0"
+					}
+				},
+				{
+					"callFunction": "SpawnItem",
+					"sid": 804662338462712
+				},
+				{
+					"callFunction": "SpawnDistraction",
+					"sid": 771875526698625
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 750391269874189,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "2",
+						"type": "regular",
+						"tag": "\"SpawnItem\""
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 555456827010467,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "4.5",
+						"type": "regular",
+						"tag": "\"SpawnDistraction\""
+					}
+				}
+			],
+			"sid": 215775478296049
 		},
 		{
 			"eventType": "block",
@@ -48,19 +154,23 @@
 				{
 					"id": "every-x-seconds",
 					"objectClass": "System",
-					"sid": 177254807167755,
+					"sid": 784774329456175,
 					"parameters": {
-						"interval-seconds": "1.0"
+						"interval-seconds": "LevelTimeScale"
 					}
 				}
 			],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "Set in-game timer to subtract 1 from Timer after 1s irl "
+				},
+				{
 					"id": "set-text",
 					"objectClass": "timer",
-					"sid": 218163348618709,
+					"sid": 576170806305638,
 					"parameters": {
-						"text": "timer"
+						"text": "\"Time Remaining: \" & Timer"
 					}
 				},
 				{
@@ -68,12 +178,510 @@
 					"objectClass": "System",
 					"sid": 398231435651814,
 					"parameters": {
-						"variable": "timer",
+						"variable": "Timer",
 						"value": "1"
 					}
 				}
 			],
 			"sid": 510712239267514
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "GameManager",
+					"sid": 507070719232253,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"SpawnItem\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SpawnItem",
+					"sid": 348189385263849
+				}
+			],
+			"sid": 837411123172455
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "GameManager",
+					"sid": 297166083047664,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"SpawnDistraction\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SpawnDistraction",
+					"sid": 696814303094664
+				}
+			],
+			"sid": 541459943658021
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Item Spawning + Throwing Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "SCREENHORIZONTALMARGIN",
+					"type": "number",
+					"initialValue": "480",
+					"comment": "Constant variable for screen's horizontal margin for item spawn area",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 729544609001519
+				},
+				{
+					"functionName": "SpawnItem",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 132335625784235,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 536815460308814
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 362762090841988,
+									"parameters": {
+										"object-to-create": "paper",
+										"layer": "\"Layer 0\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "paper",
+									"sid": 436383253251468,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "paper",
+									"sid": 252172738442656,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "paper",
+									"sid": 891199574857186,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 809161375317956,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "paper",
+									"sid": 787162842236786,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								}
+							],
+							"sid": 904769288395369,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "PaperVariation",
+									"type": "number",
+									"initialValue": "50",
+									"comment": "50% chance for paper_1 to spawn or paper_2 to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 853502900255424
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 400861453766711,
+											"parameters": {
+												"first-value": "random(0, 100)",
+												"comparison": 2,
+												"second-value": "PaperVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "paper",
+											"sid": 704581376300271,
+											"parameters": {
+												"animation": "\"paper_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 658097266921182
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 531185266653030,
+							"parameters": {
+								"object": "paper"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "paper",
+							"sid": 966360817956113,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "paper",
+							"sid": 502584889829973,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "paper",
+							"sid": 183305896580158,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "paper",
+							"sid": 781586122240121,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 731496454941050
+				},
+				{
+					"functionName": "SpawnDistraction",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 469991036365435,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 813008353247813,
+									"parameters": {
+										"object-to-create": "frog",
+										"layer": "\"Layer 0\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "frog",
+									"sid": 539155143762434,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "frog",
+									"sid": 332744877517610,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "frog",
+									"sid": 439752552126313,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								}
+							],
+							"sid": 146334039773270
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 343765416755432,
+							"parameters": {
+								"object": "frog"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "frog",
+							"sid": 624555380498492,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "frog",
+							"sid": 746865235357061,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "frog",
+							"sid": 762475448360171,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "frog",
+							"sid": 854833276817093,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 238655539362662
+				},
+				{
+					"functionName": "MoveValTowardsAnotherVal",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "CurrentValue",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 452570218516919
+						},
+						{
+							"name": "TargetValue",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 299703988505653
+						},
+						{
+							"name": "Speed",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 427374195402531
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 168116546619438,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "Direction",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 852631609651956
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 733082057641824,
+									"parameters": {
+										"variable": "Direction",
+										"value": "sign(TargetValue - CurrentValue )"
+									}
+								}
+							],
+							"sid": 346121832260493
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 344734441804856,
+									"parameters": {
+										"value": "CurrentValue > TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 103024366486485,
+									"parameters": {
+										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, TargetValue, Infinity)"
+									}
+								}
+							],
+							"sid": 507124768667202
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 332752148538925
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 454436283171761,
+									"parameters": {
+										"value": "CurrentValue < TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 784986483872907,
+									"parameters": {
+										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, -Infinity, TargetValue)"
+									}
+								}
+							],
+							"sid": 590794444838234
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 720531646659657
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 384194072392109,
+									"parameters": {
+										"value": "CurrentValue = TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 152187581014242,
+									"parameters": {
+										"value": "TargetValue"
+									}
+								}
+							],
+							"sid": 718069860561860
+						}
+					]
+				}
+			],
+			"sid": 630237370961794
 		},
 		{
 			"eventType": "block",
@@ -89,7 +697,7 @@
 					"objectClass": "recycle_object",
 					"sid": 135697578593903,
 					"parameters": {
-						"object": "recycle_bin"
+						"object": "metal_bin"
 					}
 				}
 			],
@@ -125,7 +733,7 @@
 					"objectClass": "recycle_object",
 					"sid": 699414809574174,
 					"parameters": {
-						"object": "trash_bin"
+						"object": "paper_bin"
 					}
 				}
 			],
@@ -151,30 +759,45 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-drop",
-					"objectClass": "trash_object",
-					"sid": 195789347599384,
+					"id": "on-drag-start",
+					"objectClass": "frog",
+					"sid": 696909962771387,
 					"behaviorType": "DragDrop"
-				},
+				}
+			],
+			"actions": [
 				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "trash_object",
-					"sid": 902335540815795,
+					"id": "set-animation",
+					"objectClass": "frog",
+					"sid": 867481827160055,
 					"parameters": {
-						"object": "trash_bin"
+						"animation": "\"frog_scared\"",
+						"from": "beginning"
 					}
+				}
+			],
+			"sid": 532146107691498
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-drop",
+					"objectClass": "frog",
+					"sid": 448101027119896,
+					"behaviorType": "DragDrop"
 				}
 			],
 			"actions": [
 				{
 					"id": "destroy",
-					"objectClass": "trash_object",
-					"sid": 651212109428303
+					"objectClass": "frog",
+					"sid": 410345478147362
 				},
 				{
-					"id": "add-to-eventvar",
+					"id": "subtract-from-eventvar",
 					"objectClass": "System",
-					"sid": 447342070861667,
+					"sid": 864722085994191,
 					"parameters": {
 						"variable": "Score",
 						"value": "1"
@@ -188,36 +811,72 @@
 			"conditions": [
 				{
 					"id": "on-drop",
-					"objectClass": "trash_object",
-					"sid": 825881464352414,
+					"objectClass": "paper",
+					"sid": 629005771089927,
 					"behaviorType": "DragDrop"
 				},
 				{
 					"id": "is-overlapping-another-object",
-					"objectClass": "trash_object",
-					"sid": 602895698791325,
+					"objectClass": "paper",
+					"sid": 753052494183472,
 					"parameters": {
-						"object": "recycle_bin"
+						"object": "paper_bin"
 					}
 				}
 			],
 			"actions": [
 				{
 					"id": "destroy",
-					"objectClass": "trash_object",
-					"sid": 501767037532754
+					"objectClass": "paper",
+					"sid": 378869149129324
 				},
 				{
-					"id": "subtract-from-eventvar",
+					"id": "add-to-eventvar",
 					"objectClass": "System",
-					"sid": 745973576588570,
+					"sid": 896590970512252,
 					"parameters": {
 						"variable": "Score",
 						"value": "1"
 					}
 				}
 			],
-			"sid": 981544378506937
+			"sid": 196465068632048
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-drop",
+					"objectClass": "paper",
+					"sid": 316975179188024,
+					"behaviorType": "DragDrop"
+				},
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "paper",
+					"sid": 431182217534298,
+					"parameters": {
+						"object": "metal_bin"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "paper",
+					"sid": 435385309291462
+				},
+				{
+					"id": "subtract-from-eventvar",
+					"objectClass": "System",
+					"sid": 674002657152758,
+					"parameters": {
+						"variable": "Score",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 218974715463001
 		},
 		{
 			"eventType": "block",
@@ -314,6 +973,29 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "on-drag-start",
+					"objectClass": "recycle_object",
+					"sid": 320165103267965,
+					"behaviorType": "DragDrop"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-speed",
+					"objectClass": "recycle_object",
+					"sid": 970023922501480,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"speed": "0"
+					}
+				}
+			],
+			"sid": 911710187236232
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-drop",
 					"objectClass": "recycle_object",
 					"sid": 217401502062155,
@@ -391,6 +1073,40 @@
 				}
 			],
 			"sid": 698706202563647
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 701536085037788,
+					"parameters": {
+						"variable": "Timer",
+						"comparison": 3,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 817136227835242,
+					"parameters": {
+						"variable": "Timer"
+					}
+				},
+				{
+					"id": "go-to-layout-by-name",
+					"objectClass": "System",
+					"sid": 237761837803597,
+					"parameters": {
+						"layout": "\"main_menu_screen\""
+					}
+				}
+			],
+			"sid": 756340944469220
 		}
 	],
 	"sid": 522712200103368

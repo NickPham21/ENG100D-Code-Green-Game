@@ -7,46 +7,40 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "game_text_title",
+					"type": "TiledBackground",
 					"properties": {
-						"text": "GAME TITLE",
-						"enable-bbcode": true,
-						"font": "Arial",
-						"size": 60,
-						"line-height": 0,
-						"bold": false,
-						"italic": false,
-						"color": [
-							0,
-							0,
-							0,
-							1
-						],
-						"horizontal-alignment": "left",
-						"vertical-alignment": "top",
-						"wrapping": "word",
-						"text-direction": "ltr",
-						"icon-set": -1,
 						"initially-visible": true,
 						"origin": "top-left",
-						"read-aloud": false
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0,
+						"enable-tile-randomization": false,
+						"x-random": 1,
+						"y-random": 1,
+						"angle-random": 1,
+						"blend-margin-x": 0.1,
+						"blend-margin-y": 0.1
 					},
-					"uid": 10,
-					"sid": 973114475037138,
+					"uid": 5,
+					"sid": 893944986793426,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 973114475037138,
+						"sid": 893944986793426,
 						"expanded": true
 					},
 					"showing": true,
-					"locked": false,
+					"locked": true,
 					"world": {
-						"x": 702,
-						"y": 284,
-						"width": 495,
-						"height": 142,
+						"x": 0,
+						"y": 0,
+						"width": 1920,
+						"height": 1080,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -101,10 +95,10 @@
 					"properties": {
 						"text": "START",
 						"enable-bbcode": true,
-						"font": "Arial",
-						"size": 50,
+						"font": "Ink Free",
+						"size": 60,
 						"line-height": 0,
-						"bold": false,
+						"bold": true,
 						"italic": false,
 						"color": [
 							0,
@@ -191,10 +185,10 @@
 					"properties": {
 						"text": "SELECT",
 						"enable-bbcode": true,
-						"font": "Arial",
-						"size": 50,
+						"font": "Ink Free",
+						"size": 60,
 						"line-height": 0,
-						"bold": false,
+						"bold": true,
 						"italic": false,
 						"color": [
 							0,
@@ -264,6 +258,43 @@
 						"y": 874,
 						"width": 200,
 						"height": 200,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				},
+				{
+					"type": "game_logo",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 7,
+					"sid": 788383925847090,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {},
+					"instanceFolderItem": {
+						"sid": 788383925847090,
+						"expanded": true
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 960,
+						"y": 288,
+						"width": 907.0738627167356,
+						"height": 607.3451080799013,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

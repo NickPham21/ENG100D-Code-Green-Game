@@ -1,0 +1,60 @@
+{
+	"name": "paper_bin",
+	"plugin-id": "Sprite",
+	"sid": 201040158478024,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 512,
+						"height": 512,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3237565,
+						"collisionPoly": {
+							"points": [
+								0.28515625,
+								0,
+								0.740234375,
+								0.083984375,
+								0.7734375,
+								0.134765625,
+								0.79296875,
+								0.259765625,
+								0.736328125,
+								0.970703125,
+								0.677734375,
+								1,
+								0.31640625,
+								0.998046875,
+								0.25,
+								0.951171875
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 311162307669704,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

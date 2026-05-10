@@ -1,0 +1,203 @@
+{
+	"name": "paper",
+	"plugin-id": "Sprite",
+	"sid": 170552012010985,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "VectorX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 293001234410029
+		},
+		{
+			"name": "VectorY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 379284102761300
+		},
+		{
+			"name": "RotationSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 395835397504683
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 925072782581707
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 200,
+						"height": 200,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8856834,
+						"collisionPoly": {
+							"points": [
+								0.52,
+								0.21,
+								0.83,
+								0.41,
+								0.76,
+								0.695,
+								0.53,
+								0.83,
+								0.205,
+								0.685,
+								0.215,
+								0.425,
+								0.325,
+								0.26
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 775061813032119,
+				"name": "paper_1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 200,
+						"height": 200,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 596087,
+						"collisionPoly": {
+							"points": [
+								0.45,
+								0.215,
+								0.5,
+								0.215,
+								0.845,
+								0.34,
+								0.835,
+								0.38,
+								0.63,
+								0.735,
+								0.4,
+								0.78,
+								0.335,
+								0.78,
+								0.145,
+								0.72,
+								0.115,
+								0.67
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 920604351927209,
+				"name": "paper_2",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6296719,
+						"collisionPoly": {
+							"points": [
+								0.39166666666666666,
+								0.31166666666666665,
+								0.6666666666666666,
+								0.36,
+								0.7816666666666666,
+								0.715,
+								0.7183333333333334,
+								0.9316666666666666,
+								0.5866666666666667,
+								0.95,
+								0.41333333333333333,
+								0.95,
+								0.20333333333333334,
+								0.875,
+								0.22,
+								0.7066666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 781487442071593,
+				"name": "frog_normal",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8124486,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 313075460250137,
+				"name": "frog_scared",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

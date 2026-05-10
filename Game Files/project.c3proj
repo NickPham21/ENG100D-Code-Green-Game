@@ -42,6 +42,13 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "TiledBg",
+			"name": "Tiled Background",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Bullet",
 			"name": "Bullet",
@@ -66,8 +73,8 @@
 	"uniqueId": "rqsbz9j3fdc",
 	"objectTypes": {
 		"items": [
-			"trash_bin",
-			"recycle_bin",
+			"paper_bin",
+			"metal_bin",
 			"trash_object",
 			"recycle_object",
 			"score_display",
@@ -76,7 +83,6 @@
 			"c1_dialogue_text_display",
 			"Mouse",
 			"Spawner",
-			"Sprite",
 			"start_bttn",
 			"start_bttn_text",
 			"lvl_select_btn",
@@ -86,7 +92,14 @@
 			"timer",
 			"Audio",
 			"volume_bttn",
-			"dialogue_textbox"
+			"dialogue_textbox",
+			"forest_bg",
+			"paper",
+			"frog",
+			"GameManager",
+			"preview",
+			"TiledBackground",
+			"game_logo"
 		],
 		"subfolders": [
 			{
