@@ -1,0 +1,73 @@
+{
+	"name": "intro_events",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 648377024331946
+				}
+			],
+			"actions": [
+				{
+					"id": "set-source-2",
+					"objectClass": "Video",
+					"sid": 862255683292190,
+					"parameters": {
+						"primary-source": "\"introeng.mp4\"",
+						"primary-format": "mp4-h264",
+						"secondary-source": "\"\"",
+						"secondary-format": "webm-vp9"
+					}
+				},
+				{
+					"id": "set-looping",
+					"objectClass": "Video",
+					"sid": 639668930166716,
+					"parameters": {
+						"mode": "not-looping"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Video",
+					"sid": 380520378249608
+				}
+			],
+			"sid": 318028513491112
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "has-ended",
+					"objectClass": "Video",
+					"sid": 499101183552558
+				}
+			],
+			"actions": [
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 428802051484879,
+					"parameters": {
+						"seconds": "1.0",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 986048833786821,
+					"parameters": {
+						"layout": "main_menu_screen"
+					}
+				}
+			],
+			"sid": 752204498388020
+		}
+	],
+	"sid": 141144026114487
+}

@@ -12,6 +12,10 @@
 			"sid": 509632987889022
 		},
 		{
+			"eventType": "comment",
+			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x is the dialogue count of this cutscene\n- y is the number of attributes to keep track of per dialogue \n   - y = 3 for now, we keep track of text, character sprite, and character name per dialogue\n      - (x, 0) stores text, (x, 1) stores character sprite, (x, 2) stores character name"
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -24,41 +28,61 @@
 				{
 					"id": "set-at-xy",
 					"objectClass": "cutscene_1_dialogue",
-					"sid": 375626900765726,
+					"sid": 377634229350779,
 					"parameters": {
 						"x": "0",
 						"y": "0",
-						"value": "\"House we need to cure this patient\""
+						"value": "\"random dialogue for now (FILL IN WHEN SCRIPT OBTAINED)\""
 					}
 				},
 				{
 					"id": "set-at-xy",
 					"objectClass": "cutscene_1_dialogue",
-					"sid": 137862061750392,
+					"sid": 570379201650252,
 					"parameters": {
 						"x": "0",
 						"y": "1",
-						"value": "\"test_char_1\""
+						"value": "\"Wolf\""
 					}
 				},
 				{
 					"id": "set-at-xy",
 					"objectClass": "cutscene_1_dialogue",
-					"sid": 428787891401808,
+					"sid": 637045891372461,
+					"parameters": {
+						"x": "0",
+						"y": "2",
+						"value": "\"Terrance\""
+					}
+				},
+				{
+					"id": "set-at-xy",
+					"objectClass": "cutscene_1_dialogue",
+					"sid": 559568129719988,
 					"parameters": {
 						"x": "1",
 						"y": "0",
-						"value": "\"Did you try the medicine drug\""
+						"value": "\"I too am in this episode\""
 					}
 				},
 				{
 					"id": "set-at-xy",
 					"objectClass": "cutscene_1_dialogue",
-					"sid": 275612504299161,
+					"sid": 687045430237633,
 					"parameters": {
 						"x": "1",
 						"y": "1",
-						"value": "\"test_char_2\""
+						"value": "\"Bear\""
+					}
+				},
+				{
+					"id": "set-at-xy",
+					"objectClass": "cutscene_1_dialogue",
+					"sid": 105225217748692,
+					"parameters": {
+						"x": "1",
+						"y": "2",
+						"value": "\"Alexia\""
 					}
 				},
 				{
@@ -127,11 +151,20 @@
 					}
 				},
 				{
-					"id": "set-animation-frame",
+					"id": "set-animation",
 					"objectClass": "c1_dialogue_sprite_display",
-					"sid": 522557936840368,
+					"sid": 755969109903570,
 					"parameters": {
-						"frame-number": "cutscene_1_dialogue.At(c1_dialogue_ctr, 1)"
+						"animation": "cutscene_1_dialogue.At(c1_dialogue_ctr, 1)",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "c1_dialogue_name_display",
+					"sid": 790017504557283,
+					"parameters": {
+						"text": "cutscene_1_dialogue.At(c1_dialogue_ctr, 2)"
 					}
 				}
 			],

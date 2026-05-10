@@ -349,7 +349,7 @@
 			"type": "cutscene_1_dialogue",
 			"properties": {
 				"width": 2,
-				"height": 2,
+				"height": 3,
 				"depth": 1
 			},
 			"uid": 13,
