@@ -2,11 +2,26 @@
 	"name": "main_menu_buttons",
 	"plugin-id": "Sprite",
 	"sid": 545263990679482,
-	"instanceVariables": [],
-	"behaviorTypes": [],
+	"instanceVariables": [
+		{
+			"name": "bttn_id",
+			"type": "string",
+			"desc": "unique ID of the button, used to identify for button logic",
+			"show": true,
+			"sid": 475351564605122
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 773068745500993
+		}
+	],
 	"effectTypes": [],
 	"members": [
 		"lvl_select_btn",
-		"start_bttn"
+		"start_bttn",
+		"volume_bttn"
 	]
 }

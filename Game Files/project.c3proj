@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 47603,
+	"savedWithRelease": 47604,
 	"name": "Code Green Game",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -73,6 +73,13 @@
 			"type": "behavior",
 			"id": "Timer",
 			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Tween",
 			"author": "Scirra",
 			"bundled": false
 		}
