@@ -1,0 +1,1634 @@
+{
+	"name": "game_events_1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Tracks user score",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 545410248490997
+		},
+		{
+			"eventType": "variable",
+			"name": "ScoreStreak",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Tracks user score streak (for time boost)",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 655447524555874
+		},
+		{
+			"eventType": "variable",
+			"name": "ScoreStreakTracker",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Tracks if the the streak is active",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 104112643867953
+		},
+		{
+			"eventType": "variable",
+			"name": "Timer",
+			"type": "number",
+			"initialValue": "60",
+			"comment": "Timer for level defaults to 60s",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 649702458696368
+		},
+		{
+			"eventType": "variable",
+			"name": "LevelTimeScale",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "Time scale for the level (how fast everything happens, 1.0 is normal: 1s in game is 1s irl)",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 701359979824188
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 183783281184413
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 283513024486699,
+					"parameters": {
+						"tag": "\"main_menu_theme\"",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 369103980226781,
+					"parameters": {
+						"audio-file": {
+							"path": "frog"
+						},
+						"loop": "looping",
+						"volume": "-100",
+						"stereo-pan": "0",
+						"tag-optional": "\"forest_level_music\""
+					}
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 428605497307823,
+					"parameters": {
+						"tag": "\"forest_level_music\"",
+						"db": "GlobalVolume",
+						"duration": "1",
+						"ending": "keep-playing"
+					}
+				}
+			],
+			"sid": 915032230055955
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 237255338284514
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "On start of the level:\n- Set time scale (the larger the value, the faster items will be thrown around)\n- Set GameManager time scale to 1.0 (so spawn timers will be relative to real time scale, not game time scale)\n- Call SpawnItem for waste items to start spawning\n- Call SpawnDistraction for distraction items to start spawning\n- Set and start timer for SpawnItem (interval in seconds in which a new waste item spawns)\n- Set and start timer for SpawnDistraction (interval in seconds in which a new distraction item spawns)"
+				},
+				{
+					"id": "set-time-scale",
+					"objectClass": "System",
+					"sid": 403462098803520,
+					"parameters": {
+						"time-scale": "LevelTimeScale"
+					}
+				},
+				{
+					"id": "set-object-time-scale",
+					"objectClass": "System",
+					"sid": 221174182930751,
+					"parameters": {
+						"object": "GameManager",
+						"time-scale": "1.0"
+					}
+				},
+				{
+					"callFunction": "SpawnDistraction",
+					"sid": 771875526698625
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 334739741631560,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "2",
+						"type": "regular",
+						"tag": "\"SpawnTrash\""
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 432275813283761,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "2.5",
+						"type": "regular",
+						"tag": "\"SpawnCompost\""
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 555456827010467,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "4.5",
+						"type": "regular",
+						"tag": "\"SpawnDistraction\""
+					}
+				}
+			],
+			"sid": 215775478296049
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 784774329456175,
+					"parameters": {
+						"interval-seconds": "LevelTimeScale"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Set in-game timer to subtract 1 from Timer after 1s irl "
+				},
+				{
+					"id": "set-text",
+					"objectClass": "timer",
+					"sid": 576170806305638,
+					"parameters": {
+						"text": "\"Time Remaining: \" & Timer"
+					}
+				},
+				{
+					"id": "subtract-from-eventvar",
+					"objectClass": "System",
+					"sid": 398231435651814,
+					"parameters": {
+						"variable": "Timer",
+						"value": "1"
+					}
+				}
+			],
+			"sid": 510712239267514
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "GameManager",
+					"sid": 358722136452921,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"SpawnTrash\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SpawnTrash",
+					"sid": 448303368442152
+				}
+			],
+			"sid": 837411123172455
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "GameManager",
+					"sid": 989215126289708,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"SpawnCompost\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SpawnCompost",
+					"sid": 149401315348163
+				}
+			],
+			"sid": 520540111215112
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-timer",
+					"objectClass": "GameManager",
+					"sid": 297166083047664,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "\"SpawnDistraction\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SpawnDistraction",
+					"sid": 696814303094664
+				}
+			],
+			"sid": 541459943658021
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Item Spawning + Throwing Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "SCREENHORIZONTALMARGIN",
+					"type": "number",
+					"initialValue": "480",
+					"comment": "Constant variable for screen's horizontal margin for item spawn area",
+					"isStatic": false,
+					"isConstant": true,
+					"sid": 729544609001519
+				},
+				{
+					"functionName": "SpawnCompost",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 344128327922312,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 688575621934373
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 161589049245338
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 591336640429679,
+									"parameters": {
+										"object-to-create": "compost_object",
+										"layer": "\"Layer 0\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "compost_object",
+									"sid": 641188249366161,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 385306958094362,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 538243216100474,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 163857715245452,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 743178134021108,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 483726566706634,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
+									}
+								}
+							],
+							"sid": 336494257809976,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "CompostVariation",
+									"type": "number",
+									"initialValue": "33.33333333",
+									"comment": "All compost objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 367403254247522
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 715273859995104,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 896836737758895,
+											"parameters": {
+												"animation": "\"banana\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 683836932762490
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 631669436350452,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 5,
+												"second-value": "CompostVariation"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 726541845516263,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "2*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 622859572872655,
+											"parameters": {
+												"animation": "\"apple_1\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 521077516646278
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 653005881107896,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 5,
+												"second-value": "2*CompostVariation"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 946154765623206,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "3*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 606798318968898,
+											"parameters": {
+												"animation": "\"apple_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 954334744045117
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 846835025083866,
+							"parameters": {
+								"object": "compost_object"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "compost_object",
+							"sid": 742594782783291,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "compost_object",
+							"sid": 734962744962746,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 860587829349696,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 731379668057919,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 731496454941050
+				},
+				{
+					"functionName": "SpawnTrash",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 863947562815325,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 812903094301022
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 701386226892479
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 178491453395992,
+									"parameters": {
+										"object-to-create": "trash_object",
+										"layer": "\"Layer 0\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "trash_object",
+									"sid": 195753956942648,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "trash_object",
+									"sid": 383009568860600,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "trash_object",
+									"sid": 524769168968835,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 169576588458783,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "trash_object",
+									"sid": 925865767137410,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 473705635377598,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
+									}
+								}
+							],
+							"sid": 846941714294464,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "TrashVariation",
+									"type": "number",
+									"initialValue": "16.33333333",
+									"comment": "All trash objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 661844915507588
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 282040473616081,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 781790543928922,
+											"parameters": {
+												"animation": "\"chip_1\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 170644810888545
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 221635816510843,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "TrashVariation",
+												"upper-bound": "2*TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 470468364701629,
+											"parameters": {
+												"animation": "\"chip_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 700503904183707
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 234786021455513,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "2*TrashVariation",
+												"upper-bound": "3*TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 370375349727969,
+											"parameters": {
+												"animation": "\"gum_1\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 853893267064101
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 718518831962437,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*TrashVariation",
+												"upper-bound": "4*TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 857450107801686,
+											"parameters": {
+												"animation": "\"gum_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 955178157033418
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 372506709405735,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "4*TrashVariation",
+												"upper-bound": "5*TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 869856181623549,
+											"parameters": {
+												"animation": "\"straw_1\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 643624446719015
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 312273924877697,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "5*TrashVariation",
+												"upper-bound": "6*TrashVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "trash_object",
+											"sid": 582302005788362,
+											"parameters": {
+												"animation": "\"straw_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 452499210256551
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 182880068360388,
+							"parameters": {
+								"object": "trash_object"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "trash_object",
+							"sid": 190239677216649,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "trash_object",
+							"sid": 255514198864089,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 548690313492457,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 212259482536194,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 223027991359916
+				},
+				{
+					"functionName": "SpawnDistraction",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 469991036365435,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 813008353247813,
+									"parameters": {
+										"object-to-create": "frog",
+										"layer": "\"Layer 0\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "frog",
+									"sid": 539155143762434,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "frog",
+									"sid": 332744877517610,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "frog",
+									"sid": 439752552126313,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								}
+							],
+							"sid": 146334039773270
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 343765416755432,
+							"parameters": {
+								"object": "frog"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "frog",
+							"sid": 624555380498492,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "frog",
+							"sid": 746865235357061,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "frog",
+							"sid": 762475448360171,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "frog",
+							"sid": 854833276817093,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 238655539362662
+				},
+				{
+					"functionName": "MoveValTowardsAnotherVal",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "number",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "CurrentValue",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 452570218516919
+						},
+						{
+							"name": "TargetValue",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 299703988505653
+						},
+						{
+							"name": "Speed",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 427374195402531
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 168116546619438,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "Direction",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 852631609651956
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 733082057641824,
+									"parameters": {
+										"variable": "Direction",
+										"value": "sign(TargetValue - CurrentValue )"
+									}
+								}
+							],
+							"sid": 346121832260493
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 344734441804856,
+									"parameters": {
+										"value": "CurrentValue > TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 103024366486485,
+									"parameters": {
+										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, TargetValue, Infinity)"
+									}
+								}
+							],
+							"sid": 507124768667202
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 332752148538925
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 454436283171761,
+									"parameters": {
+										"value": "CurrentValue < TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 784986483872907,
+									"parameters": {
+										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, -Infinity, TargetValue)"
+									}
+								}
+							],
+							"sid": 590794444838234
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 720531646659657
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 384194072392109,
+									"parameters": {
+										"value": "CurrentValue = TargetValue"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-function-return-value",
+									"objectClass": "Functions",
+									"sid": 152187581014242,
+									"parameters": {
+										"value": "TargetValue"
+									}
+								}
+							],
+							"sid": 718069860561860
+						}
+					]
+				}
+			],
+			"sid": 630237370961794
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Distraction Objects Drag & Drop Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "frog",
+							"sid": 469917162421759,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "frog",
+							"sid": 564665661472060,
+							"parameters": {
+								"animation": "\"frog_scared\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "frog",
+							"sid": 758147255250614,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 477761568071009,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 259231491868244
+				}
+			],
+			"sid": 302992998994566
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Compost Objects Drag & Drop Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "compost_object",
+							"sid": 446973692249693,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "compost_object",
+							"sid": 324260496580928,
+							"parameters": {
+								"object": "compost_bin"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "compost_object",
+							"sid": 539722502974331
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 475411940381133,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 658984424209963
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "compost_object",
+							"sid": 543862448188102,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "compost_object",
+							"sid": 146988800675631,
+							"parameters": {
+								"object": "trash_bin"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "compost_object",
+							"sid": 230821319001803
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 815650704816303,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 108155935102046
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-dragging",
+							"objectClass": "compost_object",
+							"sid": 756234221001694,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 880460766669658,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 659785652848237,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 615098463022612,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 966462785836514
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "compost_object",
+							"sid": 724422818192265,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 861747557679408,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						}
+					],
+					"sid": 253581854372277
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "compost_object",
+							"sid": 496682338725027,
+							"parameters": {
+								"object": "subtractor"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 697144933799303,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 691674442082668
+				}
+			],
+			"sid": 198141827419421
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Trash Objects Drag & Drop Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "trash_object",
+							"sid": 793115541626858,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "trash_object",
+							"sid": 567505287471644,
+							"parameters": {
+								"object": "trash_bin"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "trash_object",
+							"sid": 243575713668472
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 967707648722260,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 238434762812674
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "trash_object",
+							"sid": 522832907560248,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "trash_object",
+							"sid": 794395601566770,
+							"parameters": {
+								"object": "compost_bin"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "trash_object",
+							"sid": 385285842357154
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 723930416007589,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 789277164424727
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-dragging",
+							"objectClass": "trash_object",
+							"sid": 185967250975138,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 649046303400071,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 584528630864186,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 185028690373081,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 266551549862076
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drop",
+							"objectClass": "trash_object",
+							"sid": 427016383365095,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 309515851074315,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						}
+					],
+					"sid": 670388795048139
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "trash_object",
+							"sid": 695096542268360,
+							"parameters": {
+								"object": "subtractor"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 730702661090556,
+							"parameters": {
+								"variable": "Score",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 943310034597562
+				}
+			],
+			"sid": 153487583205213
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 418675053460690
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "score_display",
+					"sid": 450068386924711,
+					"parameters": {
+						"text": "\"Score: \" & Score"
+					}
+				}
+			],
+			"sid": 722335048577783
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 620411627687073,
+					"parameters": {
+						"first-value": "ScoreStreakTracker",
+						"comparison": 0,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 641751274915405,
+					"parameters": {
+						"variable": "ScoreStreak",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 310578008807814
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 942198866784290,
+					"parameters": {
+						"variable": "Timer",
+						"comparison": 2,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 825326400684262,
+					"parameters": {
+						"variable": "Timer"
+					}
+				},
+				{
+					"id": "go-to-layout-by-name",
+					"objectClass": "System",
+					"sid": 536240675082285,
+					"parameters": {
+						"layout": "\"main_menu_screen\""
+					}
+				}
+			],
+			"sid": 439374537938975
+		}
+	],
+	"sid": 522712200103368
+}

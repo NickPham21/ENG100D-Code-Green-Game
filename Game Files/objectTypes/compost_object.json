@@ -1,0 +1,192 @@
+{
+	"name": "compost_object",
+	"plugin-id": "Sprite",
+	"sid": 647457998877537,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "VectorX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 851673254897872
+		},
+		{
+			"name": "VectorY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 995112112198832
+		},
+		{
+			"name": "RotationSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 324014736693768
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 402744148934773
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6672930,
+						"collisionPoly": {
+							"points": [
+								0.515,
+								0.17333333333333334,
+								0.9,
+								0.435,
+								0.76,
+								0.71,
+								0.30833333333333335,
+								0.77,
+								0.24166666666666667,
+								0.59,
+								0.24166666666666667,
+								0.5283333333333333,
+								0.43333333333333335,
+								0.19166666666666668
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 556650470711730,
+				"name": "banana",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1699095,
+						"collisionPoly": {
+							"points": [
+								0.58,
+								0.12,
+								0.69,
+								0.3,
+								0.705,
+								0.355,
+								0.64,
+								0.71,
+								0.58,
+								0.77,
+								0.53,
+								0.785,
+								0.435,
+								0.785,
+								0.355,
+								0.73,
+								0.335,
+								0.665,
+								0.31,
+								0.325,
+								0.335,
+								0.275,
+								0.37,
+								0.24
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 119815097523038,
+				"name": "apple_1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4600756,
+						"collisionPoly": {
+							"points": [
+								0.58,
+								0.12,
+								0.69,
+								0.3,
+								0.705,
+								0.355,
+								0.64,
+								0.71,
+								0.58,
+								0.77,
+								0.53,
+								0.785,
+								0.435,
+								0.785,
+								0.355,
+								0.73,
+								0.335,
+								0.665,
+								0.31,
+								0.325,
+								0.335,
+								0.275,
+								0.37,
+								0.24
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 639018522033692,
+				"name": "apple_2",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

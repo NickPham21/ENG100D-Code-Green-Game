@@ -57,13 +57,6 @@
 		},
 		{
 			"type": "behavior",
-			"id": "Bullet",
-			"name": "Bullet",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "behavior",
 			"id": "DragnDrop",
 			"name": "Drag & Drop",
 			"author": "Scirra",
@@ -75,42 +68,33 @@
 			"name": "Timer",
 			"author": "Scirra",
 			"bundled": false
-		},
-		{
-			"type": "behavior",
-			"id": "Tween",
-			"name": "Tween",
-			"author": "Scirra",
-			"bundled": false
 		}
 	],
 	"uniqueId": "rqsbz9j3fdc",
 	"objectTypes": {
 		"items": [
 			"paper_bin",
-			"metal_bin",
+			"trash_bin",
 			"trash_object",
-			"recycle_object",
 			"score_display",
-			"game_text_title",
 			"Mouse",
-			"Spawner",
 			"start_bttn",
 			"start_bttn_text",
 			"lvl_select_btn",
 			"lvl_select_text",
-			"timer_text",
 			"timer",
 			"Audio",
 			"volume_bttn",
 			"forest_bg",
-			"paper",
+			"recycle_object",
 			"frog",
 			"GameManager",
-			"preview",
 			"TiledBackground",
 			"game_logo",
-			"Video"
+			"Video",
+			"compost_object",
+			"compost_bin",
+			"subtractor"
 		],
 		"subfolders": [
 			{
@@ -124,9 +108,7 @@
 				"name": "Level Select"
 			},
 			{
-				"items": [
-					"Destroyer"
-				],
+				"items": [],
 				"subfolders": [],
 				"name": "Gameplay"
 			},
@@ -178,11 +160,12 @@
 	},
 	"eventSheets": {
 		"items": [
-			"game_events",
+			"game_events_1",
 			"main_menu_events",
 			"cutscene_1_events",
 			"level_select_events",
-			"intro_events"
+			"intro_events",
+			"BACKUP_FOR_GAME_EVENTS"
 		],
 		"subfolders": []
 	},

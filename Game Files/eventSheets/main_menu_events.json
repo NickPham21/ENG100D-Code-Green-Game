@@ -3,16 +3,6 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "ButtonActivated",
-			"type": "string",
-			"initialValue": "",
-			"comment": "String denoting which button the user activated. Used for button logic",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 135933402627119
-		},
-		{
-			"eventType": "variable",
 			"name": "GlobalVolume",
 			"type": "number",
 			"initialValue": "3",
@@ -44,41 +34,87 @@
 						"stereo-pan": "0",
 						"tag-optional": "\"main_menu_theme\""
 					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "game_logo",
-					"sid": 444210822544093,
-					"parameters": {
-						"angle": "-10"
-					}
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "game_logo",
-					"sid": 321027027906503,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "\"wobble\"",
-						"property": "offsetAngle",
-						"end-value": "10",
-						"time": "5",
-						"ease": "easeinoutsine",
-						"destroy-on-complete": "no",
-						"loop": "yes",
-						"ping-pong": "yes",
-						"repeat-count": "1"
-					}
 				}
 			],
 			"sid": 701552390981611
 		},
 		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Button Logic",
-			"description": "What actually happens when the button is pressed",
-			"isActiveOnStart": true,
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 782938238915167,
+					"parameters": {
+						"object": "start_bttn"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 837548931799959,
+					"parameters": {
+						"object": "lvl_select_btn"
+					}
+				},
+				{
+					"id": "cursor-is-over-object",
+					"objectClass": "Mouse",
+					"sid": 591619822771505,
+					"parameters": {
+						"object": "volume_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 639665214151092,
+					"parameters": {
+						"cursor-style": "pointer"
+					}
+				}
+			],
+			"sid": 727312182147798,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 170244615575048
+				}
+			],
+			"actions": [
+				{
+					"id": "set-cursor-style2",
+					"objectClass": "Mouse",
+					"sid": 823489077270114,
+					"parameters": {
+						"cursor-style": "normal"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "start_bttn",
+					"sid": 145607172043405,
+					"parameters": {
+						"frame-number": "\"bttn_idle\""
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "lvl_select_btn",
+					"sid": 357799210873631,
+					"parameters": {
+						"frame-number": "\"bttn_idle\""
+					}
+				}
+			],
+			"sid": 611532911269546,
 			"children": [
 				{
 					"eventType": "block",
@@ -86,11 +122,204 @@
 						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 256909955635167,
+							"sid": 818825052980765,
 							"parameters": {
-								"variable": "ButtonActivated",
+								"variable": "GlobalVolume",
 								"comparison": 0,
-								"value": "\"start\""
+								"value": "3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "volume_bttn",
+							"sid": 460017207208998,
+							"parameters": {
+								"frame-number": "\"vol3_idle\""
+							}
+						}
+					],
+					"sid": 803176095249015
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 568787805928409,
+							"parameters": {
+								"variable": "GlobalVolume",
+								"comparison": 0,
+								"value": "2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "volume_bttn",
+							"sid": 396021395533721,
+							"parameters": {
+								"frame-number": "\"vol2_idle\""
+							}
+						}
+					],
+					"sid": 661520004363217
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 242842080069407,
+							"parameters": {
+								"variable": "GlobalVolume",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "volume_bttn",
+							"sid": 236472503584691,
+							"parameters": {
+								"frame-number": "\"vol1_idle\""
+							}
+						}
+					],
+					"sid": 692112339421879
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 415923496796322,
+							"parameters": {
+								"variable": "GlobalVolume",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "volume_bttn",
+							"sid": 471041013493029,
+							"parameters": {
+								"frame-number": "\"vol0_idle\""
+							}
+						}
+					],
+					"sid": 100566025878103
+				}
+			]
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Start Button Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 570846096587281,
+							"parameters": {
+								"mouse-button": "left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 605057121970423,
+							"parameters": {
+								"object": "start_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "start_bttn",
+							"sid": 981443948216920,
+							"parameters": {
+								"frame-number": "\"bttn_hover\""
+							}
+						}
+					],
+					"sid": 467116568999872
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 477184561984849,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 122630103524349,
+							"parameters": {
+								"object": "start_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "start_bttn",
+							"sid": 207894858931494,
+							"parameters": {
+								"frame-number": "\"bttn_pressed\""
+							}
+						}
+					],
+					"sid": 387101430226986
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 599998867846119,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 416722753250311,
+							"parameters": {
+								"object": "start_bttn"
+							}
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "start_bttn",
+							"sid": 172622921811020,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"bttn_pressed\""
 							}
 						}
 					],
@@ -98,25 +327,123 @@
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 845134107662877,
+							"sid": 984626958658357,
 							"parameters": {
 								"layout": "cutscene_1"
 							}
+						},
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 128554421499678,
+							"parameters": {
+								"cursor-style": "normal"
+							}
 						}
 					],
-					"sid": 557397815480902
+					"sid": 902833940066624
+				}
+			],
+			"sid": 282890620932714
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Level Select Button Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 748501477039679,
+							"parameters": {
+								"mouse-button": "left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 944880130059987,
+							"parameters": {
+								"object": "lvl_select_btn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "lvl_select_btn",
+							"sid": 207495479618303,
+							"parameters": {
+								"frame-number": "\"bttn_hover\""
+							}
+						}
+					],
+					"sid": 238042728975565
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 937138093897773,
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 150788333501828,
 							"parameters": {
-								"variable": "ButtonActivated",
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 706486758697951,
+							"parameters": {
+								"object": "lvl_select_btn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "lvl_select_btn",
+							"sid": 210745603177986,
+							"parameters": {
+								"frame-number": "\"bttn_pressed\""
+							}
+						}
+					],
+					"sid": 947532523944834
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 252797239500186,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 599727588282098,
+							"parameters": {
+								"object": "lvl_select_btn"
+							}
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "lvl_select_btn",
+							"sid": 727916314526931,
+							"parameters": {
 								"comparison": 0,
-								"value": "\"lvl_select\""
+								"tag": "\"bttn_pressed\""
 							}
 						}
 					],
@@ -124,48 +451,55 @@
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 450311086753347,
+							"sid": 226949128298143,
 							"parameters": {
 								"layout": "level_select_screen"
 							}
+						},
+						{
+							"id": "set-cursor-style2",
+							"objectClass": "Mouse",
+							"sid": 388499562384920,
+							"parameters": {
+								"cursor-style": "normal"
+							}
 						}
 					],
-					"sid": 392267037798727
-				},
+					"sid": 460512489947668
+				}
+			],
+			"sid": 385315126111336
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Volume Button Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 803874471937459,
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 588558901328194,
 							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"volume\""
+								"mouse-button": "left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 579308462874822,
+							"parameters": {
+								"object": "volume_bttn"
 							}
 						}
 					],
-					"actions": [
-						{
-							"callFunction": "cycle_volume",
-							"sid": 817449944121734
-						}
-					],
-					"sid": 167358091594308
-				},
-				{
-					"functionName": "cycle_volume",
-					"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
 					"actions": [],
-					"sid": 675102229969258,
+					"sid": 826008331907880,
 					"children": [
 						{
 							"eventType": "block",
@@ -173,7 +507,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 594109319741823,
+									"sid": 637875539200235,
 									"parameters": {
 										"variable": "GlobalVolume",
 										"comparison": 0,
@@ -183,49 +517,15 @@
 							],
 							"actions": [
 								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 843624757526086,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": true
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 853363202140149,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "2"
-									}
-								},
-								{
-									"id": "set-animation",
+									"id": "set-animation-frame",
 									"objectClass": "volume_bttn",
-									"sid": 405656139136041,
+									"sid": 843133563012024,
 									"parameters": {
-										"animation": "\"vol2\"",
-										"from": "beginning"
+										"frame-number": "\"vol3_hover\""
 									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 219507118128358,
-									"parameters": {
-										"db": "-10"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
 								}
 							],
-							"sid": 228836000714377
+							"sid": 941277547033842
 						},
 						{
 							"eventType": "block",
@@ -233,7 +533,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 628729513707334,
+									"sid": 758974393438078,
 									"parameters": {
 										"variable": "GlobalVolume",
 										"comparison": 0,
@@ -243,49 +543,15 @@
 							],
 							"actions": [
 								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 303716647184347,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": true
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 770532175234020,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "1"
-									}
-								},
-								{
-									"id": "set-animation",
+									"id": "set-animation-frame",
 									"objectClass": "volume_bttn",
-									"sid": 972122124580100,
+									"sid": 899813302145614,
 									"parameters": {
-										"animation": "\"vol1\"",
-										"from": "beginning"
+										"frame-number": "\"vol2_hover\""
 									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 736990261844639,
-									"parameters": {
-										"db": "-25"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
 								}
 							],
-							"sid": 115307062728326
+							"sid": 888774521944318
 						},
 						{
 							"eventType": "block",
@@ -293,7 +559,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 641416735467248,
+									"sid": 464219061531629,
 									"parameters": {
 										"variable": "GlobalVolume",
 										"comparison": 0,
@@ -303,49 +569,15 @@
 							],
 							"actions": [
 								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 338298906274100,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": true
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 851580167982713,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "0"
-									}
-								},
-								{
-									"id": "set-animation",
+									"id": "set-animation-frame",
 									"objectClass": "volume_bttn",
-									"sid": 418230782286603,
+									"sid": 595064540133477,
 									"parameters": {
-										"animation": "\"vol0\"",
-										"from": "beginning"
+										"frame-number": "\"vol1_hover\""
 									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 133030433524087,
-									"parameters": {
-										"db": "-100"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
 								}
 							],
-							"sid": 734875884856637
+							"sid": 427550716228562
 						},
 						{
 							"eventType": "block",
@@ -353,7 +585,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 948361767196259,
+									"sid": 121343282476569,
 									"parameters": {
 										"variable": "GlobalVolume",
 										"comparison": 0,
@@ -363,36 +595,363 @@
 							],
 							"actions": [
 								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 693856668811607,
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 399664614670962,
 									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": true
+										"frame-number": "\"vol0_hover\""
 									}
-								},
+								}
+							],
+							"sid": 596975612890029
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 702107343897802,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 225497476261838,
+							"parameters": {
+								"object": "volume_bttn"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 579143093417607,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
 								{
-									"id": "set-eventvar-value",
+									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 808431198292971,
+									"sid": 624488038752089,
 									"parameters": {
 										"variable": "GlobalVolume",
+										"comparison": 0,
 										"value": "3"
 									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 747038733112564,
+									"parameters": {
+										"frame-number": "\"vol3_pressed\""
+									}
+								}
+							],
+							"sid": 807951223230552
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 290746504037096,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 770238024637857,
+									"parameters": {
+										"frame-number": "\"vol2_pressed\""
+									}
+								}
+							],
+							"sid": 420581018610346
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 533964944896281,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 441862799360152,
+									"parameters": {
+										"frame-number": "\"vol1_pressed\""
+									}
+								}
+							],
+							"sid": 911442243728834
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 439932410160376,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 427115119629039,
+									"parameters": {
+										"frame-number": "\"vol0_pressed\""
+									}
+								}
+							],
+							"sid": 948788990745978
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-released",
+							"objectClass": "Mouse",
+							"sid": 897813826823787,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 143480401876437,
+							"parameters": {
+								"object": "volume_bttn"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 970628750725535,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 494879156609913,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "set_volume",
+									"sid": 681603973585391,
+									"parameters": [
+										"2"
+									]
 								},
 								{
-									"id": "set-animation",
+									"id": "set-animation-frame",
 									"objectClass": "volume_bttn",
-									"sid": 830648890466717,
+									"sid": 828868395866706,
 									"parameters": {
-										"animation": "\"vol3\"",
-										"from": "beginning"
+										"frame-number": "\"vol2_hover\""
 									}
+								}
+							],
+							"sid": 637143359019543
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 562042826281988,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "set_volume",
+									"sid": 611324974590234,
+									"parameters": [
+										"1"
+									]
 								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 282756300318309,
+									"parameters": {
+										"frame-number": "\"vol1_hover\""
+									}
+								}
+							],
+							"sid": 466193348383274
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 418892418056579,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "set_volume",
+									"sid": 107583620761371,
+									"parameters": [
+										"0"
+									]
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 382246903953261,
+									"parameters": {
+										"frame-number": "\"vol0_hover\""
+									}
+								}
+							],
+							"sid": 856688869825976
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 658248329175422,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "set_volume",
+									"sid": 924503874012413,
+									"parameters": [
+										"3"
+									]
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "volume_bttn",
+									"sid": 769020752780826,
+									"parameters": {
+										"frame-number": "\"vol3_hover\""
+									}
+								}
+							],
+							"sid": 530422760260116
+						}
+					]
+				},
+				{
+					"functionName": "set_volume",
+					"functionDescription": "Sets volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "newVolume",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "the new value to set the volume to",
+							"sid": 241843310316522
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 230565203134179,
+							"parameters": {
+								"seconds": "0.05",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 420213468432429,
+							"parameters": {
+								"variable": "GlobalVolume",
+								"value": "newVolume"
+							}
+						}
+					],
+					"sid": 371836207195622,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 873686375282618,
+									"parameters": {
+										"variable": "newVolume",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
 								{
 									"id": "set-master-volume",
 									"objectClass": "Audio",
-									"sid": 359009780332162,
+									"sid": 381248077861883,
 									"parameters": {
 										"db": "0"
 									}
@@ -405,361 +964,108 @@
 									]
 								}
 							],
-							"sid": 677507851906961
-						}
-					]
-				}
-			],
-			"sid": 282890620932714
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Button Animation",
-			"description": "User interaction animations for main menu buttons",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "cursor-is-over-object",
-							"objectClass": "Mouse",
-							"sid": 667780864050441,
-							"parameters": {
-								"object": "main_menu_buttons"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-cursor-style2",
-							"objectClass": "Mouse",
-							"sid": 952571920072927,
-							"parameters": {
-								"cursor-style": "pointer"
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "main_menu_buttons",
-							"sid": 462056951270030,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"shrink\"",
-								"property": "offsetScaleX",
-								"end-value": "0.95",
-								"time": "0.02",
-								"ease": "easeinsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "main_menu_buttons",
-							"sid": 195033395300049,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"shrink\"",
-								"property": "offsetScaleY",
-								"end-value": "0.95",
-								"time": "0.02",
-								"ease": "easeinsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						}
-					],
-					"sid": 449175328262488,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "mouse-button-is-down",
-									"objectClass": "Mouse",
-									"sid": 765752937512351,
-									"parameters": {
-										"mouse-button": "left"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
-									"sid": 729162605216589,
-									"parameters": {
-										"frame-number": "\"bttn_hover\""
-									}
-								}
-							],
-							"sid": 327562173014672
+							"sid": 586609492178911
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "mouse-button-is-down",
-									"objectClass": "Mouse",
-									"sid": 233136474334929,
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 983972452131971,
 									"parameters": {
-										"mouse-button": "left"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
-									"sid": 416403717868485,
-									"parameters": {
-										"frame-number": "\"bttn_pressed\""
-									}
-								}
-							],
-							"sid": 235362002407845
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-button-released",
-									"objectClass": "Mouse",
-									"sid": 527081498162599,
-									"parameters": {
-										"mouse-button": "left"
-									}
-								},
-								{
-									"id": "compare-animation-frame-tag",
-									"objectClass": "main_menu_buttons",
-									"sid": 847388503710878,
-									"parameters": {
+										"variable": "newVolume",
 										"comparison": 0,
-										"tag": "\"bttn_pressed\""
+										"value": "2"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
-									"sid": 866594919168016,
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 973791327516153,
 									"parameters": {
-										"frame-number": "\"bttn_pressed\""
+										"db": "-10"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 990582214316592
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 640844605890123,
+									"parameters": {
+										"variable": "newVolume",
+										"comparison": 0,
+										"value": "1"
 									}
 								}
 							],
-							"sid": 779626873931375,
-							"children": [
+							"actions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "main_menu_buttons",
-											"sid": 580152287311807,
-											"parameters": {
-												"instance-variable": "bttn_id",
-												"comparison": 0,
-												"value": "\"start\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 192171241501388,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"start\""
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 314844898958127,
-											"parameters": {
-												"seconds": "0.02",
-												"use-timescale": true
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 954169719298162,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"\""
-											}
-										}
-									],
-									"sid": 151047142584814
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 991107517042632,
+									"parameters": {
+										"db": "-25"
+									}
 								},
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "main_menu_buttons",
-											"sid": 482040527112919,
-											"parameters": {
-												"instance-variable": "bttn_id",
-												"comparison": 0,
-												"value": "\"lvl_select\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 838978176714716,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"lvl_select\""
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 680228041116505,
-											"parameters": {
-												"seconds": "0.02",
-												"use-timescale": true
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 537639546217385,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"\""
-											}
-										}
-									],
-									"sid": 660457491742517
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "main_menu_buttons",
-											"sid": 863077266572989,
-											"parameters": {
-												"instance-variable": "bttn_id",
-												"comparison": 0,
-												"value": "\"volume\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 927129693020627,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"volume\""
-											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 728847957883871,
-											"parameters": {
-												"seconds": "0.02",
-												"use-timescale": true
-											}
-										},
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 507894492397711,
-											"parameters": {
-												"variable": "ButtonActivated",
-												"value": "\"\""
-											}
-										}
-									],
-									"sid": 762492783866133
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
 								}
-							]
+							],
+							"sid": 932631982807023
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 605653386491410,
+									"parameters": {
+										"variable": "newVolume",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 646996406221224,
+									"parameters": {
+										"db": "-100"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 971352515760914
 						}
 					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 729633249740476
-						}
-					],
-					"actions": [
-						{
-							"id": "set-cursor-style2",
-							"objectClass": "Mouse",
-							"sid": 580157210303175,
-							"parameters": {
-								"cursor-style": "normal"
-							}
-						},
-						{
-							"id": "set-animation-frame",
-							"objectClass": "main_menu_buttons",
-							"sid": 176015076197113,
-							"parameters": {
-								"frame-number": "\"bttn_idle\""
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "main_menu_buttons",
-							"sid": 379727035722632,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"normalScale\"",
-								"property": "offsetScaleX",
-								"end-value": "1",
-								"time": "0.02",
-								"ease": "easeoutsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "main_menu_buttons",
-							"sid": 141198476778407,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"normalScale\"",
-								"property": "offsetScaleY",
-								"end-value": "1",
-								"time": "0.02",
-								"ease": "easeoutsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						}
-					],
-					"sid": 185938461963926
 				}
 			],
 			"sid": 546464527845105

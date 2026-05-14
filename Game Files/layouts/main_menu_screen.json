@@ -65,16 +65,8 @@
 					"uid": 18,
 					"sid": 216278976334420,
 					"tags": "",
-					"instanceVariables": {
-						"bttn_id": "start"
-					},
-					"behaviors": {
-						"Tween": {
-							"properties": {
-								"enabled": true
-							}
-						}
-					},
+					"instanceVariables": {},
+					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 216278976334420,
 						"expanded": true
@@ -163,16 +155,8 @@
 					"uid": 19,
 					"sid": 669433643042389,
 					"tags": "",
-					"instanceVariables": {
-						"bttn_id": "lvl_select"
-					},
-					"behaviors": {
-						"Tween": {
-							"properties": {
-								"enabled": true
-							}
-						}
-					},
+					"instanceVariables": {},
+					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 669433643042389,
 						"expanded": true
@@ -253,7 +237,7 @@
 					"type": "volume_bttn",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "vol3",
+						"initial-animation": "Animation 1",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -261,16 +245,8 @@
 					"uid": 32,
 					"sid": 397382829827587,
 					"tags": "",
-					"instanceVariables": {
-						"bttn_id": "volume"
-					},
-					"behaviors": {
-						"Tween": {
-							"properties": {
-								"enabled": true
-							}
-						}
-					},
+					"instanceVariables": {},
+					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 397382829827587,
 						"expanded": true
@@ -307,13 +283,7 @@
 					"sid": 788383925847090,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {
-						"Tween": {
-							"properties": {
-								"enabled": true
-							}
-						}
-					},
+					"behaviors": {},
 					"instanceFolderItem": {
 						"sid": 788383925847090,
 						"expanded": true
@@ -321,10 +291,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 963,
-						"y": 286,
-						"width": 804.9137231086952,
-						"height": 538.9422319945177,
+						"x": 960,
+						"y": 288,
+						"width": 907.0738627167356,
+						"height": 607.3451080799013,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
