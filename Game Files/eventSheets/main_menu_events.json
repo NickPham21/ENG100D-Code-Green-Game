@@ -6,7 +6,7 @@
 			"name": "ButtonActivated",
 			"type": "string",
 			"initialValue": "",
-			"comment": "String denoting which button the user activated. Used for button logic",
+			"comment": "String denoting which button the user activated. Used for button logic.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 135933402627119
@@ -16,7 +16,7 @@
 			"name": "GlobalVolume",
 			"type": "number",
 			"initialValue": "3",
-			"comment": "Global value for setting volume",
+			"comment": "Global value for setting volume.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 912636537058113
