@@ -60,13 +60,35 @@
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 986048833786821,
+					"sid": 961043798443553,
 					"parameters": {
 						"layout": "main_menu_screen"
 					}
 				}
 			],
-			"sid": 752204498388020
+			"sid": 752204498388020,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-click",
+					"objectClass": "Mouse",
+					"sid": 453237925308666
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 995875464721720,
+					"parameters": {
+						"layout": "main_menu_screen"
+					}
+				}
+			],
+			"sid": 576977927288868
 		}
 	],
 	"sid": 141144026114487

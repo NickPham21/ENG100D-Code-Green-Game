@@ -1,7 +1,7 @@
 {
 	"name": "volume_bttn",
 	"plugin-id": "Sprite",
-	"sid": 874714374020763,
+	"sid": 447862850546307,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,7 +20,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1497935,
+						"imageSpriteId": 9729161,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -56,7 +56,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7726065,
+						"imageSpriteId": 4941793,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -92,7 +92,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5335118,
+						"imageSpriteId": 5842263,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -120,7 +120,7 @@
 						"tag": "bttn_pressed"
 					}
 				],
-				"sid": 344925982417524,
+				"sid": 896107929718961,
 				"name": "vol3",
 				"isLooping": false,
 				"isPingPong": false,
@@ -139,7 +139,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6154138,
+						"imageSpriteId": 6667835,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -175,7 +175,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 4652919,
+						"imageSpriteId": 6686719,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -211,7 +211,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6030998,
+						"imageSpriteId": 2478192,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -239,7 +239,7 @@
 						"tag": "bttn_pressed"
 					}
 				],
-				"sid": 149852749492489,
+				"sid": 699094463922529,
 				"name": "vol2",
 				"isLooping": false,
 				"isPingPong": false,
@@ -258,7 +258,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1315659,
+						"imageSpriteId": 1966604,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -294,7 +294,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9653404,
+						"imageSpriteId": 8140408,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -330,7 +330,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8825900,
+						"imageSpriteId": 2363869,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -358,7 +358,7 @@
 						"tag": "bttn_pressed"
 					}
 				],
-				"sid": 344639428046260,
+				"sid": 202211163116460,
 				"name": "vol1",
 				"isLooping": false,
 				"isPingPong": false,
@@ -377,7 +377,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 9634221,
+						"imageSpriteId": 5038353,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -413,7 +413,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7441857,
+						"imageSpriteId": 2753920,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -449,7 +449,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7328011,
+						"imageSpriteId": 5084366,
 						"collisionPoly": {
 							"points": [
 								0.465,
@@ -477,7 +477,7 @@
 						"tag": "bttn_pressed"
 					}
 				],
-				"sid": 833706772098111,
+				"sid": 434386929205366,
 				"name": "vol0",
 				"isLooping": false,
 				"isPingPong": false,

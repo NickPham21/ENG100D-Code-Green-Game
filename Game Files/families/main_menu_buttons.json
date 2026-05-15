@@ -1,21 +1,21 @@
 {
 	"name": "main_menu_buttons",
 	"plugin-id": "Sprite",
-	"sid": 545263990679482,
+	"sid": 742085419889895,
 	"instanceVariables": [
 		{
 			"name": "bttn_id",
 			"type": "string",
 			"desc": "unique ID of the button, used to identify for button logic",
 			"show": true,
-			"sid": 475351564605122
+			"sid": 634121724623350
 		}
 	],
 	"behaviorTypes": [
 		{
 			"behaviorId": "Tween",
 			"name": "Tween",
-			"sid": 773068745500993
+			"sid": 341771626584335
 		}
 	],
 	"effectTypes": [],
