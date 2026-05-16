@@ -515,9 +515,9 @@
 	"sid": 698106433821560,
 	"nonworld-instances": [
 		{
-			"type": "cutscene_1_dialogue",
+			"type": "c1_arr",
 			"properties": {
-				"width": 2,
+				"width": 4,
 				"height": 3,
 				"depth": 1
 			},

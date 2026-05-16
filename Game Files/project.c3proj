@@ -22,6 +22,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -101,7 +108,8 @@
 			"compost_bin",
 			"subtractor",
 			"volume_bttn",
-			"game_logo"
+			"game_logo",
+			"Browser"
 		],
 		"subfolders": [
 			{
@@ -121,11 +129,12 @@
 			},
 			{
 				"items": [
-					"c1_dialogue_sprite_display",
-					"c1_dialogue_text_display",
-					"cutscene_1_dialogue",
+					"c1_sprite_display",
+					"c1_dialogue_display",
+					"c1_arr",
 					"dialogue_textbox",
-					"c1_dialogue_name_display"
+					"c1_name_display",
+					"blackout"
 				],
 				"subfolders": [],
 				"name": "Cutscene"

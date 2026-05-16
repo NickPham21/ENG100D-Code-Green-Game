@@ -1,0 +1,10 @@
+{
+	"name": "c1_name_display",
+	"plugin-id": "Text",
+	"sid": 545842960247689,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}
