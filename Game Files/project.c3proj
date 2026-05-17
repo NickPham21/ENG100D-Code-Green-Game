@@ -22,13 +22,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "Browser",
-			"name": "Browser",
-			"author": "Scirra",
-			"bundled": false
-		},
-		{
-			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
 			"author": "Scirra",
@@ -102,14 +95,17 @@
 			"recycle_object",
 			"frog",
 			"GameManager",
-			"TiledBackground",
+			"main_menu_bg",
 			"Video",
 			"compost_object",
 			"compost_bin",
 			"subtractor",
 			"volume_bttn",
 			"game_logo",
-			"Browser"
+			"hearts",
+			"pause_bttn",
+			"pause_menu",
+			"play_bttn"
 		],
 		"subfolders": [
 			{
@@ -129,12 +125,11 @@
 			},
 			{
 				"items": [
-					"c1_sprite_display",
-					"c1_dialogue_display",
-					"c1_arr",
+					"c1_dialogue_sprite_display",
+					"c1_dialogue_text_display",
+					"cutscene_1_dialogue",
 					"dialogue_textbox",
-					"c1_name_display",
-					"blackout"
+					"c1_dialogue_name_display"
 				],
 				"subfolders": [],
 				"name": "Cutscene"

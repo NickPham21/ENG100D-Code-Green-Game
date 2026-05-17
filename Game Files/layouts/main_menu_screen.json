@@ -7,7 +7,7 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "TiledBackground",
+					"type": "main_menu_bg",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -324,7 +324,7 @@
 						"x": 963,
 						"y": 286,
 						"width": 804.9137231086953,
-						"height": 538.9422319945177,
+						"height": 573.9384808253305,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

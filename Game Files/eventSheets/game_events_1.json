@@ -45,11 +45,31 @@
 			"eventType": "variable",
 			"name": "LevelTimeScale",
 			"type": "number",
-			"initialValue": "0.5",
+			"initialValue": "0.25",
 			"comment": "Time scale for the level (how fast everything happens, 1.0 is normal: 1s in game is 1s irl)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 701359979824188
+		},
+		{
+			"eventType": "variable",
+			"name": "Paused",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 392768382390940
+		},
+		{
+			"eventType": "variable",
+			"name": "HeartsLost",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Tracks how many hearts the user has lost",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 283908860868133
 		},
 		{
 			"eventType": "block",
@@ -142,10 +162,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 334739741631560,
+					"sid": 287632856068075,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "2",
+						"duration": "3",
 						"type": "regular",
 						"tag": "\"SpawnTrash\""
 					}
@@ -153,10 +173,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 432275813283761,
+					"sid": 254191091717214,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "2.5",
+						"duration": "5",
 						"type": "regular",
 						"tag": "\"SpawnCompost\""
 					}
@@ -164,10 +184,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 555456827010467,
+					"sid": 396726409637704,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "4.5",
+						"duration": "10",
 						"type": "regular",
 						"tag": "\"SpawnDistraction\""
 					}
@@ -332,10 +352,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 591336640429679,
+									"sid": 688365576209432,
 									"parameters": {
 										"object-to-create": "compost_object",
-										"layer": "\"Layer 0\"",
+										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
 										"create-hierarchy": false,
@@ -402,7 +422,7 @@
 									"eventType": "variable",
 									"name": "CompostVariation",
 									"type": "number",
-									"initialValue": "33.33333333",
+									"initialValue": "25",
 									"comment": "All compost objects will have an equal chance to spawn",
 									"isStatic": false,
 									"isConstant": true,
@@ -439,23 +459,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-two-values",
+											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 631669436350452,
+											"sid": 152659092959875,
 											"parameters": {
-												"first-value": "RandomInt",
-												"comparison": 5,
-												"second-value": "CompostVariation"
-											}
-										},
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 726541845516263,
-											"parameters": {
-												"first-value": "RandomInt",
-												"comparison": 2,
-												"second-value": "2*CompostVariation"
+												"value": "RandomInt",
+												"lower-bound": "CompostVariation",
+												"upper-bound": "2*CompostVariation"
 											}
 										}
 									],
@@ -476,23 +486,13 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-two-values",
+											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 653005881107896,
+											"sid": 481844930252633,
 											"parameters": {
-												"first-value": "RandomInt",
-												"comparison": 5,
-												"second-value": "2*CompostVariation"
-											}
-										},
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 946154765623206,
-											"parameters": {
-												"first-value": "RandomInt",
-												"comparison": 2,
-												"second-value": "3*CompostVariation"
+												"value": "RandomInt",
+												"lower-bound": "2*CompostVariation",
+												"upper-bound": "3*CompostVariation"
 											}
 										}
 									],
@@ -500,14 +500,41 @@
 										{
 											"id": "set-animation",
 											"objectClass": "compost_object",
-											"sid": 606798318968898,
+											"sid": 229822106312692,
 											"parameters": {
 												"animation": "\"apple_2\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 954334744045117
+									"sid": 688201514902490
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 678018205123051,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*CompostVariation",
+												"upper-bound": "4*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 591231975227717,
+											"parameters": {
+												"animation": "\"egg_shells\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 791759679642797
 								}
 							]
 						}
@@ -604,10 +631,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 178491453395992,
+									"sid": 305658399299820,
 									"parameters": {
 										"object-to-create": "trash_object",
-										"layer": "\"Layer 0\"",
+										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
 										"create-hierarchy": false,
@@ -917,10 +944,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 813008353247813,
+									"sid": 632832444940172,
 									"parameters": {
 										"object-to-create": "frog",
-										"layer": "\"Layer 0\"",
+										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
 										"create-hierarchy": false,
@@ -1176,6 +1203,10 @@
 					],
 					"actions": [
 						{
+							"callFunction": "DistractionHit",
+							"sid": 624312075361729
+						},
+						{
 							"id": "set-animation",
 							"objectClass": "frog",
 							"sid": 564665661472060,
@@ -1189,15 +1220,6 @@
 							"objectClass": "frog",
 							"sid": 758147255250614,
 							"behaviorType": "DragDrop"
-						},
-						{
-							"id": "subtract-from-eventvar",
-							"objectClass": "System",
-							"sid": 477761568071009,
-							"parameters": {
-								"variable": "Score",
-								"value": "1"
-							}
 						}
 					],
 					"sid": 259231491868244
@@ -1273,13 +1295,8 @@
 							"sid": 230821319001803
 						},
 						{
-							"id": "subtract-from-eventvar",
-							"objectClass": "System",
-							"sid": 815650704816303,
-							"parameters": {
-								"variable": "Score",
-								"value": "1"
-							}
+							"callFunction": "WrongWasteSort",
+							"sid": 631320389023722
 						}
 					],
 					"sid": 108155935102046
@@ -1444,13 +1461,8 @@
 							"sid": 385285842357154
 						},
 						{
-							"id": "subtract-from-eventvar",
-							"objectClass": "System",
-							"sid": 723930416007589,
-							"parameters": {
-								"variable": "Score",
-								"value": "1"
-							}
+							"callFunction": "WrongWasteSort",
+							"sid": 566003617937707
 						}
 					],
 					"sid": 789277164424727
@@ -1548,6 +1560,111 @@
 			"sid": 153487583205213
 		},
 		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Hearts Tracking Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 266811157424381
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation-frame",
+							"objectClass": "hearts",
+							"sid": 327426317307404,
+							"parameters": {
+								"frame-number": "HeartsLost"
+							}
+						}
+					],
+					"sid": 614201011459732,
+					"children": [
+						{
+							"functionName": "DistractionHit",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 612007348115962,
+									"parameters": {
+										"variable": "HeartsLost",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 661571580903431
+						},
+						{
+							"functionName": "WrongWasteSort",
+							"functionDescription": "",
+							"functionCategory": "",
+							"functionReturnType": "none",
+							"functionCopyPicked": false,
+							"functionIsAsync": false,
+							"functionParameters": [],
+							"eventType": "function-block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 469772619974119,
+									"parameters": {
+										"variable": "HeartsLost",
+										"value": "2"
+									}
+								}
+							],
+							"sid": 708230177070979
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 821760052986887,
+							"parameters": {
+								"first-value": "HeartsLost",
+								"comparison": 0,
+								"second-value": "6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 177216661503272,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						}
+					],
+					"sid": 642220914347109
+				}
+			],
+			"sid": 570211521458148
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -1619,15 +1736,853 @@
 					}
 				},
 				{
-					"id": "go-to-layout-by-name",
+					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 536240675082285,
+					"sid": 165131676560772,
 					"parameters": {
-						"layout": "\"main_menu_screen\""
+						"layout": "main_menu_screen"
 					}
 				}
 			],
 			"sid": 439374537938975
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Pause Menu Logic",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 357056113397052,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "pause_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 661447769631789,
+							"parameters": {
+								"variable": "Paused"
+							}
+						}
+					],
+					"sid": 876968313481596
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 985865829791845,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "play_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 833614069117955,
+							"parameters": {
+								"variable": "Paused"
+							}
+						}
+					],
+					"sid": 607916477468655
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 204174471475921,
+							"parameters": {
+								"variable": "Paused"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 302231802966034,
+							"parameters": {
+								"layer": "\"Pause Menu\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 488020953881802,
+							"parameters": {
+								"layer": "\"Pause Menu\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 545601858522145,
+							"parameters": {
+								"time-scale": "0"
+							}
+						},
+						{
+							"id": "pause-resume-all-timers",
+							"objectClass": "GameManager",
+							"sid": 143978575881682,
+							"behaviorType": "Timer",
+							"parameters": {
+								"state": "paused"
+							}
+						},
+						{
+							"id": "pause-resume-all-timers",
+							"objectClass": "timer",
+							"sid": 870476297809537,
+							"behaviorType": "Timer",
+							"parameters": {
+								"state": "paused"
+							}
+						}
+					],
+					"sid": 433149459753846
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 774457507071466,
+							"parameters": {
+								"variable": "Paused"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 349169360910609,
+							"parameters": {
+								"layer": "\"Pause Menu\"",
+								"interactive": false
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 849529599496506,
+							"parameters": {
+								"layer": "\"Pause Menu\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 805167580034334,
+							"parameters": {
+								"time-scale": "LevelTimeScale"
+							}
+						},
+						{
+							"id": "pause-resume-all-timers",
+							"objectClass": "GameManager",
+							"sid": 752304109071805,
+							"behaviorType": "Timer",
+							"parameters": {
+								"state": "resumed"
+							}
+						},
+						{
+							"id": "pause-resume-all-timers",
+							"objectClass": "timer",
+							"sid": 554478953844923,
+							"behaviorType": "Timer",
+							"parameters": {
+								"state": "resumed"
+							}
+						}
+					],
+					"sid": 700441668880181
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 475036223294693,
+							"parameters": {
+								"variable": "ButtonActivated",
+								"comparison": 0,
+								"value": "\"lvl_select\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 407459974777312,
+							"parameters": {
+								"layout": "level_select_screen"
+							}
+						}
+					],
+					"sid": 627110387622500
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 312769134996910,
+							"parameters": {
+								"variable": "ButtonActivated",
+								"comparison": 0,
+								"value": "\"volume\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "cycle_volume",
+							"sid": 919041811880510
+						}
+					],
+					"sid": 633404218657881
+				},
+				{
+					"functionName": "cycle_volume2",
+					"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 563602492451945,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 536953937349664,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 646042108320020,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 860973839014801,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"value": "2"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "volume_bttn",
+									"sid": 270849950037115,
+									"parameters": {
+										"animation": "\"vol2\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 132860141267156,
+									"parameters": {
+										"db": "-10"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 356959165992994
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 251757484252729,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 308223396506442,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 498860207487751,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"value": "1"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "volume_bttn",
+									"sid": 763310846517491,
+									"parameters": {
+										"animation": "\"vol1\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 965383860326124,
+									"parameters": {
+										"db": "-25"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 903228474670310
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 202740809041015,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 503565896999864,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 930839565593187,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "volume_bttn",
+									"sid": 748064003301269,
+									"parameters": {
+										"animation": "\"vol0\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 873530139932946,
+									"parameters": {
+										"db": "-100"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 844193164408629
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 541570749848541,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 280863051253630,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 923754980936137,
+									"parameters": {
+										"variable": "GlobalVolume",
+										"value": "3"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "volume_bttn",
+									"sid": 945675095753955,
+									"parameters": {
+										"animation": "\"vol3\"",
+										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-master-volume",
+									"objectClass": "Audio",
+									"sid": 638904639957995,
+									"parameters": {
+										"db": "0"
+									}
+								},
+								{
+									"type": "script",
+									"language": "javascript",
+									"script": [
+										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+									]
+								}
+							],
+							"sid": 944567414040874
+						}
+					]
+				},
+				{
+					"eventType": "group",
+					"disabled": false,
+					"title": "Button Animation2",
+					"description": "User interaction animations for pause menu buttons",
+					"isActiveOnStart": true,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 103378429935229,
+									"parameters": {
+										"object": "main_menu_buttons"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 935611208941587,
+									"parameters": {
+										"cursor-style": "pointer"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "main_menu_buttons",
+									"sid": 504196257830028,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"shrink\"",
+										"property": "offsetScaleX",
+										"end-value": "0.95",
+										"time": "0.02",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "main_menu_buttons",
+									"sid": 523606997662656,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"shrink\"",
+										"property": "offsetScaleY",
+										"end-value": "0.95",
+										"time": "0.02",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
+							"sid": 371866345113184,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "Mouse",
+											"sid": 805322918083662,
+											"parameters": {
+												"mouse-button": "left"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "main_menu_buttons",
+											"sid": 972633861947132,
+											"parameters": {
+												"frame-number": "\"bttn_hover\""
+											}
+										}
+									],
+									"sid": 669837838490065
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "Mouse",
+											"sid": 164362165368911,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "main_menu_buttons",
+											"sid": 142875000687509,
+											"parameters": {
+												"frame-number": "\"bttn_pressed\""
+											}
+										}
+									],
+									"sid": 629849364336333
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-button-released",
+											"objectClass": "Mouse",
+											"sid": 886307204889211,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										},
+										{
+											"id": "compare-animation-frame-tag",
+											"objectClass": "main_menu_buttons",
+											"sid": 620133748350650,
+											"parameters": {
+												"comparison": 0,
+												"tag": "\"bttn_pressed\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "main_menu_buttons",
+											"sid": 465654817736977,
+											"parameters": {
+												"frame-number": "\"bttn_pressed\""
+											}
+										}
+									],
+									"sid": 983276944350294,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "main_menu_buttons",
+													"sid": 378098809320648,
+													"parameters": {
+														"instance-variable": "bttn_id",
+														"comparison": 0,
+														"value": "\"start\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 173148669486419,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"start\""
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 935092129892063,
+													"parameters": {
+														"seconds": "0.02",
+														"use-timescale": true
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 645026462355508,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"\""
+													}
+												}
+											],
+											"sid": 188948946548237
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "main_menu_buttons",
+													"sid": 255368291250808,
+													"parameters": {
+														"instance-variable": "bttn_id",
+														"comparison": 0,
+														"value": "\"lvl_select\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 607158935624359,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"lvl_select\""
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 367946779275087,
+													"parameters": {
+														"seconds": "0.02",
+														"use-timescale": true
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 557931763891651,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"\""
+													}
+												}
+											],
+											"sid": 327883644762260
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "main_menu_buttons",
+													"sid": 907348813378151,
+													"parameters": {
+														"instance-variable": "bttn_id",
+														"comparison": 0,
+														"value": "\"volume\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 376088109758899,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"volume\""
+													}
+												},
+												{
+													"id": "wait",
+													"objectClass": "System",
+													"sid": 152141959026854,
+													"parameters": {
+														"seconds": "0.02",
+														"use-timescale": true
+													}
+												},
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 949791021793707,
+													"parameters": {
+														"variable": "ButtonActivated",
+														"value": "\"\""
+													}
+												}
+											],
+											"sid": 479837970609793
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 601720366784268
+								}
+							],
+							"actions": [
+								{
+									"id": "set-cursor-style2",
+									"objectClass": "Mouse",
+									"sid": 782203124238703,
+									"parameters": {
+										"cursor-style": "normal"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "main_menu_buttons",
+									"sid": 841564960476783,
+									"parameters": {
+										"frame-number": "\"bttn_idle\""
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "main_menu_buttons",
+									"sid": 660460216516690,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"normalScale\"",
+										"property": "offsetScaleX",
+										"end-value": "1",
+										"time": "0.02",
+										"ease": "easeoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "main_menu_buttons",
+									"sid": 158629460158563,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"normalScale\"",
+										"property": "offsetScaleY",
+										"end-value": "1",
+										"time": "0.02",
+										"ease": "easeoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								}
+							],
+							"sid": 677079025036881
+						}
+					],
+					"sid": 621133898424443
+				}
+			],
+			"sid": 378406284676472
 		}
 	],
 	"sid": 522712200103368

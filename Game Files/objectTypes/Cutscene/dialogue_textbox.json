@@ -5,38 +5,34 @@
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [
-		{
-			"behaviorId": "Tween",
-			"name": "Tween",
-			"sid": 170598741104046
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 1518,
-						"height": 426,
-						"originX": 0.5006587615283268,
-						"originY": -0.1056338028169014,
+						"width": 1500,
+						"height": 408,
+						"originX": 0.5006666666666667,
+						"originY": -0.1323529411764706,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5469330,
+						"imageSpriteId": 4763582,
 						"collisionPoly": {
 							"points": [
-								0,
-								0.1572769953051643,
-								1,
-								0.1572769953051643,
-								1,
-								1,
-								0,
-								1
+								0.012,
+								0.0024509803921568627,
+								0.28,
+								0.0024509803921568627,
+								0.9986666666666667,
+								0.16911764705882354,
+								0.9946666666666667,
+								0.9950980392156863,
+								0.0013333333333333333,
+								0.9803921568627451
 							]
 						},
 						"useCollisionPoly": true,
