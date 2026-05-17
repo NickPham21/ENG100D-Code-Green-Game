@@ -869,14 +869,14 @@
 	"sid": 698106433821560,
 	"nonworld-instances": [
 		{
-			"type": "cutscene_1_dialogue",
+			"type": "c1_arr",
 			"properties": {
-				"width": 2,
+				"width": 4,
 				"height": 3,
 				"depth": 1
 			},
-			"uid": 13,
-			"sid": 825127492226456,
+			"uid": 33,
+			"sid": 869731381481882,
 			"tags": "",
 			"instanceVariables": {}
 		}

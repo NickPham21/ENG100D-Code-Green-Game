@@ -1,7 +1,7 @@
 {
 	"name": "c1_sprite_display",
 	"plugin-id": "Sprite",
-	"sid": 863030631448653,
+	"sid": 142856878192587,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [
@@ -10,14 +10,14 @@
 			"type": "string",
 			"desc": "Character's portrait position in the cutscene. Used to determine animation. Values can be {\"left\", \"right\", \"none\"}",
 			"show": true,
-			"sid": 640186012025296
+			"sid": 135228334608322
 		}
 	],
 	"behaviorTypes": [
 		{
 			"behaviorId": "Tween",
 			"name": "Tween",
-			"sid": 106043170014517
+			"sid": 573137240262308
 		}
 	],
 	"effectTypes": [],
@@ -34,7 +34,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1999478,
+						"imageSpriteId": 6652132,
 						"collisionPoly": {
 							"points": [
 								0.25833333333333336,
@@ -60,7 +60,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 3896340,
+						"imageSpriteId": 5411543,
 						"collisionPoly": {
 							"points": [
 								0.25833333333333336,
@@ -78,7 +78,7 @@
 						"tag": "mouth_open"
 					}
 				],
-				"sid": 489363655700606,
+				"sid": 172026416738901,
 				"name": "Terrance",
 				"isLooping": false,
 				"isPingPong": false,
@@ -97,7 +97,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1695798,
+						"imageSpriteId": 2927537,
 						"collisionPoly": {
 							"points": [
 								0.15666666666666668,
@@ -133,7 +133,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 1021658,
+						"imageSpriteId": 6687035,
 						"collisionPoly": {
 							"points": [
 								0.15666666666666668,
@@ -161,7 +161,7 @@
 						"tag": "mouth_open"
 					}
 				],
-				"sid": 696664424666016,
+				"sid": 462026498191776,
 				"name": "Alexia",
 				"isLooping": false,
 				"isPingPong": false,

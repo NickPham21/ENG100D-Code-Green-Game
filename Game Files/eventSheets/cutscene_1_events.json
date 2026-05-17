@@ -3,198 +3,916 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "c1_dialogue_ctr",
+			"name": "c1LastPos",
+			"type": "string",
+			"initialValue": "\"\"",
+			"comment": "Tracks the last speaker's position. Used to determine when to animate sprites.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 959864795426910
+		},
+		{
+			"eventType": "variable",
+			"name": "c1SeqCtr",
 			"type": "number",
 			"initialValue": "0",
 			"comment": "Tracks the cutscene sequence the player is on.",
 			"isStatic": false,
 			"isConstant": false,
-			"sid": 509632987889022
+			"sid": 987383337274754
+		},
+		{
+			"eventType": "variable",
+			"name": "cSpiteGrowSize",
+			"type": "number",
+			"initialValue": "750",
+			"comment": "Size of character sprite when talking",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 694520446834246
+		},
+		{
+			"eventType": "variable",
+			"name": "cSpiteShrinkSize",
+			"type": "number",
+			"initialValue": "450",
+			"comment": "Size of character sprite when not talking",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 292748440229328
+		},
+		{
+			"eventType": "variable",
+			"name": "cAnimTime",
+			"type": "number",
+			"initialValue": "0.25",
+			"comment": "Animation time for cutscene (how long it should take to switch characters when talking)",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 808251302654571
 		},
 		{
 			"eventType": "comment",
-			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x is the dialogue count of this cutscene\n- y is the number of attributes to keep track of per dialogue \n   - y = 3 for now, we keep track of text, character sprite, and character name per dialogue\n      - (x, 0) stores text, (x, 1) stores character sprite, (x, 2) stores character name"
+			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 3 for now, we keep track of text, current speaking position, and character name per dialogue\n      - (x, 0) stores text, (x, 1) stores current speaking character's position, (x, 2) stores character name"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 646998892203016
-				}
-			],
-			"actions": [
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 377634229350779,
-					"parameters": {
-						"x": "0",
-						"y": "0",
-						"value": "\"random dialogue for now (FILL IN WHEN SCRIPT OBTAINED)\""
-					}
-				},
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 570379201650252,
-					"parameters": {
-						"x": "0",
-						"y": "1",
-						"value": "\"Wolf\""
-					}
-				},
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 637045891372461,
-					"parameters": {
-						"x": "0",
-						"y": "2",
-						"value": "\"Terrance\""
-					}
-				},
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 559568129719988,
-					"parameters": {
-						"x": "1",
-						"y": "0",
-						"value": "\"I too am in this episode\""
-					}
-				},
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 687045430237633,
-					"parameters": {
-						"x": "1",
-						"y": "1",
-						"value": "\"Bear\""
-					}
-				},
-				{
-					"id": "set-at-xy",
-					"objectClass": "cutscene_1_dialogue",
-					"sid": 105225217748692,
-					"parameters": {
-						"x": "1",
-						"y": "2",
-						"value": "\"Alexia\""
-					}
-				},
-				{
-					"id": "reset-eventvar",
-					"objectClass": "System",
-					"sid": 174824178395894,
-					"parameters": {
-						"variable": "c1_dialogue_ctr"
-					}
-				},
-				{
-					"callFunction": "update_dialogue",
-					"sid": 370671392543838
-				}
-			],
-			"sid": 714642174596789
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization",
+			"description": "Anything to do with initializing a cutscene ",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-object-clicked",
-					"objectClass": "Mouse",
-					"sid": 419403149464036,
-					"parameters": {
-						"mouse-button": "left",
-						"click-type": "clicked",
-						"object-clicked": "c1_dialogue_text_display"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "add-to-eventvar",
-					"objectClass": "System",
-					"sid": 873656129786881,
-					"parameters": {
-						"variable": "c1_dialogue_ctr",
-						"value": "1"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 660304181965071
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 620153485939799
+						}
+					],
+					"sid": 276128206896273
 				},
 				{
-					"callFunction": "update_dialogue",
-					"sid": 503051187030148
+					"functionName": "initialize_cutscene",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 268651814756153,
+							"parameters": {
+								"variable": "c1SeqCtr"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 794384042582832,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Something's wrong here. Trash is scattered all over the floor.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 476327008988188,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 275792554510895,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Agent\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 132698086389558,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"I tried to pick berries this morning... but all I found was garbage.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 205649112509239,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 337918857906877,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Alexia\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 958361685019360,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"And the river smells strange now. Even the birds stopped coming by.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 720051769961966,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 962069491124620,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Terrance\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 144951415801236,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"I’m going to clean this up and see where it’s coming from.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 632914178379090,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 536508339604320,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Agent\""
+							}
+						},
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"console.log(\"cutscene array set\");"
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Move stuff outta the way"
+						},
+						{
+							"id": "set-position",
+							"objectClass": "dialogue_textbox",
+							"sid": 128825436333415,
+							"parameters": {
+								"x": "966",
+								"y": "1700"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "c1_dialogue_display",
+							"sid": 396456923116538,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "c1_name_display",
+							"sid": 525606321419230,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Curtain lift effect"
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "blackout",
+							"sid": 429256138202670,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"background_reveal\"",
+								"property": "offsetOpacity",
+								"end-value": "50",
+								"time": "1",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 248060963611996,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-playing",
+									"objectClass": "blackout",
+									"sid": 276962043767879,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"background_reveal\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 774700928462948,
+									"parameters": {
+										"type": "log",
+										"message": "\"background reveal done\""
+									}
+								}
+							],
+							"sid": 977897857879421
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tweens-finished",
+							"objectClass": "blackout",
+							"sid": 601763986042784,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"background_reveal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "dialogue_textbox",
+							"sid": 694314465044171,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"show_dialogue_box\"",
+								"property": "offsetY",
+								"end-value": "668",
+								"time": "1",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 865823464762399
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tweens-finished",
+							"objectClass": "dialogue_textbox",
+							"sid": 687333662748760,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"show_dialogue_box\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "animate_sprites",
+							"sid": 868863171530331,
+							"parameters": [
+								"\"init\""
+							]
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 632946886213601,
+							"parameters": {
+								"seconds": "0.5",
+								"use-timescale": true
+							}
+						},
+						{
+							"callFunction": "update_cutscene",
+							"sid": 873641075696623
+						}
+					],
+					"sid": 103143149525704
 				}
 			],
-			"sid": 338176382572156
+			"sid": 862775565824776
 		},
 		{
-			"functionName": "update_dialogue",
-			"functionDescription": "Updates the dialogue text display and sprite display based on the dialogue array and current counter",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Update",
+			"description": "Anything to do with advancing a cutscene once initalized (including animations)",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "set-text",
-					"objectClass": "c1_dialogue_text_display",
-					"sid": 236915899951732,
-					"parameters": {
-						"text": "cutscene_1_dialogue.At(c1_dialogue_ctr, 0)"
-					}
+					"functionName": "update_cutscene",
+					"functionDescription": "Updates the dialogue text display and sprite display based on the dialogue array and current counter",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "c1_dialogue_display",
+							"sid": 481950020245931,
+							"parameters": {
+								"text": "c1_arr.At(c1SeqCtr, 0)"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "c1_name_display",
+							"sid": 464258291120105,
+							"parameters": {
+								"text": "c1_arr.At(c1SeqCtr, 2)"
+							}
+						}
+					],
+					"sid": 743726718721625,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 258227396430842,
+									"parameters": {
+										"variable": "c1LastPos",
+										"comparison": 1,
+										"value": "c1_arr.At(c1SeqCtr, 1)"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "animate_sprites",
+									"sid": 252780068434326,
+									"parameters": [
+										"c1_arr.At(c1SeqCtr, 1)"
+									]
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 604084860364221,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": true
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 484506592173732,
+									"parameters": {
+										"variable": "c1LastPos",
+										"value": "c1_arr.At(c1SeqCtr, 1)"
+									}
+								}
+							],
+							"sid": 926747632010939
+						}
+					]
 				},
 				{
-					"id": "set-animation",
-					"objectClass": "c1_dialogue_sprite_display",
-					"sid": 755969109903570,
-					"parameters": {
-						"animation": "cutscene_1_dialogue.At(c1_dialogue_ctr, 1)",
-						"from": "beginning"
-					}
-				},
-				{
-					"id": "set-text",
-					"objectClass": "c1_dialogue_name_display",
-					"sid": 790017504557283,
-					"parameters": {
-						"text": "cutscene_1_dialogue.At(c1_dialogue_ctr, 2)"
-					}
+					"functionName": "animate_sprites",
+					"functionDescription": "Updates cutscene sprites animation. Should ONLY be called when speaker position changes.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "cur_pos",
+							"type": "string",
+							"initialValue": "",
+							"comment": "Current speaker position.",
+							"sid": 911047386556634
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "script",
+							"language": "javascript",
+							"script": [
+								"console.log(\"animate_sprites called\");"
+							]
+						}
+					],
+					"sid": 123614411601187,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 645822445759986,
+									"parameters": {
+										"object": "c1_sprite_display",
+										"expression": "c1_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 715476743726012,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "c1_sprite_display",
+											"sid": 883030756978447,
+											"parameters": {
+												"instance-variable": "position",
+												"comparison": 0,
+												"value": "cur_pos"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 625449551491077,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"resize\"",
+												"property": "size",
+												"end-x": "cSpiteGrowSize",
+												"end-y": "cSpiteGrowSize",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 726156649891435,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"shift\"",
+												"property": "position",
+												"end-x": "dialogue_textbox.BBoxMidX",
+												"end-y": "dialogue_textbox.BBoxTop - (cSpiteGrowSize)/2 + 100",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "c1_sprite_display",
+											"sid": 493432871254484,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"color\"",
+												"property": "offsetColor",
+												"end-value": "rgbEx(100, 100, 100)",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "c1_sprite_display",
+											"sid": 819271890161136,
+											"parameters": {
+												"frame-number": "\"mouth_open\""
+											}
+										}
+									],
+									"sid": 692445079506539
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 884518996732218
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 173363716924495,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"resize\"",
+												"property": "size",
+												"end-x": "cSpiteShrinkSize",
+												"end-y": "cSpiteShrinkSize",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 138070659696099,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "position",
+												"end-x": "dialogue_textbox.BBoxLeft + (cSpiteShrinkSize)/2",
+												"end-y": "dialogue_textbox.BBoxTop - (cSpiteShrinkSize)/2 + 100",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "c1_sprite_display",
+											"sid": 278505380353543,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetColor",
+												"end-value": "rgbEx(50, 50, 50)",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "c1_sprite_display",
+											"sid": 924279912483067,
+											"parameters": {
+												"frame-number": "\"mouth_closed\""
+											}
+										}
+									],
+									"sid": 342627305134898
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 212884635005041,
+									"parameters": {
+										"object": "c1_sprite_display",
+										"expression": "c1_sprite_display.position",
+										"comparison": 0,
+										"value": "\"right\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 325037128628376,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "c1_sprite_display",
+											"sid": 814547944841610,
+											"parameters": {
+												"instance-variable": "position",
+												"comparison": 0,
+												"value": "cur_pos"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 803662076373189,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"resize\"",
+												"property": "size",
+												"end-x": "cSpiteGrowSize",
+												"end-y": "cSpiteGrowSize",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 109766227242995,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"shift\"",
+												"property": "position",
+												"end-x": "dialogue_textbox.BBoxMidX",
+												"end-y": "dialogue_textbox.BBoxTop - (cSpiteGrowSize)/2 + 100",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "c1_sprite_display",
+											"sid": 723042135641981,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"color\"",
+												"property": "offsetColor",
+												"end-value": "rgbEx(100, 100, 100)",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "c1_sprite_display",
+											"sid": 787912638950503,
+											"parameters": {
+												"frame-number": "\"mouth_open\""
+											}
+										}
+									],
+									"sid": 855942917735165
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 741665135411947
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 283625634165486,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"resize\"",
+												"property": "size",
+												"end-x": "cSpiteShrinkSize",
+												"end-y": "cSpiteShrinkSize",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "c1_sprite_display",
+											"sid": 696087887234564,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "position",
+												"end-x": "dialogue_textbox.BBoxRight - (cSpiteShrinkSize)/2",
+												"end-y": "dialogue_textbox.BBoxTop - (cSpiteShrinkSize)/2 + 100",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "c1_sprite_display",
+											"sid": 557780226954702,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"\"",
+												"property": "offsetColor",
+												"end-value": "rgbEx(50, 50, 50)",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										},
+										{
+											"id": "set-animation-frame",
+											"objectClass": "c1_sprite_display",
+											"sid": 981432131903971,
+											"parameters": {
+												"frame-number": "\"mouth_closed\""
+											}
+										}
+									],
+									"sid": 780051157678283
+								}
+							]
+						}
+					]
 				}
 			],
-			"sid": 588748868994028
+			"sid": 471659327977726
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "compare-eventvar",
-					"objectClass": "System",
-					"sid": 620679338295357,
-					"parameters": {
-						"variable": "c1_dialogue_ctr",
-						"comparison": 0,
-						"value": "cutscene_1_dialogue.Width"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 946922012359588,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "c1_dialogue_display"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 369976966527213,
+							"parameters": {
+								"variable": "c1SeqCtr",
+								"value": "1"
+							}
+						},
+						{
+							"callFunction": "update_cutscene",
+							"sid": 173096286645059
+						}
+					],
+					"sid": 514326062167894
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 938127374580594,
+							"parameters": {
+								"variable": "c1SeqCtr",
+								"comparison": 0,
+								"value": "c1_arr.Width"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 900169055410322,
+							"parameters": {
+								"layout": "game_screen_1"
+							}
+						}
+					],
+					"sid": 956058845954870
 				}
 			],
-			"actions": [
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 766425417570081,
-					"parameters": {
-						"layout": "game_screen_1"
-					}
-				}
-			],
-			"sid": 351321738901892
+			"sid": 923254602944538
 		}
 	],
 	"sid": 508163888501013
