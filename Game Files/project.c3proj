@@ -102,13 +102,18 @@
 			"recycle_object",
 			"frog",
 			"GameManager",
-			"TiledBackground",
+			"main_menu_bg",
 			"Video",
 			"compost_object",
 			"compost_bin",
 			"subtractor",
 			"volume_bttn",
 			"game_logo",
+			"hearts",
+			"pause_bttn",
+			"pause_menu",
+			"play_bttn",
+			"blackout",
 			"Browser"
 		],
 		"subfolders": [
@@ -129,12 +134,12 @@
 			},
 			{
 				"items": [
-					"c1_sprite_display",
 					"c1_dialogue_display",
-					"c1_arr",
-					"dialogue_textbox",
 					"c1_name_display",
-					"blackout"
+					"c1_sprite_display",
+					"dialogue_textbox",
+					"blackout2",
+					"c1_arr"
 				],
 				"subfolders": [],
 				"name": "Cutscene"
@@ -167,10 +172,10 @@
 	"layouts": {
 		"items": [
 			"game_screen_1",
-			"cutscene_1",
 			"level_select_screen",
 			"intro_screen",
-			"main_menu_screen"
+			"main_menu_screen",
+			"cutscene_1"
 		],
 		"subfolders": []
 	},

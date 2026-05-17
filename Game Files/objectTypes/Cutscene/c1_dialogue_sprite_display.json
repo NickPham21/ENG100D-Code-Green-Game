@@ -1,0 +1,161 @@
+{
+	"name": "c1_dialogue_sprite_display",
+	"plugin-id": "Sprite",
+	"sid": 863030631448653,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1999478,
+						"collisionPoly": {
+							"points": [
+								0.25833333333333336,
+								0.185,
+								0.745,
+								0.18833333333333332,
+								0.9833333333333333,
+								1,
+								0.016666666666666666,
+								0.9966666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "mouth_closed"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3896340,
+						"collisionPoly": {
+							"points": [
+								0.25833333333333336,
+								0.185,
+								0.745,
+								0.18833333333333332,
+								0.9833333333333333,
+								1,
+								0.016666666666666666,
+								0.9966666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "mouth_open"
+					}
+				],
+				"sid": 489363655700606,
+				"name": "Wolf",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 3
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1695798,
+						"collisionPoly": {
+							"points": [
+								0.15666666666666668,
+								0,
+								0.44,
+								0,
+								0.67,
+								0.02666666666666667,
+								0.855,
+								0.16166666666666665,
+								1,
+								0.8833333333333333,
+								1,
+								1,
+								0,
+								1,
+								0.006666666666666667,
+								0.22,
+								0.023333333333333334,
+								0.14666666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "mouth_closed"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1021658,
+						"collisionPoly": {
+							"points": [
+								0.15666666666666668,
+								0,
+								0.44,
+								0,
+								0.67,
+								0.02666666666666667,
+								0.855,
+								0.16166666666666665,
+								1,
+								0.8833333333333333,
+								1,
+								1,
+								0,
+								1,
+								0.006666666666666667,
+								0.22,
+								0.023333333333333334,
+								0.14666666666666667
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "mouth_open"
+					}
+				],
+				"sid": 696664424666016,
+				"name": "Bear",
+				"isLooping": true,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 3
+			}
+		],
+		"subfolders": []
+	}
+}

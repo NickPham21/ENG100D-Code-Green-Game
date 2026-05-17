@@ -22,6 +22,7 @@
 	"members": [
 		"lvl_select_btn",
 		"start_bttn",
-		"volume_bttn"
+		"volume_bttn",
+		"play_bttn"
 	]
 }

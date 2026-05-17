@@ -1,0 +1,118 @@
+{
+	"name": "play_bttn",
+	"plugin-id": "Sprite",
+	"sid": 245517257712286,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 300,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3305459,
+						"collisionPoly": {
+							"points": [
+								0.6566666666666666,
+								0.01,
+								0.95,
+								0.09333333333333334,
+								0.9866666666666667,
+								0.13333333333333333,
+								0.78,
+								0.9233333333333333,
+								0.6533333333333333,
+								0.9266666666666666,
+								0.06,
+								0.8866666666666667,
+								0.06333333333333334,
+								0.23666666666666666
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_idle"
+					},
+					{
+						"width": 300,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7291259,
+						"collisionPoly": {
+							"points": [
+								0.6566666666666666,
+								0.01,
+								0.95,
+								0.09333333333333334,
+								0.9866666666666667,
+								0.13333333333333333,
+								0.78,
+								0.9233333333333333,
+								0.6533333333333333,
+								0.9266666666666666,
+								0.06,
+								0.8866666666666667,
+								0.06333333333333334,
+								0.23666666666666666
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_hover"
+					},
+					{
+						"width": 300,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1221122,
+						"collisionPoly": {
+							"points": [
+								0.6866666666666666,
+								0.04,
+								0.9833333333333333,
+								0.14333333333333334,
+								0.77,
+								0.9233333333333333,
+								0.09666666666666666,
+								0.9166666666666666,
+								0.1,
+								0.26666666666666666
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_pressed"
+					}
+				],
+				"sid": 355435064245000,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

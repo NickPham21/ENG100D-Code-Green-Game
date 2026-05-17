@@ -1,7 +1,7 @@
 {
 	"name": "dialogue_textbox",
 	"plugin-id": "Sprite",
-	"sid": 427158084316687,
+	"sid": 689278667933089,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -9,7 +9,7 @@
 		{
 			"behaviorId": "Tween",
 			"name": "Tween",
-			"sid": 170598741104046
+			"sid": 225189302539085
 		}
 	],
 	"effectTypes": [],
@@ -26,7 +26,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5469330,
+						"imageSpriteId": 8917137,
 						"collisionPoly": {
 							"points": [
 								0,
@@ -44,7 +44,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 975769897356724,
+				"sid": 872034012359283,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
