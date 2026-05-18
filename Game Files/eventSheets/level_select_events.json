@@ -1,5 +1,163 @@
 {
 	"name": "level_select_events",
-	"events": [],
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 775206274935745
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 792515866878458,
+					"parameters": {
+						"tag": "\"\"",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				},
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 826523213585872,
+					"parameters": {
+						"audio-file": {
+							"path": "meow"
+						},
+						"loop": "looping",
+						"volume": "-100",
+						"stereo-pan": "0",
+						"tag-optional": "\"main_menu_music\""
+					}
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 866907891974520,
+					"parameters": {
+						"tag": "\"main_menu_music\"",
+						"db": "GlobalVolume",
+						"duration": "1",
+						"ending": "keep-playing"
+					}
+				}
+			],
+			"sid": 306679579077122
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 457689049432645,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_1_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 312743649020271,
+					"parameters": {
+						"layout": "game_screen_1"
+					}
+				}
+			],
+			"sid": 949201195664490
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 476057202737924,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_2_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 851531023864742,
+					"parameters": {
+						"layout": "game_screen_2"
+					}
+				}
+			],
+			"sid": 916490062158302
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 263850517548630,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_3_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 561281661047931,
+					"parameters": {
+						"layout": "game_screen_3"
+					}
+				}
+			],
+			"sid": 806004904059806
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 196943482706082,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_4_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 826708665737788,
+					"parameters": {
+						"layout": "game_screen_1"
+					}
+				}
+			],
+			"sid": 770045481548599
+		}
+	],
 	"sid": 743858220086118
 }

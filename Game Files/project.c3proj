@@ -57,6 +57,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Touch",
+			"name": "Touch",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "video",
 			"name": "Video",
 			"author": "Scirra",
@@ -87,7 +94,7 @@
 	"uniqueId": "rqsbz9j3fdc",
 	"objectTypes": {
 		"items": [
-			"paper_bin",
+			"recylce_bin",
 			"trash_bin",
 			"trash_object",
 			"score_display",
@@ -96,7 +103,7 @@
 			"start_bttn_text",
 			"lvl_select_btn",
 			"lvl_select_text",
-			"timer",
+			"timer_display",
 			"Audio",
 			"forest_bg",
 			"recycle_object",
@@ -114,7 +121,20 @@
 			"pause_menu",
 			"play_bttn",
 			"blackout",
-			"Browser"
+			"Browser",
+			"lvl_1_text",
+			"lvl_1_bttn",
+			"lvl_2_text",
+			"lvl_3_text",
+			"lvl_4_text",
+			"lvl_2_bttn",
+			"lvl_3_bttn",
+			"lvl_4_bttn",
+			"ocean_bg",
+			"fish",
+			"beach_bg",
+			"glass_bin",
+			"Touch"
 		],
 		"subfolders": [
 			{
@@ -175,7 +195,9 @@
 			"level_select_screen",
 			"intro_screen",
 			"main_menu_screen",
-			"cutscene_1"
+			"cutscene_1",
+			"game_screen_2",
+			"game_screen_3"
 		],
 		"subfolders": []
 	},
@@ -186,7 +208,8 @@
 			"cutscene_1_events",
 			"level_select_events",
 			"intro_events",
-			"BACKUP_FOR_GAME_EVENTS"
+			"game_events_2",
+			"game_events_3"
 		],
 		"subfolders": []
 	},
@@ -213,6 +236,14 @@
 					"name": "meow.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 810054949410377,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "peaceful.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 742447182444000,
 					"file-info": {
 						"purpose": "none"
 					}

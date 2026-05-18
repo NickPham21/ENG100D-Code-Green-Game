@@ -23,6 +23,10 @@
 		"lvl_select_btn",
 		"start_bttn",
 		"volume_bttn",
-		"play_bttn"
+		"play_bttn",
+		"lvl_1_bttn",
+		"lvl_2_bttn",
+		"lvl_3_bttn",
+		"lvl_4_bttn"
 	]
 }

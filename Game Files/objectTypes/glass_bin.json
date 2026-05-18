@@ -1,7 +1,7 @@
 {
-	"name": "compost_bin",
+	"name": "glass_bin",
 	"plugin-id": "Sprite",
-	"sid": 379707752349024,
+	"sid": 814492551198193,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,17 +20,19 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5010399,
+						"imageSpriteId": 2707525,
 						"collisionPoly": {
 							"points": [
+								0.5116666666666668,
+								0.011363636363636364,
+								0.9566666666666667,
+								0.04707792207792208,
+								0.8083333333333333,
 								1,
-								0,
-								1,
-								1,
-								0,
-								1,
-								0,
-								0
+								0.17333333333333334,
+								0.9805194805194806,
+								0.055,
+								0.037337662337662336
 							]
 						},
 						"useCollisionPoly": true,
@@ -38,8 +40,8 @@
 						"tag": ""
 					}
 				],
-				"sid": 590061920273289,
-				"name": "compost_bin",
+				"sid": 522599557757621,
+				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

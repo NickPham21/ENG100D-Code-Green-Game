@@ -1,7 +1,7 @@
 {
-	"name": "compost_bin",
+	"name": "recylce_bin",
 	"plugin-id": "Sprite",
-	"sid": 379707752349024,
+	"sid": 201040158478024,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -20,7 +20,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5010399,
+						"imageSpriteId": 3237565,
 						"collisionPoly": {
 							"points": [
 								1,
@@ -38,8 +38,8 @@
 						"tag": ""
 					}
 				],
-				"sid": 590061920273289,
-				"name": "compost_bin",
+				"sid": 311162307669704,
+				"name": "recycle_bin",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

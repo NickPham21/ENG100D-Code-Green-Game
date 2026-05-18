@@ -92,6 +92,24 @@
 								"comparison": 0,
 								"value": "\"start\""
 							}
+						},
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 738005836074540,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "start_bttn"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 497155631505828,
+							"parameters": {
+								"object": "start_bttn"
+							}
 						}
 					],
 					"actions": [
@@ -104,7 +122,53 @@
 							}
 						}
 					],
-					"sid": 669624160582661
+					"sid": 669624160582661,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 572599496910721,
+							"parameters": {
+								"variable": "ButtonActivated",
+								"comparison": 0,
+								"value": "\"start\""
+							}
+						},
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 264125295536859,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "start_bttn"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 934827836881576,
+							"parameters": {
+								"object": "lvl_select_btn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 226661289298215,
+							"parameters": {
+								"layout": "level_select_screen"
+							}
+						}
+					],
+					"sid": 260319835892336,
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",
@@ -130,7 +194,8 @@
 							}
 						}
 					],
-					"sid": 874902414348736
+					"sid": 874902414348736,
+					"disabled": true
 				},
 				{
 					"eventType": "block",
