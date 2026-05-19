@@ -20,7 +20,7 @@
 	],
 	"effectTypes": [],
 	"members": [
-		"lvl_select_btn",
+		"lvl_select_bttn",
 		"start_bttn",
 		"volume_bttn",
 		"play_bttn",

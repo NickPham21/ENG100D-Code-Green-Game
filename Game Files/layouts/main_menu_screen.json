@@ -127,7 +127,13 @@
 					"sid": 524126949657616,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"instanceFolderItem": {
 						"sid": 524126949657616,
 						"expanded": true
@@ -152,7 +158,7 @@
 					}
 				},
 				{
-					"type": "lvl_select_btn",
+					"type": "lvl_select_bttn",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Animation 1",
@@ -225,7 +231,13 @@
 					"sid": 613738895649183,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"instanceFolderItem": {
 						"sid": 613738895649183,
 						"expanded": true

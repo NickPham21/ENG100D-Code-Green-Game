@@ -3,7 +3,13 @@
 	"plugin-id": "Text",
 	"sid": 418321162263677,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 614614916114548
+		}
+	],
 	"effectTypes": [],
 	"members": [
 		"start_bttn_text",

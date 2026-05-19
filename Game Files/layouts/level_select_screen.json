@@ -66,7 +66,7 @@
 					"sid": 672672901322622,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_select"
+						"bttn_id": "lvl_1_select"
 					},
 					"behaviors": {
 						"Tween": {
@@ -111,7 +111,7 @@
 					"sid": 891752106258856,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_select"
+						"bttn_id": "lvl_2_select"
 					},
 					"behaviors": {
 						"Tween": {
@@ -262,7 +262,7 @@
 					"sid": 835333641841353,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_select"
+						"bttn_id": "lvl_4_select"
 					},
 					"behaviors": {
 						"Tween": {
@@ -307,7 +307,7 @@
 					"sid": 447160566128289,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_select"
+						"bttn_id": "lvl_3_select"
 					},
 					"behaviors": {
 						"Tween": {

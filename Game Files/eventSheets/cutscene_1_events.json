@@ -866,6 +866,11 @@
 								"click-type": "clicked",
 								"object-clicked": "c1_dialogue_display"
 							}
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 189725525401601
 						}
 					],
 					"actions": [
@@ -881,9 +886,19 @@
 						{
 							"callFunction": "update_cutscene",
 							"sid": 173096286645059
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 406054412841789,
+							"parameters": {
+								"seconds": "0.05",
+								"use-timescale": true
+							}
 						}
 					],
-					"sid": 514326062167894
+					"sid": 514326062167894,
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",

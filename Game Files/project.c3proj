@@ -101,7 +101,7 @@
 			"Mouse",
 			"start_bttn",
 			"start_bttn_text",
-			"lvl_select_btn",
+			"lvl_select_bttn",
 			"lvl_select_text",
 			"timer_display",
 			"Audio",
@@ -177,7 +177,7 @@
 		},
 		{
 			"members": [
-				"lvl_select_btn",
+				"lvl_select_bttn",
 				"lvl_select_text"
 			]
 		}
