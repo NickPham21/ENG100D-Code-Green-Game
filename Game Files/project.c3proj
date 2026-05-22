@@ -252,31 +252,25 @@
 			"subfolders": []
 		},
 		"sound": {
-			"items": [],
-			"subfolders": [
+			"items": [
 				{
-					"items": [
-						{
-							"name": "voiceline_10.webm",
-							"type": "audio/webm; codecs=opus",
-							"sid": 171248954576766,
-							"file-info": {
-								"purpose": "none"
-							}
-						},
-						{
-							"name": "voiceline_9.webm",
-							"type": "audio/webm; codecs=opus",
-							"sid": 383357332274151,
-							"file-info": {
-								"purpose": "none"
-							}
-						}
-					],
-					"subfolders": [],
-					"name": "Voicelines"
+					"name": "voiceline_9.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 383357332274151,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_10.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 171248954576766,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
-			]
+			],
+			"subfolders": []
 		},
 		"music": {
 			"items": [

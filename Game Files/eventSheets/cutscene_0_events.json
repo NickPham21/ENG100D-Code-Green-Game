@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 3 for now, we keep track of text, current speaking position, and character name per dialogue\n      - (x, 0) stores text, (x, 1) stores current speaking character's position, (x, 2) stores character name"
+			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 4 for now, we keep track of text, current speaking position, character name, and voiceline to play per dialogue\n      - (x, 0) stores text, (x, 1) stores current speaking character's position, (x, 2) stores character name, (x, 3) stores voiceline file name"
 		},
 		{
 			"eventType": "comment",
@@ -33,6 +33,21 @@
 							"parameters": {
 								"variable": "ClickOnCooldown",
 								"value": "true"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "lower music a bit so they could hear the voicelines"
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 555476245464198,
+							"parameters": {
+								"tag": "\"main_menu_music\"",
+								"db": "GlobalVolume - 20",
+								"duration": "1",
+								"ending": "keep-playing"
 							}
 						},
 						{
@@ -792,7 +807,15 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"callFunction": "play_voiceline0",
+							"sid": 735853662497041,
+							"parameters": [
+								"c0_arr.At(cSeqCtr, 3)"
+							]
+						}
+					],
 					"sid": 300604595178814,
 					"children": [
 						{
@@ -1410,6 +1433,98 @@
 									"sid": 657031360075875
 								}
 							]
+						}
+					]
+				},
+				{
+					"functionName": "play_voiceline0",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "filename",
+							"type": "string",
+							"initialValue": "",
+							"comment": "the voiceline's filename",
+							"sid": 380144338003369
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 213565695661069,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "filename",
+								"loop": "not-looping",
+								"volume": "GlobalVolume",
+								"stereo-pan": "0",
+								"tag-optional": "filename"
+							}
+						}
+					],
+					"sid": 275882761443590,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 432082548971532,
+									"parameters": {
+										"first-value": "cSeqCtr",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 541036897068706,
+									"parameters": {
+										"value": "c1_arr.At(cSeqCtr-1, 3)"
+									}
+								},
+								{
+									"id": "is-tag-playing",
+									"objectClass": "Audio",
+									"sid": 917362907189954,
+									"parameters": {
+										"tag": "c1_arr.At(cSeqCtr-1, 3)"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "skip last playing voiceline"
+								},
+								{
+									"id": "stop",
+									"objectClass": "Audio",
+									"sid": 145512823158385,
+									"parameters": {
+										"tag": "c1_arr.At(cSeqCtr-1, 3)"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 605652020860557,
+									"parameters": {
+										"type": "log",
+										"message": "\"skipping \" & c1_arr.At(cSeqCtr-1, 3)"
+									}
+								}
+							],
+							"sid": 135167139800633
 						}
 					]
 				}

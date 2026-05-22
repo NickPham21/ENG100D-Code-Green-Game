@@ -108,9 +108,9 @@
 				{
 					"id": "fade-volume",
 					"objectClass": "Audio",
-					"sid": 109760545202855,
+					"sid": 764338551321833,
 					"parameters": {
-						"tag": "\"\"",
+						"tag": "\"main_menu_music\"",
 						"db": "-100",
 						"duration": "1",
 						"ending": "stop"
