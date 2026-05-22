@@ -254,7 +254,7 @@
 		"sound": {
 			"items": [
 				{
-					"name": "voiceline_9.webm",
+					"name": "voiceline_1_9.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 383357332274151,
 					"file-info": {
@@ -262,7 +262,7 @@
 					}
 				},
 				{
-					"name": "voiceline_10.webm",
+					"name": "voiceline_1_10.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 171248954576766,
 					"file-info": {

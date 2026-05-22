@@ -321,11 +321,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1_arr",
-							"sid": 720337959051576,
+							"sid": 687969888164042,
 							"parameters": {
 								"x": "3",
 								"y": "3",
-								"value": "\"voiceline_9\""
+								"value": "\"voiceline_1_9\""
 							}
 						},
 						{
@@ -361,11 +361,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1_arr",
-							"sid": 836106472246123,
+							"sid": 761896274000970,
 							"parameters": {
 								"x": "4",
 								"y": "3",
-								"value": "\"voiceline_10\""
+								"value": "\"voiceline_1_10\""
 							}
 						},
 						{
