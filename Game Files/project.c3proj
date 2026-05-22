@@ -50,6 +50,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "TextBox",
+			"name": "Text input",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "TiledBg",
 			"name": "Tiled Background",
 			"author": "Scirra",
@@ -94,7 +101,7 @@
 	"uniqueId": "rqsbz9j3fdc",
 	"objectTypes": {
 		"items": [
-			"recylce_bin",
+			"recycle_bin",
 			"trash_bin",
 			"trash_object",
 			"score_display",
@@ -134,7 +141,24 @@
 			"fish",
 			"beach_bg",
 			"glass_bin",
-			"Touch"
+			"Touch",
+			"TextInput",
+			"name_confirm_bttn_text",
+			"name_select_display",
+			"name_no_bttn",
+			"name_no_bttn_text",
+			"name_confirm_bttn",
+			"name_yes_bttn",
+			"name_yes_bttn_text",
+			"pmenu_play_bttn",
+			"pmenu_lvl_select_bttn",
+			"pmenu_home_bttn",
+			"glass_object",
+			"TiledBackground",
+			"ewaste_bin",
+			"ewaste_object",
+			"rat",
+			"TiledBackground2"
 		],
 		"subfolders": [
 			{
@@ -154,12 +178,15 @@
 			},
 			{
 				"items": [
-					"c1_dialogue_display",
-					"c1_name_display",
+					"c_dialogue_display",
+					"c_name_display",
 					"c1_sprite_display",
 					"dialogue_textbox",
-					"blackout2",
-					"c1_arr"
+					"c1_arr",
+					"c_monitor_text_display",
+					"c_monitor_name_display",
+					"c0_arr",
+					"name_select_instruction"
 				],
 				"subfolders": [],
 				"name": "Cutscene"
@@ -197,7 +224,10 @@
 			"main_menu_screen",
 			"cutscene_1",
 			"game_screen_2",
-			"game_screen_3"
+			"game_screen_3",
+			"cutscene_0",
+			"name_select_screen",
+			"game_screen_4"
 		],
 		"subfolders": []
 	},
@@ -209,7 +239,10 @@
 			"level_select_events",
 			"intro_events",
 			"game_events_2",
-			"game_events_3"
+			"game_events_3",
+			"cutscene_0_events",
+			"name_select_events",
+			"game_events_4"
 		],
 		"subfolders": []
 	},
@@ -265,7 +298,32 @@
 			"subfolders": []
 		},
 		"font": {
-			"items": [],
+			"items": [
+				{
+					"name": "Eng100d-Regular.otf",
+					"type": "application/font-sfnt",
+					"sid": 341109830823535,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Eng100d-Regular.ttf",
+					"type": "application/font-sfnt",
+					"sid": 644705109362045,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Eng100d-Regular.woff",
+					"type": "application/font-woff",
+					"sid": 639232905102605,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"icon": {

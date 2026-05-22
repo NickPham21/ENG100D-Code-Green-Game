@@ -27,6 +27,9 @@
 		"lvl_1_bttn",
 		"lvl_2_bttn",
 		"lvl_3_bttn",
-		"lvl_4_bttn"
+		"lvl_4_bttn",
+		"name_no_bttn",
+		"name_confirm_bttn",
+		"name_yes_bttn"
 	]
 }

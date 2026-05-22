@@ -1,0 +1,58 @@
+{
+	"name": "ewaste_bin",
+	"plugin-id": "Sprite",
+	"sid": 903007419957814,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 616,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 543979,
+						"collisionPoly": {
+							"points": [
+								0.4949999999999996,
+								0.43506493506493493,
+								1,
+								0.46590909090909055,
+								1,
+								0.5576298701298699,
+								0.8650000000000005,
+								1,
+								0.1383333333333334,
+								1,
+								0,
+								0.5503246753246755,
+								0,
+								0.4667207792207793
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 575722313868466,
+				"name": "ewaste_bin",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

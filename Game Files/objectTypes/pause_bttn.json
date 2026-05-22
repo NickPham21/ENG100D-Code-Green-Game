@@ -35,7 +35,59 @@
 						},
 						"useCollisionPoly": true,
 						"duration": 1,
-						"tag": ""
+						"tag": "bttn_idle"
+					},
+					{
+						"width": 300,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6802083,
+						"collisionPoly": {
+							"points": [
+								1,
+								0,
+								0.9949999999999999,
+								1,
+								0,
+								1,
+								0,
+								0
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_hover"
+					},
+					{
+						"width": 300,
+						"height": 300,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4281738,
+						"collisionPoly": {
+							"points": [
+								1,
+								0,
+								1,
+								1,
+								0,
+								1,
+								0,
+								0
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_pressed"
 					}
 				],
 				"sid": 585452771544018,

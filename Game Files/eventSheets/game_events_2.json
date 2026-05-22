@@ -162,21 +162,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 460587138438149,
+					"sid": 497213867322488,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "3",
-						"type": "regular",
-						"tag": "\"SpawnTrashL2\""
-					}
-				},
-				{
-					"id": "start-timer",
-					"objectClass": "GameManager",
-					"sid": 556794008654022,
-					"behaviorType": "Timer",
-					"parameters": {
-						"duration": "4",
+						"duration": "random(3,6)",
 						"type": "regular",
 						"tag": "\"SpawnRecycleL2\""
 					}
@@ -184,10 +173,21 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 843430393968166,
+					"sid": 265873127904285,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "5",
+						"duration": "random(3,6)",
+						"type": "regular",
+						"tag": "\"SpawnTrashL2\""
+					}
+				},
+				{
+					"id": "start-timer",
+					"objectClass": "GameManager",
+					"sid": 797481649364865,
+					"behaviorType": "Timer",
+					"parameters": {
+						"duration": "random(3,6)",
 						"type": "regular",
 						"tag": "\"SpawnCompostL2\""
 					}
@@ -195,10 +195,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 814210151112114,
+					"sid": 759927549059514,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "10",
+						"duration": "random(6,8)",
 						"type": "regular",
 						"tag": "\"SpawnDistractionL2\""
 					}
@@ -249,7 +249,7 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 968307716127069,
+					"sid": 875230907816578,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"SpawnTrashL2\""
@@ -259,7 +259,7 @@
 			"actions": [
 				{
 					"callFunction": "SpawnTrashL2",
-					"sid": 925806328132550
+					"sid": 754099250749011
 				}
 			],
 			"sid": 732063537062511
@@ -270,7 +270,7 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 400107516994579,
+					"sid": 656404007403597,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"SpawnCompostL2\""
@@ -280,7 +280,7 @@
 			"actions": [
 				{
 					"callFunction": "SpawnCompostL2",
-					"sid": 684433081771789
+					"sid": 552799182619967
 				}
 			],
 			"sid": 971330637666933
@@ -291,7 +291,7 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 207421438575500,
+					"sid": 825375536862511,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"SpawnDistractionL2\""
@@ -312,7 +312,7 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 767798223975732,
+					"sid": 473100958993249,
 					"behaviorType": "Timer",
 					"parameters": {
 						"tag": "\"SpawnRecycleL2\""
@@ -343,285 +343,6 @@
 					"isStatic": false,
 					"isConstant": true,
 					"sid": 221378072358161
-				},
-				{
-					"functionName": "SpawnCompostL2",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 529971389687695,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "RandomInt",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 286589282086903
-						},
-						{
-							"eventType": "variable",
-							"name": "RotationDirection",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 488418149856120
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 651845896729521,
-									"parameters": {
-										"object-to-create": "compost_object",
-										"layer": "\"Objects\"",
-										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
-										"y": "1208",
-										"create-hierarchy": false,
-										"template-name": "\"\""
-									}
-								},
-								{
-									"id": "set-angle",
-									"objectClass": "compost_object",
-									"sid": 396404448752919,
-									"parameters": {
-										"angle": "random(0, 360)"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "compost_object",
-									"sid": 854336808945406,
-									"parameters": {
-										"instance-variable": "VectorX",
-										"value": "random(-8, 8)"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "compost_object",
-									"sid": 136920949288442,
-									"parameters": {
-										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 201320323777098,
-									"parameters": {
-										"variable": "RotationDirection",
-										"value": "choose(-1, 1)"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "compost_object",
-									"sid": 572975738680527,
-									"parameters": {
-										"instance-variable": "RotationSpeed",
-										"value": "RotationDirection * random(2.5, 5)"
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 394443523832925,
-									"parameters": {
-										"variable": "RandomInt",
-										"value": "random(0,100)"
-									}
-								}
-							],
-							"sid": 558337719529269,
-							"children": [
-								{
-									"eventType": "variable",
-									"name": "CompostVariation",
-									"type": "number",
-									"initialValue": "25",
-									"comment": "All compost objects will have an equal chance to spawn",
-									"isStatic": false,
-									"isConstant": true,
-									"sid": 263113572676551
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 639601955983313,
-											"parameters": {
-												"first-value": "RandomInt",
-												"comparison": 2,
-												"second-value": "CompostVariation"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "compost_object",
-											"sid": 781290098399535,
-											"parameters": {
-												"animation": "\"banana\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 104478570069430
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-between-values",
-											"objectClass": "System",
-											"sid": 230625071296443,
-											"parameters": {
-												"value": "RandomInt",
-												"lower-bound": "CompostVariation",
-												"upper-bound": "2*CompostVariation"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "compost_object",
-											"sid": 921621248238820,
-											"parameters": {
-												"animation": "\"apple_1\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 694774119507815
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-between-values",
-											"objectClass": "System",
-											"sid": 255790628869035,
-											"parameters": {
-												"value": "RandomInt",
-												"lower-bound": "2*CompostVariation",
-												"upper-bound": "3*CompostVariation"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "compost_object",
-											"sid": 245735435015219,
-											"parameters": {
-												"animation": "\"apple_2\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 884454571876486
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-between-values",
-											"objectClass": "System",
-											"sid": 739456121515729,
-											"parameters": {
-												"value": "RandomInt",
-												"lower-bound": "3*CompostVariation",
-												"upper-bound": "4*CompostVariation"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation",
-											"objectClass": "compost_object",
-											"sid": 694815844072889,
-											"parameters": {
-												"animation": "\"egg_shells\"",
-												"from": "beginning"
-											}
-										}
-									],
-									"sid": 378797834600920
-								}
-							]
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "for-each",
-							"objectClass": "System",
-							"sid": 174690372433315,
-							"parameters": {
-								"object": "compost_object"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-position",
-							"objectClass": "compost_object",
-							"sid": 875495847443259,
-							"parameters": {
-								"x": "Self.X + Self.VectorX * 60 * dt",
-								"y": "Self.Y + Self.VectorY * 60 * dt"
-							}
-						},
-						{
-							"id": "set-angle",
-							"objectClass": "compost_object",
-							"sid": 956436558763905,
-							"parameters": {
-								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "compost_object",
-							"sid": 154967684161496,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "compost_object",
-							"sid": 315867134141847,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
-							}
-						}
-					],
-					"sid": 187983472766594
 				},
 				{
 					"functionName": "SpawnRecycleL2",
@@ -1073,7 +794,7 @@
 						{
 							"id": "for-each",
 							"objectClass": "System",
-							"sid": 561568319733007,
+							"sid": 639894153480613,
 							"parameters": {
 								"object": "recycle_object"
 							}
@@ -1083,7 +804,7 @@
 						{
 							"id": "set-position",
 							"objectClass": "recycle_object",
-							"sid": 167363953731351,
+							"sid": 195555026685895,
 							"parameters": {
 								"x": "Self.X + Self.VectorX * 60 * dt",
 								"y": "Self.Y + Self.VectorY * 60 * dt"
@@ -1092,7 +813,7 @@
 						{
 							"id": "set-angle",
 							"objectClass": "recycle_object",
-							"sid": 140780884225949,
+							"sid": 146917527623954,
 							"parameters": {
 								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
 							}
@@ -1100,7 +821,7 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "recycle_object",
-							"sid": 993129456295824,
+							"sid": 966655475859188,
 							"parameters": {
 								"instance-variable": "VectorY",
 								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
@@ -1109,14 +830,293 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "recycle_object",
-							"sid": 808721220168381,
+							"sid": 245941637990953,
 							"parameters": {
 								"instance-variable": "RotationSpeed",
 								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
 							}
 						}
 					],
-					"sid": 588396605659489
+					"sid": 388730548684618
+				},
+				{
+					"functionName": "SpawnCompostL2",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 410340650659785,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 687655006603744
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 134299186726343
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 364900329033089,
+									"parameters": {
+										"object-to-create": "compost_object",
+										"layer": "\"Objects\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "compost_object",
+									"sid": 413446482246349,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 390378088626717,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 564928781243596,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-32, -48)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 526888036861096,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "compost_object",
+									"sid": 436006776241707,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 807629028254020,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
+									}
+								}
+							],
+							"sid": 152559972936559,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "CompostVariation",
+									"type": "number",
+									"initialValue": "25",
+									"comment": "All compost objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 499641894587290
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 237843267458011,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 661355314868487,
+											"parameters": {
+												"animation": "\"banana\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 777377257061423
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 262127740743174,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "CompostVariation",
+												"upper-bound": "2*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 560998602277512,
+											"parameters": {
+												"animation": "\"apple_1\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 541050694559165
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 691898736666464,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "2*CompostVariation",
+												"upper-bound": "3*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 268233217322574,
+											"parameters": {
+												"animation": "\"apple_2\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 992189807358905
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 456035463038040,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*CompostVariation",
+												"upper-bound": "4*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 317704892894590,
+											"parameters": {
+												"animation": "\"egg_shells\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 575096702625769
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 479797839970859,
+							"parameters": {
+								"object": "compost_object"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "compost_object",
+							"sid": 314226477537729,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "compost_object",
+							"sid": 331094347000217,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 500194681983471,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 465005160073883,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 304569207831187
 				},
 				{
 					"functionName": "SpawnTrashL2",
@@ -1129,7 +1129,7 @@
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [],
-					"sid": 660808471925667,
+					"sid": 580693675799684,
 					"children": [
 						{
 							"eventType": "variable",
@@ -1139,7 +1139,7 @@
 							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 276156247797133
+							"sid": 419022337782086
 						},
 						{
 							"eventType": "variable",
@@ -1149,7 +1149,7 @@
 							"comment": "",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 571112138550987
+							"sid": 722170909236024
 						},
 						{
 							"eventType": "block",
@@ -1158,7 +1158,7 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 314454134483351,
+									"sid": 712340083234770,
 									"parameters": {
 										"object-to-create": "trash_object",
 										"layer": "\"Objects\"",
@@ -1171,7 +1171,7 @@
 								{
 									"id": "set-angle",
 									"objectClass": "trash_object",
-									"sid": 744557916151656,
+									"sid": 448319569623283,
 									"parameters": {
 										"angle": "random(0, 360)"
 									}
@@ -1179,7 +1179,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "trash_object",
-									"sid": 333912991526454,
+									"sid": 730934942472822,
 									"parameters": {
 										"instance-variable": "VectorX",
 										"value": "random(-8, 8)"
@@ -1188,7 +1188,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "trash_object",
-									"sid": 681344924603680,
+									"sid": 232287470215773,
 									"parameters": {
 										"instance-variable": "VectorY",
 										"value": "random(-32, -48)"
@@ -1197,7 +1197,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 702295487116194,
+									"sid": 508794277013083,
 									"parameters": {
 										"variable": "RotationDirection",
 										"value": "choose(-1, 1)"
@@ -1206,7 +1206,7 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "trash_object",
-									"sid": 554851590824349,
+									"sid": 221158063927315,
 									"parameters": {
 										"instance-variable": "RotationSpeed",
 										"value": "RotationDirection * random(2.5, 5)"
@@ -1215,14 +1215,14 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 544321211611073,
+									"sid": 691740338140713,
 									"parameters": {
 										"variable": "RandomInt",
 										"value": "random(0,100)"
 									}
 								}
 							],
-							"sid": 844436379855344,
+							"sid": 476033563224826,
 							"children": [
 								{
 									"eventType": "variable",
@@ -1232,7 +1232,7 @@
 									"comment": "All trash objects will have an equal chance to spawn",
 									"isStatic": false,
 									"isConstant": true,
-									"sid": 858934509750131
+									"sid": 685807236921256
 								},
 								{
 									"eventType": "block",
@@ -1240,7 +1240,7 @@
 										{
 											"id": "compare-two-values",
 											"objectClass": "System",
-											"sid": 819871301294115,
+											"sid": 575191136419163,
 											"parameters": {
 												"first-value": "RandomInt",
 												"comparison": 2,
@@ -1252,14 +1252,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 415450193717516,
+											"sid": 948638050436202,
 											"parameters": {
 												"animation": "\"chip_1\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 268595936889787
+									"sid": 516061257505269
 								},
 								{
 									"eventType": "block",
@@ -1267,7 +1267,7 @@
 										{
 											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 516090293993523,
+											"sid": 647829122963601,
 											"parameters": {
 												"value": "RandomInt",
 												"lower-bound": "TrashVariation",
@@ -1279,14 +1279,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 305283040933154,
+											"sid": 797839319101003,
 											"parameters": {
 												"animation": "\"chip_2\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 660101251748402
+									"sid": 435856072462752
 								},
 								{
 									"eventType": "block",
@@ -1294,7 +1294,7 @@
 										{
 											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 901838862023238,
+											"sid": 606904763730938,
 											"parameters": {
 												"value": "RandomInt",
 												"lower-bound": "2*TrashVariation",
@@ -1306,14 +1306,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 355366573451978,
+											"sid": 359588649287595,
 											"parameters": {
 												"animation": "\"gum_1\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 141062731393558
+									"sid": 265992996935373
 								},
 								{
 									"eventType": "block",
@@ -1321,7 +1321,7 @@
 										{
 											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 672692460949727,
+											"sid": 650808671417796,
 											"parameters": {
 												"value": "RandomInt",
 												"lower-bound": "3*TrashVariation",
@@ -1333,14 +1333,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 466893785109014,
+											"sid": 992519850701496,
 											"parameters": {
 												"animation": "\"gum_2\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 490091747813916
+									"sid": 623091868215529
 								},
 								{
 									"eventType": "block",
@@ -1348,7 +1348,7 @@
 										{
 											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 234123102316757,
+											"sid": 458630170377890,
 											"parameters": {
 												"value": "RandomInt",
 												"lower-bound": "4*TrashVariation",
@@ -1360,14 +1360,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 108307150045817,
+											"sid": 382957445234992,
 											"parameters": {
 												"animation": "\"straw_1\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 592439154604366
+									"sid": 858303804857857
 								},
 								{
 									"eventType": "block",
@@ -1375,7 +1375,7 @@
 										{
 											"id": "is-between-values",
 											"objectClass": "System",
-											"sid": 143281815839850,
+											"sid": 672277276312428,
 											"parameters": {
 												"value": "RandomInt",
 												"lower-bound": "5*TrashVariation",
@@ -1387,14 +1387,14 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 384526025200289,
+											"sid": 324407953883055,
 											"parameters": {
 												"animation": "\"straw_2\"",
 												"from": "beginning"
 											}
 										}
 									],
-									"sid": 797602482900654
+									"sid": 311660768839439
 								}
 							]
 						}
@@ -1406,7 +1406,7 @@
 						{
 							"id": "for-each",
 							"objectClass": "System",
-							"sid": 412601659797192,
+							"sid": 520455699760200,
 							"parameters": {
 								"object": "trash_object"
 							}
@@ -1416,7 +1416,7 @@
 						{
 							"id": "set-position",
 							"objectClass": "trash_object",
-							"sid": 843952375998928,
+							"sid": 140229370867219,
 							"parameters": {
 								"x": "Self.X + Self.VectorX * 60 * dt",
 								"y": "Self.Y + Self.VectorY * 60 * dt"
@@ -1425,7 +1425,7 @@
 						{
 							"id": "set-angle",
 							"objectClass": "trash_object",
-							"sid": 960921527343090,
+							"sid": 436294502496029,
 							"parameters": {
 								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
 							}
@@ -1433,7 +1433,7 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "trash_object",
-							"sid": 984684446946200,
+							"sid": 749491499956320,
 							"parameters": {
 								"instance-variable": "VectorY",
 								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
@@ -1442,14 +1442,14 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "trash_object",
-							"sid": 895662859067469,
+							"sid": 693957904763129,
 							"parameters": {
 								"instance-variable": "RotationSpeed",
 								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
 							}
 						}
 					],
-					"sid": 836514448191147
+					"sid": 893219108142939
 				},
 				{
 					"functionName": "SpawnDistractionL2",
@@ -1562,151 +1562,6 @@
 						}
 					],
 					"sid": 352892343167514
-				},
-				{
-					"functionName": "MoveValTowardsAnotherValL2",
-					"functionDescription": "",
-					"functionCategory": "",
-					"functionReturnType": "number",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [
-						{
-							"name": "CurrentValue",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 798734810976161
-						},
-						{
-							"name": "TargetValue",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 485090801789059
-						},
-						{
-							"name": "Speed",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"sid": 828033577618138
-						}
-					],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 159475277231178,
-					"children": [
-						{
-							"eventType": "variable",
-							"name": "Direction",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 310566912817421
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 716151025921215,
-									"parameters": {
-										"variable": "Direction",
-										"value": "sign(TargetValue - CurrentValue )"
-									}
-								}
-							],
-							"sid": 485134919949561
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 993004034260104,
-									"parameters": {
-										"value": "CurrentValue > TargetValue"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 356488976039735,
-									"parameters": {
-										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, TargetValue, Infinity)"
-									}
-								}
-							],
-							"sid": 126282931405017
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 408090186267007
-								},
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 269757213619823,
-									"parameters": {
-										"value": "CurrentValue < TargetValue"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 630720625840569,
-									"parameters": {
-										"value": "clamp(CurrentValue + Direction * abs(Speed) * 60 * dt, -Infinity, TargetValue)"
-									}
-								}
-							],
-							"sid": 837398935744101
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 889954205044197
-								},
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 369298098885940,
-									"parameters": {
-										"value": "CurrentValue = TargetValue"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-function-return-value",
-									"objectClass": "Functions",
-									"sid": 142487819802149,
-									"parameters": {
-										"value": "TargetValue"
-									}
-								}
-							],
-							"sid": 651630681656570
-						}
-					]
 				}
 			],
 			"sid": 343177894135425
@@ -1788,9 +1643,9 @@
 						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
-							"sid": 943800245841995,
+							"sid": 255642043524773,
 							"parameters": {
-								"variable": "Score",
+								"variable": "ScoreL2",
 								"value": "1"
 							}
 						}
@@ -1842,7 +1697,7 @@
 							"objectClass": "compost_object",
 							"sid": 540234697481235,
 							"parameters": {
-								"object": "recylce_bin"
+								"object": "recycle_bin"
 							}
 						}
 					],
@@ -1937,12 +1792,12 @@
 					],
 					"actions": [
 						{
-							"id": "subtract-from-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 816350312151319,
+							"sid": 716613897720714,
 							"parameters": {
-								"variable": "Score",
-								"value": "1"
+								"variable": "ScoreStreakL2",
+								"value": "0"
 							}
 						}
 					],
@@ -1972,7 +1827,7 @@
 							"objectClass": "recycle_object",
 							"sid": 508270206737673,
 							"parameters": {
-								"object": "recylce_bin"
+								"object": "recycle_bin"
 							}
 						}
 					],
@@ -1985,9 +1840,9 @@
 						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
-							"sid": 815644931895502,
+							"sid": 598233617822516,
 							"parameters": {
-								"variable": "Score",
+								"variable": "ScoreL2",
 								"value": "1"
 							}
 						}
@@ -2134,12 +1989,12 @@
 					],
 					"actions": [
 						{
-							"id": "subtract-from-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 961020300875231,
+							"sid": 749553146566684,
 							"parameters": {
-								"variable": "Score",
-								"value": "1"
+								"variable": "ScoreL2",
+								"value": "0"
 							}
 						}
 					],
@@ -2182,9 +2037,9 @@
 						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
-							"sid": 401001163416061,
+							"sid": 813109975095634,
 							"parameters": {
-								"variable": "Score",
+								"variable": "ScoreL2",
 								"value": "1"
 							}
 						}
@@ -2236,7 +2091,7 @@
 							"objectClass": "trash_object",
 							"sid": 551953518472376,
 							"parameters": {
-								"object": "recylce_bin"
+								"object": "recycle_bin"
 							}
 						}
 					],
@@ -2331,12 +2186,12 @@
 					],
 					"actions": [
 						{
-							"id": "subtract-from-eventvar",
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 980007480683724,
+							"sid": 834810605394926,
 							"parameters": {
 								"variable": "Score",
-								"value": "1"
+								"value": "0"
 							}
 						}
 					],
@@ -2471,9 +2326,9 @@
 				{
 					"id": "set-text",
 					"objectClass": "score_display",
-					"sid": 424080207626465,
+					"sid": 930348795068565,
 					"parameters": {
-						"text": "\"Score: \" & Score"
+						"text": "\"Score: \" & ScoreL2"
 					}
 				}
 			],
@@ -2553,7 +2408,7 @@
 						{
 							"id": "on-object-clicked",
 							"objectClass": "Mouse",
-							"sid": 741565727418094,
+							"sid": 771780649772409,
 							"parameters": {
 								"mouse-button": "left",
 								"click-type": "clicked",
@@ -2563,7 +2418,7 @@
 						{
 							"id": "on-tap-object",
 							"objectClass": "Touch",
-							"sid": 124680587842668,
+							"sid": 380530056711191,
 							"parameters": {
 								"object": "pause_bttn"
 							}
@@ -2573,13 +2428,13 @@
 						{
 							"id": "toggle-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 280224673186685,
+							"sid": 729829912475799,
 							"parameters": {
-								"variable": "Paused"
+								"variable": "PausedL2"
 							}
 						}
 					],
-					"sid": 282996800504256,
+					"sid": 364974941901265,
 					"isOrBlock": true
 				},
 				{
@@ -2588,19 +2443,19 @@
 						{
 							"id": "on-object-clicked",
 							"objectClass": "Mouse",
-							"sid": 494775900996769,
+							"sid": 403150016367266,
 							"parameters": {
 								"mouse-button": "left",
 								"click-type": "clicked",
-								"object-clicked": "play_bttn"
+								"object-clicked": "pmenu_play_bttn"
 							}
 						},
 						{
 							"id": "on-tap-object",
 							"objectClass": "Touch",
-							"sid": 580226104502882,
+							"sid": 412477434251173,
 							"parameters": {
-								"object": "play_bttn"
+								"object": "pmenu_play_bttn"
 							}
 						}
 					],
@@ -2608,13 +2463,123 @@
 						{
 							"id": "toggle-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 509074867346474,
+							"sid": 800694336308094,
 							"parameters": {
-								"variable": "Paused"
+								"variable": "PausedL2"
 							}
 						}
 					],
-					"sid": 346365748302950,
+					"sid": 183634601401127,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 485078877200454,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "pmenu_lvl_select_bttn"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 610926449028153,
+							"parameters": {
+								"object": "pmenu_lvl_select_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 793445157191264,
+							"parameters": {
+								"variable": "PausedL2"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "ensures time scale set back to normal when exiting"
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 421061756482567,
+							"parameters": {
+								"time-scale": "1"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 976099983286203,
+							"parameters": {
+								"layout": "level_select_screen"
+							}
+						}
+					],
+					"sid": 393465252939398,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 783033230755769,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "pmenu_home_bttn"
+							}
+						},
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 290812649499677,
+							"parameters": {
+								"object": "pmenu_home_bttn"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "toggle-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 475266418932105,
+							"parameters": {
+								"variable": "PausedL2"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "ensures time scale set back to normal when exiting"
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 150953936931112,
+							"parameters": {
+								"time-scale": "1"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 281451537418117,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						}
+					],
+					"sid": 481818054503169,
 					"isOrBlock": true
 				},
 				{
@@ -2623,9 +2588,9 @@
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 400896402025081,
+							"sid": 483680152966442,
 							"parameters": {
-								"variable": "Paused"
+								"variable": "PausedL2"
 							}
 						}
 					],
@@ -2633,7 +2598,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 124200464311110,
+							"sid": 844667639562649,
 							"parameters": {
 								"layer": "\"Pause Menu\"",
 								"interactive": true
@@ -2642,7 +2607,7 @@
 						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 235981077801337,
+							"sid": 289244226844515,
 							"parameters": {
 								"layer": "\"Pause Menu\"",
 								"visibility": "visible"
@@ -2651,7 +2616,7 @@
 						{
 							"id": "set-time-scale",
 							"objectClass": "System",
-							"sid": 404944746787001,
+							"sid": 753009484282518,
 							"parameters": {
 								"time-scale": "0"
 							}
@@ -2659,7 +2624,7 @@
 						{
 							"id": "pause-resume-all-timers",
 							"objectClass": "GameManager",
-							"sid": 642183903343545,
+							"sid": 252941895572783,
 							"behaviorType": "Timer",
 							"parameters": {
 								"state": "paused"
@@ -2668,14 +2633,14 @@
 						{
 							"id": "pause-resume-all-timers",
 							"objectClass": "timer_display",
-							"sid": 464946285017147,
+							"sid": 184615516760039,
 							"behaviorType": "Timer",
 							"parameters": {
 								"state": "paused"
 							}
 						}
 					],
-					"sid": 968962973736519
+					"sid": 545234368594065
 				},
 				{
 					"eventType": "block",
@@ -2683,9 +2648,9 @@
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 230837709911824,
+							"sid": 804594810003603,
 							"parameters": {
-								"variable": "Paused"
+								"variable": "PausedL2"
 							},
 							"isInverted": true
 						}
@@ -2694,7 +2659,7 @@
 						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
-							"sid": 816768426357483,
+							"sid": 847080400725552,
 							"parameters": {
 								"layer": "\"Pause Menu\"",
 								"interactive": false
@@ -2703,7 +2668,7 @@
 						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
-							"sid": 167113399226357,
+							"sid": 378559135529592,
 							"parameters": {
 								"layer": "\"Pause Menu\"",
 								"visibility": "invisible"
@@ -2712,7 +2677,7 @@
 						{
 							"id": "set-time-scale",
 							"objectClass": "System",
-							"sid": 146738934356959,
+							"sid": 127857716235982,
 							"parameters": {
 								"time-scale": "LevelTimeScale"
 							}
@@ -2720,7 +2685,7 @@
 						{
 							"id": "pause-resume-all-timers",
 							"objectClass": "GameManager",
-							"sid": 419161170655755,
+							"sid": 695223838245801,
 							"behaviorType": "Timer",
 							"parameters": {
 								"state": "resumed"
@@ -2729,669 +2694,14 @@
 						{
 							"id": "pause-resume-all-timers",
 							"objectClass": "timer_display",
-							"sid": 827142706489008,
+							"sid": 803407502329868,
 							"behaviorType": "Timer",
 							"parameters": {
 								"state": "resumed"
 							}
 						}
 					],
-					"sid": 941365188110711
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 918488623304360,
-							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"lvl_select\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 128930359189024,
-							"parameters": {
-								"layout": "level_select_screen"
-							}
-						}
-					],
-					"sid": 455698713203128
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 965350453384173,
-							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"volume\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "cycle_volume",
-							"sid": 539835985365418
-						}
-					],
-					"sid": 167177913006295
-				},
-				{
-					"functionName": "cycle_volume3",
-					"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
-					"functionCategory": "",
-					"functionReturnType": "none",
-					"functionCopyPicked": false,
-					"functionIsAsync": false,
-					"functionParameters": [],
-					"eventType": "function-block",
-					"conditions": [],
-					"actions": [],
-					"sid": 643913717669654,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 171446508468224,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"comparison": 0,
-										"value": "3"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 168027026492737,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": false
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 897925132693593,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "2"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "volume_bttn",
-									"sid": 663787200329433,
-									"parameters": {
-										"animation": "\"vol2\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 687698960226073,
-									"parameters": {
-										"db": "-10"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
-								}
-							],
-							"sid": 498867238029231
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 444029089777536,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"comparison": 0,
-										"value": "2"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 762393962334946,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": false
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 771115811877733,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "1"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "volume_bttn",
-									"sid": 786781041731750,
-									"parameters": {
-										"animation": "\"vol1\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 989882475548738,
-									"parameters": {
-										"db": "-25"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
-								}
-							],
-							"sid": 520766834911632
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 262858209956705,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"comparison": 0,
-										"value": "1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 708525496942166,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": false
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 910032228949437,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "0"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "volume_bttn",
-									"sid": 233416727605571,
-									"parameters": {
-										"animation": "\"vol0\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 556893152795587,
-									"parameters": {
-										"db": "-100"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
-								}
-							],
-							"sid": 133556862867129
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 547412044059563,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"comparison": 0,
-										"value": "0"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 873513385880821,
-									"parameters": {
-										"seconds": "0.05",
-										"use-timescale": false
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 336486776825973,
-									"parameters": {
-										"variable": "GlobalVolume",
-										"value": "3"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "volume_bttn",
-									"sid": 633263242898128,
-									"parameters": {
-										"animation": "\"vol3\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-master-volume",
-									"objectClass": "Audio",
-									"sid": 998157010340738,
-									"parameters": {
-										"db": "0"
-									}
-								},
-								{
-									"type": "script",
-									"language": "javascript",
-									"script": [
-										"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-									]
-								}
-							],
-							"sid": 979156821677834
-						}
-					]
-				},
-				{
-					"eventType": "group",
-					"disabled": false,
-					"title": "Button Animation3",
-					"description": "User interaction animations for pause menu buttons",
-					"isActiveOnStart": true,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "cursor-is-over-object",
-									"objectClass": "Mouse",
-									"sid": 424745812066061,
-									"parameters": {
-										"object": "main_menu_buttons"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-cursor-style2",
-									"objectClass": "Mouse",
-									"sid": 289767612180381,
-									"parameters": {
-										"cursor-style": "pointer"
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "main_menu_buttons",
-									"sid": 380281060524681,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"shrink\"",
-										"property": "offsetScaleX",
-										"end-value": "0.95",
-										"time": "0.02",
-										"ease": "easeinsine",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "main_menu_buttons",
-									"sid": 723582816422875,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"shrink\"",
-										"property": "offsetScaleY",
-										"end-value": "0.95",
-										"time": "0.02",
-										"ease": "easeinsine",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								}
-							],
-							"sid": 445264871518701,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "mouse-button-is-down",
-											"objectClass": "Mouse",
-											"sid": 613579763162376,
-											"parameters": {
-												"mouse-button": "left"
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation-frame",
-											"objectClass": "main_menu_buttons",
-											"sid": 330317500255231,
-											"parameters": {
-												"frame-number": "\"bttn_hover\""
-											}
-										}
-									],
-									"sid": 381730163215965
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "mouse-button-is-down",
-											"objectClass": "Mouse",
-											"sid": 810496088080111,
-											"parameters": {
-												"mouse-button": "left"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation-frame",
-											"objectClass": "main_menu_buttons",
-											"sid": 496412766529428,
-											"parameters": {
-												"frame-number": "\"bttn_pressed\""
-											}
-										}
-									],
-									"sid": 144451090973842
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "on-button-released",
-											"objectClass": "Mouse",
-											"sid": 130534972661703,
-											"parameters": {
-												"mouse-button": "left"
-											}
-										},
-										{
-											"id": "compare-animation-frame-tag",
-											"objectClass": "main_menu_buttons",
-											"sid": 782379433504288,
-											"parameters": {
-												"comparison": 0,
-												"tag": "\"bttn_pressed\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-animation-frame",
-											"objectClass": "main_menu_buttons",
-											"sid": 897107498457880,
-											"parameters": {
-												"frame-number": "\"bttn_pressed\""
-											}
-										}
-									],
-									"sid": 969526232301889,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "main_menu_buttons",
-													"sid": 485491899549509,
-													"parameters": {
-														"instance-variable": "bttn_id",
-														"comparison": 0,
-														"value": "\"start\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 487207392883351,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"start\""
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 456346513699437,
-													"parameters": {
-														"seconds": "0.02",
-														"use-timescale": true
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 613354402118109,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"\""
-													}
-												}
-											],
-											"sid": 422105963272216
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "main_menu_buttons",
-													"sid": 890128766484597,
-													"parameters": {
-														"instance-variable": "bttn_id",
-														"comparison": 0,
-														"value": "\"lvl_select\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 194819207340213,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"lvl_select\""
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 197385203223246,
-													"parameters": {
-														"seconds": "0.02",
-														"use-timescale": true
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 552616386057769,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"\""
-													}
-												}
-											],
-											"sid": 903310874491218
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "main_menu_buttons",
-													"sid": 760950642594343,
-													"parameters": {
-														"instance-variable": "bttn_id",
-														"comparison": 0,
-														"value": "\"volume\""
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 920981228788418,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"volume\""
-													}
-												},
-												{
-													"id": "wait",
-													"objectClass": "System",
-													"sid": 931177896641431,
-													"parameters": {
-														"seconds": "0.02",
-														"use-timescale": true
-													}
-												},
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 426380319280884,
-													"parameters": {
-														"variable": "ButtonActivated",
-														"value": "\"\""
-													}
-												}
-											],
-											"sid": 932633318509705
-										}
-									]
-								}
-							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 252924033361910
-								}
-							],
-							"actions": [
-								{
-									"id": "set-cursor-style2",
-									"objectClass": "Mouse",
-									"sid": 662698486893864,
-									"parameters": {
-										"cursor-style": "normal"
-									}
-								},
-								{
-									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
-									"sid": 856621751216937,
-									"parameters": {
-										"frame-number": "\"bttn_idle\""
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "main_menu_buttons",
-									"sid": 108050502822089,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"normalScale\"",
-										"property": "offsetScaleX",
-										"end-value": "1",
-										"time": "0.02",
-										"ease": "easeoutsine",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								},
-								{
-									"id": "tween-one-property",
-									"objectClass": "main_menu_buttons",
-									"sid": 664885075183369,
-									"behaviorType": "Tween",
-									"parameters": {
-										"tags": "\"normalScale\"",
-										"property": "offsetScaleY",
-										"end-value": "1",
-										"time": "0.02",
-										"ease": "easeoutsine",
-										"destroy-on-complete": "no",
-										"loop": "no",
-										"ping-pong": "no",
-										"repeat-count": "1"
-									}
-								}
-							],
-							"sid": 962850010701916
-						}
-					],
-					"sid": 980271611583514
+					"sid": 265068298520309
 				}
 			],
 			"sid": 585791873792298

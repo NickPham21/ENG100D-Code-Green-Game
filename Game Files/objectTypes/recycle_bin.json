@@ -1,7 +1,7 @@
 {
 	"name": "recycle_bin",
 	"plugin-id": "Sprite",
-	"sid": 893155449287489,
+	"sid": 201040158478024,
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
@@ -12,22 +12,36 @@
 			{
 				"frames": [
 					{
-						"width": 225,
-						"height": 225,
+						"width": 600,
+						"height": 616,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5278595,
+						"imageSpriteId": 4113934,
+						"collisionPoly": {
+							"points": [
+								0.5083333333333334,
+								0,
+								0.9700000000000003,
+								0.014610389610389601,
+								0.8583333333333344,
+								1,
+								0.13666666666666655,
+								1,
+								0.018333333333333365,
+								0.01785714285714285
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 506873920611488,
-				"name": "Animation 1",
+				"sid": 237586897361689,
+				"name": "recycle_bin",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

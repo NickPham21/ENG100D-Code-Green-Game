@@ -20,17 +20,19 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5278595,
+						"imageSpriteId": 1419125,
 						"collisionPoly": {
 							"points": [
-								1,
+								0.505,
 								0,
-								0.9966666666666666,
+								0.9733333333333336,
+								0.024350649350649345,
+								0.8466666666666676,
+								0.9983766233766234,
+								0.1416666666666667,
 								1,
-								0,
-								1,
-								0,
-								0
+								0.023333333333333376,
+								0.02597402597402597
 							]
 						},
 						"useCollisionPoly": true,
@@ -38,7 +40,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 506873920611488,
+				"sid": 234928609658368,
 				"name": "trash_bin",
 				"isLooping": false,
 				"isPingPong": false,

@@ -1,0 +1,163 @@
+{
+	"name": "rat",
+	"plugin-id": "Sprite",
+	"sid": 361420203359704,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "VectorX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 488580213261765
+		},
+		{
+			"name": "VectorY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 330162077187651
+		},
+		{
+			"name": "RotationSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 606131388152073
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 621008444743949
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2346824,
+						"collisionPoly": {
+							"points": [
+								0.315,
+								0.09,
+								0.515,
+								0.105,
+								0.85,
+								0.495,
+								0.875,
+								0.565,
+								0.88,
+								0.745,
+								0.845,
+								0.83,
+								0.815,
+								0.86,
+								0.78,
+								0.885,
+								0.74,
+								0.905,
+								0.62,
+								0.93,
+								0.535,
+								0.93,
+								0.295,
+								0.845,
+								0.245,
+								0.775,
+								0.11,
+								0.47,
+								0.175,
+								0.22
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 524164496665684,
+				"name": "rat_normal",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2881419,
+						"collisionPoly": {
+							"points": [
+								0.315,
+								0.09,
+								0.515,
+								0.105,
+								0.85,
+								0.495,
+								0.875,
+								0.565,
+								0.88,
+								0.745,
+								0.845,
+								0.83,
+								0.815,
+								0.86,
+								0.78,
+								0.885,
+								0.74,
+								0.905,
+								0.62,
+								0.93,
+								0.535,
+								0.93,
+								0.295,
+								0.845,
+								0.245,
+								0.775,
+								0.11,
+								0.47,
+								0.15,
+								0.315,
+								0.19,
+								0.22
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 240623842160654,
+				"name": "rat_scared",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

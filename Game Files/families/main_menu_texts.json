@@ -13,6 +13,9 @@
 	"effectTypes": [],
 	"members": [
 		"start_bttn_text",
-		"lvl_select_text"
+		"lvl_select_text",
+		"name_confirm_bttn_text",
+		"name_no_bttn_text",
+		"name_yes_bttn_text"
 	]
 }

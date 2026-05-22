@@ -7,7 +7,7 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "main_menu_bg",
+					"type": "TiledBackground2",
 					"properties": {
 						"initially-visible": true,
 						"origin": "top-left",
@@ -26,16 +26,16 @@
 						"blend-margin-y": 0.1
 					},
 					"uid": 36,
-					"sid": 178883227525421,
+					"sid": 344054708642424,
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
 					"instanceFolderItem": {
-						"sid": 178883227525421,
+						"sid": 344054708642424,
 						"expanded": true
 					},
 					"showing": true,
-					"locked": true,
+					"locked": false,
 					"world": {
 						"x": 0,
 						"y": 0,

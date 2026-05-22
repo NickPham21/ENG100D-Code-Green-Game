@@ -338,7 +338,7 @@
 					}
 				},
 				{
-					"type": "recylce_bin",
+					"type": "recycle_bin",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "recycle_bin",

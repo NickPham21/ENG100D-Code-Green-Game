@@ -50,13 +50,31 @@
 						"duration": "1",
 						"ending": "keep-playing"
 					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 432817428016267,
+					"parameters": {
+						"layer": "0",
+						"interactive": false
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 857663464533790,
+					"parameters": {
+						"layer": "0",
+						"interactive": true
+					}
 				}
 			],
 			"sid": 306679579077122
 		},
 		{
 			"eventType": "group",
-			"disabled": false,
+			"disabled": true,
 			"title": "Button Logic - Level Select",
 			"description": "What actually happens when the button is pressed",
 			"isActiveOnStart": true,
@@ -95,6 +113,7 @@
 						}
 					],
 					"sid": 163219986909466,
+					"disabled": true,
 					"isOrBlock": true
 				},
 				{
@@ -131,6 +150,7 @@
 						}
 					],
 					"sid": 299421085008878,
+					"disabled": true,
 					"isOrBlock": true
 				},
 				{
@@ -167,6 +187,7 @@
 						}
 					],
 					"sid": 487713462552860,
+					"disabled": true,
 					"isOrBlock": true
 				},
 				{
@@ -187,9 +208,9 @@
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 616668537376966,
+							"sid": 444657859822076,
 							"parameters": {
-								"layout": "game_screen_1"
+								"layout": "game_screen_4"
 							}
 						},
 						{
@@ -203,6 +224,7 @@
 						}
 					],
 					"sid": 440372998389573,
+					"disabled": true,
 					"isOrBlock": true
 				}
 			],
@@ -546,6 +568,146 @@
 				}
 			],
 			"sid": 289512150832812
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 784282411358508,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_1_bttn"
+					}
+				},
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 289599615283227,
+					"parameters": {
+						"object": "lvl_1_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 794025696346725,
+					"parameters": {
+						"layout": "game_screen_1"
+					}
+				}
+			],
+			"sid": 647214185599135,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 686702277034747,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_2_bttn"
+					}
+				},
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 708321944285938,
+					"parameters": {
+						"object": "lvl_2_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 852877703835819,
+					"parameters": {
+						"layout": "game_screen_2"
+					}
+				}
+			],
+			"sid": 225174278939669,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 906081882861912,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_3_bttn"
+					}
+				},
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 603775214830236,
+					"parameters": {
+						"object": "lvl_3_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 818809077788351,
+					"parameters": {
+						"layout": "game_screen_3"
+					}
+				}
+			],
+			"sid": 337436350070276,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-object-clicked",
+					"objectClass": "Mouse",
+					"sid": 963942489814005,
+					"parameters": {
+						"mouse-button": "left",
+						"click-type": "clicked",
+						"object-clicked": "lvl_4_bttn"
+					}
+				},
+				{
+					"id": "on-tap-object",
+					"objectClass": "Touch",
+					"sid": 913675015071566,
+					"parameters": {
+						"object": "lvl_4_bttn"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 255985885415241,
+					"parameters": {
+						"layout": "game_screen_4"
+					}
+				}
+			],
+			"sid": 986806190844273,
+			"isOrBlock": true
 		}
 	],
 	"sid": 743858220086118

@@ -1,0 +1,10 @@
+{
+	"name": "c_dialogue_display",
+	"plugin-id": "Text",
+	"sid": 488484665031825,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

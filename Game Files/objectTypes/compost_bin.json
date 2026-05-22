@@ -20,17 +20,19 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5010399,
+						"imageSpriteId": 1452909,
 						"collisionPoly": {
 							"points": [
-								1,
+								0.5049999999999999,
 								0,
+								0.9850000000000007,
+								0.01785714285714285,
+								0.858333333333334,
 								1,
+								0.1299999999999998,
 								1,
-								0,
-								1,
-								0,
-								0
+								0.011666666666666686,
+								0.016233766233766225
 							]
 						},
 						"useCollisionPoly": true,
@@ -38,7 +40,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 590061920273289,
+				"sid": 781067654984547,
 				"name": "compost_bin",
 				"isLooping": false,
 				"isPingPong": false,

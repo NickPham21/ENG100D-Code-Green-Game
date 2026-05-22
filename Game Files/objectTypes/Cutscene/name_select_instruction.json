@@ -1,0 +1,10 @@
+{
+	"name": "name_select_instruction",
+	"plugin-id": "Text",
+	"sid": 948297241793274,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

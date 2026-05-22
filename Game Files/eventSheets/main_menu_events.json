@@ -42,17 +42,43 @@
 			],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 152847395353528,
+					"parameters": {
+						"tag": "\"\"",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				},
+				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 650229741687933,
+					"sid": 872056997710262,
 					"parameters": {
 						"audio-file": {
 							"path": "meow"
 						},
 						"loop": "looping",
-						"volume": "0",
+						"volume": "-100",
 						"stereo-pan": "0",
-						"tag-optional": "\"main_menu_theme\""
+						"tag-optional": "\"main_menu_music\""
+					}
+				},
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 762344771673555,
+					"parameters": {
+						"tag": "\"main_menu_music\"",
+						"db": "GlobalVolume",
+						"duration": "1",
+						"ending": "keep-playing"
 					}
 				},
 				{
@@ -108,9 +134,9 @@
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 625089255687077,
+							"sid": 960199052350973,
 							"parameters": {
-								"layout": "cutscene_1"
+								"layout": "name_select_screen"
 							}
 						},
 						{

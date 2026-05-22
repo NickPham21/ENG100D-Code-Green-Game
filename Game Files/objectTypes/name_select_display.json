@@ -1,0 +1,10 @@
+{
+	"name": "name_select_display",
+	"plugin-id": "Text",
+	"sid": 909553384949945,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}
