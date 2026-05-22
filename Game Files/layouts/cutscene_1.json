@@ -365,7 +365,7 @@
 					"locked": false,
 					"world": {
 						"x": 958,
-						"y": -451,
+						"y": -301,
 						"width": 841.1426898786883,
 						"height": 618.5914024743616,
 						"originX": 0.5,
@@ -385,7 +385,7 @@
 					"properties": {
 						"text": "Monitor text goes here",
 						"enable-bbcode": true,
-						"font": "Arial",
+						"font": "ByteBounce",
 						"size": 30,
 						"line-height": 0,
 						"bold": false,
@@ -417,10 +417,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 612,
-						"y": 307,
-						"width": 706,
-						"height": 246,
+						"x": 613,
+						"y": 293,
+						"width": 681,
+						"height": 254,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -438,8 +438,8 @@
 					"properties": {
 						"text": "Monitor Name",
 						"enable-bbcode": true,
-						"font": "Arial",
-						"size": 20,
+						"font": "ByteBounce",
+						"size": 30,
 						"line-height": 0,
 						"bold": false,
 						"italic": false,
@@ -449,8 +449,8 @@
 							0.023529411764705882,
 							1
 						],
-						"horizontal-alignment": "left",
-						"vertical-alignment": "top",
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
 						"wrapping": "word",
 						"text-direction": "ltr",
 						"icon-set": -1,
@@ -470,10 +470,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 603,
-						"y": 144,
-						"width": 200,
-						"height": 30,
+						"x": 590,
+						"y": 124,
+						"width": 302,
+						"height": 58,
 						"originX": 0,
 						"originY": 0,
 						"color": [

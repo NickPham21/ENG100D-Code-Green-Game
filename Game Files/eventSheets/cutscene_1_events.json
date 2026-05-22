@@ -73,7 +73,7 @@
 		},
 		{
 			"eventType": "comment",
-			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 3 for now, we keep track of text, current speaking position, and character name per dialogue\n      - (x, 0) stores text, (x, 1) stores current speaking character's position, (x, 2) stores character name"
+			"text": "Initialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 4 for now, we keep track of text, current speaking position, character name, and voiceline to play per dialogue\n      - (x, 0) stores text, (x, 1) stores current speaking character's position, (x, 2) stores character name, (x, 3) stores voiceline file name"
 		},
 		{
 			"eventType": "comment",
@@ -103,6 +103,19 @@
 							"parameters": {
 								"variable": "ClickOnCooldown",
 								"value": "true"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "lower music a bit so they could hear the voicelines"
+						},
+						{
+							"id": "set-volume",
+							"objectClass": "Audio",
+							"sid": 146446907465755,
+							"parameters": {
+								"tag": "\"main_menu_music\"",
+								"db": "GlobalVolume - 10"
 							}
 						},
 						{
@@ -186,6 +199,16 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1_arr",
+							"sid": 769196536016826,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
 							"sid": 893743611561123,
 							"parameters": {
 								"x": "1",
@@ -211,6 +234,16 @@
 								"x": "1",
 								"y": "2",
 								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 605235531574107,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"\""
 							}
 						},
 						{
@@ -246,6 +279,16 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1_arr",
+							"sid": 311561307349324,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
 							"sid": 736203862556454,
 							"parameters": {
 								"x": "3",
@@ -271,6 +314,16 @@
 								"x": "3",
 								"y": "2",
 								"value": "\"Alexia\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 720337959051576,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_9\""
 							}
 						},
 						{
@@ -306,6 +359,16 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1_arr",
+							"sid": 836106472246123,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_10\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
 							"sid": 803115789285214,
 							"parameters": {
 								"x": "5",
@@ -331,6 +394,16 @@
 								"x": "5",
 								"y": "2",
 								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1_arr",
+							"sid": 813010071643557,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"\""
 							}
 						},
 						{
@@ -789,7 +862,7 @@
 			"eventType": "group",
 			"disabled": false,
 			"title": "Update - Cutscene 1",
-			"description": "Anything to do with advancing a cutscene once initalized (including animations)",
+			"description": "Anything to do with advancing a cutscene once initalized (including animations and voicelines)",
 			"isActiveOnStart": true,
 			"children": [
 				{
@@ -802,7 +875,15 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"callFunction": "play_voiceline1",
+							"sid": 892783313470239,
+							"parameters": [
+								"c1_arr.At(cSeqCtr, 3)"
+							]
+						}
+					],
 					"sid": 743726718721625,
 					"children": [
 						{
@@ -1418,6 +1499,199 @@
 										}
 									],
 									"sid": 561535215135283
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "play_voiceline1",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "filename",
+							"type": "string",
+							"initialValue": "",
+							"comment": "the voiceline's filename",
+							"sid": 429247247562752
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 307437080547234,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 523216774383106,
+									"parameters": {
+										"variable": "filename",
+										"comparison": 0,
+										"value": "\"voiceline_9\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 435867939688167,
+									"parameters": {
+										"audio-file": {
+											"path": "Voicelines/voiceline_9"
+										},
+										"loop": "not-looping",
+										"volume": "GlobalVolume",
+										"stereo-pan": "50",
+										"tag-optional": "\"voiceline_9\""
+									}
+								}
+							],
+							"sid": 310847305593706
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 378158241739464,
+									"parameters": {
+										"variable": "filename",
+										"comparison": 0,
+										"value": "\"voiceline_10\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 899503489207877,
+									"parameters": {
+										"audio-file": {
+											"path": "Voicelines/voiceline_10"
+										},
+										"loop": "not-looping",
+										"volume": "GlobalVolume",
+										"stereo-pan": "-50",
+										"tag-optional": "\"voiceline_10\""
+									}
+								}
+							],
+							"sid": 309909135983593,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 281892898159323,
+											"parameters": {
+												"tag": "\"voiceline_9\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 765935162325995,
+											"parameters": {
+												"tag": "\"voiceline_9\""
+											}
+										}
+									],
+									"sid": 922707189651104
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 100623423549796,
+									"parameters": {
+										"variable": "filename",
+										"comparison": 0,
+										"value": "\"\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "doesn't play anything, just stop other voicelines from playing"
+								}
+							],
+							"sid": 516964267617113,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 496778133461596,
+											"parameters": {
+												"tag": "\"voiceline_9\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 856346922759535,
+											"parameters": {
+												"tag": "\"voiceline_9\""
+											}
+										}
+									],
+									"sid": 268270418147138
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-tag-playing",
+											"objectClass": "Audio",
+											"sid": 200979455877509,
+											"parameters": {
+												"tag": "\"voiceline_10\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 733986695818001,
+											"parameters": {
+												"tag": "\"voiceline_9\""
+											}
+										},
+										{
+											"id": "stop",
+											"objectClass": "Audio",
+											"sid": 426376850095076,
+											"parameters": {
+												"tag": "\"voiceline_10\""
+											}
+										}
+									],
+									"sid": 216965885007283
 								}
 							]
 						}

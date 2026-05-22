@@ -253,7 +253,30 @@
 		},
 		"sound": {
 			"items": [],
-			"subfolders": []
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "voiceline_10.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 171248954576766,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "voiceline_9.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 383357332274151,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Voicelines"
+				}
+			]
 		},
 		"music": {
 			"items": [
@@ -319,6 +342,22 @@
 					"name": "Eng100d-Regular.woff",
 					"type": "application/font-woff",
 					"sid": 639232905102605,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "ByteBounce.woff",
+					"type": "application/font-woff",
+					"sid": 863752819632874,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "ByteBounce.ttf",
+					"type": "application/font-sfnt",
+					"sid": 779988597197142,
 					"file-info": {
 						"purpose": "none"
 					}
