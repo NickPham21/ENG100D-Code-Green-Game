@@ -13,10 +13,30 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "ScoreGain",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 783620903705871
+		},
+		{
+			"eventType": "variable",
+			"name": "ScoreMultiplier",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 224479999281630
+		},
+		{
+			"eventType": "variable",
 			"name": "ScoreStreak",
 			"type": "number",
 			"initialValue": "0",
-			"comment": "Tracks user score streak (for time boost)",
+			"comment": "Tracks user score streak. Counter that guards 1 to 3 threshold, then drives multiplier.",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 655447524555874
@@ -30,6 +50,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 104112643867953
+		},
+		{
+			"eventType": "variable",
+			"name": "HeartsLost",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Tracks how many hearts the user has lost",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 843699654188942
 		},
 		{
 			"eventType": "variable",
@@ -60,16 +90,6 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 392768382390940
-		},
-		{
-			"eventType": "variable",
-			"name": "HeartsLost",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "Tracks how many hearts the user has lost",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 283908860868133
 		},
 		{
 			"eventType": "block",
@@ -1261,11 +1281,24 @@
 						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
-							"sid": 475411940381133,
+							"sid": 873562129643552,
 							"parameters": {
 								"variable": "Score",
+								"value": "ScoreGain * ScoreMultiplier"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 252123099182390,
+							"parameters": {
+								"variable": "ScoreStreak",
 								"value": "1"
 							}
+						},
+						{
+							"callFunction": "CheckMultiplier",
+							"sid": 297430482564002
 						}
 					],
 					"sid": 658984424209963
@@ -1297,6 +1330,33 @@
 						{
 							"callFunction": "WrongWasteSort",
 							"sid": 631320389023722
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 851282201378434,
+							"parameters": {
+								"variable": "ScoreStreak",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 347779877506402,
+							"parameters": {
+								"variable": "ScoreMultiplier",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 335323425123380,
+							"parameters": {
+								"variable": "ScoreStreakTracker",
+								"value": "false"
+							}
 						}
 					],
 					"sid": 108155935102046
@@ -1379,12 +1439,12 @@
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
+							"id": "subtract-from-eventvar",
 							"objectClass": "System",
-							"sid": 243798990661850,
+							"sid": 809073582650900,
 							"parameters": {
-								"variable": "ScoreStreak",
-								"value": "0"
+								"variable": "Score",
+								"value": "1"
 							}
 						}
 					],
@@ -1427,11 +1487,24 @@
 						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
-							"sid": 967707648722260,
+							"sid": 429550286569663,
 							"parameters": {
 								"variable": "Score",
+								"value": "ScoreGain * ScoreMultiplier"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 609245440854124,
+							"parameters": {
+								"variable": "ScoreStreak",
 								"value": "1"
 							}
+						},
+						{
+							"callFunction": "CheckMultiplier",
+							"sid": 925576153277839
 						}
 					],
 					"sid": 238434762812674
@@ -1463,6 +1536,33 @@
 						{
 							"callFunction": "WrongWasteSort",
 							"sid": 566003617937707
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 855429705398521,
+							"parameters": {
+								"variable": "ScoreStreak",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 952049653755785,
+							"parameters": {
+								"variable": "ScoreMultiplier",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 547757997919012,
+							"parameters": {
+								"variable": "ScoreStreakTracker",
+								"value": "false"
+							}
 						}
 					],
 					"sid": 789277164424727
@@ -1545,12 +1645,12 @@
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
+							"id": "subtract-from-eventvar",
 							"objectClass": "System",
-							"sid": 105356331740733,
+							"sid": 864306016497994,
 							"parameters": {
-								"variable": "ScoreStreak",
-								"value": "0"
+								"variable": "Score",
+								"value": "1"
 							}
 						}
 					],
@@ -1697,33 +1797,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "compare-two-values",
-					"objectClass": "System",
-					"sid": 620411627687073,
-					"parameters": {
-						"first-value": "ScoreStreakTracker",
-						"comparison": 0,
-						"second-value": "0"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 641751274915405,
-					"parameters": {
-						"variable": "ScoreStreak",
-						"value": "0"
-					}
-				}
-			],
-			"sid": 310578008807814
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "compare-eventvar",
 					"objectClass": "System",
 					"sid": 942198866784290,
@@ -1753,6 +1826,27 @@
 				}
 			],
 			"sid": 439374537938975
+		},
+		{
+			"eventType": "comment",
+			"text": "note: blank action on this condition, ask Nick why"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-between-values",
+					"objectClass": "System",
+					"sid": 359008984021052,
+					"parameters": {
+						"value": "ScoreStreak",
+						"lower-bound": "0",
+						"upper-bound": "3"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 385219547401988
 		},
 		{
 			"eventType": "group",
@@ -2064,6 +2158,152 @@
 				}
 			],
 			"sid": 378406284676472
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "ScoreStreak + Multiplier",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "CheckMultiplier",
+					"functionDescription": "Bumps the multiplier up the ladder when streak crosses thresholds",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 436424169052119,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 436361041422117,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 627523945738151,
+									"parameters": {
+										"variable": "ScoreMultiplier",
+										"value": "2"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 337408235526433,
+									"parameters": {
+										"variable": "ScoreStreakTracker",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 422569839866019
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 148111756119686,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 230083248951000,
+									"parameters": {
+										"variable": "ScoreMultiplier",
+										"value": "3"
+									}
+								}
+							],
+							"sid": 804795375476554
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 162726709647927,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "5"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 173561597503731,
+									"parameters": {
+										"variable": "ScoreMultiplier",
+										"value": "4"
+									}
+								}
+							],
+							"sid": 155773832218997
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 221142086356607,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "6"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 311705339354295,
+									"parameters": {
+										"variable": "ScoreMultiplier",
+										"value": "5"
+									}
+								}
+							],
+							"sid": 568559387562384
+						}
+					]
+				}
+			],
+			"sid": 854156730459525
+		},
+		{
+			"eventType": "comment",
+			"text": "SCORESTREAK CHANGES (TO PHAM'S KNOWLEDGE):\n- new ScoreStreak + Multipler group, with CheckMultiplier function\n- new ScoreGain and ScoreMultipler Variable\n- on correct trash sorted:\n    - Don't add 1 to Score anymore. Instead, add (ScoreGain * ScoreMultiplier) to Score.\n    - Add 1 to ScoreStreak\n    - Call CheckMultiplier\n- on incorrect trash sorted:\n    - Set ScoreStreak to 0\n    - Set ScoreMultiplier to 1\n    - Set ScoreStreakTracker to False\n- in Hearts Tracking Logic (IMPORTANT!!! ScoreStreak won't work otherwise!!)\n    - Delete \"ScoreStreakTracker = 0\" condition"
 		}
 	],
 	"sid": 522712200103368
