@@ -158,7 +158,8 @@
 			"ewaste_bin",
 			"ewaste_object",
 			"rat",
-			"TiledBackground2"
+			"TiledBackground2",
+			"black_bg"
 		],
 		"subfolders": [
 			{
@@ -180,7 +181,7 @@
 				"items": [
 					"c_dialogue_display",
 					"c_name_display",
-					"c1_sprite_display",
+					"c_sprite_display",
 					"dialogue_textbox",
 					"c1_arr",
 					"c_monitor_text_display",
@@ -212,7 +213,8 @@
 	"families": {
 		"items": [
 			"main_menu_buttons",
-			"main_menu_texts"
+			"main_menu_texts",
+			"cutscene_arrays"
 		],
 		"subfolders": []
 	},
@@ -242,7 +244,8 @@
 			"game_events_3",
 			"cutscene_0_events",
 			"name_select_events",
-			"game_events_4"
+			"game_events_4",
+			"cutscene_shared_events"
 		],
 		"subfolders": []
 	},
@@ -254,7 +257,7 @@
 		"sound": {
 			"items": [
 				{
-					"name": "voiceline_1_9.webm",
+					"name": "voiceline_1_1.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 383357332274151,
 					"file-info": {
@@ -262,7 +265,7 @@
 					}
 				},
 				{
-					"name": "voiceline_1_10.webm",
+					"name": "voiceline_1_2.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 171248954576766,
 					"file-info": {

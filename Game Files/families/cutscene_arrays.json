@@ -1,0 +1,18 @@
+{
+	"name": "cutscene_arrays",
+	"plugin-id": "Arr",
+	"sid": 402940908772844,
+	"instanceVariables": [
+		{
+			"name": "c_arr_id",
+			"type": "string",
+			"desc": "unique ID of the cutscene array",
+			"show": true,
+			"sid": 819060101026186
+		}
+	],
+	"members": [
+		"c0_arr",
+		"c1_arr"
+	]
+}

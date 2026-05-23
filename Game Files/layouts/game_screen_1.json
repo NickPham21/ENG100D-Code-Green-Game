@@ -850,25 +850,29 @@
 			"type": "c1_arr",
 			"properties": {
 				"width": 6,
-				"height": 4,
+				"height": 5,
 				"depth": 1
 			},
 			"uid": 33,
 			"sid": 869731381481882,
 			"tags": "",
-			"instanceVariables": {}
+			"instanceVariables": {
+				"c_arr_id": "c1_arr"
+			}
 		},
 		{
 			"type": "c0_arr",
 			"properties": {
 				"width": 8,
-				"height": 4,
+				"height": 5,
 				"depth": 1
 			},
 			"uid": 89,
 			"sid": 812393693801049,
 			"tags": "",
-			"instanceVariables": {}
+			"instanceVariables": {
+				"c_arr_id": "c0_arr"
+			}
 		}
 	],
 	"effectTypes": [],

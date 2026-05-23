@@ -97,7 +97,7 @@
 					}
 				},
 				{
-					"type": "c1_sprite_display",
+					"type": "c_sprite_display",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Terrance",
@@ -142,7 +142,7 @@
 					}
 				},
 				{
-					"type": "c1_sprite_display",
+					"type": "c_sprite_display",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Alexia",
@@ -336,7 +336,7 @@
 					}
 				},
 				{
-					"type": "c1_sprite_display",
+					"type": "c_sprite_display",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Command Center",
