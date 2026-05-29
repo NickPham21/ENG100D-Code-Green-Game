@@ -30,10 +30,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 230404673632267,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": true,
 					"world": {
@@ -103,10 +99,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 343164377699820,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -140,10 +132,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 731275745944800,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -187,10 +175,6 @@
 								"enabled": true
 							}
 						}
-					},
-					"instanceFolderItem": {
-						"sid": 588374165627683,
-						"expanded": true
 					},
 					"showing": true,
 					"locked": false,
@@ -236,10 +220,6 @@
 							}
 						}
 					},
-					"instanceFolderItem": {
-						"sid": 818854914666875,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -276,10 +256,6 @@
 						"Timer": {
 							"properties": {}
 						}
-					},
-					"instanceFolderItem": {
-						"sid": 989133957589343,
-						"expanded": true
 					},
 					"showing": true,
 					"locked": false,
@@ -325,10 +301,6 @@
 							}
 						}
 					},
-					"instanceFolderItem": {
-						"sid": 600766070729383,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -362,10 +334,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 210088444943416,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -450,10 +418,10 @@
 					"sid": 581508946677991,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 581508946677991,
-						"expanded": true
+					"behaviors": {
+						"Flash": {
+							"properties": {}
+						}
 					},
 					"showing": true,
 					"locked": false,
@@ -508,10 +476,6 @@
 							"properties": {}
 						}
 					},
-					"instanceFolderItem": {
-						"sid": 787578948301869,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -543,19 +507,23 @@
 					"uid": 35,
 					"sid": 798617645213504,
 					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 798617645213504,
-						"expanded": true
+					"instanceVariables": {
+						"bttn_id": "pause_bttn"
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
 					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 112.0864284358064,
-						"y": 101.70864282788587,
-						"width": 180,
-						"height": 180,
+						"x": 114,
+						"y": 99,
+						"width": 200,
+						"height": 200,
 						"originX": 0.5214723926380368,
 						"originY": 0.5271739130434783,
 						"color": [
@@ -582,10 +550,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 542905972696560,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -665,10 +629,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 709536166644537,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -700,11 +660,15 @@
 					"uid": 5,
 					"sid": 626410224157771,
 					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 626410224157771,
-						"expanded": true
+					"instanceVariables": {
+						"bttn_id": "pmenu_play_bttn"
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
 					},
 					"showing": true,
 					"locked": false,
@@ -737,11 +701,15 @@
 					"uid": 10,
 					"sid": 378581938751567,
 					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 378581938751567,
-						"expanded": true
+					"instanceVariables": {
+						"bttn_id": "pmenu_lvl_select_bttn"
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
 					},
 					"showing": true,
 					"locked": false,
@@ -774,11 +742,15 @@
 					"uid": 11,
 					"sid": 680268556212528,
 					"tags": "",
-					"instanceVariables": {},
-					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 680268556212528,
-						"expanded": true
+					"instanceVariables": {
+						"bttn_id": "pmenu_home_bttn"
+					},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
 					},
 					"showing": true,
 					"locked": false,
@@ -829,25 +801,101 @@
 			"blendMode": "normal",
 			"zElevation": 0,
 			"global": true
+		},
+		{
+			"name": "ActiveStreak",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [
+				{
+					"type": "ActiveStreakPopUp",
+					"properties": {
+						"text": "ACTIVE STREAK",
+						"enable-bbcode": true,
+						"font": "Arial",
+						"size": 80,
+						"line-height": 0,
+						"bold": false,
+						"italic": false,
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"text-direction": "ltr",
+						"icon-set": -1,
+						"initially-visible": true,
+						"origin": "top-left",
+						"read-aloud": false
+					},
+					"uid": 196,
+					"sid": 189975333034074,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {
+						"Flash": {
+							"properties": {}
+						}
+					},
+					"showing": true,
+					"locked": false,
+					"world": {
+						"x": 527,
+						"y": 167,
+						"width": 896,
+						"height": 134,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"z": 0,
+						"angle": 0
+					}
+				}
+			],
+			"sid": 776690312677835,
+			"effectTypes": [],
+			"isInitiallyVisible": false,
+			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"sampling": "auto",
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": true
 		}
 	],
-	"scene-graphs-folder-root": {
-		"items": [
-			{
-				"sid": 343164377699820,
-				"expanded": true
-			},
-			{
-				"sid": 588374165627683,
-				"expanded": true
-			}
-		],
-		"subfolders": []
-	},
 	"sid": 698106433821560,
 	"nonworld-instances": [
 		{
-			"type": "c1_arr",
+			"type": "c1a_arr",
 			"properties": {
 				"width": 6,
 				"height": 5,
@@ -857,7 +905,7 @@
 			"sid": 869731381481882,
 			"tags": "",
 			"instanceVariables": {
-				"c_arr_id": "c1_arr"
+				"c_arr_id": "c1a_arr"
 			}
 		},
 		{
@@ -872,6 +920,104 @@
 			"tags": "",
 			"instanceVariables": {
 				"c_arr_id": "c0_arr"
+			}
+		},
+		{
+			"type": "c1b_arr",
+			"properties": {
+				"width": 9,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 140,
+			"sid": 231382052640314,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c1b_arr"
+			}
+		},
+		{
+			"type": "c2a_arr",
+			"properties": {
+				"width": 6,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 151,
+			"sid": 815100874521483,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c2a_arr"
+			}
+		},
+		{
+			"type": "c2b_arr",
+			"properties": {
+				"width": 8,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 162,
+			"sid": 346134980774570,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c2b_arr"
+			}
+		},
+		{
+			"type": "c3a_arr",
+			"properties": {
+				"width": 6,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 173,
+			"sid": 731463591364442,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c3a_arr"
+			}
+		},
+		{
+			"type": "c3b_arr",
+			"properties": {
+				"width": 9,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 194,
+			"sid": 504911518650865,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c3b_arr"
+			}
+		},
+		{
+			"type": "c4a_arr",
+			"properties": {
+				"width": 7,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 195,
+			"sid": 450823048449282,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c4a_arr"
+			}
+		},
+		{
+			"type": "c4b_arr",
+			"properties": {
+				"width": 7,
+				"height": 5,
+				"depth": 1
+			},
+			"uid": 207,
+			"sid": 326771310701574,
+			"tags": "",
+			"instanceVariables": {
+				"c_arr_id": "c4b_arr"
 			}
 		}
 	],

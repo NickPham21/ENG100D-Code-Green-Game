@@ -70,11 +70,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 605424615220952,
+							"sid": 566720974037629,
 							"parameters": {
 								"x": "0",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 792331125192408,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"voiceline_0_1\""
 							}
 						},
 						{
@@ -100,11 +110,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 148660248545644,
+							"sid": 444903479562558,
 							"parameters": {
 								"x": "1",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 912271396201978,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"voiceline_0_2\""
 							}
 						},
 						{
@@ -130,11 +150,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 590949136375266,
+							"sid": 858927859873243,
 							"parameters": {
 								"x": "2",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 896922929791375,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"voiceline_0_3\""
 							}
 						},
 						{
@@ -160,11 +190,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 757307220386972,
+							"sid": 981116812016270,
 							"parameters": {
 								"x": "3",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 910230039362603,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_0_4\""
 							}
 						},
 						{
@@ -190,11 +230,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 793125652840828,
+							"sid": 834317750012028,
 							"parameters": {
 								"x": "4",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 645433146810293,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_0_5\""
 							}
 						},
 						{
@@ -220,11 +270,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 610017320260979,
+							"sid": 501839816517378,
 							"parameters": {
 								"x": "5",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 772397507511647,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"voiceline_0_6\""
 							}
 						},
 						{
@@ -250,11 +310,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 175016947927137,
+							"sid": 463353671932069,
 							"parameters": {
 								"x": "6",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 772222502222150,
+							"parameters": {
+								"x": "6",
+								"y": "3",
+								"value": "\"voiceline_0_7\""
 							}
 						},
 						{
@@ -280,11 +350,21 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 219151923298321,
+							"sid": 462723672490946,
 							"parameters": {
 								"x": "7",
 								"y": "2",
-								"value": "\"Anh-Thu\""
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c0_arr",
+							"sid": 264411454144555,
+							"parameters": {
+								"x": "7",
+								"y": "3",
+								"value": "\"voiceline_0_8\""
 							}
 						}
 					],
@@ -304,26 +384,25 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-tweens-finished",
-							"objectClass": "blackout",
-							"sid": 534985569128663,
-							"behaviorType": "Tween",
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 455517645746603,
 							"parameters": {
-								"tags": "\"background_full_reveal\""
+								"tag": "\"c0_arr_done\""
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 818063637624386,
-							"parameters": {
-								"layout": "cutscene_1"
-							}
+							"callFunction": "clean_cutscene",
+							"sid": 475542497821237,
+							"parameters": [
+								"\"closing\"",
+								"\"cutscene_1a\""
+							]
 						}
 					],
-					"sid": 109996469477870
+					"sid": 797345726079780
 				}
 			],
 			"sid": 240742620547062

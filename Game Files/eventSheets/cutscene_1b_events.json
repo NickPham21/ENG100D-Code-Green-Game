@@ -1,0 +1,488 @@
+{
+	"name": "cutscene_1b_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 1b",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 570737952637192
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c1b_arr",
+							"sid": 674707132419460
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 798710297576746,
+							"parameters": [
+								"\"c1b_arr\""
+							]
+						}
+					],
+					"sid": 586977659996237
+				},
+				{
+					"functionName": "initialize_c1b_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 766174531619859,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"The forest is clean again.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 545954779715971,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 180775967636151,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 728753055388256,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 158057144331586,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"I can finally get back to my berry bushes!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 922933907225254,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 309286602738916,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Alexia the Bear\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 708022354607025,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"voiceline_1_3\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 208196550506219,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"Hey... what's that under the trash pile?\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 156229513885566,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 160581459768612,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Terrance the Wolf\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 267636472435391,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"voiceline_1_4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 486218104575960,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"A parking pass... and a map.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 578561353213790,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 240323393736046,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 930255502256455,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 280111202024338,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"Those don't belong in the forest...\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 219683191850995,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 215326784600805,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Alexia the Bear\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 981700031998986,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_1_5\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 984163807947688,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"Look at the map. The river leads south to the ocean.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 480471396996172,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 346867449226016,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Terrance the Wolf\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 273625824281655,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"voiceline_1_6\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 350954088555760,
+							"parameters": {
+								"x": "6",
+								"y": "0",
+								"value": "\"Then the trash may have traveled there, too.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 124251700450336,
+							"parameters": {
+								"x": "6",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 744809156483050,
+							"parameters": {
+								"x": "6",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 148233248657264,
+							"parameters": {
+								"x": "6",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 824790719001447,
+							"parameters": {
+								"x": "7",
+								"y": "0",
+								"value": "\"I'm heading to the ocean next.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 892096137687192,
+							"parameters": {
+								"x": "7",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 500836547550364,
+							"parameters": {
+								"x": "7",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 588623352065213,
+							"parameters": {
+								"x": "7",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 455485602381507,
+							"parameters": {
+								"x": "8",
+								"y": "0",
+								"value": "\"Nice work! A cleaner forest helps animals stay healthy.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 558124756803409,
+							"parameters": {
+								"x": "8",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 652806498183613,
+							"parameters": {
+								"x": "8",
+								"y": "2",
+								"value": "\"Central Command\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1b_arr",
+							"sid": 766194854721084,
+							"parameters": {
+								"x": "8",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 822475468508345
+				}
+			],
+			"sid": 707275180586155
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 1b",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 249353894394305,
+							"parameters": {
+								"tag": "\"c1b_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 567583964724402,
+							"parameters": [
+								"\"closing\"",
+								"\"cutscene_2a\""
+							]
+						}
+					],
+					"sid": 125951135155017
+				}
+			],
+			"sid": 722502978184504
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 1b",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 688593823315102
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 416266680949517
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 940458200128498,
+							"parameters": [
+								"\"c1b_arr\""
+							]
+						}
+					],
+					"sid": 711041127405893,
+					"isOrBlock": true
+				}
+			],
+			"sid": 489315239801986
+		}
+	],
+	"sid": 412969493234658
+}

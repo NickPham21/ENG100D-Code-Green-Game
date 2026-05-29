@@ -1,0 +1,488 @@
+{
+	"name": "cutscene_3b_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 3b",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 632719008895828
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c3b_arr",
+							"sid": 293114343987846
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 641141601453206,
+							"parameters": [
+								"\"c3b_arr\""
+							]
+						}
+					],
+					"sid": 111317734717132
+				},
+				{
+					"functionName": "initialize_c3b_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 435910422130157,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"The beach is finally clean again.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 517660024208402,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 453811444981077,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 545165036307373,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 511793091375425,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"Tubular! Now I can walk on the sand safely and get to the ocean to surf!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 132799703333205,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 428004355735203,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Dylan the Seagull\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 829589351252129,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"voiceline_3_3\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 986178671419159,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"And the water is safe again for my son!\"\n"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 989790799122539,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 843417316747228,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Jorell the Sea Otter\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 238663505074242,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"voiceline_3_4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 929268043847691,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"Wait... there were footprints here earlier...\"\n"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 924228871510979,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 809788559218197,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Dylan the Seagull\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 281417605505650,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_3_5\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 757407907329258,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"And look at all these snack wrappers...\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 121219585368722,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 625937974175138,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 914750779888267,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 622087220946678,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"Plus this bus ticket from the city...\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 515129255908198,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 907207182061756,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Jorell the Sea Otter\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 662552067909734,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"voiceline_3_6\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 466509043677629,
+							"parameters": {
+								"x": "6",
+								"y": "0",
+								"value": "\"Humans were definitely here.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 759192189315565,
+							"parameters": {
+								"x": "6",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 493942074275226,
+							"parameters": {
+								"x": "6",
+								"y": "2",
+								"value": "\"Dylan the Seagull\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 754534663467898,
+							"parameters": {
+								"x": "6",
+								"y": "3",
+								"value": "\"voiceline_3_7\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 459106421122135,
+							"parameters": {
+								"x": "7",
+								"y": "0",
+								"value": "\"Then the city is my next stop.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 908313796794037,
+							"parameters": {
+								"x": "7",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 673398620821847,
+							"parameters": {
+								"x": "7",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 386711478806572,
+							"parameters": {
+								"x": "7",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 711314482434864,
+							"parameters": {
+								"x": "8",
+								"y": "0",
+								"value": "\"Amazing work! Cleaning up trash helps protect animals.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 675145480156746,
+							"parameters": {
+								"x": "8",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 225435282958393,
+							"parameters": {
+								"x": "8",
+								"y": "2",
+								"value": "\"Central Command\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3b_arr",
+							"sid": 788957470019630,
+							"parameters": {
+								"x": "8",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 935292174449275
+				}
+			],
+			"sid": 353213263337530
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 3b",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 140266621555390,
+							"parameters": {
+								"tag": "\"c3b_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 299547518474917,
+							"parameters": [
+								"\"closing\"",
+								"\"cutscene_4a\""
+							]
+						}
+					],
+					"sid": 719643467495198
+				}
+			],
+			"sid": 641176276663032
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 3b",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 244649221967347
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 922537483783090
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 400407557011306,
+							"parameters": [
+								"\"c3b_arr\""
+							]
+						}
+					],
+					"sid": 294812787000736,
+					"isOrBlock": true
+				}
+			],
+			"sid": 145999516912013
+		}
+	],
+	"sid": 830007944922524
+}

@@ -22,10 +22,6 @@
 					"tags": "",
 					"instanceVariables": {},
 					"behaviors": {},
-					"instanceFolderItem": {
-						"sid": 446696677218238,
-						"expanded": true
-					},
 					"showing": true,
 					"locked": false,
 					"world": {
@@ -76,10 +72,6 @@
 			"global": false
 		}
 	],
-	"scene-graphs-folder-root": {
-		"items": [],
-		"subfolders": []
-	},
 	"sid": 570347206506571,
 	"nonworld-instances": [],
 	"effectTypes": [],

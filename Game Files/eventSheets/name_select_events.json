@@ -680,7 +680,7 @@
 							"objectClass": "Mouse",
 							"sid": 385015741437809,
 							"parameters": {
-								"object": "main_menu_buttons"
+								"object": "buttons"
 							}
 						}
 					],
@@ -695,7 +695,7 @@
 						},
 						{
 							"id": "tween-two-properties",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 552463372309165,
 							"behaviorType": "Tween",
 							"parameters": {
@@ -730,7 +730,7 @@
 							"actions": [
 								{
 									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
+									"objectClass": "buttons",
 									"sid": 526727091730940,
 									"parameters": {
 										"frame-number": "\"bttn_hover\""
@@ -754,7 +754,7 @@
 							"actions": [
 								{
 									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
+									"objectClass": "buttons",
 									"sid": 751911713075560,
 									"parameters": {
 										"frame-number": "\"bttn_pressed\""
@@ -777,7 +777,7 @@
 								},
 								{
 									"id": "compare-animation-frame-tag",
-									"objectClass": "main_menu_buttons",
+									"objectClass": "buttons",
 									"sid": 192298465053676,
 									"parameters": {
 										"comparison": 0,
@@ -788,7 +788,7 @@
 							"actions": [
 								{
 									"id": "set-animation-frame",
-									"objectClass": "main_menu_buttons",
+									"objectClass": "buttons",
 									"sid": 101126511905017,
 									"parameters": {
 										"frame-number": "\"bttn_pressed\""
@@ -800,7 +800,7 @@
 									"sid": 562845569252851,
 									"parameters": {
 										"variable": "ButtonActivated",
-										"value": "main_menu_buttons.bttn_id"
+										"value": "buttons.bttn_id"
 									}
 								},
 								{
@@ -834,7 +834,7 @@
 							"objectClass": "Mouse",
 							"sid": 246993664546786,
 							"parameters": {
-								"object": "main_menu_buttons"
+								"object": "buttons"
 							},
 							"isInverted": true
 						},
@@ -859,7 +859,7 @@
 						},
 						{
 							"id": "tween-two-properties",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 539798136689010,
 							"behaviorType": "Tween",
 							"parameters": {
@@ -877,7 +877,7 @@
 						},
 						{
 							"id": "set-animation-frame",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 488960847630158,
 							"parameters": {
 								"frame-number": "\"bttn_idle\""
@@ -920,14 +920,14 @@
 							"objectClass": "Touch",
 							"sid": 471890172990580,
 							"parameters": {
-								"object": "main_menu_buttons"
+								"object": "buttons"
 							}
 						}
 					],
 					"actions": [
 						{
 							"id": "set-animation-frame",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 579357073284053,
 							"parameters": {
 								"frame-number": "\"bttn_pressed\""
@@ -944,13 +944,13 @@
 							"objectClass": "Touch",
 							"sid": 536440830170475,
 							"parameters": {
-								"object": "main_menu_buttons"
+								"object": "buttons"
 							},
 							"isInverted": true
 						},
 						{
 							"id": "compare-animation-frame-tag",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 236337496474151,
 							"parameters": {
 								"comparison": 0,
@@ -965,7 +965,7 @@
 							"sid": 762421606878012,
 							"parameters": {
 								"variable": "ButtonActivated",
-								"value": "main_menu_buttons.bttn_id"
+								"value": "buttons.bttn_id"
 							}
 						},
 						{
@@ -988,7 +988,7 @@
 						},
 						{
 							"id": "set-animation-frame",
-							"objectClass": "main_menu_buttons",
+							"objectClass": "buttons",
 							"sid": 204453439872990,
 							"parameters": {
 								"frame-number": "\"bttn_idle\""

@@ -1,0 +1,490 @@
+{
+	"name": "cutscene_2a_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 2a",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 116154627496651
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c2a_arr",
+							"sid": 120616920714451
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 211729887851071,
+							"parameters": [
+								"\"c2a_arr\""
+							]
+						}
+					],
+					"sid": 142248423607829
+				},
+				{
+					"functionName": "initialize_c2a_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 304116335352029,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Did you know? Plastic in the ocean can hurt animals and damage their homes.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 803323683235345,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 866956482686427,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 568085133221153,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 473025580884283,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"Recycle the plastic to help protect ocean life.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 923870564799743,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 270504066802901,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 164908028806464,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 953491437351232,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"The river led straight to the ocean... and the water is full of trash.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 924363568669868,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 183663358019794,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 974619523420293,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 727370617232583,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"I got stuck in plastic yesterday. I could barely swim!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 552984901742708,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 445127546657298,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Nadine the Seal\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 844829677801410,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_2_1\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 996687768543350,
+							"parameters": {
+								"x": "3",
+								"y": "4",
+								"value": "\"sad\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 762913453190387,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"*cough* Some fish families have already left to find cleaner water...\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 955682157615010,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 442108804894174,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Pham the Clown Fish\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 691964554614049,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_2_2\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 755132485267317,
+							"parameters": {
+								"x": "4",
+								"y": "4",
+								"value": "\"sad\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 307066979953805,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"Don't worry. I'm here to help.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 881096657457413,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 551981954890176,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c2a_arr",
+							"sid": 234608477595002,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 832351271335311
+				}
+			],
+			"sid": 574397531917690
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 2a",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 489284853441948,
+							"parameters": {
+								"tag": "\"c2a_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 989004290795105,
+							"parameters": [
+								"\"opening\"",
+								"\"game_screen_2\""
+							]
+						}
+					],
+					"sid": 357870443867514
+				}
+			],
+			"sid": 344277041321943
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 2a",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 460120513360664
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 931088213758504
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 727180722117407,
+							"parameters": [
+								"\"c2a_arr\""
+							]
+						}
+					],
+					"sid": 815178962683635,
+					"isOrBlock": true
+				}
+			],
+			"sid": 874492766163852
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 2a",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 717379779820185,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 493599028643486,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 184273336050539,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 104806447521459,
+									"parameters": {
+										"opacity": "0"
+									}
+								}
+							],
+							"sid": 326472323923280
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 224490456014655,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 690124069960969,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 501381996400366,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 649993439061795,
+									"parameters": {
+										"opacity": "100"
+									}
+								}
+							],
+							"sid": 194084881276604
+						}
+					]
+				}
+			],
+			"sid": 250396100136611
+		}
+	],
+	"sid": 272918106057733
+}

@@ -13,6 +13,13 @@
 	],
 	"members": [
 		"c0_arr",
-		"c1_arr"
+		"c1a_arr",
+		"c1b_arr",
+		"c2a_arr",
+		"c2b_arr",
+		"c3a_arr",
+		"c3b_arr",
+		"c4a_arr",
+		"c4b_arr"
 	]
 }

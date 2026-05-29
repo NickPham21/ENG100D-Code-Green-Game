@@ -1,0 +1,470 @@
+{
+	"name": "cutscene_1a_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 1a",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 660304181965071
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c1a_arr",
+							"sid": 682472237620944
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 448109050732476,
+							"parameters": [
+								"\"c1a_arr\""
+							]
+						}
+					],
+					"sid": 276128206896273
+				},
+				{
+					"functionName": "initialize_c1a_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 407019220486132,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Did you know? Forest animals can get sick if they eat trash.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 634480973152058,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 551321050432662,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 769196536016826,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 893743611561123,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"Clean up the forest to help keep the animals safe.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 563275203663568,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 910845208718020,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 605235531574107,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 101488651203676,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"Something's wrong here. Trash is scattered all over the floor.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 749656785429158,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 238960899214072,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 311561307349324,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 736203862556454,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"I tried to pick berries this morning... but all I found was garbage.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 956541352968372,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 322374206408832,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Alexia the Bear\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 766899751603024,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_1_1\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 870402534420657,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"And the river smells strange now. Even the birds stopped coming by.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 200247320556567,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 721887487368561,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Terrance the Wolf\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 352396917957825,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_1_2\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 803115789285214,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"I’m going to clean this up and see where it’s coming from.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 788817477764041,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 576788926385393,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c1a_arr",
+							"sid": 813010071643557,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 649605613863282
+				}
+			],
+			"sid": 862775565824776
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 1a",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 141833514973813,
+							"parameters": {
+								"tag": "\"c1a_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 683531869286941,
+							"parameters": [
+								"\"opening\"",
+								"\"game_screen_1\""
+							]
+						}
+					],
+					"sid": 870230724797877
+				}
+			],
+			"sid": 219150406882808
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 1a",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 354735435236428
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 189725525401601
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 490306063656986,
+							"parameters": [
+								"\"c1a_arr\""
+							]
+						}
+					],
+					"sid": 514326062167894,
+					"isOrBlock": true
+				}
+			],
+			"sid": 923254602944538
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 1a",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 857731160897258,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 985766655393048,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 907205202784991,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 856023017961912,
+									"parameters": {
+										"opacity": "0"
+									}
+								}
+							],
+							"sid": 628061276797051
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 475775028898714,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 658969630991238,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 468868716691500,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 559698470790870,
+									"parameters": {
+										"opacity": "100"
+									}
+								}
+							],
+							"sid": 605197295172347
+						}
+					]
+				}
+			],
+			"sid": 607255876952263
+		}
+	],
+	"sid": 508163888501013
+}

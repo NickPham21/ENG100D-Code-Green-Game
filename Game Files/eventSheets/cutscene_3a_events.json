@@ -1,0 +1,470 @@
+{
+	"name": "cutscene_3a_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 3a",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 269753006651746
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c3a_arr",
+							"sid": 391613501395983
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 946210572852645,
+							"parameters": [
+								"\"c3a_arr\""
+							]
+						}
+					],
+					"sid": 290239691956238
+				},
+				{
+					"functionName": "initialize_c3a_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 690143162512176,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Did you know? Trash left on the beach can wash into the ocean.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 470761177259145,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 106018390643613,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 112360220537462,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 531591778022229,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"Pick up the trash before it reaches the water.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 812112563726117,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 113444628364605,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 970331976330113,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 819664386038441,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"The beach is a mess, too. There's trash everywhere.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 172745987966770,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"none\"\n"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 261655927306848,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 852948595667553,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 234683312773723,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"Heyyyy, man! I almost stepped on broken glass trying to find food!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 653058352106102,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 728638496248149,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Dylan the Seagull\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 287462885818521,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_3_1\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 756192818169337,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"And my son got tangled in a plastic bag this morning!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 941389235682416,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 369124700646525,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Jorell the Sea Otter\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 798460305511749,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_3_2\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 281646426499817,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"I think I'm getting closer to where this all started.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 353678279017933,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 844350574495738,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c3a_arr",
+							"sid": 992630443045467,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 969007457561312
+				}
+			],
+			"sid": 323664324265776
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 3a",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 591702470379921,
+							"parameters": {
+								"tag": "\"c3a_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 307796637502965,
+							"parameters": [
+								"\"opening\"",
+								"\"game_screen_3\""
+							]
+						}
+					],
+					"sid": 602637487765695
+				}
+			],
+			"sid": 120954813512471
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 3a",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 167686399539391
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 787226186187485
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 669552082112559,
+							"parameters": [
+								"\"c3a_arr\""
+							]
+						}
+					],
+					"sid": 627828264344535,
+					"isOrBlock": true
+				}
+			],
+			"sid": 713540563814283
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 3a",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 686685374448399,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 593401266673105,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 244923604307800,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 755419265557224,
+									"parameters": {
+										"opacity": "0"
+									}
+								}
+							],
+							"sid": 235175600882307
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 362209702202925,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 890445760251388,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 215419646833466,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 940922440426659,
+									"parameters": {
+										"opacity": "100"
+									}
+								}
+							],
+							"sid": 360137310160495
+						}
+					]
+				}
+			],
+			"sid": 603896493138610
+		}
+	],
+	"sid": 286031682827865
+}

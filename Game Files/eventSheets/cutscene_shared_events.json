@@ -244,9 +244,9 @@
 						},
 						{
 							"callFunction": "animate_sprites",
-							"sid": 165137848123630,
+							"sid": 609886461698521,
 							"parameters": [
-								"c_arr_name",
+								"\"init\"",
 								"\"\""
 							]
 						},
@@ -300,7 +300,22 @@
 					"functionReturnType": "none",
 					"functionCopyPicked": false,
 					"functionIsAsync": false,
-					"functionParameters": [],
+					"functionParameters": [
+						{
+							"name": "transition_style",
+							"type": "string",
+							"initialValue": "closing",
+							"comment": "What transition style to use for the blackout effect. Two options: \"opening\" is blackout fading (curtain lift), \"closing\" is blacking out (curtain down).",
+							"sid": 799331168968225
+						},
+						{
+							"name": "transition_to_layout",
+							"type": "string",
+							"initialValue": "intro_screen",
+							"comment": "name of layout to transition to",
+							"sid": 698617053509092
+						}
+					],
 					"eventType": "function-block",
 					"conditions": [],
 					"actions": [
@@ -338,27 +353,6 @@
 							"sid": 197003761947672,
 							"parameters": {
 								"text": "\"\""
-							}
-						},
-						{
-							"type": "comment",
-							"text": "Curtain lift effect"
-						},
-						{
-							"id": "tween-one-property",
-							"objectClass": "blackout",
-							"sid": 152411403843866,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"background_full_reveal\"",
-								"property": "offsetOpacity",
-								"end-value": "0",
-								"time": "1",
-								"ease": "easeinoutsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
 							}
 						},
 						{
@@ -488,6 +482,110 @@
 								}
 							],
 							"sid": 143888976667143
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 379295956118866,
+									"parameters": {
+										"first-value": "transition_style",
+										"comparison": 0,
+										"second-value": "\"opening\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Curtain lift effect"
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "blackout",
+									"sid": 725963304129800,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"curtain_up\"",
+										"property": "offsetOpacity",
+										"end-value": "0",
+										"time": "1",
+										"ease": "easeinoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 543805029636532
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 165340648272209,
+									"parameters": {
+										"layout": "transition_to_layout"
+									}
+								}
+							],
+							"sid": 780710289555264
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 505794291385936,
+									"parameters": {
+										"first-value": "transition_style",
+										"comparison": 0,
+										"second-value": "\"closing\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Curtain lift effect"
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "blackout",
+									"sid": 639817061506107,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"curtain_down\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": "1",
+										"ease": "easeinoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 945601446393568
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 595588070512242,
+									"parameters": {
+										"layout": "transition_to_layout"
+									}
+								}
+							],
+							"sid": 434882268750540
 						}
 					]
 				}
@@ -1368,7 +1466,7 @@
 											"sid": 881696355526151,
 											"parameters": {
 												"type": "log",
-												"message": "\"skipping \" & c1_arr.At(cSeqCtr-1, 3)"
+												"message": "\"skipping \" & c1a_arr.At(cSeqCtr-1, 3)"
 											}
 										}
 									],
@@ -1517,8 +1615,12 @@
 									],
 									"actions": [
 										{
-											"callFunction": "clean_cutscene",
-											"sid": 931952242871686
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 965591522190489,
+											"parameters": {
+												"tag": "c_arr_name & \"_done\""
+											}
 										},
 										{
 											"type": "comment",

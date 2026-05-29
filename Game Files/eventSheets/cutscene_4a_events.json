@@ -1,0 +1,510 @@
+{
+	"name": "cutscene_4a_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 4a",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 472046635342332
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c4a_arr",
+							"sid": 696126703694125
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 316414860500722,
+							"parameters": [
+								"\"c4a_arr\""
+							]
+						}
+					],
+					"sid": 858139271943567
+				},
+				{
+					"functionName": "initialize_c4a_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 618951256075247,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Did you know? Trash does not just disappear.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 793329473606057,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 673796716144729,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 421047115968442,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 785228739587450,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"If people do not throw trash away properly, it can end up in nature.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 428554666516671,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 949904981068775,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 226977997004897,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 312600084657395,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"I made it to the city... and I think this is where the trash started.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 290116002891057,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"none\"\n"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 600543072748874,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 498871264311643,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 166862046717740,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"Ugh! The plastic, the glass, the food waste, the broken electronics... Oh my gosh... It's like... everywhere.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 617875112725635,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"right\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 402810694429584,
+							"parameters": {
+								"x": "3",
+								"y": "2",
+								"value": "\"Nick the Tuxedo Cat\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 841678372155137,
+							"parameters": {
+								"x": "3",
+								"y": "3",
+								"value": "\"voiceline_4_1\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 369067489840245,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"Yo, when people leave trash behind, you know it spreads to other places, right?\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 115444586874705,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"left\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 111896200400835,
+							"parameters": {
+								"x": "4",
+								"y": "2",
+								"value": "\"Surej the Swag Raccoon\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 906344107778438,
+							"parameters": {
+								"x": "4",
+								"y": "3",
+								"value": "\"voiceline_4_2\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 414516031153702,
+							"parameters": {
+								"x": "5",
+								"y": "0",
+								"value": "\"So the city affected the forest, beach, and ocean.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 184688168452182,
+							"parameters": {
+								"x": "5",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 370828713527428,
+							"parameters": {
+								"x": "5",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 482215537452025,
+							"parameters": {
+								"x": "5",
+								"y": "3",
+								"value": "\"\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 767870869225986,
+							"parameters": {
+								"x": "6",
+								"y": "0",
+								"value": "\"I'm cleaning this up once and for all.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 816799213831187,
+							"parameters": {
+								"x": "6",
+								"y": "1",
+								"value": "\"none\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 843530830478507,
+							"parameters": {
+								"x": "6",
+								"y": "2",
+								"value": "\"Agent \" & PlayerName"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c4a_arr",
+							"sid": 803087674753033,
+							"parameters": {
+								"x": "6",
+								"y": "3",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 906015658411544
+				}
+			],
+			"sid": 842428239226986
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 4a",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 454537577659332,
+							"parameters": {
+								"tag": "\"c4a_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 607194388968636,
+							"parameters": [
+								"\"opening\"",
+								"\"game_screen_4\""
+							]
+						}
+					],
+					"sid": 928878479492587
+				}
+			],
+			"sid": 334370844940288
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 4a",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 189282943560254
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 506307632802784
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 561498500274817,
+							"parameters": [
+								"\"c4a_arr\""
+							]
+						}
+					],
+					"sid": 766933989036255,
+					"isOrBlock": true
+				}
+			],
+			"sid": 119405049274728
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 4a",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 903571394073633,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 176824739526157,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 143290335104137,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 888383931001519,
+									"parameters": {
+										"opacity": "0"
+									}
+								}
+							],
+							"sid": 551180179063750
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 280107499856121,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 629379787327820,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 668322517843114,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"left\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 818684403273463,
+									"parameters": {
+										"opacity": "100"
+									}
+								}
+							],
+							"sid": 801935440627271
+						}
+					]
+				}
+			],
+			"sid": 254404378057470
+		}
+	],
+	"sid": 872109878992496
+}

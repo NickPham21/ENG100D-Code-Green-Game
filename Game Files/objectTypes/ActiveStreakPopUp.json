@@ -1,0 +1,16 @@
+{
+	"name": "ActiveStreakPopUp",
+	"plugin-id": "Text",
+	"sid": 897990986685397,
+	"isGlobal": true,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Flash",
+			"name": "Flash",
+			"sid": 402001979561772
+		}
+	],
+	"effectTypes": []
+}

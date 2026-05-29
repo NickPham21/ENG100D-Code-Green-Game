@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 47604,
+	"savedWithRelease": 48700,
 	"name": "Code Green Game",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -85,6 +85,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Flash",
+			"name": "Flash",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Timer",
 			"name": "Timer",
 			"author": "Scirra",
@@ -159,7 +166,10 @@
 			"ewaste_object",
 			"rat",
 			"TiledBackground2",
-			"black_bg"
+			"black_bg",
+			"ActiveStreakPopUp",
+			"sprite_monitor",
+			"city__clean_bg"
 		],
 		"subfolders": [
 			{
@@ -183,11 +193,18 @@
 					"c_name_display",
 					"c_sprite_display",
 					"dialogue_textbox",
-					"c1_arr",
+					"c1a_arr",
 					"c_monitor_text_display",
 					"c_monitor_name_display",
 					"c0_arr",
-					"name_select_instruction"
+					"name_select_instruction",
+					"c2a_arr",
+					"c1b_arr",
+					"c2b_arr",
+					"c3a_arr",
+					"c3b_arr",
+					"c4a_arr",
+					"c4b_arr"
 				],
 				"subfolders": [],
 				"name": "Cutscene"
@@ -212,7 +229,7 @@
 	],
 	"families": {
 		"items": [
-			"main_menu_buttons",
+			"buttons",
 			"main_menu_texts",
 			"cutscene_arrays"
 		],
@@ -224,12 +241,19 @@
 			"level_select_screen",
 			"intro_screen",
 			"main_menu_screen",
-			"cutscene_1",
+			"cutscene_1a",
 			"game_screen_2",
 			"game_screen_3",
 			"cutscene_0",
 			"name_select_screen",
-			"game_screen_4"
+			"game_screen_4",
+			"cutscene_1b",
+			"cutscene_2a",
+			"cutscene_2b",
+			"cutscene_3a",
+			"cutscene_3b",
+			"cutscene_4a",
+			"cutscene_4b"
 		],
 		"subfolders": []
 	},
@@ -237,15 +261,24 @@
 		"items": [
 			"game_events_1",
 			"main_menu_events",
-			"cutscene_1_events",
+			"cutscene_1a_events",
 			"level_select_events",
 			"intro_events",
 			"game_events_2",
 			"game_events_3",
 			"cutscene_0_events",
 			"name_select_events",
+			"global_game_events",
+			"cutscene_shared_events",
+			"cutscene_1b_events",
+			"bttn_ux_animation_events",
+			"cutscene_2a_events",
+			"cutscene_2b_events",
+			"cutscene_3a_events",
+			"cutscene_3b_events",
+			"cutscene_4a_events",
 			"game_events_4",
-			"cutscene_shared_events"
+			"cutscene_4b_events"
 		],
 		"subfolders": []
 	},
@@ -268,6 +301,262 @@
 					"name": "voiceline_1_2.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 171248954576766,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_1_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 429871769668768,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_1_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 140726587621141,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_1_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 176340495832643,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_1_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 284729422316536,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 310230403773562,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 156398079847115,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 736673076147723,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 497637222933487,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 164304456344025,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_7.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 669203522263911,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_8.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 597838200048078,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_0_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 680927134442260,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 345311059481160,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 804354170364902,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 569245010246483,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 138242350391417,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 806836645780983,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_2_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 983229276389734,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 842415457880008,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 688629033623171,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 870875413354463,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 536475079001909,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 879126066118059,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 338494493872539,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_3_7.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 700093457475308,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 507486269916850,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 532661108728324,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 151829073982121,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 324489722809545,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_7.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 942148261211833,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_8.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 151468848460444,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_9.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 446874874215835,
 					"file-info": {
 						"purpose": "none"
 					}
