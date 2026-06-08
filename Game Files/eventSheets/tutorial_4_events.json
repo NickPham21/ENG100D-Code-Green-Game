@@ -1,0 +1,202 @@
+{
+	"name": "tutorial_4_events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "tutorial_shared_events"
+		},
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting how many tutorial sequences are in this cutscene (select t[num]_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Tutorial 4",
+			"description": "Anything to do with initializing the tutorial.\n\nInitialize tutorial array (t[num[_arr object) on startup.\nThis array is an x by 2 array, where:\n - x is the number of sequences in the tutorial\n   - (x, 0) is the looping video to play\n   - (x, 1) is the accompanying text",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 410740722210268
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_t4_arr",
+							"sid": 296489365574021
+						},
+						{
+							"callFunction": "initialize_tutorial",
+							"sid": 976358633422044,
+							"parameters": [
+								"\"t4_arr\""
+							]
+						}
+					],
+					"sid": 238609609647954
+				},
+				{
+					"functionName": "initialize_t4_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "t4_arr",
+							"sid": 807087593476246,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"tutorial_vid_7.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t4_arr",
+							"sid": 156481622510712,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"Electronics and batteries go into the e-waste cardboard box!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t4_arr",
+							"sid": 830076520445618,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"compscreen.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t4_arr",
+							"sid": 355840358779611,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"Get a score of 120 to pass the level. Shoot for the stars!\""
+							}
+						}
+					],
+					"sid": 239004842609185
+				}
+			],
+			"sid": 417318500428104
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Tutorial 4",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay (or back to menu if we have time...)",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 339967284545503,
+							"parameters": {
+								"tag": "\"t4_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "music_stop",
+							"sid": 384496358310117,
+							"parameters": [
+								"\"cutscene_4a\""
+							]
+						},
+						{
+							"callFunction": "clean_tutorial",
+							"sid": 995597473629252,
+							"parameters": [
+								"\"game_screen_4\""
+							]
+						}
+					],
+					"sid": 511513081101449
+				}
+			],
+			"sid": 241215785054444
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Tutorial 4",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 982062407442142,
+							"parameters": {
+								"tag": "\"tutorial_next_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_tutorial_next",
+							"sid": 327733287507956,
+							"parameters": [
+								"\"t4_arr\""
+							]
+						}
+					],
+					"sid": 204753033107270
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 183928127005320,
+							"parameters": {
+								"tag": "\"tutorial_prev_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_tutorial_prev",
+							"sid": 931497932975333,
+							"parameters": [
+								"\"t4_arr\""
+							]
+						}
+					],
+					"sid": 362469719152069
+				}
+			],
+			"sid": 714177133581598
+		}
+	],
+	"sid": 592699339014755
+}

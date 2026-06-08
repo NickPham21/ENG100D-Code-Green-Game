@@ -2,6 +2,14 @@
 	"name": "name_select_events",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "save_events"
+		},
+		{
 			"eventType": "variable",
 			"name": "NameCharLimit",
 			"type": "number",
@@ -15,7 +23,7 @@
 			"eventType": "variable",
 			"name": "PlayerName",
 			"type": "string",
-			"initialValue": "name_not_set",
+			"initialValue": "Player",
 			"comment": "The player's name. Set during the name select screen and displayed during cutscenes",
 			"isStatic": false,
 			"isConstant": false,
@@ -150,27 +158,40 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
+							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 755805718384201,
+							"sid": 510435877811819,
 							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"name_confirm\""
+								"tag": "\"back_bttn_pressed\""
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-eventvar-value",
+							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 134549697327223,
+							"sid": 727466842929520,
 							"parameters": {
-								"variable": "ButtonActivated",
-								"value": "\"\""
+								"layout": "main_menu_screen"
 							}
 						}
 					],
+					"sid": 901548413699581,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 302794087497468,
+							"parameters": {
+								"tag": "\"name_confirm_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [],
 					"sid": 342008564788554,
 					"children": [
 						{
@@ -261,10 +282,18 @@
 								{
 									"id": "set-position",
 									"objectClass": "name_no_bttn_text",
-									"sid": 950395501403816,
+									"sid": 148084162476814,
 									"parameters": {
 										"x": "747",
-										"y": "849"
+										"y": "832"
+									}
+								},
+								{
+									"id": "set-enabled",
+									"objectClass": "TextInput",
+									"sid": 548913883093362,
+									"parameters": {
+										"mode": "disabled"
 									}
 								},
 								{
@@ -285,13 +314,11 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
+							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 197694630416448,
+							"sid": 767367831612645,
 							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"name_no\""
+								"tag": "\"name_no_bttn_pressed\""
 							}
 						}
 					],
@@ -351,20 +378,19 @@
 							}
 						},
 						{
+							"id": "set-enabled",
+							"objectClass": "TextInput",
+							"sid": 605930680689254,
+							"parameters": {
+								"mode": "enabled"
+							}
+						},
+						{
 							"id": "set-text",
 							"objectClass": "name_select_instruction",
 							"sid": 653999495862269,
 							"parameters": {
 								"text": "\"Please Enter Your Name.\""
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 683653114664894,
-							"parameters": {
-								"variable": "ButtonActivated",
-								"value": "\"\""
 							}
 						}
 					],
@@ -375,13 +401,11 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
+							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 412385346242746,
+							"sid": 634041892116171,
 							"parameters": {
-								"variable": "ButtonActivated",
-								"comparison": 0,
-								"value": "\"name_yes\""
+								"tag": "\"name_yes_bttn_pressed\""
 							}
 						}
 					],
@@ -394,6 +418,13 @@
 								"variable": "PlayerName",
 								"value": "name_select_display.PlainText"
 							}
+						},
+						{
+							"callFunction": "save_userdata",
+							"sid": 404301001662749,
+							"parameters": [
+								"0"
+							]
 						},
 						{
 							"id": "set-position",
@@ -662,345 +693,6 @@
 			"sid": 992177479672937
 		},
 		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "Button Animation - Name Select",
-			"description": "User interaction animations for name selection buttons",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "comment",
-					"text": "PC controls:\n- button in \"hover\" state when mouse over it\n- button in \"pressed\" state when mouse over it AND left button is down\n- button function activates only when button was pressed and left button is released"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "cursor-is-over-object",
-							"objectClass": "Mouse",
-							"sid": 385015741437809,
-							"parameters": {
-								"object": "buttons"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-cursor-style2",
-							"objectClass": "Mouse",
-							"sid": 793260106129719,
-							"parameters": {
-								"cursor-style": "pointer"
-							}
-						},
-						{
-							"id": "tween-two-properties",
-							"objectClass": "buttons",
-							"sid": 552463372309165,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"shrink\"",
-								"property": "scale",
-								"end-x": "0.6",
-								"end-y": "0.6",
-								"time": "0.02",
-								"ease": "easeinsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						}
-					],
-					"sid": 931869458917136,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "mouse-button-is-down",
-									"objectClass": "Mouse",
-									"sid": 933868952652675,
-									"parameters": {
-										"mouse-button": "left"
-									},
-									"isInverted": true
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation-frame",
-									"objectClass": "buttons",
-									"sid": 526727091730940,
-									"parameters": {
-										"frame-number": "\"bttn_hover\""
-									}
-								}
-							],
-							"sid": 343689302975749
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "mouse-button-is-down",
-									"objectClass": "Mouse",
-									"sid": 249224333878230,
-									"parameters": {
-										"mouse-button": "left"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation-frame",
-									"objectClass": "buttons",
-									"sid": 751911713075560,
-									"parameters": {
-										"frame-number": "\"bttn_pressed\""
-									}
-								}
-							],
-							"sid": 371743252487713,
-							"isOrBlock": true
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "on-button-released",
-									"objectClass": "Mouse",
-									"sid": 522501331515044,
-									"parameters": {
-										"mouse-button": "left"
-									}
-								},
-								{
-									"id": "compare-animation-frame-tag",
-									"objectClass": "buttons",
-									"sid": 192298465053676,
-									"parameters": {
-										"comparison": 0,
-										"tag": "\"bttn_pressed\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-animation-frame",
-									"objectClass": "buttons",
-									"sid": 101126511905017,
-									"parameters": {
-										"frame-number": "\"bttn_pressed\""
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 562845569252851,
-									"parameters": {
-										"variable": "ButtonActivated",
-										"value": "buttons.bttn_id"
-									}
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 616531431351860,
-									"parameters": {
-										"seconds": "0.02",
-										"use-timescale": true
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 587359559206173,
-									"parameters": {
-										"variable": "ButtonActivated",
-										"value": "\"\""
-									}
-								}
-							],
-							"sid": 862569346917622
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "cursor-is-over-object",
-							"objectClass": "Mouse",
-							"sid": 246993664546786,
-							"parameters": {
-								"object": "buttons"
-							},
-							"isInverted": true
-						},
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 469465641248834,
-							"parameters": {
-								"variable": "MobileMode"
-							},
-							"isInverted": true
-						}
-					],
-					"actions": [
-						{
-							"id": "set-cursor-style2",
-							"objectClass": "Mouse",
-							"sid": 807479470339653,
-							"parameters": {
-								"cursor-style": "normal"
-							}
-						},
-						{
-							"id": "tween-two-properties",
-							"objectClass": "buttons",
-							"sid": 539798136689010,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"normalScale\"",
-								"property": "scale",
-								"end-x": "0.627",
-								"end-y": "0.627",
-								"time": "0.02",
-								"ease": "easeinsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						},
-						{
-							"id": "set-animation-frame",
-							"objectClass": "buttons",
-							"sid": 488960847630158,
-							"parameters": {
-								"frame-number": "\"bttn_idle\""
-							}
-						}
-					],
-					"sid": 176618927942724
-				},
-				{
-					"eventType": "comment",
-					"text": "Mobile controls:\n- no \"hover\" state\n- no scale tweening, makes pressing too hard\n- button in \"pressed\" state when touch held on button\n- button function activates only when button was pressed and touch is released"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-tap",
-							"objectClass": "Touch",
-							"sid": 756267780355085
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 743035439638415,
-							"parameters": {
-								"variable": "MobileMode",
-								"value": "true"
-							}
-						}
-					],
-					"sid": 304845587198559
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-touching-object",
-							"objectClass": "Touch",
-							"sid": 471890172990580,
-							"parameters": {
-								"object": "buttons"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-animation-frame",
-							"objectClass": "buttons",
-							"sid": 579357073284053,
-							"parameters": {
-								"frame-number": "\"bttn_pressed\""
-							}
-						}
-					],
-					"sid": 133179982626786
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-touching-object",
-							"objectClass": "Touch",
-							"sid": 536440830170475,
-							"parameters": {
-								"object": "buttons"
-							},
-							"isInverted": true
-						},
-						{
-							"id": "compare-animation-frame-tag",
-							"objectClass": "buttons",
-							"sid": 236337496474151,
-							"parameters": {
-								"comparison": 0,
-								"tag": "\"bttn_pressed\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 762421606878012,
-							"parameters": {
-								"variable": "ButtonActivated",
-								"value": "buttons.bttn_id"
-							}
-						},
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 730583152342075,
-							"parameters": {
-								"seconds": "0.02",
-								"use-timescale": true
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 451908072728096,
-							"parameters": {
-								"variable": "ButtonActivated",
-								"value": "\"\""
-							}
-						},
-						{
-							"id": "set-animation-frame",
-							"objectClass": "buttons",
-							"sid": 204453439872990,
-							"parameters": {
-								"frame-number": "\"bttn_idle\""
-							}
-						}
-					],
-					"sid": 317381696245638
-				}
-			],
-			"sid": 561104797933207
-		},
-		{
 			"functionName": "clean_name_select",
 			"functionDescription": "transitions from name select screen to cutscene 0",
 			"functionCategory": "",
@@ -1071,6 +763,13 @@
 				}
 			],
 			"actions": [
+				{
+					"callFunction": "music_stop",
+					"sid": 209532648350937,
+					"parameters": [
+						"\"main_menu_screen\""
+					]
+				},
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",

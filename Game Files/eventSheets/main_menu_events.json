@@ -3,13 +3,23 @@
 	"events": [
 		{
 			"eventType": "variable",
-			"name": "GlobalVolume",
+			"name": "SfxVolume",
 			"type": "number",
-			"initialValue": "3",
-			"comment": "Global value for setting volume",
+			"initialValue": "-10",
+			"comment": "Global Sfx volume value (including voicelines)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 912636537058113
+		},
+		{
+			"eventType": "variable",
+			"name": "MusicVolume",
+			"type": "number",
+			"initialValue": "-10",
+			"comment": "Global Music volume value",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 501294768812230
 		},
 		{
 			"eventType": "variable",
@@ -33,80 +43,146 @@
 		},
 		{
 			"eventType": "include",
-			"includeSheet": "bttn_ux_animation_events"
+			"includeSheet": "bttn_ux_events"
 		},
 		{
-			"functionName": "cycle_volume",
-			"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [],
-			"sid": 808514889730938,
+			"eventType": "include",
+			"includeSheet": "save_events"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Main Menu",
+			"description": "What should immediately happen at the start of the main menu layout.",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
+							"id": "on-start-of-layout",
 							"objectClass": "System",
-							"sid": 113448671166503,
-							"parameters": {
-								"variable": "GlobalVolume",
-								"comparison": 0,
-								"value": "3"
-							}
+							"sid": 931074374639642
 						}
 					],
 					"actions": [
 						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 487359417988731,
+							"callFunction": "music_start",
+							"sid": 839153306923078,
+							"parameters": [
+								"\"main_menu_screen\""
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Load in user data for other functions"
+						},
+						{
+							"callFunction": "load_userdata",
+							"sid": 163126668527266
+						},
+						{
+							"type": "comment",
+							"text": "Game Title animation"
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "game_logo",
+							"sid": 345634897517880,
 							"parameters": {
-								"seconds": "0.05",
-								"use-timescale": false
+								"angle": "-10"
 							}
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 803046669517556,
+							"id": "tween-one-property",
+							"objectClass": "game_logo",
+							"sid": 715165686868843,
+							"behaviorType": "Tween",
 							"parameters": {
-								"variable": "GlobalVolume",
-								"value": "2"
+								"tags": "\"wobble\"",
+								"property": "offsetAngle",
+								"end-value": "10",
+								"time": "5",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "yes",
+								"ping-pong": "yes",
+								"repeat-count": "1"
 							}
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "volume_bttn",
-							"sid": 381752249651983,
+							"type": "comment",
+							"text": "Hide Confirm GUI on layer start"
+						},
+						{
+							"callFunction": "toggle_stcfrm_gui",
+							"sid": 351659222356371,
+							"parameters": [
+								false
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Initialize possible volume values"
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "volume_values",
+							"sid": 645765475927858,
 							"parameters": {
-								"animation": "\"vol2\"",
-								"from": "beginning"
+								"x": "0",
+								"value": "-100"
 							}
 						},
 						{
-							"id": "set-master-volume",
-							"objectClass": "Audio",
-							"sid": 761988016226151,
+							"id": "set-at-x",
+							"objectClass": "volume_values",
+							"sid": 441401841547881,
 							"parameters": {
-								"db": "-10"
+								"x": "1",
+								"value": "-30"
 							}
 						},
 						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
+							"id": "set-at-x",
+							"objectClass": "volume_values",
+							"sid": 793616126182720,
+							"parameters": {
+								"x": "2",
+								"value": "-20"
+							}
+						},
+						{
+							"id": "set-at-x",
+							"objectClass": "volume_values",
+							"sid": 746214214552617,
+							"parameters": {
+								"x": "3",
+								"value": "-10"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Initialize volume buttons icons"
+						},
+						{
+							"callFunction": "set_volbtn_icon",
+							"sid": 461900233158794,
+							"parameters": [
+								"\"sfx_vol_bttn\"",
+								"volume_values.IndexOf(SfxVolume)"
+							]
+						},
+						{
+							"callFunction": "set_volbtn_icon",
+							"sid": 495653511693214,
+							"parameters": [
+								"\"music_vol_bttn\"",
+								"volume_values.IndexOf(MusicVolume)"
 							]
 						}
 					],
-					"sid": 277693365625073
+					"sid": 646432189673828
 				},
 				{
 					"eventType": "block",
@@ -114,264 +190,78 @@
 						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 162543988205062,
+							"sid": 796604639621242,
 							"parameters": {
-								"variable": "GlobalVolume",
-								"comparison": 0,
-								"value": "2"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 384010458135760,
-							"parameters": {
-								"seconds": "0.05",
-								"use-timescale": false
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 765348390404062,
-							"parameters": {
-								"variable": "GlobalVolume",
-								"value": "1"
-							}
-						},
-						{
-							"id": "set-animation",
-							"objectClass": "volume_bttn",
-							"sid": 914893172961141,
-							"parameters": {
-								"animation": "\"vol1\"",
-								"from": "beginning"
-							}
-						},
-						{
-							"id": "set-master-volume",
-							"objectClass": "Audio",
-							"sid": 156903671897876,
-							"parameters": {
-								"db": "-25"
-							}
-						},
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-							]
-						}
-					],
-					"sid": 607237704823719
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 243503927083350,
-							"parameters": {
-								"variable": "GlobalVolume",
-								"comparison": 0,
-								"value": "1"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 249253306683473,
-							"parameters": {
-								"seconds": "0.05",
-								"use-timescale": false
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 219580484576411,
-							"parameters": {
-								"variable": "GlobalVolume",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-animation",
-							"objectClass": "volume_bttn",
-							"sid": 709830116422430,
-							"parameters": {
-								"animation": "\"vol0\"",
-								"from": "beginning"
-							}
-						},
-						{
-							"id": "set-master-volume",
-							"objectClass": "Audio",
-							"sid": 581069910684106,
-							"parameters": {
-								"db": "-100"
-							}
-						},
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-							]
-						}
-					],
-					"sid": 753431650788662
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 449427568866713,
-							"parameters": {
-								"variable": "GlobalVolume",
-								"comparison": 0,
+								"variable": "LevelsCompleted",
+								"comparison": 4,
 								"value": "0"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 791832237046226,
+							"type": "comment",
+							"text": "User made some progress - enable continue button and warn on starting new game of progress loss"
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "continue_bttn",
+							"sid": 413110588858718,
 							"parameters": {
-								"seconds": "0.05",
-								"use-timescale": false
+								"layer": "\"Logo & GUI\""
 							}
 						},
 						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 503384636187163,
+							"id": "move-to-layer",
+							"objectClass": "continue_bttn_text",
+							"sid": 381313608247547,
 							"parameters": {
-								"variable": "GlobalVolume",
-								"value": "3"
+								"layer": "\"Logo & GUI\""
 							}
-						},
-						{
-							"id": "set-animation",
-							"objectClass": "volume_bttn",
-							"sid": 487563222137350,
-							"parameters": {
-								"animation": "\"vol3\"",
-								"from": "beginning"
-							}
-						},
-						{
-							"id": "set-master-volume",
-							"objectClass": "Audio",
-							"sid": 644981698762718,
-							"parameters": {
-								"db": "0"
-							}
-						},
-						{
-							"type": "script",
-							"language": "javascript",
-							"script": [
-								"console.log(\"GlobalVolume now set to \", runtime.globalVars.GlobalVolume);"
-							]
 						}
 					],
-					"sid": 683010704038772
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 375465395452552
-				}
-			],
-			"actions": [
-				{
-					"type": "comment",
-					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+					"sid": 169262450043839
 				},
 				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 152847395353528,
-					"parameters": {
-						"tag": "\"\"",
-						"db": "-100",
-						"duration": "1",
-						"ending": "stop"
-					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 872056997710262,
-					"parameters": {
-						"audio-file": {
-							"path": "meow"
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 911478974738215
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "User no some progress - disable continue button, start button should take them straight to name select screen"
 						},
-						"loop": "looping",
-						"volume": "-100",
-						"stereo-pan": "0",
-						"tag-optional": "\"main_menu_music\""
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 762344771673555,
-					"parameters": {
-						"tag": "\"main_menu_music\"",
-						"db": "GlobalVolume",
-						"duration": "1",
-						"ending": "keep-playing"
-					}
-				},
-				{
-					"id": "set-angle",
-					"objectClass": "game_logo",
-					"sid": 948077159531767,
-					"parameters": {
-						"angle": "-10"
-					}
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "game_logo",
-					"sid": 154838058989715,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "\"wobble\"",
-						"property": "offsetAngle",
-						"end-value": "10",
-						"time": "5",
-						"ease": "easeinoutsine",
-						"destroy-on-complete": "no",
-						"loop": "yes",
-						"ping-pong": "yes",
-						"repeat-count": "1"
-					}
+						{
+							"id": "move-to-layer",
+							"objectClass": "continue_bttn",
+							"sid": 978683597176184,
+							"parameters": {
+								"layer": "\"Disabled Buttons\""
+							}
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "continue_bttn_text",
+							"sid": 565014595214641,
+							"parameters": {
+								"layer": "\"Disabled Buttons\""
+							}
+						}
+					],
+					"sid": 403874519262267
 				}
 			],
-			"sid": 864424547880301
+			"sid": 644183201445257
 		},
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Button Logic",
+			"title": "Button Logic - Main Menu",
 			"description": "What actually happens when the button is pressed",
 			"isActiveOnStart": true,
 			"children": [
@@ -387,17 +277,281 @@
 							}
 						}
 					],
+					"actions": [],
+					"sid": 669624160582661,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 699353404383857,
+									"parameters": {
+										"first-value": "LevelsCompleted",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Show Confirm GUI only when start bttn pressed and some progress is made"
+								},
+								{
+									"callFunction": "toggle_stcfrm_gui",
+									"sid": 391875329645615,
+									"parameters": [
+										true
+									]
+								}
+							],
+							"sid": 761552382200181
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 855452280642714
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "If no progress made, go straight to name select screen"
+								},
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 734835212337089,
+									"parameters": {
+										"layout": "name_select_screen"
+									}
+								}
+							],
+							"sid": 392635324223646
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 558892769403054,
+							"parameters": {
+								"tag": "\"stcfrm_no_bttn_pressed\""
+							}
+						}
+					],
 					"actions": [
+						{
+							"type": "comment",
+							"text": "Hide Confirm GUI if start new game canceled"
+						},
+						{
+							"callFunction": "toggle_stcfrm_gui",
+							"sid": 598030059232514,
+							"parameters": [
+								false
+							]
+						}
+					],
+					"sid": 102587527709575,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 464335672704587,
+							"parameters": {
+								"tag": "\"stcfrm_yes_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Erase user data on new game"
+						},
+						{
+							"callFunction": "clear_userdata",
+							"sid": 896536805933724
+						},
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 960199052350973,
+							"sid": 936056069040108,
 							"parameters": {
 								"layout": "name_select_screen"
 							}
 						}
 					],
-					"sid": 669624160582661,
+					"sid": 769614762944620,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 240584965389764,
+							"parameters": {
+								"tag": "\"continue_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "music_stop",
+							"sid": 648271511675550,
+							"parameters": [
+								"\"main_menu_screen\""
+							]
+						}
+					],
+					"sid": 539058578855365,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 968106867848140,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 404269115558702,
+									"parameters": {
+										"layout": "cutscene_0"
+									}
+								}
+							],
+							"sid": 544244191550507
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 350661513136802,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 723827550398735,
+									"parameters": {
+										"layout": "cutscene_2a"
+									}
+								}
+							],
+							"sid": 902729693279165
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 268444939323209,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 710746824260306,
+									"parameters": {
+										"layout": "cutscene_3a"
+									}
+								}
+							],
+							"sid": 132370654939954
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 915367562509011,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 0,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 921834491300623,
+									"parameters": {
+										"layout": "cutscene_4a"
+									}
+								}
+							],
+							"sid": 982054939682833
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 957642247560978,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 0,
+										"value": "4"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 689571475754721,
+									"parameters": {
+										"layout": "cutscene_4a"
+									}
+								}
+							],
+							"sid": 326005514737615
+						}
+					],
 					"isOrBlock": true
 				},
 				{
@@ -416,7 +570,7 @@
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 581055312789975,
+							"sid": 615567795614225,
 							"parameters": {
 								"layout": "level_select_screen"
 							}
@@ -431,20 +585,426 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 320655201761670,
+							"sid": 101682416056058,
 							"parameters": {
-								"tag": "\"volume_bttn_pressed\""
+								"tag": "\"credits_bttn_pressed\""
 							}
 						}
 					],
 					"actions": [
 						{
-							"callFunction": "cycle_volume",
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 361919686191728,
+							"parameters": {
+								"layout": "credits_screen"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 355087409487996,
+							"parameters": [
+								"\"main_menu_screen\""
+							]
+						}
+					],
+					"sid": 930756581087850,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 974400975974639,
+							"parameters": {
+								"tag": "\"sfx_vol_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "cycle_sfx_volume",
 							"sid": 630200981576868
 						}
 					],
 					"sid": 554135663948611,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 857319397170234,
+							"parameters": {
+								"tag": "\"music_vol_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "cycle_music_volume",
+							"sid": 347000887310888
+						}
+					],
+					"sid": 768775322654045,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "variable",
+					"name": "cur_vol_i",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The corresponding index to the current set volume value",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 283018072045875
+				},
+				{
+					"eventType": "variable",
+					"name": "next_vol_i",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "The corresponding index to the next volume value in the cycle",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 597378451782855
+				},
+				{
+					"functionName": "cycle_sfx_volume",
+					"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 704221692190917,
+							"parameters": {
+								"variable": "cur_vol_i",
+								"value": "volume_values.IndexOf(SfxVolume)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 518498509552645,
+							"parameters": {
+								"variable": "next_vol_i",
+								"value": "(cur_vol_i + 1) % volume_values.Width"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 844842899069296,
+							"parameters": {
+								"variable": "SfxVolume",
+								"value": "volume_values.At(next_vol_i)"
+							}
+						},
+						{
+							"id": "set-volume",
+							"objectClass": "Audio",
+							"sid": 864162701984446,
+							"parameters": {
+								"tag": "\"voicelines\"",
+								"db": "SfxVolume"
+							}
+						},
+						{
+							"id": "set-volume",
+							"objectClass": "Audio",
+							"sid": 369583630724803,
+							"parameters": {
+								"tag": "\"sfx\"",
+								"db": "SfxVolume"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 535645146506579,
+							"parameters": {
+								"type": "log",
+								"message": "\"sfx volume set to: \" & SfxVolume"
+							}
+						},
+						{
+							"callFunction": "set_volbtn_icon",
+							"sid": 130323844680063,
+							"parameters": [
+								"\"sfx_vol_bttn\"",
+								"next_vol_i"
+							]
+						}
+					],
+					"sid": 339519095268723
+				},
+				{
+					"functionName": "cycle_music_volume",
+					"functionDescription": "Cycles volume after the volume button is pressed. Changes the GlobalVolume variable and the volume of audio tracks played.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 130365931276328,
+							"parameters": {
+								"variable": "cur_vol_i",
+								"value": "volume_values.IndexOf(MusicVolume)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 136491836364307,
+							"parameters": {
+								"variable": "next_vol_i",
+								"value": "(cur_vol_i + 1) % volume_values.Width"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 747534591525813,
+							"parameters": {
+								"variable": "MusicVolume",
+								"value": "volume_values.At(next_vol_i)"
+							}
+						},
+						{
+							"id": "set-volume",
+							"objectClass": "Audio",
+							"sid": 864782811719377,
+							"parameters": {
+								"tag": "\"music\"",
+								"db": "MusicVolume"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 687661262091021,
+							"parameters": {
+								"type": "log",
+								"message": "\"music volume set to: \" & MusicVolume"
+							}
+						},
+						{
+							"callFunction": "set_volbtn_icon",
+							"sid": 455072571740647,
+							"parameters": [
+								"\"music_vol_bttn\"",
+								"next_vol_i"
+							]
+						}
+					],
+					"sid": 845059445842201
+				},
+				{
+					"functionName": "toggle_stcfrm_gui",
+					"functionDescription": "Toggles the confirmation GUI for the start button on or off.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "gui_active",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 233126171560253
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 499642728893551,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 759904294332865,
+									"parameters": {
+										"variable": "gui_active"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Show Confirm GUI"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 363700642368651,
+									"parameters": {
+										"layer": "\"Start Confirm GUI\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 282415688980268,
+									"parameters": {
+										"layer": "\"Start Confirm GUI\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 277408275145100,
+									"parameters": {
+										"layer": "\"Logo & GUI\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 653680775917329,
+									"parameters": {
+										"layer": "\"Logo & GUI\"",
+										"interactive": false
+									}
+								}
+							],
+							"sid": 215630596997329
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 679131411261966
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Hide Confirm GUI"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 432566056581356,
+									"parameters": {
+										"layer": "\"Start Confirm GUI\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 546137191860216,
+									"parameters": {
+										"layer": "\"Start Confirm GUI\"",
+										"interactive": false
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 988909085103408,
+									"parameters": {
+										"layer": "\"Logo & GUI\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 891263085956920,
+									"parameters": {
+										"layer": "\"Logo & GUI\"",
+										"interactive": true
+									}
+								}
+							],
+							"sid": 781990758942530
+						}
+					]
+				},
+				{
+					"functionName": "set_volbtn_icon",
+					"functionDescription": "helper function to set the volume button(s) icon on layout start and on button press.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "bttn_id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "which button to change the icon for",
+							"sid": 687759416600768
+						},
+						{
+							"name": "icon_num",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "which volume icon to use",
+							"sid": 214432131271780
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 566362165976547,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 677569144963351,
+									"parameters": {
+										"object": "buttons",
+										"expression": "buttons.bttn_id",
+										"comparison": 0,
+										"value": "bttn_id"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "buttons",
+									"sid": 544863307853330,
+									"parameters": {
+										"animation": "\"vol\"&icon_num",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 444254868898118
+						}
+					]
 				}
 			],
 			"sid": 476247873245354

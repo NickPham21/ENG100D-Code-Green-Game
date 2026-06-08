@@ -1,0 +1,375 @@
+{
+	"name": "save_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "Save Event Sheet: Contains helper functions to save, load, and delete user data"
+		},
+		{
+			"eventType": "comment",
+			"text": "HOW TO USE:\n- include this event sheet to event sheets when needing to save or load\n- to save, call save_userdata and pass along the last lvl completed by the user\n- to load, call load_userdata (if action depends on user data being loaded first, call it on loaded signal)\n\nloading example in cutscene_1a_events"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Saving Logic",
+			"description": "Saving user data to localStorage. Saves player's name and the last level they completed, for now.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "save_userdata",
+					"functionDescription": "Saves user progress to local storage. Includes their name and last level completed for now.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "lvls_completed",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "The number of levels the player was able to complete.",
+							"sid": 733448629708902
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-item",
+							"objectClass": "LocalStorage",
+							"sid": 601348665354065,
+							"parameters": {
+								"key": "\"PlayerName\"",
+								"value": "PlayerName"
+							}
+						},
+						{
+							"id": "set-item",
+							"objectClass": "LocalStorage",
+							"sid": 215171580609263,
+							"parameters": {
+								"key": "\"LevelsCompleted\"",
+								"value": "lvls_completed"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 521241533069627,
+							"parameters": {
+								"type": "log",
+								"message": "\"user progress saved.\""
+							}
+						}
+					],
+					"sid": 417917792919258
+				}
+			],
+			"sid": 188486484492738
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Loading Logic",
+			"description": "Loading user data. Loads whatever was saved to localStorage and puts them in the appropriate global variables.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "load_userdata",
+					"functionDescription": "Loads user data to their associated global variables. Will load player name and last level completed for now.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 488036027398342,
+							"parameters": {
+								"type": "log",
+								"message": "\"load_userdata called\""
+							}
+						},
+						{
+							"id": "check-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 425851849749578,
+							"parameters": {
+								"key": "\"PlayerName\""
+							}
+						},
+						{
+							"id": "check-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 289338963221809,
+							"parameters": {
+								"key": "\"LevelsCompleted\""
+							}
+						}
+					],
+					"sid": 897230559506426
+				},
+				{
+					"eventType": "comment",
+					"text": "Note: look at signal to see what triggers when these items exist or do not exist in localStorage"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 320854833286111,
+							"parameters": {
+								"key": "\"PlayerName\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "get-item",
+							"objectClass": "LocalStorage",
+							"sid": 382142226189975,
+							"parameters": {
+								"key": "\"PlayerName\""
+							}
+						}
+					],
+					"sid": 272177834998272
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-get",
+							"objectClass": "LocalStorage",
+							"sid": 879289765142681,
+							"parameters": {
+								"key": "\"PlayerName\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 388974124623358,
+							"parameters": {
+								"variable": "PlayerName",
+								"value": "LocalStorage.ItemValue"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 158568136826423,
+							"parameters": {
+								"type": "log",
+								"message": "\"PlayerName sucessfully set to \" & LocalStorage.ItemValue"
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 302890683083247,
+							"parameters": {
+								"tag": "\"PlayerName_loaded\""
+							}
+						}
+					],
+					"sid": 356618297448531
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 890596300716307,
+							"parameters": {
+								"key": "\"PlayerName\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 268923399772977,
+							"parameters": {
+								"type": "log",
+								"message": "\"load_userdata: \" & LocalStorage.Key & \" does not exist in localStorage!\""
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 243414401221215,
+							"parameters": {
+								"tag": "\"PlayerName_missing\""
+							}
+						}
+					],
+					"sid": 784370988494999
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-exists",
+							"objectClass": "LocalStorage",
+							"sid": 300950612813288,
+							"parameters": {
+								"key": "\"LevelsCompleted\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "get-item",
+							"objectClass": "LocalStorage",
+							"sid": 174179306234338,
+							"parameters": {
+								"key": "\"LevelsCompleted\""
+							}
+						}
+					],
+					"sid": 668847867685096
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-get",
+							"objectClass": "LocalStorage",
+							"sid": 144049016585408,
+							"parameters": {
+								"key": "\"LevelsCompleted\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 128999686241756,
+							"parameters": {
+								"variable": "LevelsCompleted",
+								"value": "LocalStorage.ItemValue"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 375530177705514,
+							"parameters": {
+								"type": "log",
+								"message": "\"LevelsCompleted sucessfully set to \" & LocalStorage.ItemValue"
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 181381175249253,
+							"parameters": {
+								"tag": "\"LevelCompleted_loaded\""
+							}
+						}
+					],
+					"sid": 581012850921444
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-item-missing",
+							"objectClass": "LocalStorage",
+							"sid": 473666003887477,
+							"parameters": {
+								"key": "\"LevelsCompleted\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 236275181102649,
+							"parameters": {
+								"type": "log",
+								"message": "\"load_userdata: \" & LocalStorage.Key & \" does not exist in localStorage!\""
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 556321615185535,
+							"parameters": {
+								"tag": "\"LevelCompleted_missing\""
+							}
+						}
+					],
+					"sid": 737030379936132
+				}
+			],
+			"sid": 430775568201554
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Erase Logic",
+			"description": "Clearing user data. Removes key and value from localStorage.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "clear_userdata",
+					"functionDescription": "clears user data from localStorage.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "clear-storage",
+							"objectClass": "LocalStorage",
+							"sid": 603072458075846
+						}
+					],
+					"sid": 309259252681261
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-storage-cleared",
+							"objectClass": "LocalStorage",
+							"sid": 483919613460213
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 870792968802566,
+							"parameters": {
+								"type": "log",
+								"message": "\"user data cleared.\""
+							}
+						}
+					],
+					"sid": 482940863353055
+				}
+			],
+			"sid": 100696288299407
+		}
+	],
+	"sid": 372179399296602
+}

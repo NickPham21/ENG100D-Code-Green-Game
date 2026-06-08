@@ -73,7 +73,76 @@
 		}
 	],
 	"sid": 570347206506571,
-	"nonworld-instances": [],
+	"nonworld-instances": [
+		{
+			"type": "volume_values",
+			"properties": {
+				"width": 4,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 252,
+			"sid": 768153002165303,
+			"tags": "",
+			"instanceVariables": {}
+		},
+		{
+			"type": "t1_arr",
+			"properties": {
+				"width": 5,
+				"height": 2,
+				"depth": 1
+			},
+			"uid": 271,
+			"sid": 178526268738780,
+			"tags": "",
+			"instanceVariables": {
+				"t_arr_id": "t1_arr"
+			}
+		},
+		{
+			"type": "t2_arr",
+			"properties": {
+				"width": 2,
+				"height": 2,
+				"depth": 1
+			},
+			"uid": 289,
+			"sid": 147311563084308,
+			"tags": "",
+			"instanceVariables": {
+				"t_arr_id": "t2_arr"
+			}
+		},
+		{
+			"type": "t3_arr",
+			"properties": {
+				"width": 2,
+				"height": 2,
+				"depth": 1
+			},
+			"uid": 290,
+			"sid": 677348058458804,
+			"tags": "",
+			"instanceVariables": {
+				"t_arr_id": "t3_arr"
+			}
+		},
+		{
+			"type": "t4_arr",
+			"properties": {
+				"width": 2,
+				"height": 2,
+				"depth": 1
+			},
+			"uid": 291,
+			"sid": 101405112896020,
+			"tags": "",
+			"instanceVariables": {
+				"t_arr_id": "t4_arr"
+			}
+		}
+	],
 	"effectTypes": [],
 	"width": 1920,
 	"height": 1080,

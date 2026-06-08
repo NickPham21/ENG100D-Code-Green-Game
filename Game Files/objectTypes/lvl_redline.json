@@ -1,0 +1,54 @@
+{
+	"name": "lvl_redline",
+	"plugin-id": "Sprite",
+	"sid": 130145501808578,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 1331,
+						"height": 339,
+						"originX": 0.5184072126220887,
+						"originY": 0.36283185840707965,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6405461,
+						"collisionPoly": {
+							"points": [
+								0.005259203606311044,
+								0.0058997050147492625,
+								0.9984973703981969,
+								0.19469026548672566,
+								0.9654395191585274,
+								0.5309734513274337,
+								0.8429752066115702,
+								0.7640117994100295,
+								0.11119459053343352,
+								0.9262536873156342
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 345750224194545,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

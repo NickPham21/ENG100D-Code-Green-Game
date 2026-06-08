@@ -1,0 +1,387 @@
+{
+	"name": "forest_distraction",
+	"plugin-id": "Sprite",
+	"sid": 161761077584267,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "VectorX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 877676883528528
+		},
+		{
+			"name": "VectorY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 859504905819570
+		},
+		{
+			"name": "RotationSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 409164234319273
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 615145864795727
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6729704,
+						"collisionPoly": {
+							"points": [
+								0.3249999999999998,
+								0.2816666666666667,
+								0.6599999999999993,
+								0.28666666666666707,
+								0.8016666666666671,
+								0.715,
+								0.8200000000000004,
+								0.9216666666666664,
+								0.5916666666666667,
+								0.9900000000000007,
+								0.41999999999999993,
+								0.9900000000000007,
+								0.17833333333333326,
+								0.9183333333333338,
+								0.1833333333333332,
+								0.7133333333333335
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "frog_normal"
+					},
+					{
+						"width": 600,
+						"height": 888,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2387324,
+						"collisionPoly": {
+							"points": [
+								0.23,
+								0.0045045045045045045,
+								0.835,
+								0.01126126126126126,
+								0.885,
+								0.04954954954954955,
+								0.6583333333333333,
+								0.9527027027027027,
+								0.605,
+								0.9898648648648649,
+								0.43666666666666665,
+								0.9921171171171171,
+								0.39,
+								0.9887387387387387,
+								0.34,
+								0.9504504504504504,
+								0.11666666666666667,
+								0.04054054054054054,
+								0.17666666666666667,
+								0.007882882882882882
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "frog_scared"
+					}
+				],
+				"sid": 672508093527479,
+				"name": "frog",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 3471295,
+						"collisionPoly": {
+							"points": [
+								0.2816666666666666,
+								0.25000000000000017,
+								0.56,
+								0.22166666666666668,
+								0.7666666666666667,
+								0.27666666666666667,
+								0.93,
+								0.4216666666666667,
+								0.9583333333333334,
+								0.4666666666666667,
+								0.97,
+								0.5483333333333333,
+								0.9433333333333334,
+								0.625,
+								0.6233333333333333,
+								0.7766666666666666,
+								0.08,
+								0.7566666666666667,
+								0.03166666666666667,
+								0.7366666666666667,
+								0.055,
+								0.38333333333333336
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "fox_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4355697,
+						"collisionPoly": {
+							"points": [
+								0.525,
+								0.245,
+								0.575,
+								0.245,
+								0.9216666666666666,
+								0.475,
+								0.995,
+								0.5866666666666667,
+								0.8616666666666667,
+								0.7166666666666667,
+								0.5016666666666667,
+								0.81,
+								0.03,
+								0.5183333333333333
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "fox_jump"
+					}
+				],
+				"sid": 271146445094162,
+				"name": "fox",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4863106,
+						"collisionPoly": {
+							"points": [
+								0.2283333333333332,
+								0.18499999999999991,
+								0.796666666666666,
+								0.29000000000000004,
+								0.9349999999999982,
+								0.44666666666666643,
+								0.9466666666666662,
+								0.624999999999999,
+								0.9199999999999997,
+								0.6966666666666657,
+								0.8033333333333332,
+								0.7616666666666666,
+								0.19166666666666668,
+								0.7716666666666661,
+								0.035000000000000024,
+								0.3633333333333335,
+								0.053333333333333385,
+								0.19166666666666654
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "wolf_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2883403,
+						"collisionPoly": {
+							"points": [
+								0.2283333333333332,
+								0.18499999999999991,
+								0.796666666666666,
+								0.29000000000000004,
+								0.9349999999999982,
+								0.44666666666666643,
+								0.9466666666666662,
+								0.624999999999999,
+								0.9199999999999997,
+								0.6966666666666657,
+								0.8033333333333332,
+								0.7616666666666666,
+								0.19166666666666668,
+								0.7716666666666661,
+								0.035000000000000024,
+								0.3633333333333335,
+								0.053333333333333385,
+								0.19166666666666654
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "wolf_hit"
+					}
+				],
+				"sid": 725445543203624,
+				"name": "wolf",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6795835,
+						"collisionPoly": {
+							"points": [
+								0.34,
+								0.035,
+								0.52,
+								0.1,
+								0.55,
+								0.13,
+								0.98,
+								0.75,
+								0.955,
+								0.84,
+								0.705,
+								0.95,
+								0.665,
+								0.96,
+								0.535,
+								0.965,
+								0.32,
+								0.96,
+								0.18,
+								0.905,
+								0.035,
+								0.36,
+								0.185,
+								0.065
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bear_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1276808,
+						"collisionPoly": {
+							"points": [
+								0.34,
+								0.035,
+								0.52,
+								0.1,
+								0.55,
+								0.13,
+								0.98,
+								0.75,
+								0.955,
+								0.84,
+								0.705,
+								0.95,
+								0.665,
+								0.96,
+								0.535,
+								0.965,
+								0.32,
+								0.96,
+								0.18,
+								0.905,
+								0.035,
+								0.36,
+								0.185,
+								0.065
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bear_hit"
+					}
+				],
+				"sid": 924694484989854,
+				"name": "bear",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

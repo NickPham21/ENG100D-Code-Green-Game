@@ -1,0 +1,373 @@
+{
+	"name": "ocean_distraction",
+	"plugin-id": "Sprite",
+	"sid": 767562699742326,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "VectorX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 188872674869251
+		},
+		{
+			"name": "VectorY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 959229369168534
+		},
+		{
+			"name": "RotationSpeed",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 914552276680010
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 355329782267756
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9050759,
+						"collisionPoly": {
+							"points": [
+								0.4833333333333331,
+								0.14999999999999963,
+								0.7000000000000011,
+								0.46166666666666606,
+								0.7558333333333311,
+								0.35499999999999976,
+								0.9266666666666671,
+								0.3516666666666668,
+								0.868333333333334,
+								0.5649999999999985,
+								0.9559375000000013,
+								0.7755208333333323,
+								0.8185416666666679,
+								0.7727083333333318,
+								0.7020833333333337,
+								0.6437499999999976,
+								0.619166666666667,
+								0.6974999999999986,
+								0.5183333333333341,
+								0.7549999999999992,
+								0.2966666666666667,
+								0.8200000000000008,
+								0.12166666666666666,
+								0.7550000000000004,
+								0.015000000000000027,
+								0.6216666666666676,
+								0.2966666666666666,
+								0.2199999999999998
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "fish_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6318326,
+						"collisionPoly": {
+							"points": [
+								0.445,
+								0.18,
+								0.495,
+								0.18,
+								0.91,
+								0.37,
+								0.925,
+								0.765,
+								0.26,
+								0.8,
+								0.13,
+								0.735,
+								0.055,
+								0.6,
+								0.255,
+								0.3,
+								0.3,
+								0.255,
+								0.355,
+								0.215,
+								0.395,
+								0.195
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "fish_dead"
+					}
+				],
+				"sid": 154868155533258,
+				"name": "fish",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8827796,
+						"collisionPoly": {
+							"points": [
+								0.5333333333333333,
+								0.23,
+								0.7,
+								0.28,
+								0.6783333333333333,
+								0.4483333333333332,
+								0.9466666666666668,
+								0.6233333333333333,
+								0.72,
+								0.8550000000000001,
+								0.6024999999999999,
+								0.6499999999999998,
+								0.34,
+								0.6516666666666666,
+								0.08333333333333334,
+								0.445,
+								0.2783333333333333,
+								0.27
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "dolphin_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4637789,
+						"collisionPoly": {
+							"points": [
+								0.5333333333333333,
+								0.23,
+								0.7,
+								0.28,
+								0.9116666666666666,
+								0.645,
+								0.725,
+								0.8333333333333334,
+								0.34,
+								0.6516666666666666,
+								0.07666666666666667,
+								0.44666666666666666,
+								0.2783333333333333,
+								0.27
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "dolphin_sad"
+					}
+				],
+				"sid": 897861160805118,
+				"name": "dolphin",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1558103,
+						"collisionPoly": {
+							"points": [
+								0.5266666666666666,
+								0.17,
+								0.7183333333333333,
+								0.36333333333333334,
+								0.9466666666666667,
+								0.30500000000000005,
+								0.9133333333333333,
+								0.6033333333333334,
+								0.38333333333333336,
+								0.7233333333333334,
+								0.15666666666666668,
+								0.6733333333333333,
+								0.06833333333333333,
+								0.3433333333333333,
+								0.13833333333333334,
+								0.28
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "shark_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8996415,
+						"collisionPoly": {
+							"points": [
+								0.5266666666666666,
+								0.17,
+								0.94,
+								0.32666666666666666,
+								0.9133333333333333,
+								0.6033333333333334,
+								0.38333333333333336,
+								0.7233333333333334,
+								0.15666666666666668,
+								0.6733333333333333,
+								0.07333333333333333,
+								0.31166666666666665
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "shark_sad"
+					}
+				],
+				"sid": 655228824119035,
+				"name": "shark",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5602243,
+						"collisionPoly": {
+							"points": [
+								0.41333333333333333,
+								0.21833333333333327,
+								0.775,
+								0.4033333333333333,
+								0.915,
+								0.5766666666666667,
+								0.645,
+								0.7983333333333333,
+								0.5883333333333334,
+								0.7983333333333333,
+								0.07833333333333337,
+								0.7766666666666662,
+								0.18333333333333332,
+								0.40166666666666667,
+								0.27166666666666667,
+								0.24500000000000002
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "seal_normal"
+					},
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6351921,
+						"collisionPoly": {
+							"points": [
+								0.41333333333333333,
+								0.21833333333333327,
+								0.775,
+								0.4033333333333333,
+								0.915,
+								0.5766666666666667,
+								0.645,
+								0.7983333333333333,
+								0.5883333333333334,
+								0.7983333333333333,
+								0.07833333333333337,
+								0.7766666666666662,
+								0.18333333333333332,
+								0.40166666666666667,
+								0.27166666666666667,
+								0.24500000000000002
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "seal_hit"
+					}
+				],
+				"sid": 971380035355831,
+				"name": "seal",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

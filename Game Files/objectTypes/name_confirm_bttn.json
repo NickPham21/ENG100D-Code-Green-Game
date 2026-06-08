@@ -12,8 +12,8 @@
 			{
 				"frames": [
 					{
-						"width": 1000,
-						"height": 300,
+						"width": 628,
+						"height": 188,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -38,8 +38,8 @@
 						"tag": "bttn_idle"
 					},
 					{
-						"width": 1000,
-						"height": 300,
+						"width": 628,
+						"height": 188,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -64,8 +64,8 @@
 						"tag": "bttn_hover"
 					},
 					{
-						"width": 1000,
-						"height": 300,
+						"width": 628,
+						"height": 188,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",

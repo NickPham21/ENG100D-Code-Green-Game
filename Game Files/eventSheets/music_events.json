@@ -1,0 +1,871 @@
+{
+	"name": "music_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "Music Events: contains functions that are responsible for playing music.\n\nmusic_start(String layout_name): starts playing music (fading in) for that layout. Ideally should be called at the start of every layout.\nmusic_end(String layout_name): stops playing music (fading out) that was originally played in that layout. Ideally should be called before transitioning to another layout.\n\nNOTE: Function does not need to be called at every start/transition if you want music to linger across multiple layouts"
+		},
+		{
+			"functionName": "music_start",
+			"functionDescription": "Starts playing music for the layout name passed in.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "layout_name",
+					"type": "string",
+					"initialValue": "",
+					"comment": "Name of layout to play music for.",
+					"sid": 738175494583748
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Fade in music for that layout (from silent to MusicVolume)\nException for cutscene music, which fades from silent to MusicVolume - 15 so voicelines can be heard"
+				}
+			],
+			"sid": 656997849066777,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 579458655496865,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"main_menu_screen\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 208795007529892,
+							"parameters": {
+								"audio-file": {
+									"path": "this song is so annoying"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 544346446217303,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 227402358214481
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 898380405644291,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"credits_screen\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 602028831752568,
+							"parameters": {
+								"audio-file": {
+									"path": "happy"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 655678226393847,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 375201068021777
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 129154685469236,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"level_complete_screen\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 195559856545282,
+							"parameters": {
+								"type": "log",
+								"message": "\"playing level complete music\""
+							}
+						}
+					],
+					"sid": 358865199315988,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 735973756929834,
+									"parameters": {
+										"variable": "LevelPassed"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 103263265271380,
+									"parameters": {
+										"audio-file": {
+											"path": "motivated"
+										},
+										"loop": "looping",
+										"volume": "-100",
+										"stereo-pan": "0",
+										"tag-optional": "layout_name & \" music\""
+									}
+								},
+								{
+									"id": "fade-volume",
+									"objectClass": "Audio",
+									"sid": 974662949327103,
+									"parameters": {
+										"tag": "layout_name & \" music\"",
+										"db": "MusicVolume",
+										"duration": "1",
+										"ending": "keep-playing"
+									}
+								}
+							],
+							"sid": 539429687228024
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 999468248487101,
+									"parameters": {
+										"variable": "LevelPassed"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 972522042938933,
+									"parameters": {
+										"audio-file": {
+											"path": "womp womp"
+										},
+										"loop": "not-looping",
+										"volume": "-100",
+										"stereo-pan": "0",
+										"tag-optional": "layout_name & \" music\""
+									}
+								},
+								{
+									"id": "fade-volume",
+									"objectClass": "Audio",
+									"sid": 501362127285093,
+									"parameters": {
+										"tag": "layout_name & \" music\"",
+										"db": "MusicVolume",
+										"duration": "3",
+										"ending": "stop"
+									}
+								}
+							],
+							"sid": 745697558548624
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 847719758655459,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_0\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 149924441667251,
+							"parameters": {
+								"audio-file": {
+									"path": "hmmmm"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 570207559445550,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 631079185635922
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 108163657384879,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_1a\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 496817742178714,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 421984417345672,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 595942470856633
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 105403174231801,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_1b\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 493749630165254,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 879742754148723,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 875326227129861
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 979520008532121,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_2a\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 878187739030776,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 940953651459717,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 437667727216736
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 270172904134430,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_2b\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 514087768577245,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 337680373141736,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 763701719116302
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 720577918667716,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_3a\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 212334784998977,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 909209885990877,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 282806870984694
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 203819208659805,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_3b\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 625191682434331,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 778440279399554,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 250674757554974
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 361501869734434,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_4a\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 253018713359031,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 710340681775373,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 951954682419052
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 639655252275521,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_4b\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 614470003229166,
+							"parameters": {
+								"audio-file": {
+									"path": "peaceful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 984875950998104,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 343540628457850
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 710807491421648,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"cutscene_5a\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 293725533634931,
+							"parameters": {
+								"audio-file": {
+									"path": "hopeful"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 656139025411788,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume - 15",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 428027807631367
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 839150589118454,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"game_screen_1\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 529140626776962,
+							"parameters": {
+								"audio-file": {
+									"path": "frog"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 634419935972485,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 907485894603997
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 391023964159905,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"game_screen_2\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 511503803396915,
+							"parameters": {
+								"audio-file": {
+									"path": "project_1"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 787606731720195,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 654791402567232
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 169875939974307,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"game_screen_3\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 585683845551645,
+							"parameters": {
+								"audio-file": {
+									"path": "i might fix this song later"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 384232756684533,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 777138347369588
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 496890392267797,
+							"parameters": {
+								"variable": "layout_name",
+								"comparison": 0,
+								"value": "\"game_screen_4\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 861253927190231,
+							"parameters": {
+								"audio-file": {
+									"path": "meow"
+								},
+								"loop": "looping",
+								"volume": "-100",
+								"stereo-pan": "0",
+								"tag-optional": "layout_name & \" music\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 123227914283097,
+							"parameters": {
+								"tag": "layout_name & \" music\"",
+								"db": "MusicVolume",
+								"duration": "1",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 675065384228384
+				}
+			]
+		},
+		{
+			"functionName": "music_stop",
+			"functionDescription": "Stops playing music that originally played in this layout.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "layout_name",
+					"type": "string",
+					"initialValue": "",
+					"comment": "Name of layout to play music for.",
+					"sid": 624625034425315
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "fade-volume",
+					"objectClass": "Audio",
+					"sid": 858167314718928,
+					"parameters": {
+						"tag": "layout_name & \" music\"",
+						"db": "-100",
+						"duration": "1",
+						"ending": "stop"
+					}
+				}
+			],
+			"sid": 888207123853527
+		}
+	],
+	"sid": 606399976637390
+}

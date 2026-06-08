@@ -1,0 +1,18 @@
+{
+	"name": "credits_text",
+	"plugin-id": "Text",
+	"sid": 118159690101039,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "is_last_text",
+			"type": "boolean",
+			"desc": "tracks if this credit text is the last one in order.",
+			"show": true,
+			"sid": 150879355627816
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

@@ -236,6 +236,98 @@
 				"repeatCount": 1,
 				"repeatTo": 0,
 				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 591656,
+						"collisionPoly": {
+							"points": [
+								0.26833333333333326,
+								0.2816666666666667,
+								0.7783333333333334,
+								0.3066666666666667,
+								0.9450000000000003,
+								0.4266666666666667,
+								0.8750000000000001,
+								0.6350000000000001,
+								0.6266666666666667,
+								0.7383333333333332,
+								0.38666666666666655,
+								0.73,
+								0.21166666666666667,
+								0.655,
+								0.11000000000000001,
+								0.5683333333333335,
+								0.12666666666666665,
+								0.3783333333333333
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 647518390014763,
+				"name": "watermelon_rind",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			},
+			{
+				"frames": [
+					{
+						"width": 600,
+						"height": 600,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2018653,
+						"collisionPoly": {
+							"points": [
+								0.75,
+								0.09166666666666658,
+								0.8283333333333345,
+								0.22333333333333327,
+								0.8283333333333347,
+								0.8083333333333341,
+								0.6033333333333339,
+								0.9116666666666674,
+								0.3633333333333334,
+								0.9133333333333344,
+								0.16666666666666638,
+								0.815000000000001,
+								0.14999999999999986,
+								0.23500000000000004,
+								0.23166666666666694,
+								0.09333333333333335
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 504846427896574,
+				"name": "corn_cob",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
 			}
 		],
 		"subfolders": []

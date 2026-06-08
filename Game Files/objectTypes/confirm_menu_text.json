@@ -1,0 +1,10 @@
+{
+	"name": "confirm_menu_text",
+	"plugin-id": "Text",
+	"sid": 232596110735812,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

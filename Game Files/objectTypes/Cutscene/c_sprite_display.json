@@ -8,7 +8,7 @@
 		{
 			"name": "position",
 			"type": "string",
-			"desc": "Character's portrait position in the cutscene. Used to determine animation. Values can be {\"left\", \"right\", \"up\", \"none\"}",
+			"desc": "Character's portrait position in the cutscene. Used to determine animation. Used to determine animation within cutscenes.",
 			"show": true,
 			"sid": 135228334608322
 		}
@@ -20,7 +20,12 @@
 			"sid": 573137240262308
 		}
 	],
-	"effectTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "scanlines",
+			"name": "ScanLines"
+		}
+	],
 	"animations": {
 		"items": [
 			{
@@ -34,22 +39,22 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6652132,
+						"imageSpriteId": 8682998,
 						"collisionPoly": {
 							"points": [
-								0.25833333333333336,
-								0.185,
-								0.745,
-								0.18833333333333332,
-								0.9833333333333333,
+								0.275,
+								0.14,
+								0.7316666666666667,
+								0.14833333333333334,
+								0.79,
 								1,
-								0.016666666666666666,
-								0.9966666666666667
+								0.205,
+								0.9716666666666667
 							]
 						},
 						"useCollisionPoly": true,
 						"duration": 1,
-						"tag": "mouth_closed"
+						"tag": "mouth_open"
 					},
 					{
 						"width": 600,
@@ -60,22 +65,22 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 5411543,
+						"imageSpriteId": 5837450,
 						"collisionPoly": {
 							"points": [
-								0.25833333333333336,
-								0.185,
-								0.745,
-								0.18833333333333332,
-								0.9833333333333333,
+								0.27666666666666667,
+								0.14,
+								0.7316666666666667,
+								0.15,
+								0.79,
 								1,
-								0.016666666666666666,
-								0.9966666666666667
+								0.20666666666666667,
+								0.985
 							]
 						},
 						"useCollisionPoly": true,
 						"duration": 1,
-						"tag": "mouth_open"
+						"tag": "mouth_closed"
 					}
 				],
 				"sid": 172026416738901,
@@ -90,7 +95,7 @@
 				"frames": [
 					{
 						"width": 600,
-						"height": 689,
+						"height": 600,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -126,7 +131,7 @@
 					},
 					{
 						"width": 600,
-						"height": 689,
+						"height": 600,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -214,8 +219,8 @@
 			{
 				"frames": [
 					{
-						"width": 800,
-						"height": 600,
+						"width": 830,
+						"height": 604,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -1010,29 +1015,69 @@
 			{
 				"frames": [
 					{
-						"width": 348,
-						"height": 276,
+						"width": 600,
+						"height": 600,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8831235,
+						"imageSpriteId": 9554378,
+						"collisionPoly": {
+							"points": [
+								0.5233333333333333,
+								0.0016666666666666668,
+								0.565,
+								0.0016666666666666668,
+								0.695,
+								0.07666666666666666,
+								1,
+								0.9083333333333333,
+								1,
+								1,
+								0,
+								1,
+								0,
+								0.9083333333333333,
+								0.38666666666666666,
+								0.03333333333333333
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": "mouth_open"
 					},
 					{
-						"width": 348,
-						"height": 276,
+						"width": 600,
+						"height": 600,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 136678,
+						"imageSpriteId": 1419424,
+						"collisionPoly": {
+							"points": [
+								0.5233333333333333,
+								0.0016666666666666668,
+								0.565,
+								0.0016666666666666668,
+								0.695,
+								0.07666666666666666,
+								1,
+								0.9083333333333333,
+								1,
+								1,
+								0,
+								1,
+								0,
+								0.9083333333333333,
+								0.38666666666666666,
+								0.03333333333333333
+							]
+						},
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": "mouth_closed"
@@ -1040,71 +1085,6 @@
 				],
 				"sid": 813543524851966,
 				"name": "Citizen",
-				"isLooping": false,
-				"isPingPong": false,
-				"repeatCount": 1,
-				"repeatTo": 0,
-				"speed": 5
-			},
-			{
-				"frames": [
-					{
-						"width": 1358,
-						"height": 994,
-						"originX": 0.5,
-						"originY": 0.5010060362173038,
-						"originalSource": "",
-						"exportFormat": "lossless",
-						"exportQuality": 0.8,
-						"fileType": "image/png",
-						"imageSpriteId": 6942626,
-						"collisionPoly": {
-							"points": [
-								0.0066273932253313695,
-								0.0030181086519114686,
-								0.9985272459499264,
-								0.011066398390342052,
-								0.9896907216494846,
-								0.9979879275653923,
-								0.0022091310751104565,
-								0.9929577464788732
-							]
-						},
-						"useCollisionPoly": true,
-						"duration": 1,
-						"tag": "monitor_piece"
-					},
-					{
-						"width": 1358,
-						"height": 994,
-						"originX": 0.47201767304860087,
-						"originY": 0.5015090543259557,
-						"originalSource": "",
-						"exportFormat": "lossless",
-						"exportQuality": 0.8,
-						"fileType": "image/png",
-						"imageSpriteId": 4229638,
-						"collisionPoly": {
-							"points": [
-								0.0036818851251840955,
-								0.07092555331991952,
-								0.9536082474226805,
-								0.07193158953722334,
-								1,
-								0.1936619718309859,
-								0.959499263622975,
-								0.9290744466800804,
-								0,
-								0.9280684104627767
-							]
-						},
-						"useCollisionPoly": true,
-						"duration": 1,
-						"tag": "monitor_screen_lines"
-					}
-				],
-				"sid": 595575330732313,
-				"name": "Monitor",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,

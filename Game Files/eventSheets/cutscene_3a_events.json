@@ -32,6 +32,13 @@
 							"parameters": [
 								"\"c3a_arr\""
 							]
+						},
+						{
+							"callFunction": "music_start",
+							"sid": 980120171596197,
+							"parameters": [
+								"\"cutscene_3a\""
+							]
 						}
 					],
 					"sid": 290239691956238
@@ -80,11 +87,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c3a_arr",
-							"sid": 112360220537462,
+							"sid": 452771256176668,
 							"parameters": {
 								"x": "0",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_3_1\""
 							}
 						},
 						{
@@ -120,11 +127,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c3a_arr",
-							"sid": 970331976330113,
+							"sid": 589317920524063,
 							"parameters": {
 								"x": "1",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_3_2\""
 							}
 						},
 						{
@@ -306,7 +313,7 @@
 						{
 							"id": "on-signal",
 							"objectClass": "System",
-							"sid": 591702470379921,
+							"sid": 617307932300713,
 							"parameters": {
 								"tag": "\"c3a_arr_done\""
 							}
@@ -314,15 +321,67 @@
 					],
 					"actions": [
 						{
-							"callFunction": "clean_cutscene",
-							"sid": 307796637502965,
-							"parameters": [
-								"\"opening\"",
-								"\"game_screen_3\""
-							]
+							"type": "comment",
+							"text": "transition to tutorial if this is the player's first time, else go to game screen"
 						}
 					],
-					"sid": 602637487765695
+					"sid": 910505135200959,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 673782257422736,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 282441160625423,
+									"parameters": [
+										"\"opening\"",
+										"\"tutorial_screen_3\""
+									]
+								}
+							],
+							"sid": 658908474468144
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 166669350913716
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 233421417348394,
+									"parameters": [
+										"\"opening\"",
+										"\"game_screen_3\""
+									]
+								},
+								{
+									"callFunction": "music_stop",
+									"sid": 472145787655252,
+									"parameters": [
+										"\"cutscene_3a\""
+									]
+								}
+							],
+							"sid": 694992466335395
+						}
+					]
 				}
 			],
 			"sid": 120954813512471

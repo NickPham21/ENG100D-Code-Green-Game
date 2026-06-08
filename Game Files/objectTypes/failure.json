@@ -1,0 +1,54 @@
+{
+	"name": "failure",
+	"plugin-id": "Sprite",
+	"sid": 742937356613170,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 1500,
+						"height": 330,
+						"originX": 0.46266666666666667,
+						"originY": 0.6181818181818182,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 2284702,
+						"collisionPoly": {
+							"points": [
+								0.96,
+								0.02727272727272727,
+								0.978,
+								0.9787878787878788,
+								0.7086666666666667,
+								0.996969696969697,
+								0.006,
+								0.9030303030303031,
+								0.012,
+								0.21818181818181817
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 220449699594729,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -1,0 +1,60 @@
+{
+	"name": "c_monitor_sprite_effect",
+	"plugin-id": "Sprite",
+	"sid": 313720756961259,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 463894732072954
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 1358,
+						"height": 994,
+						"originX": 0.47201767304860087,
+						"originY": 0.5015090543259557,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7443251,
+						"collisionPoly": {
+							"points": [
+								0.0036818851251840955,
+								0.07092555331991952,
+								0.9536082474226805,
+								0.07193158953722334,
+								1,
+								0.1936619718309859,
+								0.959499263622975,
+								0.9290744466800804,
+								0,
+								0.9280684104627767
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "monitor_screen_lines"
+					}
+				],
+				"sid": 485086200054085,
+				"name": "Monitor",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -98,14 +98,20 @@
 					"sid": 788477898952694,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 1464,
 						"y": 873,
 						"width": 400,
-						"height": 410.66666666666663,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -289,14 +295,20 @@
 					"sid": 617972050603281,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 424,
 						"y": 873,
 						"width": 400,
-						"height": 410.66666666666663,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -322,14 +334,20 @@
 					"sid": 136119511813089,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 956,
 						"y": 873,
 						"width": 400,
-						"height": 410.666667,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -343,10 +361,10 @@
 					}
 				},
 				{
-					"type": "fish",
+					"type": "ocean_distraction",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "fish_normal",
+						"initial-animation": "fish",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -585,7 +603,8 @@
 					"sid": 877370724632963,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_1_select"
+						"bttn_id": "lvl_1_select",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -738,7 +757,8 @@
 					"sid": 396274798499494,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "start"
+						"bttn_id": "start",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -806,7 +826,7 @@
 					}
 				},
 				{
-					"type": "volume_bttn",
+					"type": "sfx_vol_bttn",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "vol3",
@@ -818,7 +838,8 @@
 					"sid": 852659352600831,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "volume"
+						"bttn_id": "volume",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -897,6 +918,41 @@
 				0.3686274509803922,
 				0.3686274509803922,
 				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"sampling": "auto",
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "Countdown",
+			"overriden": 1,
+			"subLayers": [],
+			"instances": [],
+			"sid": 820763508243142,
+			"effectTypes": [],
+			"isInitiallyVisible": false,
+			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.8392156862745098,
+				0.3607843137254902,
+				0.3607843137254902,
 				1
 			],
 			"isTransparent": true,

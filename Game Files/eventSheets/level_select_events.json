@@ -2,8 +2,32 @@
 	"name": "level_select_events",
 	"events": [
 		{
+			"eventType": "variable",
+			"name": "LevelsCompleted",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The number of levels the player has sucesfully completed. Used for determining which level they can select in the level select screen, and represents overall player progress.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 790312939283592
+		},
+		{
+			"eventType": "variable",
+			"name": "GoToLevel",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "The level that the user requested to go to. Intended for use within the level select screen only.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 612091478586155
+		},
+		{
 			"eventType": "include",
-			"includeSheet": "bttn_ux_animation_events"
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "save_events"
 		},
 		{
 			"eventType": "block",
@@ -16,62 +40,26 @@
 			],
 			"actions": [
 				{
+					"callFunction": "music_start",
+					"sid": 982913890406096,
+					"parameters": [
+						"\"main_menu_screen\""
+					]
+				},
+				{
+					"callFunction": "load_userdata",
+					"sid": 282951751801694
+				},
+				{
 					"type": "comment",
-					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
+					"text": "Ensure Confirm GUI hidden on startup"
 				},
 				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 792515866878458,
-					"parameters": {
-						"tag": "\"\"",
-						"db": "-100",
-						"duration": "1",
-						"ending": "stop"
-					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 826523213585872,
-					"parameters": {
-						"audio-file": {
-							"path": "meow"
-						},
-						"loop": "looping",
-						"volume": "-100",
-						"stereo-pan": "0",
-						"tag-optional": "\"main_menu_music\""
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 866907891974520,
-					"parameters": {
-						"tag": "\"main_menu_music\"",
-						"db": "GlobalVolume",
-						"duration": "1",
-						"ending": "keep-playing"
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 432817428016267,
-					"parameters": {
-						"layer": "0",
-						"interactive": false
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 857663464533790,
-					"parameters": {
-						"layer": "0",
-						"interactive": true
-					}
+					"callFunction": "toggle_GoCcfrm_gui",
+					"sid": 827089956671381,
+					"parameters": [
+						false
+					]
 				}
 			],
 			"sid": 306679579077122
@@ -97,11 +85,19 @@
 					],
 					"actions": [
 						{
-							"id": "go-to-layout",
+							"callFunction": "toggle_GoCcfrm_gui",
+							"sid": 328269950727836,
+							"parameters": [
+								true
+							]
+						},
+						{
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 457973499522641,
+							"sid": 529339371712401,
 							"parameters": {
-								"layout": "game_screen_1"
+								"variable": "GoToLevel",
+								"value": "1"
 							}
 						}
 					],
@@ -122,11 +118,19 @@
 					],
 					"actions": [
 						{
-							"id": "go-to-layout",
+							"callFunction": "toggle_GoCcfrm_gui",
+							"sid": 103893549593478,
+							"parameters": [
+								true
+							]
+						},
+						{
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 104637705596959,
+							"sid": 297144677730506,
 							"parameters": {
-								"layout": "game_screen_2"
+								"variable": "GoToLevel",
+								"value": "2"
 							}
 						}
 					],
@@ -147,11 +151,19 @@
 					],
 					"actions": [
 						{
-							"id": "go-to-layout",
+							"callFunction": "toggle_GoCcfrm_gui",
+							"sid": 463536190112246,
+							"parameters": [
+								true
+							]
+						},
+						{
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 457119641232033,
+							"sid": 267228984903561,
 							"parameters": {
-								"layout": "game_screen_3"
+								"variable": "GoToLevel",
+								"value": "3"
 							}
 						}
 					],
@@ -172,19 +184,546 @@
 					],
 					"actions": [
 						{
-							"id": "go-to-layout",
+							"callFunction": "toggle_GoCcfrm_gui",
+							"sid": 835072866301166,
+							"parameters": [
+								true
+							]
+						},
+						{
+							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 962937989707241,
+							"sid": 909764590885034,
 							"parameters": {
-								"layout": "game_screen_4"
+								"variable": "GoToLevel",
+								"value": "4"
 							}
 						}
 					],
 					"sid": 502746872203730,
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 687952792378918,
+							"parameters": {
+								"tag": "\"back_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 531121931120737,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						}
+					],
+					"sid": 890329148474236,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 958050623016574,
+							"parameters": {
+								"tag": "\"stcfrm_no_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "User wants go to straight to gameplay"
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 641389469519730,
+							"parameters": [
+								"\"main_menu_screen\""
+							]
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 375205939403591,
+							"parameters": {
+								"layout": "\"game_screen_\" & GoToLevel"
+							}
+						},
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 535082984543503,
+							"parameters": {
+								"variable": "GoToLevel"
+							}
+						}
+					],
+					"sid": 638243594911871,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 285185588027765,
+							"parameters": {
+								"tag": "\"stcfrm_yes_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "User wants to start from cutscene"
+						}
+					],
+					"sid": 133003034700574,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 644129405844768,
+									"parameters": {
+										"variable": "GoToLevel",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "For first level, start from cutscene 0 (so cutscene 0 is always accessible)"
+								},
+								{
+									"callFunction": "music_stop",
+									"sid": 331745554290377,
+									"parameters": [
+										"\"main_menu_screen\""
+									]
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 355143834783756,
+									"parameters": {
+										"layout": "\"cutscene_0\""
+									}
+								},
+								{
+									"id": "reset-eventvar",
+									"objectClass": "System",
+									"sid": 525846238987270,
+									"parameters": {
+										"variable": "GoToLevel"
+									}
+								}
+							],
+							"sid": 371036153188828
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 112700040093768
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "For later levels, start from beginning 'cutscene_na' cutscene"
+								},
+								{
+									"callFunction": "music_stop",
+									"sid": 868443905904801,
+									"parameters": [
+										"\"main_menu_screen\""
+									]
+								},
+								{
+									"id": "go-to-layout-by-name",
+									"objectClass": "System",
+									"sid": 572279723394380,
+									"parameters": {
+										"layout": "\"cutscene_\" & GoToLevel &\"a\""
+									}
+								},
+								{
+									"id": "reset-eventvar",
+									"objectClass": "System",
+									"sid": 780255316136263,
+									"parameters": {
+										"variable": "GoToLevel"
+									}
+								}
+							],
+							"sid": 829050410730095
+						}
+					],
+					"isOrBlock": true
+				},
+				{
+					"functionName": "apply_level_locks",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 324808271262621,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Lvl_ball",
+									"sid": 226641157172079,
+									"parameters": {
+										"instance-variable": "v1",
+										"comparison": 4,
+										"value": "LevelsCompleted + 1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "Lvl_ball",
+									"sid": 293618302194133,
+									"parameters": {
+										"frame-number": "1"
+									}
+								}
+							],
+							"sid": 837815291921014
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 690776754373389,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "lvl_2_bttn",
+									"sid": 370366594668634,
+									"parameters": {
+										"frame-number": "3"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "lvl_2_bttn",
+									"sid": 819357686176521,
+									"parameters": {
+										"instance-variable": "is_locked",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-collisions-enabled",
+									"objectClass": "lvl_2_bttn",
+									"sid": 638207247169536,
+									"parameters": {
+										"collisions": "disabled"
+									}
+								}
+							],
+							"sid": 520194758721075
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 178883082698086,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "lvl_3_bttn",
+									"sid": 232844319561210,
+									"parameters": {
+										"frame-number": "3"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "lvl_3_bttn",
+									"sid": 277061734012092,
+									"parameters": {
+										"instance-variable": "is_locked",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-collisions-enabled",
+									"objectClass": "lvl_3_bttn",
+									"sid": 976631453428594,
+									"parameters": {
+										"collisions": "disabled"
+									}
+								}
+							],
+							"sid": 177025622328454
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 657358720246428,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "3"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "lvl_4_bttn",
+									"sid": 925120235440900,
+									"parameters": {
+										"frame-number": "3"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "lvl_4_bttn",
+									"sid": 834197483585386,
+									"parameters": {
+										"instance-variable": "is_locked",
+										"value": "true"
+									}
+								},
+								{
+									"id": "set-collisions-enabled",
+									"objectClass": "lvl_4_bttn",
+									"sid": 724578063358954,
+									"parameters": {
+										"collisions": "disabled"
+									}
+								}
+							],
+							"sid": 565551928006610
+						}
+					]
+				},
+				{
+					"functionName": "toggle_GoCcfrm_gui",
+					"functionDescription": "Toggles the confirmation GUI for the start button on or off.",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "gui_active",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"sid": 705124533912231
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 907758033882145,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 541875486618333,
+									"parameters": {
+										"variable": "gui_active"
+									}
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Show Confirm GUI"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 780600317919393,
+									"parameters": {
+										"layer": "\"Gameplay or Cutscene Confirmation\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 858000093550250,
+									"parameters": {
+										"layer": "\"Gameplay or Cutscene Confirmation\"",
+										"interactive": true
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 558250212815532,
+									"parameters": {
+										"layer": "\"Level Select GUI\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 369831926271411,
+									"parameters": {
+										"layer": "\"Level Select GUI\"",
+										"interactive": false
+									}
+								}
+							],
+							"sid": 346785522392367
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 909347257864820
+								}
+							],
+							"actions": [
+								{
+									"type": "comment",
+									"text": "Hide Confirm GUI"
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 484250803349350,
+									"parameters": {
+										"layer": "\"Gameplay or Cutscene Confirmation\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 659139682390122,
+									"parameters": {
+										"layer": "\"Gameplay or Cutscene Confirmation\"",
+										"interactive": false
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 514625040135938,
+									"parameters": {
+										"layer": "\"Level Select GUI\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 785542642388773,
+									"parameters": {
+										"layer": "\"Level Select GUI\"",
+										"interactive": true
+									}
+								}
+							],
+							"sid": 630798304193928
+						}
+					]
 				}
 			],
 			"sid": 222202467988070
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-signal",
+					"objectClass": "System",
+					"sid": 589819711354900,
+					"parameters": {
+						"tag": "\"LevelCompleted_loaded\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "apply_level_locks",
+					"sid": 974033488221564
+				}
+			],
+			"sid": 925809977560851
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-signal",
+					"objectClass": "System",
+					"sid": 259971514694434,
+					"parameters": {
+						"tag": "\"LevelCompleted_missing\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "apply_level_locks",
+					"sid": 845471920204042
+				}
+			],
+			"sid": 332735515143537
 		}
 	],
 	"sid": 743858220086118

@@ -9,6 +9,13 @@
 			"desc": "unique ID of the button, used to identify for button logic",
 			"show": true,
 			"sid": 634121724623350
+		},
+		{
+			"name": "is_locked",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 915655988143088
 		}
 	],
 	"behaviorTypes": [
@@ -22,18 +29,30 @@
 	"members": [
 		"lvl_select_bttn",
 		"start_bttn",
-		"volume_bttn",
+		"sfx_vol_bttn",
 		"play_bttn",
-		"lvl_1_bttn",
-		"lvl_2_bttn",
-		"lvl_3_bttn",
-		"lvl_4_bttn",
 		"name_no_bttn",
 		"name_confirm_bttn",
 		"name_yes_bttn",
 		"pmenu_home_bttn",
 		"pmenu_lvl_select_bttn",
 		"pmenu_play_bttn",
-		"pause_bttn"
+		"pause_bttn",
+		"back_bttn",
+		"continue_bttn",
+		"stcfrm_yes_bttn",
+		"stcfrm_no_bttn",
+		"music_vol_bttn",
+		"credits_bttn",
+		"lvl_comp_cont_bttn",
+		"lvl_comp_home_bttn",
+		"lvl_comp_lvl_slct_bttn",
+		"lvl_comp_replay_bttn",
+		"tutorial_next_bttn",
+		"tutorial_prev_bttn",
+		"lvl_1_bttn",
+		"lvl_2_bttn",
+		"lvl_3_bttn",
+		"lvl_4_bttn"
 	]
 }

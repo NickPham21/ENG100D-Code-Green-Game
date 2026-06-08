@@ -1,0 +1,393 @@
+{
+	"name": "cutscene_5a_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 5a",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 422376160076833
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c5a_arr",
+							"sid": 120373183011798
+						},
+						{
+							"callFunction": "music_start",
+							"sid": 377121515153881,
+							"parameters": [
+								"\"cutscene_5a\""
+							]
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 265892042064226,
+							"parameters": [
+								"\"c5a_arr\""
+							]
+						}
+					],
+					"sid": 962161150173681
+				},
+				{
+					"functionName": "initialize_c5a_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 704358301360296,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Great work, Agent \" & PlayerName & \".\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 649766268787651,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 845250667221663,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 787010461874132,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"voiceline_5_1\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 720956144768381,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"The forest, ocean, beach, and city are cleaner because of you\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 205233101473511,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 935076493066630,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 586531122794060,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "\"voiceline_5_2\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 418876846503702,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"Mission complete.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 549314452247183,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 230395938742627,
+							"parameters": {
+								"x": "2",
+								"y": "2",
+								"value": "\"Anh-Thu the Cockatoo\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5a_arr",
+							"sid": 328414123676133,
+							"parameters": {
+								"x": "2",
+								"y": "3",
+								"value": "\"voiceline_5_3\""
+							}
+						}
+					],
+					"sid": 439490495577205
+				}
+			],
+			"sid": 439921836125941
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 5a",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 693014327699726,
+							"parameters": {
+								"tag": "\"c5a_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 436614448649410,
+							"parameters": [
+								"\"closing\"",
+								"\"cutscene_5b\""
+							]
+						}
+					],
+					"sid": 636003176244969
+				}
+			],
+			"sid": 135382051740311
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 5a",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 490425226075494
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 492324975813094
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 574476541222731,
+							"parameters": [
+								"\"c5a_arr\""
+							]
+						}
+					],
+					"sid": 579185203673781,
+					"isOrBlock": true
+				}
+			],
+			"sid": 551149869619405
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 5a",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Extra setup / cleanup that's hard to do in shared events"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 699454415290234,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 980293168048274,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 101532422306167,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"center\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 857089196072411,
+									"parameters": {
+										"opacity": "0"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "c_sprite_display",
+									"sid": 179268652587429,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"ScanLines\""
+									}
+								}
+							],
+							"sid": 566705582954345
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 135724058383355,
+							"parameters": {
+								"variable": "spriteMonitorMoving"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 815046241515491,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 629569444417567
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "c_monitor_sprite_effect",
+									"sid": 677397859953026,
+									"parameters": {
+										"object": "c_monitor_sprite_display",
+										"image-point-optional": "0"
+									}
+								}
+							],
+							"sid": 406737907400426,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 228420411561418,
+											"parameters": {
+												"object": "c_sprite_display",
+												"expression": "c_sprite_display.position",
+												"comparison": 0,
+												"value": "\"center\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position-to-another-object",
+											"objectClass": "c_sprite_display",
+											"sid": 664660298776930,
+											"parameters": {
+												"object": "c_monitor_sprite_display",
+												"image-point-optional": "0"
+											}
+										}
+									],
+									"sid": 871292651294777
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 533371509000774
+		}
+	],
+	"sid": 498739158813178
+}

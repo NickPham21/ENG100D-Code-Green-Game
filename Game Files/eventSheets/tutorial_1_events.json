@@ -1,0 +1,262 @@
+{
+	"name": "tutorial_1_events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "tutorial_shared_events"
+		},
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting how many tutorial sequences are in this cutscene (select t[num]_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Tutorial 1",
+			"description": "Anything to do with initializing the tutorial.\n\nInitialize tutorial array (t[num[_arr object) on startup.\nThis array is an x by 2 array, where:\n - x is the number of sequences in the tutorial\n   - (x, 0) is the looping video to play\n   - (x, 1) is the accompanying text",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 590503632386672
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_t1_arr",
+							"sid": 786115620699648
+						},
+						{
+							"callFunction": "initialize_tutorial",
+							"sid": 442132020993840,
+							"parameters": [
+								"\"t1_arr\""
+							]
+						}
+					],
+					"sid": 658145610743901
+				},
+				{
+					"functionName": "initialize_t1_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 493421797375310,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"tutorial_vid_1.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 147305178974197,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"Click on the waste and drag them to the correct bin! Putting the wrong waste in the wrong bin makes you lose an entire heart!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 905440300233249,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "\"tutorial_vid_3.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 968749955930371,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"Sorting trash correctly multiple times in a row increases your score streak! This allows you to get a higher score. Be careful, putting trash in the wrong bin can break your streak.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 931060230481081,
+							"parameters": {
+								"x": "2",
+								"y": "0",
+								"value": "\"tutorial_vid_2.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 698524982686565,
+							"parameters": {
+								"x": "2",
+								"y": "1",
+								"value": "\"Leave the animals alone! Touching an animal can break your streak and make you lose half a heart. \""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 191213186662911,
+							"parameters": {
+								"x": "3",
+								"y": "0",
+								"value": "\"tutorial_vid_4.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 992706722103179,
+							"parameters": {
+								"x": "3",
+								"y": "1",
+								"value": "\"Food waste goes inside the green organic waste bin and contaminated trash goes into the gray trash bin!\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 587569581539094,
+							"parameters": {
+								"x": "4",
+								"y": "0",
+								"value": "\"compscreen.mp4\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "t1_arr",
+							"sid": 716060132639382,
+							"parameters": {
+								"x": "4",
+								"y": "1",
+								"value": "\"Get a score of 30 to pass the level. Shoot for the stars!\""
+							}
+						}
+					],
+					"sid": 175746129224008
+				}
+			],
+			"sid": 361124413636771
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Tutorial 1",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay (or back to menu if we have time...)",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 637668773163841,
+							"parameters": {
+								"tag": "\"t1_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "music_stop",
+							"sid": 962431630549423,
+							"parameters": [
+								"\"cutscene_1a\""
+							]
+						},
+						{
+							"callFunction": "clean_tutorial",
+							"sid": 330459504783543,
+							"parameters": [
+								"\"game_screen_1\""
+							]
+						}
+					],
+					"sid": 291049955238415
+				}
+			],
+			"sid": 268310520494604
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Tutorial 1",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 619027564568038,
+							"parameters": {
+								"tag": "\"tutorial_next_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_tutorial_next",
+							"sid": 187409369041350,
+							"parameters": [
+								"\"t1_arr\""
+							]
+						}
+					],
+					"sid": 977744656470730
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 114654558955715,
+							"parameters": {
+								"tag": "\"tutorial_prev_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_tutorial_prev",
+							"sid": 992871599474116,
+							"parameters": [
+								"\"t1_arr\""
+							]
+						}
+					],
+					"sid": 296714718048709
+				}
+			],
+			"sid": 883189498138654
+		}
+	],
+	"sid": 184618268914031
+}

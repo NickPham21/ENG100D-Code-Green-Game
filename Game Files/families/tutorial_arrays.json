@@ -1,0 +1,20 @@
+{
+	"name": "tutorial_arrays",
+	"plugin-id": "Arr",
+	"sid": 142091098185826,
+	"instanceVariables": [
+		{
+			"name": "t_arr_id",
+			"type": "string",
+			"desc": "unique ID of the tutorial array",
+			"show": true,
+			"sid": 263757455785334
+		}
+	],
+	"members": [
+		"t1_arr",
+		"t4_arr",
+		"t3_arr",
+		"t2_arr"
+	]
+}

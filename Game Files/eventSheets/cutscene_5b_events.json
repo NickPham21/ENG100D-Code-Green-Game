@@ -1,0 +1,175 @@
+{
+	"name": "cutscene_5b_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Cutscene 5b",
+			"description": "Anything to do with initializing a cutscene.\n\nInitialize cutscene dialogue array (cutscene_n_dialogue object) on startup.\nThis array is an x by y array, where:\n- x (ie width) is the total dialogue count of this cutscene\n- y (ie height) is the number of attributes to keep track of per dialogue \n   - y = 5 for now, we keep track of text, current speaking position, character name, voiceline to play, and unique frame (if any) per dialogue\n      - (x, 0) stores text \n      - (x, 1) stores current speaking character's position\n      - (x, 2) stores character name\n      - (x, 3) stores voiceline file name\n      - (x, 4) stores unique frame to play",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 340755887399371
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "initialize_c5b_arr",
+							"sid": 145510776563130
+						},
+						{
+							"callFunction": "initialize_cutscene",
+							"sid": 598560757045756,
+							"parameters": [
+								"\"c5b_arr\""
+							]
+						}
+					],
+					"sid": 760564156403284
+				},
+				{
+					"functionName": "initialize_c5b_arr",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5b_arr",
+							"sid": 921636829408860,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "\"Terrific work! Throwing trash away the right way helps keep our world clean.\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5b_arr",
+							"sid": 740475100792676,
+							"parameters": {
+								"x": "0",
+								"y": "1",
+								"value": "\"up\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5b_arr",
+							"sid": 156490320600348,
+							"parameters": {
+								"x": "0",
+								"y": "2",
+								"value": "\"Command Center\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "c5b_arr",
+							"sid": 762710004761436,
+							"parameters": {
+								"x": "0",
+								"y": "3",
+								"value": "\"beepboop_5_1\""
+							}
+						}
+					],
+					"sid": 575851861614280
+				}
+			],
+			"sid": 417148877563882
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Cutscene 5b",
+			"description": "Anything to do with cleaning up a cutscene, to transition to gameplay",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 530097538909696,
+							"parameters": {
+								"tag": "\"c5b_arr_done\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "clean_cutscene",
+							"sid": 268799166804260,
+							"parameters": [
+								"\"closing\"",
+								"\"credits_screen\""
+							]
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 654416316791907,
+							"parameters": [
+								"\"cutscene_5a\""
+							]
+						}
+					],
+					"sid": 557601690920307
+				}
+			],
+			"sid": 931107348390312
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Cutscene 5b",
+			"description": "Anything to do with user interactions",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 467123907543541
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 126844058176675
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "handle_cutscene_click",
+							"sid": 809509252752366,
+							"parameters": [
+								"\"c5b_arr\""
+							]
+						}
+					],
+					"sid": 975541496710532,
+					"isOrBlock": true
+				}
+			],
+			"sid": 590724549628165
+		}
+	],
+	"sid": 582362482335116
+}

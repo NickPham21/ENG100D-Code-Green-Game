@@ -27,6 +27,13 @@
 							"sid": 773321335272806
 						},
 						{
+							"callFunction": "music_start",
+							"sid": 769573165589567,
+							"parameters": [
+								"\"cutscene_4b\""
+							]
+						},
+						{
 							"callFunction": "initialize_cutscene",
 							"sid": 939831498150055,
 							"parameters": [
@@ -250,11 +257,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c4b_arr",
-							"sid": 608861503161492,
+							"sid": 759058870408919,
 							"parameters": {
 								"x": "5",
 								"y": "0",
-								"value": "\"People just weren't being careful.\""
+								"value": "\"People just weren't being careful enough.\""
 							}
 						},
 						{
@@ -355,10 +362,17 @@
 					"actions": [
 						{
 							"callFunction": "clean_cutscene",
-							"sid": 674806776823189,
+							"sid": 327687789336671,
 							"parameters": [
 								"\"closing\"",
-								"\"cutscene_4a\""
+								"\"cutscene_5a\""
+							]
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 482084233405313,
+							"parameters": [
+								"\"cutscene_4b\""
 							]
 						}
 					],

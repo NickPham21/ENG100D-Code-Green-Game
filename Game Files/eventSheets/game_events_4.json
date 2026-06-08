@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "bttn_ux_animation_events"
+			"includeSheet": "bttn_ux_events"
 		},
 		{
 			"eventType": "include",
@@ -13,11 +13,32 @@
 			"eventType": "variable",
 			"name": "LevelTimeScaleL4",
 			"type": "number",
-			"initialValue": "0.8",
+			"initialValue": "0.35",
 			"comment": "Time scale for the level (how fast everything happens, 1.0 is normal: 1s in game is 1s irl)",
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 542153600888539
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 647698072496424
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "ResetAllVariables",
+					"sid": 358024957419781
+				},
+				{
+					"callFunction": "WaitForCountdown",
+					"sid": 459688395882408
+				}
+			],
+			"sid": 620352332334153
 		},
 		{
 			"eventType": "block",
@@ -34,40 +55,11 @@
 					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
 				},
 				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 267181473720899,
-					"parameters": {
-						"tag": "\"\"",
-						"db": "-100",
-						"duration": "1",
-						"ending": "stop"
-					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 898949233963263,
-					"parameters": {
-						"audio-file": {
-							"path": "peaceful"
-						},
-						"loop": "looping",
-						"volume": "-100",
-						"stereo-pan": "0",
-						"tag-optional": "\"ocean_level_music\""
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 574585538534947,
-					"parameters": {
-						"tag": "\"ocean_level_music\"",
-						"db": "GlobalVolume",
-						"duration": "1",
-						"ending": "keep-playing"
-					}
+					"callFunction": "music_start",
+					"sid": 366396464468161,
+					"parameters": [
+						"\"game_screen_4\""
+					]
 				}
 			],
 			"sid": 319010198028811
@@ -76,15 +68,27 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-start-of-layout",
+					"id": "on-signal",
 					"objectClass": "System",
-					"sid": 452213554803314
+					"sid": 343598412955931,
+					"parameters": {
+						"tag": "\"start_countdown\""
+					}
 				}
 			],
 			"actions": [
 				{
 					"type": "comment",
 					"text": "On start of the level:\n- Set time scale (the larger the value, the faster items will be thrown around)\n- Set GameManager time scale to 1.0 (so spawn timers will be relative to real time scale, not game time scale)\n- Call SpawnItem for waste items to start spawning\n- Call SpawnDistraction for distraction items to start spawning\n- Set and start timer for SpawnItem (interval in seconds in which a new waste item spawns)\n- Set and start timer for SpawnDistraction (interval in seconds in which a new distraction item spawns)"
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 177823280090268,
+					"parameters": {
+						"variable": "LastLevelPlayed",
+						"value": "4"
+					}
 				},
 				{
 					"id": "set-time-scale",
@@ -106,10 +110,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 356576488280176,
+					"sid": 264463947566014,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(1,4)",
+						"duration": "random(2,8)",
 						"type": "regular",
 						"tag": "\"SpawnRecycle\""
 					}
@@ -117,10 +121,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 889149786638052,
+					"sid": 370238960660603,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(1,4)",
+						"duration": "random(2,8)",
 						"type": "regular",
 						"tag": "\"SpawnTrash\""
 					}
@@ -128,10 +132,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 502687502008711,
+					"sid": 967252531935626,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(1,4)",
+						"duration": "random(2,8)",
 						"type": "regular",
 						"tag": "\"SpawnCompost\""
 					}
@@ -139,10 +143,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 529974079660654,
+					"sid": 910994317642993,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(1,4)",
+						"duration": "random(2,8)",
 						"type": "regular",
 						"tag": "\"SpawnGlass\""
 					}
@@ -150,10 +154,10 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 979872091981776,
+					"sid": 502642935959342,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(1,4)",
+						"duration": "random(1.5,8)",
 						"type": "regular",
 						"tag": "\"SpawnEWaste\""
 					}
@@ -161,12 +165,12 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 903339502632811,
+					"sid": 973341372437668,
 					"behaviorType": "Timer",
 					"parameters": {
-						"duration": "random(4,8)",
+						"duration": "random(7,11)",
 						"type": "regular",
-						"tag": "\"SpawnRatDistraction\""
+						"tag": "\"SpawnCityDistraction\""
 					}
 				}
 			],
@@ -283,16 +287,16 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 242445839799718,
+					"sid": 235298979958942,
 					"behaviorType": "Timer",
 					"parameters": {
-						"tag": "\"SpawnRatDistraction\""
+						"tag": "\"SpawnCityDistraction\""
 					}
 				}
 			],
 			"actions": [
 				{
-					"callFunction": "SpawnRatDistraction",
+					"callFunction": "SpawnCityDistraction",
 					"sid": 151362427954387
 				}
 			],

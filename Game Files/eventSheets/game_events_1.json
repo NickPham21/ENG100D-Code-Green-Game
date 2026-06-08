@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "bttn_ux_animation_events"
+			"includeSheet": "bttn_ux_events"
 		},
 		{
 			"eventType": "include",
@@ -13,7 +13,7 @@
 			"eventType": "variable",
 			"name": "LevelTimeScaleL1",
 			"type": "number",
-			"initialValue": "0.25",
+			"initialValue": "0.3",
 			"comment": "Time scale for the level (how fast everything happens, 1.0 is normal: 1s in game is 1s irl)",
 			"isStatic": false,
 			"isConstant": false,
@@ -25,7 +25,28 @@
 				{
 					"id": "on-start-of-layout",
 					"objectClass": "System",
-					"sid": 183783281184413
+					"sid": 696907035349122
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "ResetAllVariables",
+					"sid": 756879193567034
+				},
+				{
+					"callFunction": "WaitForCountdown",
+					"sid": 617405355590836
+				}
+			],
+			"sid": 779003723573593
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 943846751876242
 				}
 			],
 			"actions": [
@@ -34,40 +55,11 @@
 					"text": "On the start of the layout, fade out main menu theme + fade in level music (to the GlobalVolume set by user)"
 				},
 				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 764338551321833,
-					"parameters": {
-						"tag": "\"main_menu_music\"",
-						"db": "-100",
-						"duration": "1",
-						"ending": "stop"
-					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Audio",
-					"sid": 369103980226781,
-					"parameters": {
-						"audio-file": {
-							"path": "frog"
-						},
-						"loop": "looping",
-						"volume": "-100",
-						"stereo-pan": "0",
-						"tag-optional": "\"forest_level_music\""
-					}
-				},
-				{
-					"id": "fade-volume",
-					"objectClass": "Audio",
-					"sid": 428605497307823,
-					"parameters": {
-						"tag": "\"forest_level_music\"",
-						"db": "GlobalVolume",
-						"duration": "1",
-						"ending": "keep-playing"
-					}
+					"callFunction": "music_start",
+					"sid": 864979273702623,
+					"parameters": [
+						"\"game_screen_1\""
+					]
 				}
 			],
 			"sid": 915032230055955
@@ -76,15 +68,27 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-start-of-layout",
+					"id": "on-signal",
 					"objectClass": "System",
-					"sid": 237255338284514
+					"sid": 620344844723585,
+					"parameters": {
+						"tag": "\"start_countdown\""
+					}
 				}
 			],
 			"actions": [
 				{
 					"type": "comment",
 					"text": "On start of the level:\n- Set time scale (the larger the value, the faster items will be thrown around)\n- Set GameManager time scale to 1.0 (so spawn timers will be relative to real time scale, not game time scale)\n- Call SpawnItem for waste items to start spawning\n- Call SpawnDistraction for distraction items to start spawning\n- Set and start timer for SpawnItem (interval in seconds in which a new waste item spawns)\n- Set and start timer for SpawnDistraction (interval in seconds in which a new distraction item spawns)"
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 805526725970591,
+					"parameters": {
+						"variable": "LastLevelPlayed",
+						"value": "1"
+					}
 				},
 				{
 					"id": "set-time-scale",
@@ -97,7 +101,7 @@
 				{
 					"id": "set-object-time-scale",
 					"objectClass": "System",
-					"sid": 221174182930751,
+					"sid": 502645710281007,
 					"parameters": {
 						"object": "GameManager",
 						"time-scale": "1.0"
@@ -128,12 +132,12 @@
 				{
 					"id": "start-timer",
 					"objectClass": "GameManager",
-					"sid": 341539685043918,
+					"sid": 589002769058091,
 					"behaviorType": "Timer",
 					"parameters": {
 						"duration": "random(8,10)",
 						"type": "regular",
-						"tag": "\"SpawnFrogDistraction\""
+						"tag": "\"SpawnForestDistraction\""
 					}
 				}
 			],
@@ -187,16 +191,16 @@
 				{
 					"id": "on-timer",
 					"objectClass": "GameManager",
-					"sid": 892255037657912,
+					"sid": 415100867789043,
 					"behaviorType": "Timer",
 					"parameters": {
-						"tag": "\"SpawnFrogDistraction\""
+						"tag": "\"SpawnForestDistraction\""
 					}
 				}
 			],
 			"actions": [
 				{
-					"callFunction": "SpawnFrogDistraction",
+					"callFunction": "SpawnForestDistraction",
 					"sid": 136339631689503
 				}
 			],

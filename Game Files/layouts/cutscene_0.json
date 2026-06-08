@@ -79,7 +79,7 @@
 					}
 				},
 				{
-					"type": "c_sprite_display",
+					"type": "c_monitor_sprite_display",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "Monitor",
@@ -88,11 +88,9 @@
 						"live-preview": false
 					},
 					"uid": 209,
-					"sid": 416691117594777,
+					"sid": 196947843764026,
 					"tags": "",
-					"instanceVariables": {
-						"position": "right"
-					},
+					"instanceVariables": {},
 					"behaviors": {
 						"Tween": {
 							"properties": {
@@ -103,10 +101,10 @@
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 996,
-						"y": 383,
-						"width": 1018.5,
-						"height": 745.5,
+						"x": 1002,
+						"y": 410,
+						"width": 938.8916365967181,
+						"height": 687.2299608079071,
 						"originX": 0.5,
 						"originY": 0.5010060362173038,
 						"color": [
@@ -132,12 +130,20 @@
 					"sid": 576598298034682,
 					"tags": "",
 					"instanceVariables": {
-						"position": "right"
+						"position": "center"
 					},
 					"behaviors": {
 						"Tween": {
 							"properties": {
 								"enabled": true
+							}
+						}
+					},
+					"effects": {
+						"ScanLines": {
+							"isEnabled": true,
+							"parameters": {
+								"line-height": 5
 							}
 						}
 					},
@@ -159,48 +165,6 @@
 						"z": 0,
 						"angle": 0,
 						"blendMode": "screen"
-					}
-				},
-				{
-					"type": "c_sprite_display",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Monitor",
-						"initial-frame": 1,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 210,
-					"sid": 997834545141383,
-					"tags": "",
-					"instanceVariables": {
-						"position": "right"
-					},
-					"behaviors": {
-						"Tween": {
-							"properties": {
-								"enabled": true
-							}
-						}
-					},
-					"showing": true,
-					"locked": false,
-					"world": {
-						"x": 983.6019873736059,
-						"y": 382.4774208861832,
-						"width": 953.5000680512636,
-						"height": 727.4900849802938,
-						"originX": 0.47201767304860087,
-						"originY": 0.5015090543259557,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"z": 0,
-						"angle": 0.0024872638990780516,
-						"blendMode": "additive"
 					}
 				},
 				{
@@ -362,13 +326,21 @@
 							}
 						}
 					},
+					"effects": {
+						"ScanLines": {
+							"isEnabled": true,
+							"parameters": {
+								"line-height": 2
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 958,
 						"y": -451,
-						"width": 841.1426898786883,
-						"height": 618.5914024743616,
+						"width": 872.6855407491391,
+						"height": 622.715345157524,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -431,28 +403,34 @@
 					}
 				},
 				{
-					"type": "sprite_monitor",
+					"type": "c_monitor_sprite_effect",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "Animation 1",
+						"initial-animation": "Monitor",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
 					},
 					"uid": 208,
-					"sid": 571242189210467,
+					"sid": 597045934187548,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
-						"x": 1748,
-						"y": -124,
-						"width": 250,
-						"height": 250,
-						"originX": 0.5,
-						"originY": 0.5,
+						"x": 992,
+						"y": 413,
+						"width": 871.7214238599483,
+						"height": 638.0641349902714,
+						"originX": 0.47201767304860087,
+						"originY": 0.5015090543259557,
 						"color": [
 							1,
 							1,

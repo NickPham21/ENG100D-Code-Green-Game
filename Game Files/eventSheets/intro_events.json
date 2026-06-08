@@ -2,93 +2,162 @@
 	"name": "intro_events",
 	"events": [
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Intro",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-start-of-layout",
-					"objectClass": "System",
-					"sid": 648377024331946
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 477028200488516
+						}
+					],
+					"actions": [
+						{
+							"id": "set-source-2",
+							"objectClass": "Video",
+							"sid": 558577876617548,
+							"parameters": {
+								"primary-source": "\"introeng.mp4\"",
+								"primary-format": "mp4-h264",
+								"secondary-source": "\"\"",
+								"secondary-format": "webm-vp9"
+							}
+						},
+						{
+							"id": "set-looping",
+							"objectClass": "Video",
+							"sid": 566608256830564,
+							"parameters": {
+								"mode": "not-looping"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Video",
+							"sid": 880733620330183
+						}
+					],
+					"sid": 247520978423400
 				}
 			],
-			"actions": [
-				{
-					"id": "set-source-2",
-					"objectClass": "Video",
-					"sid": 862255683292190,
-					"parameters": {
-						"primary-source": "\"introeng.mp4\"",
-						"primary-format": "mp4-h264",
-						"secondary-source": "\"\"",
-						"secondary-format": "webm-vp9"
-					}
-				},
-				{
-					"id": "set-looping",
-					"objectClass": "Video",
-					"sid": 639668930166716,
-					"parameters": {
-						"mode": "not-looping"
-					}
-				},
-				{
-					"id": "play",
-					"objectClass": "Video",
-					"sid": 380520378249608
-				}
-			],
-			"sid": 318028513491112
+			"sid": 740159663861817
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Intro",
+			"description": "What happens on user interactions",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "has-ended",
-					"objectClass": "Video",
-					"sid": 499101183552558
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "Mouse",
+							"sid": 295367480668755
+						},
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 836311648020451
+						}
+					],
+					"actions": [],
+					"sid": 316963533418980,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-playing",
+									"objectClass": "Video",
+									"sid": 999424309846258,
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Video",
+									"sid": 952802316176038
+								}
+							],
+							"sid": 653459574620247
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 401045215101775
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 109149157823465,
+									"parameters": {
+										"layout": "main_menu_screen"
+									}
+								}
+							],
+							"sid": 133468401760563
+						}
+					],
+					"isOrBlock": true
 				}
 			],
-			"actions": [
-				{
-					"id": "wait",
-					"objectClass": "System",
-					"sid": 428802051484879,
-					"parameters": {
-						"seconds": "1.0",
-						"use-timescale": true
-					}
-				},
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 961043798443553,
-					"parameters": {
-						"layout": "main_menu_screen"
-					}
-				}
-			],
-			"sid": 752204498388020,
-			"isOrBlock": true
+			"sid": 766017908722567
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Intro",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-any-click",
-					"objectClass": "Mouse",
-					"sid": 453237925308666
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "has-ended",
+							"objectClass": "Video",
+							"sid": 919625162685372
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 349456281164631,
+							"parameters": {
+								"seconds": "1.0",
+								"use-timescale": true
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 103698190433738,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						}
+					],
+					"sid": 445865651329074,
+					"isOrBlock": true
 				}
 			],
-			"actions": [
-				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 995875464721720,
-					"parameters": {
-						"layout": "main_menu_screen"
-					}
-				}
-			],
-			"sid": 576977927288868
+			"sid": 984748824529082
 		}
 	],
 	"sid": 141144026114487

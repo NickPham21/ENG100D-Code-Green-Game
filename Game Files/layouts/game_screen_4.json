@@ -98,14 +98,20 @@
 					"sid": 157132597519775,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 1718,
-						"y": 876,
+						"y": 873,
 						"width": 400,
-						"height": 410.66666666666663,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -289,14 +295,20 @@
 					"sid": 477977878276261,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 201,
-						"y": 874,
+						"y": 873,
 						"width": 400,
-						"height": 410.66666666666663,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -322,14 +334,20 @@
 					"sid": 545257146571819,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 578,
-						"y": 875,
+						"y": 873,
 						"width": 400,
-						"height": 410.666667,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -399,14 +417,20 @@
 					"sid": 550205591436340,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 1339,
 						"y": 873,
 						"width": 400,
-						"height": 410.666667,
+						"height": 800,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -449,8 +473,8 @@
 					"world": {
 						"x": 970,
 						"y": 1712,
-						"width": 170,
-						"height": 170,
+						"width": 250,
+						"height": 250,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -476,14 +500,20 @@
 					"sid": 557361456759427,
 					"tags": "",
 					"instanceVariables": {},
-					"behaviors": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
 					"showing": true,
 					"locked": false,
 					"world": {
 						"x": 959,
-						"y": 877,
+						"y": 873,
 						"width": 400,
-						"height": 400,
+						"height": 780,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -526,8 +556,8 @@
 					"world": {
 						"x": 1176,
 						"y": 1713,
-						"width": 200,
-						"height": 200,
+						"width": 150,
+						"height": 150,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -541,10 +571,10 @@
 					}
 				},
 				{
-					"type": "rat",
+					"type": "city_distraction",
 					"properties": {
 						"initially-visible": true,
-						"initial-animation": "rat_normal",
+						"initial-animation": "rat",
 						"initial-frame": 0,
 						"enable-collisions": true,
 						"live-preview": false
@@ -570,8 +600,8 @@
 					"world": {
 						"x": 143,
 						"y": 1724,
-						"width": 250,
-						"height": 250,
+						"width": 200,
+						"height": 200,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -739,7 +769,8 @@
 					"sid": 699080669894901,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "lvl_1_select"
+						"bttn_id": "lvl_1_select",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -892,7 +923,8 @@
 					"sid": 400546706387078,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "start"
+						"bttn_id": "start",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -960,7 +992,7 @@
 					}
 				},
 				{
-					"type": "volume_bttn",
+					"type": "sfx_vol_bttn",
 					"properties": {
 						"initially-visible": true,
 						"initial-animation": "vol3",
@@ -972,7 +1004,8 @@
 					"sid": 547003564417811,
 					"tags": "",
 					"instanceVariables": {
-						"bttn_id": "volume"
+						"bttn_id": "volume",
+						"is_locked": false
 					},
 					"behaviors": {
 						"Tween": {
@@ -1051,6 +1084,41 @@
 				0.3686274509803922,
 				0.3686274509803922,
 				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"sampling": "auto",
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "Countdown",
+			"overriden": 1,
+			"subLayers": [],
+			"instances": [],
+			"sid": 821715735265044,
+			"effectTypes": [],
+			"isInitiallyVisible": false,
+			"isInitiallyInteractive": false,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.8392156862745098,
+				0.3607843137254902,
+				0.3607843137254902,
 				1
 			],
 			"isTransparent": true,

@@ -32,6 +32,13 @@
 							"parameters": [
 								"\"c2a_arr\""
 							]
+						},
+						{
+							"callFunction": "music_start",
+							"sid": 302642904688989,
+							"parameters": [
+								"\"cutscene_2a\""
+							]
 						}
 					],
 					"sid": 142248423607829
@@ -80,11 +87,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c2a_arr",
-							"sid": 568085133221153,
+							"sid": 721339585336393,
 							"parameters": {
 								"x": "0",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_2_1\""
 							}
 						},
 						{
@@ -120,11 +127,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c2a_arr",
-							"sid": 164908028806464,
+							"sid": 960505803528661,
 							"parameters": {
 								"x": "1",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_2_2\""
 							}
 						},
 						{
@@ -334,15 +341,67 @@
 					],
 					"actions": [
 						{
-							"callFunction": "clean_cutscene",
-							"sid": 989004290795105,
-							"parameters": [
-								"\"opening\"",
-								"\"game_screen_2\""
-							]
+							"type": "comment",
+							"text": "transition to tutorial if this is the player's first time, else go to game screen"
 						}
 					],
-					"sid": 357870443867514
+					"sid": 357870443867514,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 196091869844566,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 709421098409615,
+									"parameters": [
+										"\"opening\"",
+										"\"tutorial_screen_2\""
+									]
+								}
+							],
+							"sid": 241599463065749
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 535545475231606
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 973447321958068,
+									"parameters": [
+										"\"opening\"",
+										"\"game_screen_2\""
+									]
+								},
+								{
+									"callFunction": "music_stop",
+									"sid": 188514285381256,
+									"parameters": [
+										"\"cutscene_2a\""
+									]
+								}
+							],
+							"sid": 624194689103546
+						}
+					]
 				}
 			],
 			"sid": 344277041321943

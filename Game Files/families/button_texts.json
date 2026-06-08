@@ -1,0 +1,40 @@
+{
+	"name": "button_texts",
+	"plugin-id": "Text",
+	"sid": 418321162263677,
+	"instanceVariables": [
+		{
+			"name": "for_bttn_id",
+			"type": "string",
+			"desc": "contains the button ID this text is for",
+			"show": true,
+			"sid": 253708894596315
+		},
+		{
+			"name": "init_font_size",
+			"type": "number",
+			"desc": "Initial font size of the button text. Used for tween behavior.",
+			"show": true,
+			"sid": 416433754126031
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 614614916114548
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"start_bttn_text",
+		"lvl_select_text",
+		"name_confirm_bttn_text",
+		"name_no_bttn_text",
+		"name_yes_bttn_text",
+		"continue_bttn_text",
+		"stcfrm_yes_text",
+		"stcfrm_no_text",
+		"credits_bttn_text"
+	]
+}

@@ -1,0 +1,740 @@
+{
+	"name": "bttn_ux_events",
+	"events": [
+		{
+			"eventType": "comment",
+			"text": "HOW TO ADD UX TO BUTTONS:\n1. Include this event sheet in the layout's event sheet (right click -> include event sheet -> bttn_ux_animation_events)\n2. Put button object in 'buttons' family\nIF BUTTON HAS TEXT LABEL:\n3. Put text label object in 'buttons' family\n4. Set text label object's \"for_bttn_id\" instance variable to be the EXACT SAME as the bttn_id for the button object its for\n\nTO CONFIGURE LOGIC ON BUTTON PRESS (DO AFTER ABOVE):\n1. Set its 'bttn_id' instance variable\n2. Use trigger condition \"System -> on trigger [bttn_id]_pressed\"\n           replace [bttn_id] with whatever you set the bttn_id to\n\nlook at the main_menu_events sheet as an example on how to do it"
+		},
+		{
+			"eventType": "comment",
+			"text": "Cooldown necessary so player doesn't accidentally go into another layer when returning from a prev layer"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 867824028853334
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 567193504142908,
+					"parameters": {
+						"variable": "ClickOnCooldown",
+						"value": "true"
+					}
+				},
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 484294488153001,
+					"parameters": {
+						"type": "log",
+						"message": "\"setting click on cooldown\""
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 228444673292583,
+					"parameters": {
+						"seconds": "0.25",
+						"use-timescale": false
+					}
+				},
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 753769622696628,
+					"parameters": {
+						"type": "log",
+						"message": "\"setting click off cooldown\""
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 481084468447565,
+					"parameters": {
+						"variable": "ClickOnCooldown",
+						"value": "false"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "button_texts",
+					"sid": 294371693843916,
+					"parameters": {
+						"instance-variable": "init_font_size",
+						"value": "button_texts.FaceSize"
+					}
+				},
+				{
+					"type": "comment",
+					"text": "cursor sprite only works if this object is in layout; create one out of bounds"
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 419705295918020,
+					"parameters": {
+						"object-to-create": "cursor_sprite",
+						"layer": "0",
+						"x": "-100",
+						"y": "-100",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "cursor_sprite",
+					"sid": 593096682915490,
+					"parameters": {
+						"frame-number": "\"point\""
+					}
+				},
+				{
+					"id": "set-cursor-from-sprite",
+					"objectClass": "Mouse",
+					"sid": 395582959601805,
+					"parameters": {
+						"sprite": "cursor_sprite"
+					}
+				}
+			],
+			"sid": 561686243019030
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Button Animation and SFX",
+			"description": "User interaction animations and sfx for buttons",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "PC controls:\n- button in \"hover\" state when mouse over it\n- button in \"pressed\" state when mouse over it AND left button is down\n- button function activates only when button was pressed and left button is released\n\nNOTE: there's no built in tween for font size, so we can't smoothly animate font size changing..."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 125938282390990,
+							"parameters": {
+								"variable": "ClickOnCooldown"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 288814281069640,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 569359614049060,
+									"parameters": {
+										"object": "buttons"
+									}
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "buttons",
+									"sid": 972518118808780,
+									"parameters": {
+										"instance-variable": "is_locked"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "cursor_sprite",
+									"sid": 991384906296134,
+									"parameters": {
+										"frame-number": "\"click\""
+									}
+								},
+								{
+									"id": "set-cursor-from-sprite",
+									"objectClass": "Mouse",
+									"sid": 819811866332703,
+									"parameters": {
+										"sprite": "cursor_sprite"
+									}
+								},
+								{
+									"id": "tween-two-properties",
+									"objectClass": "buttons",
+									"sid": 102731490026718,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"shrink\"",
+										"property": "scale",
+										"end-x": "0.95",
+										"end-y": "0.95",
+										"time": "0.02",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 914379908579701,
+									"disabled": true,
+									"parameters": {
+										"type": "log",
+										"message": "\"cursor over \" & buttons.bttn_id"
+									}
+								}
+							],
+							"sid": 562174393438519,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "Mouse",
+											"sid": 468860227229260,
+											"parameters": {
+												"mouse-button": "left"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "buttons",
+											"sid": 928433675872420,
+											"parameters": {
+												"frame-number": "\"bttn_hover\""
+											}
+										}
+									],
+									"sid": 708952210318466
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "mouse-button-is-down",
+											"objectClass": "Mouse",
+											"sid": 914533959460187,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										},
+										{
+											"id": "compare-animation-frame-tag",
+											"objectClass": "buttons",
+											"sid": 987460496893026,
+											"parameters": {
+												"comparison": 0,
+												"tag": "\"bttn_hover\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "buttons",
+											"sid": 215962305519745,
+											"parameters": {
+												"frame-number": "\"bttn_pressed\""
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 290880313425157,
+											"disabled": true,
+											"parameters": {
+												"type": "log",
+												"message": "buttons.bttn_id & \" is being pressed\""
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 110896718758372,
+											"parameters": {
+												"audio-file": {
+													"path": "buttons/click"
+												},
+												"loop": "not-looping",
+												"volume": "SfxVolume",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										}
+									],
+									"sid": 184194074431172
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "on-button-released",
+											"objectClass": "Mouse",
+											"sid": 414280542732974,
+											"parameters": {
+												"mouse-button": "left"
+											}
+										},
+										{
+											"id": "compare-animation-frame-tag",
+											"objectClass": "buttons",
+											"sid": 416820379981611,
+											"parameters": {
+												"comparison": 0,
+												"tag": "\"bttn_pressed\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "buttons",
+											"sid": 381063279881125,
+											"parameters": {
+												"frame-number": "\"bttn_idle\""
+											}
+										},
+										{
+											"id": "set-cursor-style2",
+											"objectClass": "Mouse",
+											"sid": 183614735033546,
+											"parameters": {
+												"cursor-style": "normal"
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 212630140183931,
+											"parameters": {
+												"audio-file": {
+													"path": "buttons/release"
+												},
+												"loop": "not-looping",
+												"volume": "SfxVolume",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 606091059983847,
+											"parameters": {
+												"tag": "buttons.bttn_id & \"_pressed\""
+											}
+										}
+									],
+									"sid": 218178573082016
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 301614803684468,
+											"parameters": {
+												"object": "button_texts",
+												"expression": "button_texts.for_bttn_id",
+												"comparison": 0,
+												"value": "buttons.bttn_id"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-font-size",
+											"objectClass": "button_texts",
+											"sid": 440563660552974,
+											"parameters": {
+												"size-pt": "button_texts.init_font_size*0.9"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 917877420940867,
+											"disabled": true,
+											"parameters": {
+												"type": "log",
+												"message": "\"font size for  \" & button_texts.for_bttn_id & \" now set to: \" & button_texts.FaceSize"
+											}
+										}
+									],
+									"sid": 279553725116913
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 774131115750027,
+									"parameters": {
+										"object": "buttons"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 522633893561603,
+									"parameters": {
+										"variable": "MobileMode"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "buttons",
+									"sid": 337138688477545,
+									"parameters": {
+										"instance-variable": "is_locked"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-two-properties",
+									"objectClass": "buttons",
+									"sid": 187098844831074,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"normalScale\"",
+										"property": "scale",
+										"end-x": "1",
+										"end-y": "1",
+										"time": "0.02",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "buttons",
+									"sid": 104344707194974,
+									"parameters": {
+										"frame-number": "\"bttn_idle\""
+									}
+								},
+								{
+									"id": "set-font-size",
+									"objectClass": "button_texts",
+									"sid": 674068827199688,
+									"parameters": {
+										"size-pt": "button_texts.init_font_size"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 895049355588938,
+									"disabled": true,
+									"parameters": {
+										"type": "log",
+										"message": "\"font size for  \" & button_texts.for_bttn_id & \" now set to: \" & button_texts.FaceSize"
+									}
+								}
+							],
+							"sid": 606503066703839
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 439412962104573,
+									"parameters": {
+										"object": "game_objects"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "cursor_sprite",
+									"sid": 159937548783962,
+									"parameters": {
+										"frame-number": "\"click\""
+									}
+								},
+								{
+									"id": "set-cursor-from-sprite",
+									"objectClass": "Mouse",
+									"sid": 414541487848829,
+									"parameters": {
+										"sprite": "cursor_sprite"
+									}
+								}
+							],
+							"sid": 593121124514786
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 955247331746673,
+									"parameters": {
+										"object": "game_objects"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "cursor-is-over-object",
+									"objectClass": "Mouse",
+									"sid": 299474986376589,
+									"parameters": {
+										"object": "buttons"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 861871598668585,
+									"parameters": {
+										"variable": "MobileMode"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation-frame",
+									"objectClass": "cursor_sprite",
+									"sid": 641680814992481,
+									"parameters": {
+										"frame-number": "\"point\""
+									}
+								},
+								{
+									"id": "set-cursor-from-sprite",
+									"objectClass": "Mouse",
+									"sid": 992516592088334,
+									"parameters": {
+										"sprite": "cursor_sprite"
+									}
+								}
+							],
+							"sid": 766264266915736
+						},
+						{
+							"eventType": "comment",
+							"text": "Mobile controls:\n- no \"hover\" state\n- no scale tweening, makes pressing too hard\n- button in \"pressed\" state when touch held on button\n- button function activates only when button was pressed and touch is released"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-on-mobile",
+									"objectClass": "PlatformInfo",
+									"sid": 901820750762186
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 892635776872714,
+									"parameters": {
+										"variable": "MobileMode",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 971200594163250
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 261452624774203,
+									"parameters": {
+										"variable": "MobileMode"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 642006015494293,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-touching-object",
+											"objectClass": "Touch",
+											"sid": 493895345428635,
+											"parameters": {
+												"object": "buttons"
+											}
+										},
+										{
+											"id": "compare-animation-frame-tag",
+											"objectClass": "buttons",
+											"sid": 517339702784289,
+											"parameters": {
+												"comparison": 0,
+												"tag": "\"bttn_idle\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "buttons",
+											"sid": 418634656947153,
+											"parameters": {
+												"frame-number": "\"bttn_pressed\""
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 960861208784420,
+											"parameters": {
+												"audio-file": {
+													"path": "buttons/click"
+												},
+												"loop": "not-looping",
+												"volume": "SfxVolume",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										}
+									],
+									"sid": 151001015173829
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-touching-object",
+											"objectClass": "Touch",
+											"sid": 827209500864610,
+											"parameters": {
+												"object": "buttons"
+											},
+											"isInverted": true
+										},
+										{
+											"id": "compare-animation-frame-tag",
+											"objectClass": "buttons",
+											"sid": 953373191220910,
+											"parameters": {
+												"comparison": 0,
+												"tag": "\"bttn_pressed\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "buttons",
+											"sid": 617080909743223,
+											"parameters": {
+												"frame-number": "\"bttn_idle\""
+											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 142434402244496,
+											"parameters": {
+												"audio-file": {
+													"path": "buttons/release"
+												},
+												"loop": "not-looping",
+												"volume": "SfxVolume",
+												"stereo-pan": "0",
+												"tag-optional": "\"\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 309931493396478,
+											"parameters": {
+												"tag": "buttons.bttn_id & \"_pressed\""
+											}
+										}
+									],
+									"sid": 941298542020089
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 926948682465904
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "just to make sure cursor doesn't flicker"
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "cursor_sprite",
+							"sid": 839693360294858,
+							"parameters": {
+								"frame-number": "\"point\""
+							}
+						},
+						{
+							"id": "set-cursor-from-sprite",
+							"objectClass": "Mouse",
+							"sid": 488077152419195,
+							"parameters": {
+								"sprite": "cursor_sprite"
+							}
+						}
+					],
+					"sid": 125336612050467
+				}
+			],
+			"sid": 343613337663298
+		}
+	],
+	"sid": 954693041619521
+}

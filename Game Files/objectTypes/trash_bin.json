@@ -5,7 +5,13 @@
 	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 745298471225336
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -13,7 +19,7 @@
 				"frames": [
 					{
 						"width": 600,
-						"height": 616,
+						"height": 1200,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
@@ -23,16 +29,14 @@
 						"imageSpriteId": 1419125,
 						"collisionPoly": {
 							"points": [
-								0.505,
-								0,
-								0.9733333333333336,
-								0.024350649350649345,
-								0.8466666666666676,
-								0.9983766233766234,
-								0.1416666666666667,
-								1,
-								0.023333333333333376,
-								0.02597402597402597
+								0.9166666666666666,
+								0.06666666666666667,
+								0.7666666666666667,
+								0.7583333333333333,
+								0.23333333333333334,
+								0.7583333333333333,
+								0.08333333333333333,
+								0.06666666666666667
 							]
 						},
 						"useCollisionPoly": true,

@@ -27,6 +27,13 @@
 							"sid": 236626404110155
 						},
 						{
+							"callFunction": "music_start",
+							"sid": 621260641761281,
+							"parameters": [
+								"\"cutscene_0\""
+							]
+						},
+						{
 							"callFunction": "initialize_cutscene",
 							"sid": 862434793822504,
 							"parameters": [
@@ -60,11 +67,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 798612734975361,
+							"sid": 682090529258653,
 							"parameters": {
 								"x": "0",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -100,11 +107,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 797674515551858,
+							"sid": 357369851747500,
 							"parameters": {
 								"x": "1",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -140,11 +147,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 281604440538933,
+							"sid": 978366212898198,
 							"parameters": {
 								"x": "2",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -180,11 +187,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 185573240929368,
+							"sid": 245429813132800,
 							"parameters": {
 								"x": "3",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -220,11 +227,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 726886844512726,
+							"sid": 578958364196053,
 							"parameters": {
 								"x": "4",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -260,11 +267,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 399799654026453,
+							"sid": 662453449315170,
 							"parameters": {
 								"x": "5",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -300,11 +307,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 793769662074590,
+							"sid": 987215770816720,
 							"parameters": {
 								"x": "6",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -340,11 +347,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c0_arr",
-							"sid": 678280847637347,
+							"sid": 454449932290436,
 							"parameters": {
 								"x": "7",
 								"y": "1",
-								"value": "\"right\""
+								"value": "\"center\""
 							}
 						},
 						{
@@ -400,6 +407,13 @@
 								"\"closing\"",
 								"\"cutscene_1a\""
 							]
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 306823804764363,
+							"parameters": [
+								"\"cutscene_0\""
+							]
 						}
 					],
 					"sid": 797345726079780
@@ -442,6 +456,144 @@
 				}
 			],
 			"sid": 650486793371693
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Special Cutscene Events - Cutscene 0",
+			"description": "Anything special that only happens in this cutscene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Extra setup / cleanup that's hard to do in shared events"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 467004156149044,
+							"parameters": {
+								"variable": "cSeqCtr",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 902431109706220,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 407938406587799,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"center\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-opacity",
+									"objectClass": "c_sprite_display",
+									"sid": 451890298223333,
+									"parameters": {
+										"opacity": "0"
+									}
+								},
+								{
+									"id": "set-effect-enabled",
+									"objectClass": "c_sprite_display",
+									"sid": 656162930112806,
+									"parameters": {
+										"mode": "enable",
+										"effect": "\"ScanLines\""
+									}
+								}
+							],
+							"sid": 868821805037848
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 937900275222409,
+							"parameters": {
+								"variable": "spriteMonitorMoving"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 526560468909415,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "every-tick",
+									"objectClass": "System",
+									"sid": 658776306609264
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position-to-another-object",
+									"objectClass": "c_monitor_sprite_effect",
+									"sid": 919996486508725,
+									"parameters": {
+										"object": "c_monitor_sprite_display",
+										"image-point-optional": "0"
+									}
+								}
+							],
+							"sid": 828256319763848,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 970643405804498,
+											"parameters": {
+												"object": "c_sprite_display",
+												"expression": "c_sprite_display.position",
+												"comparison": 0,
+												"value": "\"center\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-position-to-another-object",
+											"objectClass": "c_sprite_display",
+											"sid": 175124153345879,
+											"parameters": {
+												"object": "c_monitor_sprite_display",
+												"image-point-optional": "0"
+											}
+										}
+									],
+									"sid": 838397042781134
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 495550186164521
 		}
 	],
 	"sid": 337713031675396

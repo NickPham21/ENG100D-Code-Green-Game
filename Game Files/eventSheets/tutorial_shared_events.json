@@ -1,0 +1,795 @@
+{
+	"name": "tutorial_shared_events",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "variable",
+			"name": "tSeqCtr",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "Tracks the tutorial sequence the player is on.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 839754223996162
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Tutorial",
+			"description": "Anything to do with initializing the tutorial.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "initialize_tutorial",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "t_arr_id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 415567623730972
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 579397189032038,
+							"parameters": {
+								"variable": "tSeqCtr"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Moves stuff out of the way"
+						},
+						{
+							"id": "set-y",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 467795780431952,
+							"parameters": {
+								"y": "1600"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Video",
+							"sid": 938925826049463,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "tutorial_text",
+							"sid": 343635339330150,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_next_bttn",
+							"sid": 102494142510801,
+							"parameters": {
+								"y": "1600"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_prev_bttn",
+							"sid": 293161690928267,
+							"parameters": {
+								"y": "1600"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Bring stuff in"
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 696799160776437,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bring_in_monitor\"",
+								"property": "offsetY",
+								"end-value": "518",
+								"time": "1",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 180504514360786
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Video",
+							"sid": 748734671902745,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_next_bttn",
+							"sid": 976890048026647,
+							"parameters": {
+								"y": "872"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_prev_bttn",
+							"sid": 992897598244406,
+							"parameters": {
+								"y": "872"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Show first tutorial step"
+						},
+						{
+							"type": "comment",
+							"text": "Disable back button on first tutorial sequence"
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "tutorial_prev_bttn",
+							"sid": 251489617002015,
+							"parameters": {
+								"layer": "\"Disabled Buttons\""
+							}
+						},
+						{
+							"callFunction": "update_tutorial",
+							"sid": 759212708726728,
+							"parameters": [
+								"t_arr_id"
+							]
+						}
+					],
+					"sid": 810296445426402
+				}
+			],
+			"sid": 230103628658618
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Button Logic / Update - Tutorial",
+			"description": "What actually happens when the buttons are pressed. \nAlso disables/enables buttons and set their animation as appropriate.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "handle_tutorial_next",
+					"functionDescription": "Handles next button press in tutorial screen",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "t_arr_id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "ID of the tutorial array to extract values from",
+							"sid": 964109823966583
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 253567696629691,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 404087225929294,
+									"parameters": {
+										"object": "tutorial_arrays",
+										"expression": "tutorial_arrays.t_arr_id",
+										"comparison": 0,
+										"value": "t_arr_id"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 421471372553381,
+									"parameters": {
+										"first-value": "tSeqCtr",
+										"comparison": 2,
+										"second-value": "tutorial_arrays.Width"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 306255500553789,
+									"parameters": {
+										"variable": "ClickOnCooldown"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 292973833571860,
+									"parameters": {
+										"variable": "ClickOnCooldown",
+										"value": "true"
+									}
+								},
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 345929378785636,
+									"parameters": {
+										"variable": "tSeqCtr",
+										"value": "1"
+									}
+								},
+								{
+									"callFunction": "update_tutorial",
+									"sid": 152110437420903,
+									"parameters": [
+										"t_arr_id"
+									]
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 322294193405465,
+									"parameters": {
+										"seconds": "ClickCooldownTime",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 956643049170421,
+									"parameters": {
+										"variable": "ClickOnCooldown",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 849276903744567,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 755205433286496,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 0,
+												"second-value": "tutorial_arrays.Width"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Signal done, increment tSeqCtr one more time to avoid loop"
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 574540055765106,
+											"parameters": {
+												"tag": "t_arr_id & \"_done\""
+											}
+										},
+										{
+											"id": "add-to-eventvar",
+											"objectClass": "System",
+											"sid": 731718905470111,
+											"parameters": {
+												"variable": "tSeqCtr",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 847339244822163
+								}
+							]
+						}
+					]
+				},
+				{
+					"functionName": "handle_tutorial_prev",
+					"functionDescription": "Handles prev button press in tutorial screen",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "t_arr_id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "ID of the tutorial array to extract values from",
+							"sid": 741231683353152
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 784769281928491,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 650261133199599,
+									"parameters": {
+										"object": "tutorial_arrays",
+										"expression": "tutorial_arrays.t_arr_id",
+										"comparison": 0,
+										"value": "t_arr_id"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 539590898007418,
+									"parameters": {
+										"first-value": "tSeqCtr",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 993268618612864,
+									"parameters": {
+										"variable": "ClickOnCooldown"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 262002319300216,
+									"parameters": {
+										"variable": "ClickOnCooldown",
+										"value": "true"
+									}
+								},
+								{
+									"id": "add-to-eventvar",
+									"objectClass": "System",
+									"sid": 262290729624836,
+									"parameters": {
+										"variable": "tSeqCtr",
+										"value": "-1"
+									}
+								},
+								{
+									"callFunction": "update_tutorial",
+									"sid": 825400121887546,
+									"parameters": [
+										"t_arr_id"
+									]
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 781202731048225,
+									"parameters": {
+										"seconds": "ClickCooldownTime",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 177704339288279,
+									"parameters": {
+										"variable": "ClickOnCooldown",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 209185083472178
+						}
+					]
+				},
+				{
+					"functionName": "update_tutorial",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "t_arr_id",
+							"type": "string",
+							"initialValue": "",
+							"comment": "ID of the tutorial array to extract values from",
+							"sid": 330472117263992
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 121669374299501,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 367026000365974,
+									"parameters": {
+										"object": "tutorial_arrays",
+										"expression": "tutorial_arrays.t_arr_id",
+										"comparison": 0,
+										"value": "t_arr_id"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-source-2",
+									"objectClass": "Video",
+									"sid": 688105584566847,
+									"parameters": {
+										"primary-source": "tutorial_arrays.At(tSeqCtr, 0)",
+										"primary-format": "mp4-h264",
+										"secondary-source": "\"\"",
+										"secondary-format": "webm-vp9"
+									}
+								},
+								{
+									"id": "set-muted",
+									"objectClass": "Video",
+									"sid": 241265990769003,
+									"parameters": {
+										"mode": "muted"
+									}
+								},
+								{
+									"id": "set-looping",
+									"objectClass": "Video",
+									"sid": 627109307516898,
+									"parameters": {
+										"mode": "looping"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 106364395179277,
+									"parameters": {
+										"seconds": "0.05",
+										"use-timescale": false
+									}
+								},
+								{
+									"id": "play",
+									"objectClass": "Video",
+									"sid": 476554318992522
+								}
+							],
+							"sid": 776215908949724,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 826433532391935,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 0,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Disable back button on first tutorial sequence"
+										},
+										{
+											"id": "move-to-layer",
+											"objectClass": "tutorial_prev_bttn",
+											"sid": 991435613398233,
+											"parameters": {
+												"layer": "\"Disabled Buttons\""
+											}
+										}
+									],
+									"sid": 276257835144480
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 659275164824032,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 4,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Enable back button if not on first tutorial sequence"
+										},
+										{
+											"id": "move-to-layer",
+											"objectClass": "tutorial_prev_bttn",
+											"sid": 692015642511806,
+											"parameters": {
+												"layer": "\"UI\""
+											}
+										}
+									],
+									"sid": 430332547041571
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 874632534318134,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 2,
+												"second-value": "tutorial_arrays.Width-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Set next button to indicate there's more to the tutorial"
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "tutorial_next_bttn",
+											"sid": 873926698618065,
+											"parameters": {
+												"animation": "\"Next\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "tutorial_text",
+											"sid": 449906634225251,
+											"parameters": {
+												"text": "tutorial_arrays.At(tSeqCtr, 1)"
+											}
+										}
+									],
+									"sid": 637720129854211
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 631855268385656,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 0,
+												"second-value": "tutorial_arrays.Width-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Set next button to indicate at end of tutorial"
+										},
+										{
+											"id": "set-animation",
+											"objectClass": "tutorial_next_bttn",
+											"sid": 231244469929495,
+											"parameters": {
+												"animation": "\"Done\"",
+												"from": "beginning"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "tutorial_text",
+											"sid": 139612423381195,
+											"parameters": {
+												"text": "tutorial_arrays.At(tSeqCtr, 1)"
+											}
+										}
+									],
+									"sid": 688516401965753
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 560022911843136,
+											"parameters": {
+												"first-value": "tSeqCtr",
+												"comparison": 0,
+												"second-value": "tutorial_arrays.Width"
+											}
+										}
+									],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "Consistency: re-disable back button, don't display text (can't be handled in clean_tutorial b/c its too late then)"
+										},
+										{
+											"id": "move-to-layer",
+											"objectClass": "tutorial_prev_bttn",
+											"sid": 684575655607735,
+											"parameters": {
+												"layer": "\"Disabled Buttons\""
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "tutorial_text",
+											"sid": 906463966359904,
+											"parameters": {
+												"text": "\"\""
+											}
+										}
+									],
+									"sid": 734861519049867
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 461668638473318
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Cleanup - Tutorial",
+			"description": "Anything to do with cleaning up the tutorial.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "clean_tutorial",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "transition_to_layout",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"sid": 592577968119638
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Bring stuff out"
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "Video",
+							"sid": 408537122990313,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_next_bttn",
+							"sid": 795199071786704,
+							"parameters": {
+								"y": "1600"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "tutorial_prev_bttn",
+							"sid": 249216065083011,
+							"parameters": {
+								"y": "1600"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "tutorial_text",
+							"sid": 815174179355479,
+							"parameters": {
+								"text": "\"\""
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 372629425159695,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"take_out_monitor\"",
+								"property": "offsetY",
+								"end-value": "1600",
+								"time": "1",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 163278713888508
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 927788862817792,
+							"parameters": {
+								"layout": "transition_to_layout"
+							}
+						}
+					],
+					"sid": 785435752951706
+				}
+			],
+			"sid": 604029820238158
+		}
+	],
+	"sid": 678433305051835
+}

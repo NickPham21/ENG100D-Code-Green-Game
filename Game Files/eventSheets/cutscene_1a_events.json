@@ -2,6 +2,10 @@
 	"name": "cutscene_1a_events",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "save_events"
+		},
+		{
 			"eventType": "comment",
 			"text": "NOTE: certain setup needs to be done on layer\n- setting initial left/right character sprite (select sprite->properties->initial animation)\n- setting how many dialogues are in this cutscene (select c1_arr->properties->width)\n- setting id for array"
 		},
@@ -24,13 +28,20 @@
 					"actions": [
 						{
 							"callFunction": "initialize_c1a_arr",
-							"sid": 682472237620944
+							"sid": 934674530529756
 						},
 						{
 							"callFunction": "initialize_cutscene",
-							"sid": 448109050732476,
+							"sid": 855939180986185,
 							"parameters": [
 								"\"c1a_arr\""
+							]
+						},
+						{
+							"callFunction": "music_start",
+							"sid": 998843051221473,
+							"parameters": [
+								"\"cutscene_1a\""
 							]
 						}
 					],
@@ -80,11 +91,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1a_arr",
-							"sid": 769196536016826,
+							"sid": 668037165066457,
 							"parameters": {
 								"x": "0",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_1_1\""
 							}
 						},
 						{
@@ -120,11 +131,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c1a_arr",
-							"sid": 605235531574107,
+							"sid": 532030252345523,
 							"parameters": {
 								"x": "1",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_1_2\""
 							}
 						},
 						{
@@ -314,15 +325,67 @@
 					],
 					"actions": [
 						{
-							"callFunction": "clean_cutscene",
-							"sid": 683531869286941,
-							"parameters": [
-								"\"opening\"",
-								"\"game_screen_1\""
-							]
+							"type": "comment",
+							"text": "transition to tutorial if this is the player's first time, else go to game screen"
 						}
 					],
-					"sid": 870230724797877
+					"sid": 870230724797877,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 158067242159780,
+									"parameters": {
+										"variable": "LevelsCompleted",
+										"comparison": 2,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 549263124325072,
+									"parameters": [
+										"\"opening\"",
+										"\"tutorial_screen_1\""
+									]
+								}
+							],
+							"sid": 750557225263501
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 859178823991231
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "clean_cutscene",
+									"sid": 236705615769680,
+									"parameters": [
+										"\"opening\"",
+										"\"game_screen_1\""
+									]
+								},
+								{
+									"callFunction": "music_stop",
+									"sid": 174927502843985,
+									"parameters": [
+										"\"cutscene_1a\""
+									]
+								}
+							],
+							"sid": 420452825371017
+						}
+					]
 				}
 			],
 			"sid": 219150406882808

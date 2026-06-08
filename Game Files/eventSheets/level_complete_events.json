@@ -1,0 +1,1383 @@
+{
+	"name": "level_complete_events",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "LevelPassed",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Tracks if the user successfully passed the level. Used for saving and enabling continue button.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 440034024504483
+		},
+		{
+			"eventType": "variable",
+			"name": "LevelCompleteMusicPlayed",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 369041220192450
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "save_events"
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Initialization - Level Complete",
+			"description": "What's done at start of layout",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 485652136083672
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 983304858253247,
+							"parameters": {
+								"first-value": "CurrLvlHeartsLost",
+								"comparison": 2,
+								"second-value": "6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 256360202945895,
+							"parameters": {
+								"variable": "LevelPassed",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 484609225588562,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 850362360729633,
+							"parameters": {
+								"variable": "CurrLvlScore",
+								"value": "CurrLvlScore"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Ensure timescale reset for correct UX animations\nNOTE: will not work until time scale bug in global_game_events is fixed."
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 662097619880831,
+							"parameters": {
+								"time-scale": "1.0"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Assume level isn't passed by default. Don't let user continue to next level. Only enable if user passed level (Implemented below)"
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "lvl_comp_cont_bttn",
+							"sid": 939003427838166,
+							"parameters": {
+								"layer": "\"Disabled Buttons\""
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 290348515671529,
+							"parameters": {
+								"variable": "LevelPassed",
+								"value": "false"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Display score on startup instead of relying on global_game_events every tick"
+						},
+						{
+							"id": "set-text",
+							"objectClass": "score_display",
+							"sid": 377172686271551,
+							"parameters": {
+								"text": "\"Score: \" & CurrLvlScore"
+							}
+						}
+					],
+					"sid": 400531823862273
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 844040507979574
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 155072204821540,
+							"parameters": {
+								"first-value": "CurrLvlHeartsLost",
+								"comparison": 5,
+								"second-value": "6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 840310998179419,
+							"parameters": {
+								"variable": "CurrLvlScore",
+								"value": "CurrLvlScore"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Ensure timescale reset for correct UX animations\nNOTE: will not work until time scale bug in global_game_events is fixed."
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 507296939281360,
+							"parameters": {
+								"time-scale": "1.0"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Assume level isn't passed by default. Don't let user continue to next level. Only enable if user passed level (Implemented below)"
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "lvl_comp_cont_bttn",
+							"sid": 992703274309038,
+							"parameters": {
+								"layer": "\"Disabled Buttons\""
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Display score on startup instead of relying on global_game_events every tick"
+						},
+						{
+							"id": "set-text",
+							"objectClass": "score_display",
+							"sid": 824713507930473,
+							"parameters": {
+								"text": "\"Score: \" & CurrLvlScore"
+							}
+						}
+					],
+					"sid": 147842091202707
+				}
+			],
+			"sid": 817048383273532
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Display and Complete Check - Level Complete",
+			"description": "What is shown on the Level Complete Screen, as well as checks if user passed the level successfully.",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "*Assumes 2 stars and above is passing + you cannot lose all hearts and still pass regardless of your score before you died"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 233195528922404,
+							"parameters": {
+								"first-value": "CurrLvlHeartsLost",
+								"comparison": 2,
+								"second-value": "6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "stars",
+							"sid": 596897394306802,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 941849833316842,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 973198481127111,
+									"parameters": {
+										"first-value": "LastLevelPlayed",
+										"comparison": 0,
+										"second-value": "1"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 497011132539565,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 338632024632062,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 3,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 372767920714054,
+											"parameters": {
+												"frame-number": "\"0_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 867890034993884,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 207523298369600
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 266425830868001,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "0",
+												"upper-bound": "29"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 991069169456863,
+											"parameters": {
+												"frame-number": "\"1_star\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 859066668816614,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 410960167968458
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 382849475291550,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "30",
+												"upper-bound": "54"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 133680572766507,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 905119363207102,
+											"parameters": {
+												"frame-number": "\"2_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 356189799319787,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 796755961565577,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 219185252727781,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 618219140345516
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 949924328190893,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 5,
+												"second-value": "55"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 601454601110975,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 569570943567104,
+											"parameters": {
+												"frame-number": "\"3_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 606576716827859,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 835690897501926,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 145394810406137,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 766593191100080
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 904514460101169,
+									"parameters": {
+										"first-value": "LastLevelPlayed",
+										"comparison": 0,
+										"second-value": "2"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 705721287796878,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 245721017596596,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 3,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 908058452664655,
+											"parameters": {
+												"frame-number": "\"0_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 152135558121859,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 159464590016465
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 749706299725991,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "0",
+												"upper-bound": "54"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 452377408155502,
+											"parameters": {
+												"frame-number": "\"1_star\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 307705171345209,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 132762609935632
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 134274108644695,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "55",
+												"upper-bound": "134"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 579419949552642,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 228371668197506,
+											"parameters": {
+												"frame-number": "\"2_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 848366093149484,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 979151679496410,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 799681590821133,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 200015827878147
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 376405367696526,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 5,
+												"second-value": "135"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 212400337431609,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 875543390536111,
+											"parameters": {
+												"frame-number": "\"3_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 649987465560714,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 412154045097235,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 257917223434046,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 307766537253285
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 803934874025262,
+									"parameters": {
+										"first-value": "LastLevelPlayed",
+										"comparison": 0,
+										"second-value": "3"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 368289623277561,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 918993912894938,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 3,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 973317744662828,
+											"parameters": {
+												"frame-number": "\"0_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 453011553886822,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 284175694367231
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 542639280989074,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "0",
+												"upper-bound": "104"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 487815675999131,
+											"parameters": {
+												"frame-number": "\"1_star\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 780077052955776,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 118218523613202
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 299595064667556,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "105",
+												"upper-bound": "169"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 935500696637350,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 920083855061800,
+											"parameters": {
+												"frame-number": "\"2_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 627043324217154,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 389083871592011,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 569588028121842,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 396631154778640
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 422422224114352,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 5,
+												"second-value": "170"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 110533040509958,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 128234362320293,
+											"parameters": {
+												"frame-number": "\"3_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 896446312150643,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 514584265204680,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 811033299437678,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 132288876590381
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 543717288729454,
+									"parameters": {
+										"first-value": "LastLevelPlayed",
+										"comparison": 0,
+										"second-value": "4"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 774114350877481,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 505385449813321,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 3,
+												"second-value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 999586761762888,
+											"parameters": {
+												"frame-number": "\"0_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 996026770908950,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 841151031906147
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 446401480024111,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "0",
+												"upper-bound": "119"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 299858267341515,
+											"parameters": {
+												"frame-number": "\"1_star\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 859316164379158,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 585700558334606
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 955785582031383,
+											"parameters": {
+												"value": "CurrLvlScore",
+												"lower-bound": "120",
+												"upper-bound": "199"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 252286348655916,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 893189607341863,
+											"parameters": {
+												"frame-number": "\"2_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 397627385838884,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 234053374147278,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 938979545388979,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 777650155254380
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 143691321662854,
+											"parameters": {
+												"first-value": "CurrLvlScore",
+												"comparison": 5,
+												"second-value": "200"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 251361140751119,
+											"parameters": {
+												"variable": "LevelPassed"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation-frame",
+											"objectClass": "stars",
+											"sid": 315400743003903,
+											"parameters": {
+												"frame-number": "\"3_stars\""
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 638800296988511,
+											"parameters": {
+												"tag": "\"LevelPassed\""
+											}
+										},
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 113178274096504,
+											"parameters": {
+												"variable": "LevelPassed",
+												"value": "true"
+											}
+										},
+										{
+											"id": "signal",
+											"objectClass": "System",
+											"sid": 243874158120900,
+											"parameters": {
+												"tag": "\"PlayLevelCompleteMusic\""
+											}
+										}
+									],
+									"sid": 265688460822559
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 411606306997458,
+							"parameters": {
+								"first-value": "CurrLvlHeartsLost",
+								"comparison": 5,
+								"second-value": "6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "failure",
+							"sid": 367404913321766,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "signal",
+							"objectClass": "System",
+							"sid": 637191523948108,
+							"parameters": {
+								"tag": "\"PlayLevelCompleteMusic\""
+							}
+						}
+					],
+					"sid": 674463266023385
+				}
+			],
+			"sid": 430056985537157
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Button Logic - Level Complete",
+			"description": "What actually happens when the buttons are pressed",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 787820581506354,
+							"parameters": {
+								"tag": "\"lvl_comp_home_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 859117414354298,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 481800504113754,
+							"parameters": [
+								"\"level_complete_screen\""
+							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 617006160774812,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 677491674862508
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 690664075791687,
+							"parameters": {
+								"tag": "\"lvl_comp_lvl_slct_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 901255036045993,
+							"parameters": {
+								"layout": "level_select_screen"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 204064985040729,
+							"parameters": [
+								"\"level_complete_screen\""
+							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 598502770405784,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 440362163543609
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 899549318369008,
+							"parameters": {
+								"tag": "\"lvl_comp_cont_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "determine which next cutscene to play based on last level played"
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 724733719000856,
+							"parameters": {
+								"layout": "\"cutscene_\" & LastLevelPlayed & \"b\""
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 382129924543976,
+							"parameters": [
+								"\"level_complete_screen\""
+							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 127631713082539,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 448850924793111
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 664618036492642,
+							"parameters": {
+								"tag": "\"lvl_comp_replay_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "determine which game level to go back to based on last level played"
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 605601554419404,
+							"parameters": {
+								"layout": "\"game_screen_\" & LastLevelPlayed"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 720293977465065,
+							"parameters": [
+								"\"level_complete_screen\""
+							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 197573302967349,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 742620189862151
+				}
+			],
+			"sid": 216269974997323
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "General Logic - Level Complete",
+			"description": "Save progress and enable continuation to next level on level pass",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 554929234093497,
+							"parameters": {
+								"tag": "\"PlayLevelCompleteMusic\""
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 803104089354696,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "play level complete music"
+						},
+						{
+							"callFunction": "music_start",
+							"sid": 409761015225944,
+							"parameters": [
+								"\"level_complete_screen\""
+							]
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 338537906819576,
+							"parameters": {
+								"variable": "LevelCompleteMusicPlayed",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 842429967628683
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 260700801540080,
+							"parameters": {
+								"tag": "\"LevelPassed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Save the highest level the user has completed"
+						},
+						{
+							"callFunction": "save_userdata",
+							"sid": 542268014244918,
+							"parameters": [
+								"max(LastLevelPlayed, LevelsCompleted)"
+							]
+						},
+						{
+							"type": "comment",
+							"text": "Enable continuation button"
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "lvl_comp_cont_bttn",
+							"sid": 908848319984278,
+							"parameters": {
+								"layer": "\"UI\""
+							}
+						}
+					],
+					"sid": 735928712474427
+				}
+			],
+			"sid": 151706748320620
+		}
+	],
+	"sid": 580995131084800
+}

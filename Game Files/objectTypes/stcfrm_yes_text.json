@@ -1,0 +1,10 @@
+{
+	"name": "stcfrm_yes_text",
+	"plugin-id": "Text",
+	"sid": 532063042051504,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": []
+}

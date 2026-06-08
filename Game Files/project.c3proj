@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 48700,
+	"savedWithRelease": 48702,
 	"name": "Code Green Game",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -29,8 +29,22 @@
 		},
 		{
 			"type": "plugin",
+			"id": "LocalStorage",
+			"name": "Local storage",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Mouse",
 			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "PlatformInfo",
+			"name": "Platform info",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -103,6 +117,13 @@
 			"name": "Tween",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "effect",
+			"id": "scanlines",
+			"name": "Scan lines",
+			"author": "Scirra",
+			"bundled": false
 		}
 	],
 	"uniqueId": "rqsbz9j3fdc",
@@ -121,14 +142,14 @@
 			"Audio",
 			"forest_bg",
 			"recycle_object",
-			"frog",
+			"forest_distraction",
 			"GameManager",
 			"main_menu_bg",
 			"Video",
 			"compost_object",
 			"compost_bin",
 			"subtractor",
-			"volume_bttn",
+			"sfx_vol_bttn",
 			"game_logo",
 			"hearts",
 			"pause_bttn",
@@ -136,16 +157,8 @@
 			"play_bttn",
 			"blackout",
 			"Browser",
-			"lvl_1_text",
-			"lvl_1_bttn",
-			"lvl_2_text",
-			"lvl_3_text",
-			"lvl_4_text",
-			"lvl_2_bttn",
-			"lvl_3_bttn",
-			"lvl_4_bttn",
 			"ocean_bg",
-			"fish",
+			"ocean_distraction",
 			"beach_bg",
 			"glass_bin",
 			"Touch",
@@ -164,12 +177,55 @@
 			"TiledBackground",
 			"ewaste_bin",
 			"ewaste_object",
-			"rat",
+			"city_distraction",
 			"TiledBackground2",
 			"black_bg",
 			"ActiveStreakPopUp",
-			"sprite_monitor",
-			"city__clean_bg"
+			"city__clean_bg",
+			"credits_bg",
+			"credits_text",
+			"back_bttn",
+			"LocalStorage",
+			"continue_bttn",
+			"continue_bttn_text",
+			"confirm_menu",
+			"stcfrm_yes_bttn",
+			"stcfrm_no_bttn",
+			"stcfrm_yes_text",
+			"stcfrm_no_text",
+			"volume_values",
+			"music_vol_bttn",
+			"credits_bttn",
+			"credits_bttn_text",
+			"TiledBackground3",
+			"stars",
+			"lvl_comp_cont_bttn",
+			"lvl_comp_lvl_slct_bttn",
+			"lvl_comp_replay_bttn",
+			"lvl_comp_home_bttn",
+			"multiplier_text",
+			"countdown",
+			"Sprite",
+			"cursor_sprite",
+			"tutorial_text",
+			"tutorial_next_bttn",
+			"tutorial_prev_bttn",
+			"t1_arr",
+			"t2_arr",
+			"t3_arr",
+			"t4_arr",
+			"confirm_menu_text",
+			"beach_distraction",
+			"lvl_1_bttn",
+			"lvl_2_bttn",
+			"lvl_3_bttn",
+			"lvl_4_bttn",
+			"Lvl_ball",
+			"lvl_redline",
+			"score_streak_display",
+			"score_streak_text",
+			"failure",
+			"PlatformInfo"
 		],
 		"subfolders": [
 			{
@@ -204,7 +260,11 @@
 					"c3a_arr",
 					"c3b_arr",
 					"c4a_arr",
-					"c4b_arr"
+					"c4b_arr",
+					"c_monitor_sprite_display",
+					"c_monitor_sprite_effect",
+					"c5a_arr",
+					"c5b_arr"
 				],
 				"subfolders": [],
 				"name": "Cutscene"
@@ -225,35 +285,69 @@
 				"lvl_select_bttn",
 				"lvl_select_text"
 			]
+		},
+		{
+			"members": [
+				"continue_bttn",
+				"continue_bttn_text"
+			]
+		},
+		{
+			"members": [
+				"stcfrm_yes_bttn",
+				"stcfrm_yes_text"
+			]
+		},
+		{
+			"members": [
+				"stcfrm_no_bttn",
+				"stcfrm_no_text"
+			]
+		},
+		{
+			"members": [
+				"credits_bttn",
+				"credits_bttn_text"
+			]
 		}
 	],
 	"families": {
 		"items": [
 			"buttons",
-			"main_menu_texts",
-			"cutscene_arrays"
+			"button_texts",
+			"cutscene_arrays",
+			"game_objects",
+			"tutorial_arrays"
 		],
 		"subfolders": []
 	},
 	"layouts": {
 		"items": [
-			"game_screen_1",
-			"level_select_screen",
 			"intro_screen",
 			"main_menu_screen",
-			"cutscene_1a",
+			"game_screen_1",
 			"game_screen_2",
 			"game_screen_3",
+			"game_screen_4",
 			"cutscene_0",
 			"name_select_screen",
-			"game_screen_4",
+			"cutscene_1a",
 			"cutscene_1b",
 			"cutscene_2a",
 			"cutscene_2b",
 			"cutscene_3a",
 			"cutscene_3b",
 			"cutscene_4a",
-			"cutscene_4b"
+			"cutscene_4b",
+			"cutscene_5a",
+			"cutscene_5b",
+			"credits_screen",
+			"level_complete_screen",
+			"tutorial_screen_1",
+			"tutorial_screen_2",
+			"tutorial_screen_3",
+			"tutorial_screen_4",
+			"level_select_screen"
 		],
 		"subfolders": []
 	},
@@ -271,14 +365,25 @@
 			"global_game_events",
 			"cutscene_shared_events",
 			"cutscene_1b_events",
-			"bttn_ux_animation_events",
+			"bttn_ux_events",
 			"cutscene_2a_events",
 			"cutscene_2b_events",
 			"cutscene_3a_events",
 			"cutscene_3b_events",
 			"cutscene_4a_events",
 			"game_events_4",
-			"cutscene_4b_events"
+			"cutscene_4b_events",
+			"cutscene_5a_events",
+			"cutscene_5b_events",
+			"credits_events",
+			"save_events",
+			"level_complete_events",
+			"tutorial_shared_events",
+			"tutorial_1_events",
+			"tutorial_2_events",
+			"tutorial_3_events",
+			"tutorial_4_events",
+			"music_events"
 		],
 		"subfolders": []
 	},
@@ -538,31 +643,266 @@
 					}
 				},
 				{
-					"name": "voiceline_4_7.webm",
+					"name": "voiceline_5_1.webm",
 					"type": "audio/webm; codecs=opus",
-					"sid": 942148261211833,
+					"sid": 362501761975887,
 					"file-info": {
 						"purpose": "none"
 					}
 				},
 				{
-					"name": "voiceline_4_8.webm",
+					"name": "voiceline_5_2.webm",
 					"type": "audio/webm; codecs=opus",
-					"sid": 151468848460444,
+					"sid": 567008727268252,
 					"file-info": {
 						"purpose": "none"
 					}
 				},
 				{
-					"name": "voiceline_4_9.webm",
+					"name": "voiceline_5_3.webm",
 					"type": "audio/webm; codecs=opus",
-					"sid": 446874874215835,
+					"sid": 539534765378488,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_1_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 578232444244831,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_1_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 237849381107993,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_1_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 111305350431906,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_2_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 476507576207379,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_2_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 406644224284319,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_2_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 935442532108181,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_3_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 176137760952717,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_3_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 470475814359247,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_3_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 250888832816262,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_4_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 734875146356354,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_4_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 659518294195545,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "beepboop_5_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 466876228470187,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 699079559128454,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "voiceline_4_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 697055861401990,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "womp womp.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 516082130122224,
 					"file-info": {
 						"purpose": "none"
 					}
 				}
 			],
-			"subfolders": []
+			"subfolders": [
+				{
+					"items": [
+						{
+							"name": "combo1.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 167215079658704,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo2.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 364303622266941,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo3.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 783403338041846,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo4.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 643220719634025,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo5.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 602933929405795,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo6.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 241275544619954,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo7.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 996358054344850,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "combo8+.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 487016650043177,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "scorestreak"
+				},
+				{
+					"items": [
+						{
+							"name": "release.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 184921166801281,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "click.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 648156488794174,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "buttons"
+				},
+				{
+					"items": [
+						{
+							"name": "wrong.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 594019156006977,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "grabitem.webm",
+							"type": "audio/webm; codecs=opus",
+							"sid": 924517772758121,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "gameplay"
+				}
+			]
 		},
 		"music": {
 			"items": [
@@ -589,6 +929,62 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "motivated.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 673235354588118,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "project_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 152031082893546,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "happy.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 289380942707864,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hmmmm.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 412585181985470,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hopeful.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 794521629182438,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "i might fix this song later.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 392062181426110,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "this song is so annoying.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 570160189581289,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
 			],
 			"subfolders": []
@@ -599,6 +995,70 @@
 					"name": "introeng.mp4",
 					"type": "video/mp4",
 					"sid": 836258468603632,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_3.mp4",
+					"type": "video/mp4",
+					"sid": 990035113040122,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_5.mp4",
+					"type": "video/mp4",
+					"sid": 343309741301658,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_2.mp4",
+					"type": "video/mp4",
+					"sid": 295833035804036,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_6.mp4",
+					"type": "video/mp4",
+					"sid": 955542970593121,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_7.mp4",
+					"type": "video/mp4",
+					"sid": 427674000517498,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_1.mp4",
+					"type": "video/mp4",
+					"sid": 854619614914029,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "tutorial_vid_4.mp4",
+					"type": "video/mp4",
+					"sid": 996267950362790,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "compscreen.mp4",
+					"type": "video/mp4",
+					"sid": 685798448451380,
 					"file-info": {
 						"purpose": "none"
 					}
@@ -644,6 +1104,46 @@
 					"name": "ByteBounce.ttf",
 					"type": "application/font-sfnt",
 					"sid": 779988597197142,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Blockybold-Regular.woff",
+					"type": "application/font-woff",
+					"sid": 363089743832815,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Blockybold-Regular.ttf",
+					"type": "application/font-sfnt",
+					"sid": 166418002604205,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Blockybold-Regular.otf",
+					"type": "application/font-sfnt",
+					"sid": 630973584411316,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Blockbold-Regular.ttf",
+					"type": "application/font-sfnt",
+					"sid": 548837585621292,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "Blockbold-Regular.woff",
+					"type": "application/font-woff",
+					"sid": 971021904257495,
 					"file-info": {
 						"purpose": "none"
 					}

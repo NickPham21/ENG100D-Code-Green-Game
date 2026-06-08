@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "include",
-			"includeSheet": "bttn_ux_animation_events"
+			"includeSheet": "bttn_ux_events"
 		},
 		{
 			"eventType": "variable",
@@ -86,12 +86,141 @@
 			"sid": 396999129975057
 		},
 		{
+			"eventType": "variable",
+			"name": "CurrCountdownFrame",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 976995529559766
+		},
+		{
+			"eventType": "variable",
+			"name": "LastLevelPlayed",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 829426515547804
+		},
+		{
+			"eventType": "variable",
+			"name": "GameEnded",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Tracks if the game has ended. Needed to fix certain bugs",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 484374810820368
+		},
+		{
+			"functionName": "WaitForCountdown",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 597196872098767,
+					"parameters": {
+						"seconds": "1.0",
+						"use-timescale": false
+					}
+				},
+				{
+					"id": "signal",
+					"objectClass": "System",
+					"sid": 353123512112119,
+					"parameters": {
+						"tag": "\"start_countdown\""
+					}
+				}
+			],
+			"sid": 999636156202866
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-signal",
+					"objectClass": "System",
+					"sid": 982087105385373,
+					"parameters": {
+						"tag": "\"start_countdown\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 819038691979492,
+					"parameters": {
+						"variable": "CurrCountdownFrame",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "countdown",
+					"sid": 394094280248794,
+					"parameters": {
+						"frame-number": "\"cd_ready\""
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 529374605426398,
+					"parameters": {
+						"layer": "\"Countdown\"",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "countdown",
+					"sid": 882249130164755,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "tween-two-properties",
+					"objectClass": "countdown",
+					"sid": 331442489502017,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"start_cd\"",
+						"property": "size",
+						"end-x": "1920",
+						"end-y": "1080",
+						"time": "0.1",
+						"ease": "easeinoutsine",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				}
+			],
+			"sid": 690835618329536
+		},
+		{
 			"eventType": "block",
 			"conditions": [
 				{
 					"id": "every-x-seconds",
 					"objectClass": "System",
-					"sid": 153271653543802,
+					"sid": 396443458248691,
 					"parameters": {
 						"interval-seconds": "timescale"
 					}
@@ -99,28 +228,103 @@
 			],
 			"actions": [
 				{
-					"type": "comment",
-					"text": "Set in-game timer to subtract 1 from Timer after 1s irl "
-				},
-				{
-					"id": "set-text",
-					"objectClass": "timer_display",
-					"sid": 520658386866000,
-					"parameters": {
-						"text": "\"Timer: \" & LvlTimer"
-					}
-				},
-				{
-					"id": "subtract-from-eventvar",
+					"id": "add-to-eventvar",
 					"objectClass": "System",
-					"sid": 546172677170114,
+					"sid": 154510337287960,
 					"parameters": {
-						"variable": "LvlTimer",
+						"variable": "CurrCountdownFrame",
 						"value": "1"
 					}
 				}
 			],
-			"sid": 558839776722639
+			"sid": 359014113669052
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 919954514675092
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation-frame",
+					"objectClass": "countdown",
+					"sid": 139013882238411,
+					"parameters": {
+						"frame-number": "CurrCountdownFrame"
+					}
+				}
+			],
+			"sid": 536068557384071
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 588546872543372,
+					"parameters": {
+						"first-value": "CurrCountdownFrame",
+						"comparison": 4,
+						"second-value": "2"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 291517527044328,
+					"parameters": {
+						"layer": "\"Countdown\"",
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 316151097611469,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 539246567309832,
+							"parameters": {
+								"interval-seconds": "timescale"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "Set in-game timer to subtract 1 from Timer after 1s irl "
+						},
+						{
+							"id": "set-text",
+							"objectClass": "timer_display",
+							"sid": 240778705970437,
+							"parameters": {
+								"text": "\"[outline=black]\" & \"Timer: \" & LvlTimer & \"[\\outline]\""
+							}
+						},
+						{
+							"id": "subtract-from-eventvar",
+							"objectClass": "System",
+							"sid": 679510632355613,
+							"parameters": {
+								"variable": "LvlTimer",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 887414006174527
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -135,9 +339,9 @@
 				{
 					"id": "set-text",
 					"objectClass": "score_display",
-					"sid": 684021503426425,
+					"sid": 928082138787890,
 					"parameters": {
-						"text": "\"Score: \" & CurrLvlScore"
+						"text": "\"[outline=black]\" & \"Score: \" & CurrLvlScore & \"[\\outline]\""
 					}
 				}
 			],
@@ -155,27 +359,131 @@
 						"comparison": 2,
 						"value": "0"
 					}
+				},
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 621243983900604,
+					"parameters": {
+						"variable": "GameEnded"
+					},
+					"isInverted": true
 				}
 			],
 			"actions": [
 				{
-					"id": "reset-global-variables",
-					"objectClass": "System",
-					"sid": 333641795580722,
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 964850132638972,
 					"parameters": {
-						"reset-static": true
+						"type": "log",
+						"message": "\"game won, going to level complete screen\""
 					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 555785979215026,
+					"parameters": {
+						"variable": "GameEnded",
+						"value": "true"
+					}
+				},
+				{
+					"callFunction": "music_stop",
+					"sid": 649667544992187,
+					"parameters": [
+						"\"game_screen_\" & LastLevelPlayed"
+					]
 				},
 				{
 					"id": "go-to-layout",
 					"objectClass": "System",
-					"sid": 109232044614490,
+					"sid": 332644799653239,
 					"parameters": {
-						"layout": "level_select_screen"
+						"layout": "level_complete_screen"
 					}
 				}
 			],
 			"sid": 675429640678856
+		},
+		{
+			"functionName": "ResetAllVariables",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 700444959614673,
+					"parameters": {
+						"variable": "CurrLvlScore"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 492327353837433,
+					"parameters": {
+						"variable": "LvlTimer"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 623683621545652,
+					"parameters": {
+						"variable": "CurrLvlHeartsLost"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 183319274916245,
+					"parameters": {
+						"variable": "ScoreMultiplier"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 647473822405002,
+					"parameters": {
+						"variable": "ScoreStreak"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 454127924676498,
+					"parameters": {
+						"variable": "ScoreStreakTracker"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 109205370383406,
+					"parameters": {
+						"variable": "CurrCountdownFrame"
+					}
+				},
+				{
+					"id": "reset-eventvar",
+					"objectClass": "System",
+					"sid": 395588960292932,
+					"parameters": {
+						"variable": "GameEnded"
+					}
+				}
+			],
+			"sid": 181885941471464
 		},
 		{
 			"eventType": "group",
@@ -264,10 +572,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "glass_object",
-									"sid": 538376993385415,
+									"sid": 278996023800227,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
 									}
 								},
 								{
@@ -621,9 +929,9 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 873355706308171,
+									"sid": 969787809656660,
 									"parameters": {
-										"object-to-create": "glass_object",
+										"object-to-create": "ewaste_object",
 										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
@@ -633,16 +941,16 @@
 								},
 								{
 									"id": "set-angle",
-									"objectClass": "glass_object",
-									"sid": 358914445845791,
+									"objectClass": "ewaste_object",
+									"sid": 813925876887670,
 									"parameters": {
 										"angle": "random(0, 360)"
 									}
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "glass_object",
-									"sid": 625250991248716,
+									"objectClass": "ewaste_object",
+									"sid": 167964770272958,
 									"parameters": {
 										"instance-variable": "VectorX",
 										"value": "random(-8, 8)"
@@ -650,11 +958,11 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "glass_object",
-									"sid": 366960334384716,
+									"objectClass": "ewaste_object",
+									"sid": 942531407031018,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
 									}
 								},
 								{
@@ -668,8 +976,8 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "glass_object",
-									"sid": 886408185490374,
+									"objectClass": "ewaste_object",
+									"sid": 562837104962316,
 									"parameters": {
 										"instance-variable": "RotationSpeed",
 										"value": "RotationDirection * random(2.5, 5)"
@@ -689,10 +997,10 @@
 							"children": [
 								{
 									"eventType": "variable",
-									"name": "GlassVariation",
+									"name": "EWasteVariation",
 									"type": "number",
 									"initialValue": "12.5",
-									"comment": "All glass objects will have an equal chance to spawn",
+									"comment": "All e-waste objects will have an equal chance to spawn",
 									"isStatic": false,
 									"isConstant": true,
 									"sid": 136596294500800
@@ -707,17 +1015,17 @@
 											"parameters": {
 												"first-value": "RandomInt",
 												"comparison": 2,
-												"second-value": "GlassVariation"
+												"second-value": "EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 752692166124878,
+											"objectClass": "ewaste_object",
+											"sid": 899543036637283,
 											"parameters": {
-												"animation": "\"glass_cup\"",
+												"animation": "\"battery_1\"",
 												"from": "beginning"
 											}
 										}
@@ -733,18 +1041,18 @@
 											"sid": 827909460716967,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "GlassVariation",
-												"upper-bound": "2*GlassVariation"
+												"lower-bound": "EWasteVariation",
+												"upper-bound": "2*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 149891965121109,
+											"objectClass": "ewaste_object",
+											"sid": 529261728427557,
 											"parameters": {
-												"animation": "\"lightbulb_1\"",
+												"animation": "\"battery_2\"",
 												"from": "beginning"
 											}
 										}
@@ -760,18 +1068,18 @@
 											"sid": 683104085050750,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "2*GlassVariation",
-												"upper-bound": "3*GlassVariation"
+												"lower-bound": "2*EWasteVariation",
+												"upper-bound": "3*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 970409654221164,
+											"objectClass": "ewaste_object",
+											"sid": 633592045863391,
 											"parameters": {
-												"animation": "\"lightbulb_2\"",
+												"animation": "\"charger_1\"",
 												"from": "beginning"
 											}
 										}
@@ -787,18 +1095,18 @@
 											"sid": 443091184123131,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "3*GlassVariation",
-												"upper-bound": "4*GlassVariation"
+												"lower-bound": "3*EWasteVariation",
+												"upper-bound": "4*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 449904724935417,
+											"objectClass": "ewaste_object",
+											"sid": 591433296767264,
 											"parameters": {
-												"animation": "\"mirror_1\"",
+												"animation": "\"charger_2\"",
 												"from": "beginning"
 											}
 										}
@@ -814,18 +1122,18 @@
 											"sid": 257295379570536,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "4*GlassVariation",
-												"upper-bound": "5*GlassVariation"
+												"lower-bound": "4*EWasteVariation",
+												"upper-bound": "5*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 766043502005891,
+											"objectClass": "ewaste_object",
+											"sid": 148015236357310,
 											"parameters": {
-												"animation": "\"mirror_2\"",
+												"animation": "\"controller_1\"",
 												"from": "beginning"
 											}
 										}
@@ -841,18 +1149,18 @@
 											"sid": 104777009708080,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "5*GlassVariation",
-												"upper-bound": "6*GlassVariation"
+												"lower-bound": "5*EWasteVariation",
+												"upper-bound": "6*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 869123120548509,
+											"objectClass": "ewaste_object",
+											"sid": 175540392971776,
 											"parameters": {
-												"animation": "\"plate\"",
+												"animation": "\"controller_2\"",
 												"from": "beginning"
 											}
 										}
@@ -868,18 +1176,18 @@
 											"sid": 698087230214635,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "6*GlassVariation",
-												"upper-bound": "7*GlassVariation"
+												"lower-bound": "6*EWasteVariation",
+												"upper-bound": "7*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 477450672112663,
+											"objectClass": "ewaste_object",
+											"sid": 628578869213081,
 											"parameters": {
-												"animation": "\"glass_bottle\"",
+												"animation": "\"laptop\"",
 												"from": "beginning"
 											}
 										}
@@ -895,18 +1203,18 @@
 											"sid": 408473516416323,
 											"parameters": {
 												"value": "RandomInt",
-												"lower-bound": "7*GlassVariation",
-												"upper-bound": "8*GlassVariation"
+												"lower-bound": "7*EWasteVariation",
+												"upper-bound": "8*EWasteVariation"
 											}
 										}
 									],
 									"actions": [
 										{
 											"id": "set-animation",
-											"objectClass": "glass_object",
-											"sid": 675236523057555,
+											"objectClass": "ewaste_object",
+											"sid": 332608765472652,
 											"parameters": {
-												"animation": "\"perfume_bottle\"",
+												"animation": "\"phone\"",
 												"from": "beginning"
 											}
 										}
@@ -1038,10 +1346,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "compost_object",
-									"sid": 735394298168221,
+									"sid": 607119310670824,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
 									}
 								},
 								{
@@ -1078,7 +1386,7 @@
 									"eventType": "variable",
 									"name": "CompostVariation",
 									"type": "number",
-									"initialValue": "25",
+									"initialValue": "16.66666",
 									"comment": "All compost objects will have an equal chance to spawn",
 									"isStatic": false,
 									"isConstant": true,
@@ -1191,6 +1499,60 @@
 										}
 									],
 									"sid": 294992106149616
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 357494185399010,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "4*CompostVariation",
+												"upper-bound": "5*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 885264144481546,
+											"parameters": {
+												"animation": "\"corn_cob\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 848750217183149
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 235760269176349,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "5*CompostVariation",
+												"upper-bound": "6*CompostVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "compost_object",
+											"sid": 692721294471737,
+											"parameters": {
+												"animation": "\"watermelon_rind\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 240906905071261
 								}
 							]
 						}
@@ -1317,10 +1679,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "recycle_object",
-									"sid": 374585900349818,
+									"sid": 514942306409922,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
 									}
 								},
 								{
@@ -1812,10 +2174,10 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "trash_object",
-									"sid": 504185287207968,
+									"sid": 175566587984995,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
 									}
 								},
 								{
@@ -1930,9 +2292,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 646559724867139,
+											"sid": 590577990070240,
 											"parameters": {
-												"animation": "\"gum_1\"",
+												"animation": "\"diaper\"",
 												"from": "beginning"
 											}
 										}
@@ -1957,9 +2319,9 @@
 										{
 											"id": "set-animation",
 											"objectClass": "trash_object",
-											"sid": 468183408420678,
+											"sid": 825732318281195,
 											"parameters": {
-												"animation": "\"gum_2\"",
+												"animation": "\"doggy_bag\"",
 												"from": "beginning"
 											}
 										}
@@ -2076,7 +2438,7 @@
 					"sid": 508951684644400
 				},
 				{
-					"functionName": "SpawnFrogDistraction",
+					"functionName": "SpawnForestDistraction",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
@@ -2089,6 +2451,26 @@
 					"sid": 871820136128636,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 919999025523636
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 695516484957367
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -2097,7 +2479,7 @@
 									"objectClass": "System",
 									"sid": 726076252407830,
 									"parameters": {
-										"object-to-create": "frog",
+										"object-to-create": "forest_distraction",
 										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
@@ -2107,7 +2489,7 @@
 								},
 								{
 									"id": "set-angle",
-									"objectClass": "frog",
+									"objectClass": "forest_distraction",
 									"sid": 508789665850854,
 									"parameters": {
 										"angle": "random(0, 360)"
@@ -2115,7 +2497,7 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "frog",
+									"objectClass": "forest_distraction",
 									"sid": 578132715043251,
 									"parameters": {
 										"instance-variable": "VectorX",
@@ -2124,15 +2506,162 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "frog",
-									"sid": 304918543925948,
+									"objectClass": "forest_distraction",
+									"sid": 994330330709151,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 825427432087766,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "forest_distraction",
+									"sid": 287648622339781,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 622233303144405,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
 									}
 								}
 							],
-							"sid": 372641241944385
+							"sid": 372641241944385,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "ForestDistractionVariation",
+									"type": "number",
+									"initialValue": "25",
+									"comment": "All forest distraction objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 998126166619801
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 330975722359026,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "ForestDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "forest_distraction",
+											"sid": 873440844536461,
+											"parameters": {
+												"animation": "\"frog\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 541540805969509
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 759720363461462,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "ForestDistractionVariation",
+												"upper-bound": "2*ForestDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "forest_distraction",
+											"sid": 872722723184935,
+											"parameters": {
+												"animation": "\"fox\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 237576625608154
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 776962039460477,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "2*ForestDistractionVariation",
+												"upper-bound": "3*ForestDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "forest_distraction",
+											"sid": 416342497658432,
+											"parameters": {
+												"animation": "\"wolf\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 195640148786117
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 632098408077368,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*ForestDistractionVariation",
+												"upper-bound": "4*ForestDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "forest_distraction",
+											"sid": 369080579046869,
+											"parameters": {
+												"animation": "\"bear\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 492345748148205
+								}
+							]
 						}
 					]
 				},
@@ -2144,14 +2673,14 @@
 							"objectClass": "System",
 							"sid": 218296932183867,
 							"parameters": {
-								"object": "frog"
+								"object": "forest_distraction"
 							}
 						}
 					],
 					"actions": [
 						{
 							"id": "set-position",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 870416288206256,
 							"parameters": {
 								"x": "Self.X + Self.VectorX * 60 * dt",
@@ -2160,7 +2689,7 @@
 						},
 						{
 							"id": "set-angle",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 928386194442412,
 							"parameters": {
 								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
@@ -2168,7 +2697,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 726068833268490,
 							"parameters": {
 								"instance-variable": "VectorY",
@@ -2177,7 +2706,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 838628370748822,
 							"parameters": {
 								"instance-variable": "RotationSpeed",
@@ -2188,7 +2717,7 @@
 					"sid": 244452607916444
 				},
 				{
-					"functionName": "SpawnFishDistraction",
+					"functionName": "SpawnOceanDistraction",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
@@ -2201,15 +2730,35 @@
 					"sid": 803723016254768,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 136015392487725
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 938879828406011
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 828168596945204,
+									"sid": 993486727041861,
 									"parameters": {
-										"object-to-create": "fish",
+										"object-to-create": "ocean_distraction",
 										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
@@ -2219,16 +2768,16 @@
 								},
 								{
 									"id": "set-angle",
-									"objectClass": "fish",
-									"sid": 993077416953362,
+									"objectClass": "ocean_distraction",
+									"sid": 849820309333590,
 									"parameters": {
 										"angle": "random(0, 360)"
 									}
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "fish",
-									"sid": 696945566593111,
+									"objectClass": "ocean_distraction",
+									"sid": 814927470302895,
 									"parameters": {
 										"instance-variable": "VectorX",
 										"value": "random(-8, 8)"
@@ -2236,15 +2785,162 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "fish",
-									"sid": 973738669899315,
+									"objectClass": "ocean_distraction",
+									"sid": 761944748298773,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 888081687662551,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "ocean_distraction",
+									"sid": 124054595544600,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 842631313879905,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
 									}
 								}
 							],
-							"sid": 243494066383942
+							"sid": 191192223140061,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "OceanDistractionVariation",
+									"type": "number",
+									"initialValue": "25",
+									"comment": "All ocean distraction objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 790682811781900
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 522797677807095,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "OceanDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ocean_distraction",
+											"sid": 596387174694012,
+											"parameters": {
+												"animation": "\"fish\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 159011915431882
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 516824082067455,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "OceanDistractionVariation",
+												"upper-bound": "2*OceanDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ocean_distraction",
+											"sid": 184393917397560,
+											"parameters": {
+												"animation": "\"dolphin\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 629756020837894
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 850466072168146,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "2*OceanDistractionVariation",
+												"upper-bound": "3*OceanDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ocean_distraction",
+											"sid": 627360360036361,
+											"parameters": {
+												"animation": "\"shark\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 836493993257910
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 659261861075672,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*OceanDistractionVariation",
+												"upper-bound": "4*OceanDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "ocean_distraction",
+											"sid": 153835888691083,
+											"parameters": {
+												"animation": "\"seal\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 270304736129338
+								}
+							]
 						}
 					]
 				},
@@ -2256,14 +2952,14 @@
 							"objectClass": "System",
 							"sid": 394812015867972,
 							"parameters": {
-								"object": "fish"
+								"object": "ocean_distraction"
 							}
 						}
 					],
 					"actions": [
 						{
 							"id": "set-position",
-							"objectClass": "fish",
+							"objectClass": "ocean_distraction",
 							"sid": 858462761995148,
 							"parameters": {
 								"x": "Self.X + Self.VectorX * 60 * dt",
@@ -2272,7 +2968,7 @@
 						},
 						{
 							"id": "set-angle",
-							"objectClass": "fish",
+							"objectClass": "ocean_distraction",
 							"sid": 707564147122655,
 							"parameters": {
 								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
@@ -2280,7 +2976,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "fish",
+							"objectClass": "ocean_distraction",
 							"sid": 939319054973062,
 							"parameters": {
 								"instance-variable": "VectorY",
@@ -2289,7 +2985,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "fish",
+							"objectClass": "ocean_distraction",
 							"sid": 145817438193596,
 							"parameters": {
 								"instance-variable": "RotationSpeed",
@@ -2300,7 +2996,232 @@
 					"sid": 736397619466550
 				},
 				{
-					"functionName": "SpawnRatDistraction",
+					"functionName": "SpawnBeachDistraction",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 284758726360126,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 356344164745688
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 712346818759811
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 332560127547894,
+									"parameters": {
+										"object-to-create": "beach_distraction",
+										"layer": "\"Objects\"",
+										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
+										"y": "1208",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "beach_distraction",
+									"sid": 626825470912349,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "beach_distraction",
+									"sid": 392939306583903,
+									"parameters": {
+										"instance-variable": "VectorX",
+										"value": "random(-8, 8)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "beach_distraction",
+									"sid": 951605648225239,
+									"parameters": {
+										"instance-variable": "VectorY",
+										"value": "random(-41, -44)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 153152926782584,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "beach_distraction",
+									"sid": 892939911187854,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 889483781476158,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
+									}
+								}
+							],
+							"sid": 684685748824539,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "BeachDistractionVariation",
+									"type": "number",
+									"initialValue": "50",
+									"comment": "All beach distraction objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 481207427515779
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 756562939785601,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "BeachDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "beach_distraction",
+											"sid": 630189787214783,
+											"parameters": {
+												"animation": "\"crab\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 191864287927306
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 162777981874002,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "BeachDistractionVariation",
+												"upper-bound": "2*BeachDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "beach_distraction",
+											"sid": 680333439594774,
+											"parameters": {
+												"animation": "\"seagull\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 272083121622095
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 297375576845871,
+							"parameters": {
+								"object": "beach_distraction"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "beach_distraction",
+							"sid": 341030122891444,
+							"parameters": {
+								"x": "Self.X + Self.VectorX * 60 * dt",
+								"y": "Self.Y + Self.VectorY * 60 * dt"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "beach_distraction",
+							"sid": 984215239242375,
+							"parameters": {
+								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 747699933142924,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.VectorY, 128, 1)"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 115591424978484,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "Functions.MoveValTowardsAnotherVal(Self.RotationSpeed, 0, 0.05)"
+							}
+						}
+					],
+					"sid": 424915175650121
+				},
+				{
+					"functionName": "SpawnCityDistraction",
 					"functionDescription": "",
 					"functionCategory": "",
 					"functionReturnType": "none",
@@ -2313,15 +3234,35 @@
 					"sid": 155558744349569,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "RandomInt",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "Picks random integer from 0 to 100 for determining which waste variation to spawn",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 106484762127175
+						},
+						{
+							"eventType": "variable",
+							"name": "RotationDirection",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 380058217115934
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 310742608455535,
+									"sid": 708800055386264,
 									"parameters": {
-										"object-to-create": "rat",
+										"object-to-create": "city_distraction",
 										"layer": "\"Objects\"",
 										"x": "random(SCREENHORIZONTALMARGIN, LayoutWidth - SCREENHORIZONTALMARGIN)",
 										"y": "1208",
@@ -2331,16 +3272,16 @@
 								},
 								{
 									"id": "set-angle",
-									"objectClass": "rat",
-									"sid": 525490043734301,
+									"objectClass": "city_distraction",
+									"sid": 664343158081833,
 									"parameters": {
 										"angle": "random(0, 360)"
 									}
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "rat",
-									"sid": 156804211353460,
+									"objectClass": "city_distraction",
+									"sid": 396343936998940,
 									"parameters": {
 										"instance-variable": "VectorX",
 										"value": "random(-8, 8)"
@@ -2348,15 +3289,162 @@
 								},
 								{
 									"id": "set-instvar-value",
-									"objectClass": "rat",
-									"sid": 867165369581008,
+									"objectClass": "city_distraction",
+									"sid": 898018231312319,
 									"parameters": {
 										"instance-variable": "VectorY",
-										"value": "random(-32, -48)"
+										"value": "random(-41, -44)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 506387554969576,
+									"parameters": {
+										"variable": "RotationDirection",
+										"value": "choose(-1, 1)"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "city_distraction",
+									"sid": 930744098468792,
+									"parameters": {
+										"instance-variable": "RotationSpeed",
+										"value": "RotationDirection * random(2.5, 5)"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 241115893020599,
+									"parameters": {
+										"variable": "RandomInt",
+										"value": "random(0,100)"
 									}
 								}
 							],
-							"sid": 772473784421173
+							"sid": 722200037918639,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "CityDistractionVariation",
+									"type": "number",
+									"initialValue": "25",
+									"comment": "All city distraction objects will have an equal chance to spawn",
+									"isStatic": false,
+									"isConstant": true,
+									"sid": 836048836742785
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 772883412454180,
+											"parameters": {
+												"first-value": "RandomInt",
+												"comparison": 2,
+												"second-value": "CityDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "city_distraction",
+											"sid": 459876590779969,
+											"parameters": {
+												"animation": "\"rat\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 890402593784857
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 658205976884230,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "CityDistractionVariation",
+												"upper-bound": "2*CityDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "city_distraction",
+											"sid": 459883566961054,
+											"parameters": {
+												"animation": "\"cat\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 243618313954738
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 469911831481885,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "2*CityDistractionVariation",
+												"upper-bound": "3*CityDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "city_distraction",
+											"sid": 186784320532179,
+											"parameters": {
+												"animation": "\"raccoon\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 581410966690734
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-between-values",
+											"objectClass": "System",
+											"sid": 194872401269544,
+											"parameters": {
+												"value": "RandomInt",
+												"lower-bound": "3*CityDistractionVariation",
+												"upper-bound": "4*CityDistractionVariation"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-animation",
+											"objectClass": "city_distraction",
+											"sid": 296752395135219,
+											"parameters": {
+												"animation": "\"dog\"",
+												"from": "beginning"
+											}
+										}
+									],
+									"sid": 601552630158994
+								}
+							]
 						}
 					]
 				},
@@ -2368,14 +3456,14 @@
 							"objectClass": "System",
 							"sid": 626377370675331,
 							"parameters": {
-								"object": "rat"
+								"object": "city_distraction"
 							}
 						}
 					],
 					"actions": [
 						{
 							"id": "set-position",
-							"objectClass": "rat",
+							"objectClass": "city_distraction",
 							"sid": 907002017984086,
 							"parameters": {
 								"x": "Self.X + Self.VectorX * 60 * dt",
@@ -2384,7 +3472,7 @@
 						},
 						{
 							"id": "set-angle",
-							"objectClass": "rat",
+							"objectClass": "city_distraction",
 							"sid": 312622306882288,
 							"parameters": {
 								"angle": "Self.Angle + Self.RotationSpeed * 60 * dt"
@@ -2392,7 +3480,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "rat",
+							"objectClass": "city_distraction",
 							"sid": 865887970963130,
 							"parameters": {
 								"instance-variable": "VectorY",
@@ -2401,7 +3489,7 @@
 						},
 						{
 							"id": "set-instvar-value",
-							"objectClass": "rat",
+							"objectClass": "city_distraction",
 							"sid": 250080199460340,
 							"parameters": {
 								"instance-variable": "RotationSpeed",
@@ -2571,9 +3659,18 @@
 					"conditions": [
 						{
 							"id": "on-drag-start",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 114851475122655,
 							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "forest_distraction",
+							"sid": 271772147502286,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"frog_normal\""
+							}
 						}
 					],
 					"actions": [
@@ -2582,17 +3679,38 @@
 							"sid": 944556307155380
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "frog",
-							"sid": 880671257601345,
+							"callFunction": "ResetStreak",
+							"sid": 424344307476779
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "forest_distraction",
+							"sid": 158534379918318,
 							"parameters": {
-								"animation": "\"frog_scared\"",
-								"from": "beginning"
+								"frame-number": "\"frog_scared\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 171297135145468,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 611791147009886,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
 							}
 						},
 						{
 							"id": "drop",
-							"objectClass": "frog",
+							"objectClass": "forest_distraction",
 							"sid": 119676199845141,
 							"behaviorType": "DragDrop"
 						}
@@ -2604,9 +3722,207 @@
 					"conditions": [
 						{
 							"id": "on-drag-start",
-							"objectClass": "fish",
+							"objectClass": "forest_distraction",
+							"sid": 703530428435048,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "forest_distraction",
+							"sid": 941051423688236,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"fox_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 544838126803040
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 665799646202498
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "forest_distraction",
+							"sid": 440016814961224,
+							"parameters": {
+								"frame-number": "\"fox_jump\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 781157654964287,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 702194777166184,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "forest_distraction",
+							"sid": 671147068790631,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 191414884615779
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "forest_distraction",
+							"sid": 525468192496675,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "forest_distraction",
+							"sid": 931791396319629,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"wolf_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 527359919999666
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 636652957139188
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "forest_distraction",
+							"sid": 725832900214469,
+							"parameters": {
+								"frame-number": "\"wolf_hit\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 772183300891073,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 845040607610704,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "forest_distraction",
+							"sid": 157969641208242,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 190257162988463
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "forest_distraction",
+							"sid": 933567963149373,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "forest_distraction",
+							"sid": 101708037793050,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"bear_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 789764626820626
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 891278149097343
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "forest_distraction",
+							"sid": 205270012998231,
+							"parameters": {
+								"frame-number": "\"bear_hit\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 182484544776040,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "forest_distraction",
+							"sid": 574767589950196,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "forest_distraction",
+							"sid": 508674945139536,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 445143183728844
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "ocean_distraction",
 							"sid": 173627002442300,
 							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "ocean_distraction",
+							"sid": 201684238188748,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"fish_normal\""
+							}
 						}
 					],
 					"actions": [
@@ -2615,18 +3931,39 @@
 							"sid": 645586190518880
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "fish",
-							"sid": 300604805868303,
+							"callFunction": "ResetStreak",
+							"sid": 762705527097918
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "ocean_distraction",
+							"sid": 546541432708538,
 							"parameters": {
-								"animation": "\"fish_dead\"",
-								"from": "beginning"
+								"frame-number": "\"fish_dead\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 768352099347128,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 221747597693245,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
 							}
 						},
 						{
 							"id": "drop",
-							"objectClass": "frog",
-							"sid": 623570811369091,
+							"objectClass": "ocean_distraction",
+							"sid": 734177507992689,
 							"behaviorType": "DragDrop"
 						}
 					],
@@ -2637,33 +3974,567 @@
 					"conditions": [
 						{
 							"id": "on-drag-start",
-							"objectClass": "rat",
-							"sid": 354480532723828,
+							"objectClass": "ocean_distraction",
+							"sid": 889290217426524,
 							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "ocean_distraction",
+							"sid": 349393897435832,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"dolphin_normal\""
+							}
 						}
 					],
 					"actions": [
 						{
 							"callFunction": "DistractionHit",
-							"sid": 673138947792520
+							"sid": 459956151778147
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "rat",
-							"sid": 810773159300201,
+							"callFunction": "ResetStreak",
+							"sid": 669450840407355
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "ocean_distraction",
+							"sid": 306998803538046,
 							"parameters": {
-								"animation": "\"rat_scared\"",
-								"from": "beginning"
+								"frame-number": "\"dolphin_sad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 745363724921718,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 184048978523318,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
 							}
 						},
 						{
 							"id": "drop",
-							"objectClass": "rat",
-							"sid": 302828131930103,
+							"objectClass": "ocean_distraction",
+							"sid": 481113450170134,
 							"behaviorType": "DragDrop"
 						}
 					],
-					"sid": 383314335832908
+					"sid": 198144651192006
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "ocean_distraction",
+							"sid": 684166226639221,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "ocean_distraction",
+							"sid": 985819211661703,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"shark_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 149565309936241
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 408676889306358
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "ocean_distraction",
+							"sid": 551809587582907,
+							"parameters": {
+								"frame-number": "\"shark_sad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 469722832094255,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 326817586765353,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "ocean_distraction",
+							"sid": 596236279087454,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 448875907016626
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "ocean_distraction",
+							"sid": 424966752394614,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "ocean_distraction",
+							"sid": 288769726727421,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"seal_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 708066824322686
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 316766628443851
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "ocean_distraction",
+							"sid": 571940818862759,
+							"parameters": {
+								"frame-number": "\"seal_hit\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 229047518255419,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ocean_distraction",
+							"sid": 349376594830803,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "ocean_distraction",
+							"sid": 565541742799933,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 836949201716736
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "beach_distraction",
+							"sid": 290071800641945,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "beach_distraction",
+							"sid": 366802995025513,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"crab_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 795801526953391
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 470536929044333
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "beach_distraction",
+							"sid": 213068624872978,
+							"parameters": {
+								"frame-number": "\"crab_mad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 328677590907513,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 574293290920032,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "beach_distraction",
+							"sid": 814069847020105,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 603196148202947
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "beach_distraction",
+							"sid": 176794943640676,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "beach_distraction",
+							"sid": 608810666878117,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"seagull_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 162817335952479
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 788755018930575
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "beach_distraction",
+							"sid": 652858499412625,
+							"parameters": {
+								"frame-number": "\"seagull_mad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 479493254552152,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "beach_distraction",
+							"sid": 695822662658629,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "beach_distraction",
+							"sid": 881363906388451,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 663244521872589
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "city_distraction",
+							"sid": 549078187613513,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "city_distraction",
+							"sid": 810829629443498,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"rat_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 514624188673245
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 917257781425748
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "city_distraction",
+							"sid": 257642674394825,
+							"parameters": {
+								"frame-number": "\"rat_scared\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 604523355283722,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 543018983268110,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "city_distraction",
+							"sid": 978926508722963,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 288445375821987
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "city_distraction",
+							"sid": 699049864763482,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "city_distraction",
+							"sid": 951779274093534,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"cat_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 690280463995055
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 409379591493536
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "city_distraction",
+							"sid": 873027360322678,
+							"parameters": {
+								"frame-number": "\"cat_mad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 430159384526416,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 502187627804460,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "city_distraction",
+							"sid": 889326406016054,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 380944211565813
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "city_distraction",
+							"sid": 305488190298750,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "city_distraction",
+							"sid": 811066848678253,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"dog_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 381646341925485
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 920409827389214
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "city_distraction",
+							"sid": 887507864015995,
+							"parameters": {
+								"frame-number": "\"dog_sad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 971959481988722,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 673459001660703,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "city_distraction",
+							"sid": 775000497218485,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 565588561967148
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-drag-start",
+							"objectClass": "city_distraction",
+							"sid": 844053181346847,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "compare-animation-frame-tag",
+							"objectClass": "city_distraction",
+							"sid": 634166923078311,
+							"parameters": {
+								"comparison": 0,
+								"tag": "\"raccoon_normal\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DistractionHit",
+							"sid": 312618847042857
+						},
+						{
+							"callFunction": "ResetStreak",
+							"sid": 599478566262272
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "city_distraction",
+							"sid": 423593286512977,
+							"parameters": {
+								"frame-number": "\"raccoon_sad\""
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 931978075763194,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "city_distraction",
+							"sid": 725026750376937,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "-1"
+							}
+						},
+						{
+							"id": "drop",
+							"objectClass": "city_distraction",
+							"sid": 237583802757557,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"sid": 829386959843154
 				}
 			],
 			"sid": 107398251227655
@@ -2675,6 +4546,48 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 597769377898608,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "ewaste_object"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 259328708041764,
+							"parameters": {
+								"object": "ewaste_object",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 575388973271577,
+							"parameters": {
+								"audio-file": {
+									"path": "gameplay/grabitem"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 372610072720360,
+					"isOrBlock": true
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -2850,47 +4763,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-dragging",
-							"objectClass": "ewaste_object",
-							"sid": 406383483147646,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "ewaste_object",
-							"sid": 223795562543353,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "ewaste_object",
-							"sid": 146605704839351,
-							"parameters": {
-								"instance-variable": "VectorX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "ewaste_object",
-							"sid": 965983511802299,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 105096601834542
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-drop",
 							"objectClass": "ewaste_object",
 							"sid": 551383391909363,
@@ -2941,6 +4813,48 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 620509938586972,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "glass_object"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 761490024132072,
+							"parameters": {
+								"object": "glass_object",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 631061998449138,
+							"parameters": {
+								"audio-file": {
+									"path": "gameplay/grabitem"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 572222457967724,
+					"isOrBlock": true
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -3081,47 +4995,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-dragging",
-							"objectClass": "glass_object",
-							"sid": 209707191314425,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "glass_object",
-							"sid": 874081466465209,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "glass_object",
-							"sid": 782263188877000,
-							"parameters": {
-								"instance-variable": "VectorX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "glass_object",
-							"sid": 324223698935030,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 669202777556718
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-drop",
 							"objectClass": "glass_object",
 							"sid": 855820144586048,
@@ -3140,27 +5013,6 @@
 						}
 					],
 					"sid": 243944765644100
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "glass_object",
-							"sid": 973170477497773,
-							"parameters": {
-								"object": "subtractor"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "ResetStreak",
-							"sid": 192313516095678
-						}
-					],
-					"sid": 505535641905036,
-					"disabled": true
 				}
 			],
 			"sid": 144892102583372
@@ -3172,6 +5024,48 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 901241480555532,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "compost_object"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 639047747404242,
+							"parameters": {
+								"object": "compost_object",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 131403850567877,
+							"parameters": {
+								"audio-file": {
+									"path": "gameplay/grabitem"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 669086372317511,
+					"isOrBlock": true
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -3312,47 +5206,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-dragging",
-							"objectClass": "compost_object",
-							"sid": 438048366795765,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "compost_object",
-							"sid": 555126058142308,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "compost_object",
-							"sid": 593636398862129,
-							"parameters": {
-								"instance-variable": "VectorX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "compost_object",
-							"sid": 673349139087700,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 858701010466476
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-drop",
 							"objectClass": "compost_object",
 							"sid": 896116613555484,
@@ -3371,27 +5224,6 @@
 						}
 					],
 					"sid": 944709119423891
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "compost_object",
-							"sid": 529361058433915,
-							"parameters": {
-								"object": "subtractor"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "ResetStreak",
-							"sid": 838086813082654
-						}
-					],
-					"sid": 387920646255053,
-					"disabled": true
 				}
 			],
 			"sid": 493666468333784
@@ -3403,6 +5235,48 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 809649082769130,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "recycle_object"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 347878352916012,
+							"parameters": {
+								"object": "recycle_object",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 574393233826114,
+							"parameters": {
+								"audio-file": {
+									"path": "gameplay/grabitem"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 946122897298606,
+					"isOrBlock": true
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -3543,47 +5417,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-dragging",
-							"objectClass": "recycle_object",
-							"sid": 658424336716703,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "recycle_object",
-							"sid": 854496419640227,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "recycle_object",
-							"sid": 691888336560672,
-							"parameters": {
-								"instance-variable": "VectorX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "recycle_object",
-							"sid": 827549178406961,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 825538865443587
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-drop",
 							"objectClass": "recycle_object",
 							"sid": 904497227066891,
@@ -3602,27 +5435,6 @@
 						}
 					],
 					"sid": 660594017854114
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "recycle_object",
-							"sid": 484937812528736,
-							"parameters": {
-								"object": "subtractor"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "ResetStreak",
-							"sid": 439134880038783
-						}
-					],
-					"sid": 969608295873775,
-					"disabled": true
 				}
 			],
 			"sid": 105923235684826
@@ -3634,6 +5446,48 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-object-clicked",
+							"objectClass": "Mouse",
+							"sid": 471098320197533,
+							"parameters": {
+								"mouse-button": "left",
+								"click-type": "clicked",
+								"object-clicked": "trash_object"
+							}
+						},
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 552530812697558,
+							"parameters": {
+								"object": "trash_object",
+								"type": "start"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 337735774553082,
+							"parameters": {
+								"audio-file": {
+									"path": "gameplay/grabitem"
+								},
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 439427454173564,
+					"isOrBlock": true
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -3774,47 +5628,6 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-dragging",
-							"objectClass": "trash_object",
-							"sid": 819831312956950,
-							"behaviorType": "DragDrop"
-						}
-					],
-					"actions": [
-						{
-							"id": "set-instvar-value",
-							"objectClass": "trash_object",
-							"sid": 343951835292709,
-							"parameters": {
-								"instance-variable": "RotationSpeed",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "trash_object",
-							"sid": 592373452183235,
-							"parameters": {
-								"instance-variable": "VectorX",
-								"value": "0"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "trash_object",
-							"sid": 548431920875635,
-							"parameters": {
-								"instance-variable": "VectorY",
-								"value": "0"
-							}
-						}
-					],
-					"sid": 205920518995433
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
 							"id": "on-drop",
 							"objectClass": "trash_object",
 							"sid": 196051753116913,
@@ -3833,30 +5646,1273 @@
 						}
 					],
 					"sid": 442126650517916
+				}
+			],
+			"sid": 518028132772567
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Bin Raising and Lowering Animation",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-dragging",
+							"objectClass": "trash_object",
+							"sid": 920380498840789,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-dragging",
+							"objectClass": "compost_object",
+							"sid": 116219405368376,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-dragging",
+							"objectClass": "recycle_object",
+							"sid": 380450878787633,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-dragging",
+							"objectClass": "glass_object",
+							"sid": 142220688476956,
+							"behaviorType": "DragDrop"
+						},
+						{
+							"id": "is-dragging",
+							"objectClass": "ewaste_object",
+							"sid": 196053531284607,
+							"behaviorType": "DragDrop"
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 966605757696053,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 384914447784403,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "trash_object",
+							"sid": 369345010186076,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 460186892962402,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 636023186860009,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "compost_object",
+							"sid": 884128370643918,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "recycle_object",
+							"sid": 237342191963335,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "recycle_object",
+							"sid": 505159377320260,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "recycle_object",
+							"sid": 624790167654010,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "glass_object",
+							"sid": 521602763991414,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "glass_object",
+							"sid": 936753617761842,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "glass_object",
+							"sid": 830535349417872,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ewaste_object",
+							"sid": 854454912712071,
+							"parameters": {
+								"instance-variable": "RotationSpeed",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ewaste_object",
+							"sid": 563822385547678,
+							"parameters": {
+								"instance-variable": "VectorX",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "ewaste_object",
+							"sid": 254682374139101,
+							"parameters": {
+								"instance-variable": "VectorY",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 686619518297508,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 850226678779079,
+									"parameters": {
+										"object": "trash_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 668192386261063,
+									"parameters": {
+										"object": "trash_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 733230581611321,
+									"parameters": {
+										"object": "trash_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 298037566190746,
+									"parameters": {
+										"object": "trash_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 433133370018774,
+									"parameters": {
+										"object": "trash_bin"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "TrashBinRaise",
+									"sid": 696514057104378
+								}
+							],
+							"sid": 601702995809097,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 307334980891734,
+									"parameters": {
+										"object": "trash_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 361738728273542,
+									"parameters": {
+										"object": "trash_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 173458722797700,
+									"parameters": {
+										"object": "trash_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 476469516995127,
+									"parameters": {
+										"object": "trash_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 492965768852101,
+									"parameters": {
+										"object": "trash_bin"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "TrashBinLower",
+									"sid": 566218991733006
+								}
+							],
+							"sid": 713004642769935,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 410850812561813,
+									"parameters": {
+										"object": "compost_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 363481774472748,
+									"parameters": {
+										"object": "compost_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 384206572866238,
+									"parameters": {
+										"object": "compost_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 924040840859517,
+									"parameters": {
+										"object": "compost_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 895477800744131,
+									"parameters": {
+										"object": "compost_bin"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "CompostBinRaise",
+									"sid": 296924749354359
+								}
+							],
+							"sid": 598024923099466,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 162273003691528,
+									"parameters": {
+										"object": "compost_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 145459521793629,
+									"parameters": {
+										"object": "compost_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 404706405500340,
+									"parameters": {
+										"object": "compost_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 689601554939264,
+									"parameters": {
+										"object": "compost_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 853574857635664,
+									"parameters": {
+										"object": "compost_bin"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "CompostBinLower",
+									"sid": 670419531209780
+								}
+							],
+							"sid": 816894943595530,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 976799885608581,
+									"parameters": {
+										"object": "recycle_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 129256540020956,
+									"parameters": {
+										"object": "recycle_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 870159569735708,
+									"parameters": {
+										"object": "recycle_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 934182831343006,
+									"parameters": {
+										"object": "recycle_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 823860460240702,
+									"parameters": {
+										"object": "recycle_bin"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RecycleBinRaise",
+									"sid": 712696522021824
+								}
+							],
+							"sid": 610411850438720,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 586430012762257,
+									"parameters": {
+										"object": "recycle_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 192588570538669,
+									"parameters": {
+										"object": "recycle_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 514018200302302,
+									"parameters": {
+										"object": "recycle_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 371630210344374,
+									"parameters": {
+										"object": "recycle_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 118294704402612,
+									"parameters": {
+										"object": "recycle_bin"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "RecycleBinLower",
+									"sid": 865909321118272
+								}
+							],
+							"sid": 428216864100002,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 691892490503028,
+									"parameters": {
+										"object": "glass_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 423050485862149,
+									"parameters": {
+										"object": "glass_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 294014491334331,
+									"parameters": {
+										"object": "glass_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 978297513785270,
+									"parameters": {
+										"object": "glass_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 432366229941309,
+									"parameters": {
+										"object": "glass_bin"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "GlassBinRaise",
+									"sid": 234510754344416
+								}
+							],
+							"sid": 854264958237796,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 909536430938022,
+									"parameters": {
+										"object": "glass_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 640776127803466,
+									"parameters": {
+										"object": "glass_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 672084098143350,
+									"parameters": {
+										"object": "glass_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 749809506368111,
+									"parameters": {
+										"object": "glass_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 101503358706306,
+									"parameters": {
+										"object": "glass_bin"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "GlassBinLower",
+									"sid": 540328778410692
+								}
+							],
+							"sid": 509392561134445,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 833200077572823,
+									"parameters": {
+										"object": "ewaste_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 634366510513795,
+									"parameters": {
+										"object": "ewaste_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 663039650814665,
+									"parameters": {
+										"object": "ewaste_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 784773965733238,
+									"parameters": {
+										"object": "ewaste_bin"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 754126155329693,
+									"parameters": {
+										"object": "ewaste_bin"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "EWasteBinRaise",
+									"sid": 721557288868195
+								}
+							],
+							"sid": 300955604090268,
+							"isOrBlock": true
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "trash_object",
+									"sid": 764293051643857,
+									"parameters": {
+										"object": "ewaste_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "compost_object",
+									"sid": 975539745559375,
+									"parameters": {
+										"object": "ewaste_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "recycle_object",
+									"sid": 525334705059242,
+									"parameters": {
+										"object": "ewaste_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "glass_object",
+									"sid": 322528393740508,
+									"parameters": {
+										"object": "ewaste_bin"
+									},
+									"isInverted": true
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "ewaste_object",
+									"sid": 884253422371631,
+									"parameters": {
+										"object": "ewaste_bin"
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "EWasteBinLower",
+									"sid": 674654036208513
+								}
+							],
+							"sid": 982127910811237,
+							"isOrBlock": true
+						}
+					],
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "on-collision-with-another-object",
-							"objectClass": "trash_object",
-							"sid": 620798792750761,
-							"parameters": {
-								"object": "subtractor"
-							}
+							"id": "else",
+							"objectClass": "System",
+							"sid": 423617041871672
 						}
 					],
 					"actions": [
 						{
-							"callFunction": "ResetStreak",
-							"sid": 131424874198746
+							"callFunction": "TrashBinLower",
+							"sid": 224152302190092
+						},
+						{
+							"callFunction": "CompostBinLower",
+							"sid": 307177246678604
+						},
+						{
+							"callFunction": "RecycleBinLower",
+							"sid": 105340860547455
+						},
+						{
+							"callFunction": "GlassBinLower",
+							"sid": 600869578236722
+						},
+						{
+							"callFunction": "EWasteBinLower",
+							"sid": 598344148215801
 						}
 					],
-					"sid": 412702094589919,
-					"disabled": true
+					"sid": 956947494961985
+				},
+				{
+					"functionName": "TrashBinRaise",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "trash_bin",
+							"sid": 758978240257743,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_raise\"",
+								"property": "offsetY",
+								"end-value": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "trash_bin",
+							"sid": 235094956888492,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_grow\"",
+								"property": "size",
+								"end-x": "450",
+								"end-y": "900",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 148430931728555
+				},
+				{
+					"functionName": "TrashBinLower",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "trash_bin",
+							"sid": 665423169761988,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_lower\"",
+								"property": "offsetY",
+								"end-value": "873",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "trash_bin",
+							"sid": 722933677682064,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_reset\"",
+								"property": "size",
+								"end-x": "400",
+								"end-y": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 352689885696758
+				},
+				{
+					"functionName": "CompostBinRaise",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "compost_bin",
+							"sid": 955824067193479,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_raise\"",
+								"property": "offsetY",
+								"end-value": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "compost_bin",
+							"sid": 175506991402820,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_grow\"",
+								"property": "size",
+								"end-x": "450",
+								"end-y": "900",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 909172472736774
+				},
+				{
+					"functionName": "CompostBinLower",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "compost_bin",
+							"sid": 961625488516105,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_lower\"",
+								"property": "offsetY",
+								"end-value": "873",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "compost_bin",
+							"sid": 274354344333040,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_reset\"",
+								"property": "size",
+								"end-x": "400",
+								"end-y": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 288731830771140
+				},
+				{
+					"functionName": "RecycleBinRaise",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "recycle_bin",
+							"sid": 535419635863352,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_raise\"",
+								"property": "offsetY",
+								"end-value": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "recycle_bin",
+							"sid": 226347003650564,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_grow\"",
+								"property": "size",
+								"end-x": "450",
+								"end-y": "900",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 951721166440497
+				},
+				{
+					"functionName": "RecycleBinLower",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "recycle_bin",
+							"sid": 755837444899935,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_lower\"",
+								"property": "offsetY",
+								"end-value": "873",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "recycle_bin",
+							"sid": 296242005494145,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_reset\"",
+								"property": "size",
+								"end-x": "400",
+								"end-y": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 813930120935040
+				},
+				{
+					"functionName": "GlassBinRaise",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "glass_bin",
+							"sid": 893009633276572,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_raise\"",
+								"property": "offsetY",
+								"end-value": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "glass_bin",
+							"sid": 847982697969148,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_grow\"",
+								"property": "size",
+								"end-x": "450",
+								"end-y": "900",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 228995282281920
+				},
+				{
+					"functionName": "GlassBinLower",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "glass_bin",
+							"sid": 199929278869680,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_lower\"",
+								"property": "offsetY",
+								"end-value": "873",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "glass_bin",
+							"sid": 257333989090691,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_reset\"",
+								"property": "size",
+								"end-x": "400",
+								"end-y": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 500429101232007
+				},
+				{
+					"functionName": "EWasteBinRaise",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "ewaste_bin",
+							"sid": 955520348645725,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_raise\"",
+								"property": "offsetY",
+								"end-value": "800",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "ewaste_bin",
+							"sid": 750905121138209,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_grow\"",
+								"property": "size",
+								"end-x": "450",
+								"end-y": "875",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 656202934869120
+				},
+				{
+					"functionName": "EWasteBinLower",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "tween-one-property",
+							"objectClass": "ewaste_bin",
+							"sid": 449783095089786,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_lower\"",
+								"property": "offsetY",
+								"end-value": "873",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "ewaste_bin",
+							"sid": 653996987749232,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"bin_size_reset\"",
+								"property": "size",
+								"end-x": "400",
+								"end-y": "780",
+								"time": "0.025",
+								"ease": "noease",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 383560235461096
 				}
 			],
-			"sid": 518028132772567
+			"sid": 315311336088572
 		},
 		{
 			"eventType": "group",
@@ -3898,6 +6954,20 @@
 							"conditions": [],
 							"actions": [
 								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 890564544978742,
+									"parameters": {
+										"audio-file": {
+											"path": "gameplay/wrong"
+										},
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
 									"id": "add-to-eventvar",
 									"objectClass": "System",
 									"sid": 673181329878425,
@@ -3920,6 +6990,20 @@
 							"eventType": "function-block",
 							"conditions": [],
 							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 841087682869561,
+									"parameters": {
+										"audio-file": {
+											"path": "gameplay/wrong"
+										},
+										"loop": "not-looping",
+										"volume": "0",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
 								{
 									"id": "add-to-eventvar",
 									"objectClass": "System",
@@ -3946,23 +7030,58 @@
 								"comparison": 5,
 								"second-value": "6"
 							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 417641609055844,
+							"parameters": {
+								"variable": "GameEnded"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
 						{
-							"id": "reset-global-variables",
-							"objectClass": "System",
-							"sid": 403195993331669,
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 919697832887300,
 							"parameters": {
-								"reset-static": true
+								"type": "log",
+								"message": "\"game lost, going to level complete screen\""
 							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 389288827773586,
+							"parameters": {
+								"variable": "GameEnded",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 133267129083237,
+							"parameters": {
+								"variable": "LevelPassed",
+								"value": "false"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 192952380598644,
+							"parameters": [
+								"\"game_screen_\" & LastLevelPlayed"
+							]
 						},
 						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 458042341565686,
+							"sid": 738454165546620,
 							"parameters": {
-								"layout": "level_select_screen"
+								"layout": "level_complete_screen"
 							}
 						}
 					],
@@ -4060,9 +7179,16 @@
 							}
 						},
 						{
+							"callFunction": "music_stop",
+							"sid": 965524198011561,
+							"parameters": [
+								"\"game_screen_\" & LastLevelPlayed"
+							]
+						},
+						{
 							"id": "go-to-layout",
 							"objectClass": "System",
-							"sid": 456754946466278,
+							"sid": 512600408893727,
 							"parameters": {
 								"layout": "level_select_screen"
 							}
@@ -4104,6 +7230,13 @@
 							}
 						},
 						{
+							"callFunction": "music_stop",
+							"sid": 444995491343577,
+							"parameters": [
+								"\"game_screen_\" & LastLevelPlayed"
+							]
+						},
+						{
 							"id": "go-to-layout",
 							"objectClass": "System",
 							"sid": 168891662471010,
@@ -4128,6 +7261,15 @@
 					],
 					"actions": [
 						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 745872587595165,
+							"parameters": {
+								"layer": "\"Countdown\"",
+								"visibility": "invisible"
+							}
+						},
+						{
 							"id": "set-layer-interactive",
 							"objectClass": "System",
 							"sid": 600139650896593,
@@ -4143,6 +7285,15 @@
 							"parameters": {
 								"layer": "\"Pause Menu\"",
 								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 600616462774920,
+							"parameters": {
+								"layer": "\"Objects\"",
+								"interactive": false
 							}
 						},
 						{
@@ -4207,11 +7358,24 @@
 							}
 						},
 						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 280020062611345,
+							"parameters": {
+								"layer": "\"Objects\"",
+								"interactive": true
+							}
+						},
+						{
+							"type": "comment",
+							"text": "This will cause every layout that includes global_game_events to have the timescale set to LevelTimeScaleL1 at all times "
+						},
+						{
 							"id": "set-time-scale",
 							"objectClass": "System",
-							"sid": 740349770824207,
+							"sid": 732555259744212,
 							"parameters": {
-								"time-scale": "LevelTimeScaleL1"
+								"time-scale": "LastLevelPlayed = 2 ? LevelTimeScaleL2 : LastLevelPlayed = 3 ? LevelTimeScaleL3 : LastLevelPlayed = 4 ? LevelTimeScaleL4 : LevelTimeScaleL1"
 							}
 						},
 						{
@@ -4233,7 +7397,35 @@
 							}
 						}
 					],
-					"sid": 791541701430824
+					"sid": 791541701430824,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-animation-frame",
+									"objectClass": "countdown",
+									"sid": 377211306511926,
+									"parameters": {
+										"comparison": 2,
+										"number": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 835939832369843,
+									"parameters": {
+										"layer": "\"Countdown\"",
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 535246787656616
+						}
+					]
 				}
 			],
 			"sid": 460895525334906
@@ -4255,9 +7447,83 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 203762548573075,
+							"parameters": {
+								"type": "log",
+								"message": "\"CheckMultiplier: ScoreStreak = \" & ScoreStreak"
+							}
+						}
+					],
 					"sid": 949775917026631,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 548996485630959,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 143233050328428,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo1"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 113983713155041
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 268566234229634,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 518871372106247,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo2"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 250073805891595
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -4274,21 +7540,35 @@
 							],
 							"actions": [
 								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 127841925654477,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo3"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 535345809294691,
+									"parameters": {
+										"variable": "ScoreStreakTracker",
+										"value": "true"
+									}
+								},
+								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
 									"sid": 496325696781811,
 									"parameters": {
 										"variable": "ScoreMultiplier",
 										"value": "2"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 549531584165749,
-									"parameters": {
-										"variable": "ScoreStreakTracker",
-										"value": "true"
 									}
 								}
 							],
@@ -4309,6 +7589,20 @@
 								}
 							],
 							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 231440960501218,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo4"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
@@ -4337,6 +7631,20 @@
 							],
 							"actions": [
 								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 429040799054577,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo5"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
 									"sid": 897424157492276,
@@ -4364,6 +7672,20 @@
 							],
 							"actions": [
 								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 357528314755747,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo6"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
 									"sid": 370715010287838,
@@ -4374,6 +7696,79 @@
 								}
 							],
 							"sid": 868867462061116
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 443162000768875,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 0,
+										"value": "7"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 687270174892474,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo7"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 975708939933457,
+									"parameters": {
+										"variable": "ScoreMultiplier",
+										"value": "5"
+									}
+								}
+							],
+							"sid": 539310785538593
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 113830301515665,
+									"parameters": {
+										"variable": "ScoreStreak",
+										"comparison": 4,
+										"value": "7"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 742384781887106,
+									"parameters": {
+										"audio-file": {
+											"path": "scorestreak/combo8+"
+										},
+										"loop": "not-looping",
+										"volume": "SfxVolume",
+										"stereo-pan": "0",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 175761166962958
 						}
 					]
 				},
@@ -4430,6 +7825,15 @@
 					"conditions": [],
 					"actions": [
 						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 673835118467949,
+							"parameters": {
+								"variable": "ScoreStreak",
+								"value": "1"
+							}
+						},
+						{
 							"callFunction": "CheckMultiplier",
 							"sid": 212199206409470
 						},
@@ -4441,15 +7845,6 @@
 								"variable": "CurrLvlScore",
 								"value": "ScoreGain * ScoreMultiplier"
 							}
-						},
-						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 746367271327663,
-							"parameters": {
-								"variable": "ScoreStreak",
-								"value": "1"
-							}
 						}
 					],
 					"sid": 216774250186044
@@ -4458,11 +7853,13 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-boolean-eventvar",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 991287634298478,
+							"sid": 279026885262175,
 							"parameters": {
-								"variable": "ScoreStreakTracker"
+								"variable": "ScoreStreak",
+								"comparison": 4,
+								"value": "0"
 							}
 						}
 					],
@@ -4475,6 +7872,22 @@
 								"layer": "\"ActiveStreak\"",
 								"visibility": "visible"
 							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "ActiveStreakPopUp",
+							"sid": 270808754530507,
+							"parameters": {
+								"text": "\"[outline=white]\" & ScoreMultiplier & \"x\" & \"[\\outline]\""
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "score_streak_display",
+							"sid": 239400275668270,
+							"parameters": {
+								"text": "\"[outline=white]\" & ScoreStreak & \"[\\outline]\""
+							}
 						}
 					],
 					"sid": 591176980720255
@@ -4483,13 +7896,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-boolean-eventvar",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 707220973336461,
+							"sid": 499795949745846,
 							"parameters": {
-								"variable": "ScoreStreakTracker"
-							},
-							"isInverted": true
+								"variable": "ScoreStreak",
+								"comparison": 0,
+								"value": "0"
+							}
 						}
 					],
 					"actions": [

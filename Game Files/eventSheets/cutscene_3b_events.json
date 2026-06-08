@@ -27,6 +27,13 @@
 							"sid": 293114343987846
 						},
 						{
+							"callFunction": "music_start",
+							"sid": 383796930584672,
+							"parameters": [
+								"\"cutscene_3b\""
+							]
+						},
+						{
 							"callFunction": "initialize_cutscene",
 							"sid": 641141601453206,
 							"parameters": [
@@ -400,11 +407,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "c3b_arr",
-							"sid": 788957470019630,
+							"sid": 530477225373812,
 							"parameters": {
 								"x": "8",
 								"y": "3",
-								"value": "\"\""
+								"value": "\"beepboop_3_3\""
 							}
 						}
 					],
@@ -439,6 +446,13 @@
 							"parameters": [
 								"\"closing\"",
 								"\"cutscene_4a\""
+							]
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 856002162000378,
+							"parameters": [
+								"\"cutscene_3b\""
 							]
 						}
 					],

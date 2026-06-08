@@ -1,0 +1,15 @@
+{
+	"name": "game_objects",
+	"plugin-id": "Sprite",
+	"sid": 245673744093430,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"ewaste_object",
+		"compost_object",
+		"glass_object",
+		"recycle_object",
+		"trash_object"
+	]
+}

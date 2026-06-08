@@ -1,0 +1,505 @@
+{
+	"name": "credits_events",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "creditsBGExtended",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Tracks whether another credits BG instance has been created. For performance and credits looping",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 950376434069229
+		},
+		{
+			"eventType": "variable",
+			"name": "creditsScrollSpeed",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "The speed of the credit scrolling. Can be adjusted by the player when holding left click.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 730283587584054
+		},
+		{
+			"eventType": "variable",
+			"name": "numCreditBGs",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "Tracks number of credit backgrounds. Debug Use Only!!",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 794673613655274
+		},
+		{
+			"eventType": "variable",
+			"name": "creditsDoScroll",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Determines whether to do scroll animation in the credits screen.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 526357711287330
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "bttn_ux_events"
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 668664182142493
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "Curtain lift effect"
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "blackout",
+					"sid": 267935414672495,
+					"parameters": {
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "blackout",
+					"sid": 824638329530258,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"curtain_up\"",
+						"property": "offsetOpacity",
+						"end-value": "0",
+						"time": "1.5",
+						"ease": "easeinoutsine",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"type": "comment",
+					"text": "Don't scroll immediately on layout start"
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 668966068087892,
+					"parameters": {
+						"variable": "creditsDoScroll",
+						"value": "false"
+					}
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 960252201812128,
+					"parameters": {
+						"seconds": "2",
+						"use-timescale": true
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 719126936546215,
+					"parameters": {
+						"variable": "creditsDoScroll",
+						"value": "true"
+					}
+				},
+				{
+					"callFunction": "music_start",
+					"sid": 290349429589415,
+					"parameters": [
+						"\"credits_screen\""
+					]
+				}
+			],
+			"sid": 838636363032625,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-evaluate",
+							"objectClass": "System",
+							"sid": 922028864147817,
+							"parameters": {
+								"object": "credits_text",
+								"expression": "credits_text.is_last_text"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "credits_text",
+							"sid": 439963118336928,
+							"parameters": {
+								"text": "\"And you, \" & PlayerName & \"!\"  & newline & \"Thank you for playing our game!\""
+							}
+						}
+					],
+					"sid": 505675462656670
+				}
+			]
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Logic - Credits",
+			"description": "What happens on user interaction",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 694669054962944,
+							"parameters": {
+								"mouse-button": "left"
+							}
+						},
+						{
+							"id": "is-in-touch",
+							"objectClass": "Touch",
+							"sid": 839626714487182
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 114581257313123,
+							"parameters": {
+								"variable": "creditsScrollSpeed",
+								"value": "2"
+							}
+						}
+					],
+					"sid": 228621691119062,
+					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "mouse-button-is-down",
+							"objectClass": "Mouse",
+							"sid": 959805176417591,
+							"parameters": {
+								"mouse-button": "left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-in-touch",
+							"objectClass": "Touch",
+							"sid": 700941057458773,
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "reset-eventvar",
+							"objectClass": "System",
+							"sid": 684452287873633,
+							"parameters": {
+								"variable": "creditsScrollSpeed"
+							}
+						}
+					],
+					"sid": 672802778244154
+				}
+			],
+			"sid": 931142961883299
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Button Logic - Credits",
+			"description": "Mainly just for the back button",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-signal",
+							"objectClass": "System",
+							"sid": 589544057583458,
+							"parameters": {
+								"tag": "\"back_bttn_pressed\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 886580039295288,
+							"parameters": {
+								"layout": "main_menu_screen"
+							}
+						},
+						{
+							"callFunction": "music_stop",
+							"sid": 399080337096040,
+							"parameters": [
+								"\"credits_screen\""
+							]
+						}
+					],
+					"sid": 904459388049987,
+					"isOrBlock": true
+				}
+			],
+			"sid": 734882454673375
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Animations - Credits",
+			"description": "Scroll Animations for the background and text",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "comment",
+					"text": "Scroll only when creditsDoScroll is true. Scroll speed controlled by creditsScrollSpeed."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 525098955336592
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 418764134724187,
+							"parameters": {
+								"variable": "creditsDoScroll"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "credits_bg",
+							"sid": 102354677176526,
+							"parameters": {
+								"angle": "270",
+								"distance": "creditsScrollSpeed"
+							}
+						},
+						{
+							"id": "move-at-angle",
+							"objectClass": "game_logo",
+							"sid": 104220138644253,
+							"parameters": {
+								"angle": "270",
+								"distance": "creditsScrollSpeed*1.2"
+							}
+						},
+						{
+							"id": "move-at-angle",
+							"objectClass": "credits_text",
+							"sid": 127716798401098,
+							"parameters": {
+								"angle": "270",
+								"distance": "creditsScrollSpeed*1.2"
+							}
+						}
+					],
+					"sid": 786447540670676
+				},
+				{
+					"eventType": "comment",
+					"text": "Stop scrolling on last credits text."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-evaluate",
+							"objectClass": "System",
+							"sid": 636203662142124,
+							"parameters": {
+								"object": "credits_text",
+								"expression": "credits_text.is_last_text"
+							}
+						},
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 536181325590642,
+							"parameters": {
+								"value": "credits_text.Y",
+								"lower-bound": "(LayoutHeight/2)-30",
+								"upper-bound": "(LayoutHeight/2)-20"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 776115077039081,
+							"parameters": {
+								"variable": "creditsDoScroll",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 512333752247366
+				},
+				{
+					"eventType": "comment",
+					"text": "Extend background for infinite scroll."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-between-values",
+							"objectClass": "System",
+							"sid": 494607443748904,
+							"parameters": {
+								"value": "credits_bg.BBoxBottom",
+								"lower-bound": "0",
+								"upper-bound": "LayoutHeight"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 177860301240939,
+							"parameters": {
+								"variable": "creditsBGExtended"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 732416060436875,
+							"parameters": {
+								"variable": "creditsBGExtended",
+								"value": "true"
+							}
+						},
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 243940386270452,
+							"parameters": {
+								"object-to-create": "credits_bg",
+								"layer": "\"BG\"",
+								"x": "0",
+								"y": "LayoutHeight - creditsScrollSpeed",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 370036876211973,
+							"parameters": {
+								"variable": "numCreditBGs",
+								"value": "credits_bg.Count"
+							}
+						}
+					],
+					"sid": 229647123750808
+				},
+				{
+					"eventType": "comment",
+					"text": "Cleanup to reduce lag."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 385409702880938,
+							"parameters": {
+								"object": "credits_text",
+								"expression": "credits_text.BBoxBottom",
+								"comparison": 2,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "credits_text",
+							"sid": 669992990603448
+						}
+					],
+					"sid": 469674575934122
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 736738921201886,
+							"parameters": {
+								"object": "credits_bg",
+								"expression": "credits_bg.BBoxBottom",
+								"comparison": 2,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "credits_bg",
+							"sid": 462648755062084
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 662086577543422,
+							"parameters": {
+								"variable": "creditsBGExtended",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 976957088917025,
+							"parameters": {
+								"variable": "numCreditBGs",
+								"value": "credits_bg.Count"
+							}
+						}
+					],
+					"sid": 190189817533372
+				}
+			],
+			"sid": 348485499989805
+		}
+	],
+	"sid": 802026000403975
+}

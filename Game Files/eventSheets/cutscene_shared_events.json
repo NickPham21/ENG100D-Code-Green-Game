@@ -72,6 +72,26 @@
 			"sid": 705008381450807
 		},
 		{
+			"eventType": "variable",
+			"name": "cMonitorAnimTime",
+			"type": "number",
+			"initialValue": "0.7",
+			"comment": "Animation time for Monitor sprite to appear",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 945547924948127
+		},
+		{
+			"eventType": "variable",
+			"name": "spriteMonitorMoving",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "Tracks if the sprite monitor is moving or not. Used for cleanup.",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 928945041494524
+		},
+		{
 			"eventType": "comment",
 			"text": "Contains all shared cutscene functions. "
 		},
@@ -102,6 +122,43 @@
 					"conditions": [],
 					"actions": [
 						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 372760099257372,
+							"parameters": {
+								"object-to-create": "cursor_sprite",
+								"layer": "0",
+								"x": "-100",
+								"y": "-100",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 592895739474954,
+							"parameters": {
+								"time-scale": "1.0"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "cursor_sprite",
+							"sid": 984882899939882,
+							"parameters": {
+								"frame-number": "\"point\""
+							}
+						},
+						{
+							"id": "set-cursor-from-sprite",
+							"objectClass": "Mouse",
+							"sid": 891208744772953,
+							"parameters": {
+								"sprite": "cursor_sprite"
+							}
+						},
+						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
 							"sid": 489954489352301,
@@ -111,16 +168,39 @@
 							}
 						},
 						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 867856352693100,
+							"parameters": {
+								"variable": "spriteMonitorMoving",
+								"value": "false"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "disable scan lines by default, only used for cutscene 0 and 5a"
+						},
+						{
+							"id": "set-effect-enabled",
+							"objectClass": "c_sprite_display",
+							"sid": 958078709987144,
+							"parameters": {
+								"mode": "disable",
+								"effect": "\"ScanLines\""
+							}
+						},
+						{
 							"type": "comment",
 							"text": "lower music a bit so they could hear the voicelines"
 						},
 						{
 							"id": "fade-volume",
 							"objectClass": "Audio",
-							"sid": 206373232331183,
+							"sid": 484068581348420,
+							"disabled": true,
 							"parameters": {
-								"tag": "\"main_menu_music\"",
-								"db": "GlobalVolume - 20",
+								"tag": "\"music\"",
+								"db": "MusicVolume - 20",
 								"duration": "1",
 								"ending": "keep-playing"
 							}
@@ -152,6 +232,22 @@
 							"parameters": {
 								"x": "966",
 								"y": "1700"
+							}
+						},
+						{
+							"id": "set-scale",
+							"objectClass": "c_monitor_sprite_effect",
+							"sid": 920035581145039,
+							"parameters": {
+								"scale": "0"
+							}
+						},
+						{
+							"id": "set-y",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 449813389828349,
+							"parameters": {
+								"y": "1500"
 							}
 						},
 						{
@@ -219,6 +315,57 @@
 							"id": "wait-for-previous-actions",
 							"objectClass": "System",
 							"sid": 513233413662859
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 569996355677101,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_monitor_show\"",
+								"property": "offsetY",
+								"end-value": "410",
+								"time": "cMonitorAnimTime",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_effect",
+							"sid": 349440591742879,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_effect_showX\"",
+								"property": "offsetScaleX",
+								"end-value": "0.642",
+								"time": "cMonitorAnimTime",
+								"ease": "easeinoutexpo",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_effect",
+							"sid": 634882499766410,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_effect_showY\"",
+								"property": "offsetScaleY",
+								"end-value": "0.642",
+								"time": "cMonitorAnimTime*2",
+								"ease": "easeinoutexpo",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
 						},
 						{
 							"id": "tween-one-property",
@@ -370,6 +517,66 @@
 								"loop": "no",
 								"ping-pong": "no",
 								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_effect",
+							"sid": 178050530881038,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_effect_hideX\"",
+								"property": "offsetScaleX",
+								"end-value": "0",
+								"time": "cMonitorAnimTime",
+								"ease": "easeinoutexpo",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_effect",
+							"sid": 545860951587103,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_effect_hideY\"",
+								"property": "offsetScaleY",
+								"end-value": "0",
+								"time": "cMonitorAnimTime*2",
+								"ease": "easeinoutexpo",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "c_monitor_sprite_display",
+							"sid": 138101218233156,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"sprite_monitor_hide\"",
+								"property": "offsetY",
+								"end-value": "1500",
+								"time": "cMonitorAnimTime",
+								"ease": "easeinoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 201397415534449,
+							"parameters": {
+								"variable": "spriteMonitorMoving",
+								"value": "true"
 							}
 						}
 					],
@@ -1350,6 +1557,91 @@
 									"sid": 196517005584432
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 414456491840937,
+									"parameters": {
+										"object": "c_sprite_display",
+										"expression": "c_sprite_display.position",
+										"comparison": 0,
+										"value": "\"center\""
+									}
+								}
+							],
+							"actions": [],
+							"sid": 381707979682595,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "c_sprite_display",
+											"sid": 691510281769630,
+											"parameters": {
+												"instance-variable": "position",
+												"comparison": 0,
+												"value": "cur_pos"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-one-property",
+											"objectClass": "c_sprite_display",
+											"sid": 155448637606452,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"reveal\"",
+												"property": "offsetOpacity",
+												"end-value": "100",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										}
+									],
+									"sid": 287160090267599
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 450935919503797
+										}
+									],
+									"actions": [
+										{
+											"id": "tween-one-property",
+											"objectClass": "c_sprite_display",
+											"sid": 780734469530843,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"hide\"",
+												"property": "offsetOpacity",
+												"end-value": "0",
+												"time": "cAnimTime",
+												"ease": "easeinoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no",
+												"repeat-count": "1"
+											}
+										}
+									],
+									"sid": 787438976913320
+								}
+							]
 						}
 					]
 				},
@@ -1386,14 +1678,14 @@
 						{
 							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 870942400611253,
+							"sid": 671862231111472,
 							"parameters": {
 								"folder": "sounds",
 								"audio-file-name": "filename",
 								"loop": "not-looping",
-								"volume": "GlobalVolume",
+								"volume": "SfxVolume",
 								"stereo-pan": "0",
-								"tag-optional": "filename"
+								"tag-optional": "filename & \" voiceline\""
 							}
 						}
 					],

@@ -2,7 +2,7 @@
 	"name": "ActiveStreakPopUp",
 	"plugin-id": "Text",
 	"sid": 897990986685397,
-	"isGlobal": true,
+	"isGlobal": false,
 	"editorNewInstanceIsReplica": true,
 	"instanceVariables": [],
 	"behaviorTypes": [

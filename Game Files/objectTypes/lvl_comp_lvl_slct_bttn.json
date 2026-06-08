@@ -1,0 +1,104 @@
+{
+	"name": "lvl_comp_lvl_slct_bttn",
+	"plugin-id": "Sprite",
+	"sid": 617621667786138,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 193,
+						"height": 176,
+						"originX": 0.5025906735751295,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 1034586,
+						"collisionPoly": {
+							"points": [
+								0.08290155440414508,
+								0.005681818181818182,
+								0.9948186528497409,
+								0.056818181818181816,
+								0.917098445595855,
+								0.9943181818181818,
+								0.0051813471502590676,
+								0.9431818181818182
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_idle"
+					},
+					{
+						"width": 193,
+						"height": 176,
+						"originX": 0.5025906735751295,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 5305731,
+						"collisionPoly": {
+							"points": [
+								0.08290155440414508,
+								0.005681818181818182,
+								0.9948186528497409,
+								0.056818181818181816,
+								0.917098445595855,
+								0.9943181818181818,
+								0.0051813471502590676,
+								0.9431818181818182
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_hover"
+					},
+					{
+						"width": 187,
+						"height": 170,
+						"originX": 0.5187165775401069,
+						"originY": 0.5176470588235295,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 6502092,
+						"collisionPoly": {
+							"points": [
+								0.053475935828877004,
+								0.0058823529411764705,
+								0.9946524064171123,
+								0.058823529411764705,
+								0.946524064171123,
+								0.9941176470588236,
+								0.0053475935828877,
+								0.9411764705882353
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_pressed"
+					}
+				],
+				"sid": 623908248307821,
+				"name": "level_select",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

@@ -1,0 +1,122 @@
+{
+	"name": "continue_bttn",
+	"plugin-id": "Sprite",
+	"sid": 687028741375017,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 636,
+						"height": 190,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 4575067,
+						"collisionPoly": {
+							"points": [
+								0.841,
+								0.27666666666666667,
+								0.883,
+								0.2966666666666667,
+								0.963,
+								0.39666666666666667,
+								0.926,
+								0.92,
+								0.079,
+								0.9566666666666667,
+								0.015,
+								0.89,
+								0.032,
+								0.3433333333333333
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_idle"
+					},
+					{
+						"width": 636,
+						"height": 190,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 7301743,
+						"collisionPoly": {
+							"points": [
+								0.841,
+								0.27666666666666667,
+								0.883,
+								0.2966666666666667,
+								0.963,
+								0.39666666666666667,
+								0.926,
+								0.92,
+								0.079,
+								0.9566666666666667,
+								0.015,
+								0.89,
+								0.032,
+								0.3433333333333333
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_hover"
+					},
+					{
+						"width": 636,
+						"height": 190,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9683275,
+						"collisionPoly": {
+							"points": [
+								0.853,
+								0.2966666666666667,
+								0.895,
+								0.31666666666666665,
+								0.963,
+								0.38666666666666666,
+								0.926,
+								0.91,
+								0.079,
+								0.9466666666666667,
+								0.027,
+								0.91,
+								0.044,
+								0.36333333333333334
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": "bttn_pressed"
+					}
+				],
+				"sid": 863724043941610,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

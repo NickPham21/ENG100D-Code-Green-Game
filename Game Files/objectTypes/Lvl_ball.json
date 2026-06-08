@@ -1,0 +1,62 @@
+{
+	"name": "Lvl_ball",
+	"plugin-id": "Sprite",
+	"sid": 521627957303470,
+	"isGlobal": false,
+	"editorNewInstanceIsReplica": true,
+	"instanceVariables": [
+		{
+			"name": "v1",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 213197491567440
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 116,
+						"height": 114,
+						"originX": 6.146551724137931,
+						"originY": 1.4824561403508771,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 9874545,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					},
+					{
+						"width": 112,
+						"height": 111,
+						"originX": 6.330357142857143,
+						"originY": 1.4954954954954955,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"fileType": "image/png",
+						"imageSpriteId": 8606520,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 694448552697749,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}
